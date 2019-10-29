@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
 
 /*
@@ -16,6 +17,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/user/all', 'Admin\AdminController@getAllUsers');
 
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
