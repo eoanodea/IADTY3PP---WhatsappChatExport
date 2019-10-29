@@ -7,7 +7,7 @@ debug.log
 /node_modules
 /.pnp
 .pnp.js
-
+/vendor
 # testing
 /coverage
 
