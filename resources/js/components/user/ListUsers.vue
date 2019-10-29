@@ -1,6 +1,11 @@
 <template>
     <div class="container">
-        <h1>Users</h1>
+        <div class="header">
+            <h1>Users</h1>
+            <!-- <button v-on:click="addUser()">Add User</button>     -->
+            <add-user></add-user>
+        </div>
+        
         <hr />
         
         <div id="fetchData" class="userContainer">
@@ -24,14 +29,19 @@
         mounted () {
             axios.get('http://localhost:8000/api/user/all')
             .then(response => (this.users = response.data))
-
+        },
+        methods: {
+            addUser: function() {
+                console.log("hello")
+            }
         }
         
     }
 </script>
 <style>
-    .container {
-       width: 100%;
+    .header {
+        display: flex;
+        justify-content: space-between;
     }
     .userContainer {
         display: flex;
