@@ -9,6 +9,13 @@ debug.log
 /.pnp
 .pnp.js
 /vendor
+/public
+
+#passport
+.rnd
+storage/oauth-private.key
+storage/oauth-public.key
+
 # testing
 /coverage
 

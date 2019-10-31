@@ -5,8 +5,14 @@
  */
 
 require('./bootstrap');
+import VueMaterial from 'vue-material';
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
 
 window.Vue = require('vue');
+
+Vue.use(VueMaterial);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,6 +28,20 @@ window.Vue = require('vue');
 Vue.component('index', require('./Index').default);
 Vue.component('list-users', require('./components/user/ListUsers').default);
 Vue.component('add-user', require('./components/user/AddUser').default);
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
