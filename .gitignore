@@ -10,6 +10,7 @@ debug.log
 .pnp.js
 /vendor
 /public
+/public/js/
 
 #passport
 .rnd

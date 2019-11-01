@@ -4,14 +4,21 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import './bootstrap';
+
+import Vue from 'vue';
+import App from './App.vue';
+import VueRouter from 'vue-router';
+import router from './router';
+
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
-window.Vue = require('vue');
+window.Vue = Vue;
 
 Vue.use(VueMaterial);
+Vue.use(VueRouter);
 
 
 /**
@@ -25,9 +32,9 @@ Vue.use(VueMaterial);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('index', require('./Index').default);
-Vue.component('list-users', require('./components/user/ListUsers').default);
-Vue.component('add-user', require('./components/user/AddUser').default);
+// Vue.component('index', require('./Index').default);
+// Vue.component('list-users', require('./components/user/ListUsers').default);
+// Vue.component('add-user', require('./components/user/AddUser').default);
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default
@@ -49,6 +56,7 @@ Vue.component(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+new Vue({
+    router,
+    render: h => h(App)
+}).$mount('#app');

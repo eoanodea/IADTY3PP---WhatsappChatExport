@@ -19,4 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
+
 Route::get('/user/home', 'User\HomeController@index')->name('user.home');
+
+
+
+Route::get('/{any?}', function() {
+    return view('admin.home');  
+})->where('any', '^(?!api\/)[\/\w\.-]*');
