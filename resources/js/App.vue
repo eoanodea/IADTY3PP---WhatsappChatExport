@@ -1,5 +1,7 @@
 <template>
     <div id="main">
+        <NavBar></NavBar>
+        <!-- <nav-bar></nav-bar> -->
         <header id="header">
             <h1>
                 Vue JS Component
@@ -12,7 +14,7 @@
 </template>
 <script>
   // import { MdButton } from 'vue-material/dist/components'
-  
+  import NavBar from './components/NavBar'
   // Vue.use(MdButton)
   export default {
     data() {
@@ -21,7 +23,8 @@
       }
     },
     components: {
-        //
+      NavBar
+        
     }
   }
 </script>

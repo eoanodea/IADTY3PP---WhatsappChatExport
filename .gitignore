@@ -11,6 +11,7 @@ debug.log
 /vendor
 /public
 /public/js/
+/public/js/app.js
 
 #passport
 .rnd

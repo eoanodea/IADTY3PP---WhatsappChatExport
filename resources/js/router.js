@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import Home from './pages/Home';
 import About from './pages/About';
+import ListUsers from './components/user/ListUsers'
 
 const routes = [
     {
@@ -13,6 +14,12 @@ const routes = [
         path: '/admin/about',
         name: 'about',
         component: About
+
+    },
+    {
+        path: '/admin/users',
+        name: 'users',
+        component: ListUsers
 
     }
 ]
