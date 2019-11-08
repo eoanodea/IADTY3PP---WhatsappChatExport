@@ -56,6 +56,9 @@ class HomeController extends Controller
 
       $service->save();
 
-      return $service;
+      return response()->json([
+        'status'=> 'success',
+        'service'=> $service->toArray()
+      ], 200);
     }
 }
