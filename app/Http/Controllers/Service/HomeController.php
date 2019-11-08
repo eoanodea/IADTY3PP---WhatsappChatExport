@@ -38,6 +38,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
+      
       $request->validate([
         'title' => 'required|max:191',
         'description' => 'required|max:191',

@@ -2,17 +2,15 @@
 
 package-lock.json
 debug.log
-.env
+.env 
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
 /vendor
-/public
-/public/js/
-/public/js/app.js
-
+/public/css
+/public/js
 #passport
 .rnd
 storage/oauth-private.key
