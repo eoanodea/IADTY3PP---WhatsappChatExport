@@ -3,7 +3,7 @@
 @Date:   2019-11-08T08:50:10+00:00
 @Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
 @Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T09:11:06+00:00
+@Last modified time: 2019-11-08T11:13:54+00:00
 -->
 
 
@@ -22,6 +22,9 @@
             <div v-for="service in services" v-bind:key="service.id" class="item">
                 <h2>{{ service.title }}</h2>
                 <p>Description: {{service.description}}</p>
+                <p>Recurring Payment: {{service.recurring_payment}}</p>
+                <p>Standard Price: {{service.standard_price}}</p>
+                <p>Public Service: {{service.is_public}}</p>
             </div>
         </div>
     </div>

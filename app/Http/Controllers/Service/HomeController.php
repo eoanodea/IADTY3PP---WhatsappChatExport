@@ -3,7 +3,7 @@
 # @Date:   2019-11-07T18:50:46+00:00
 # @Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
 # @Last modified by:   John Carlo M. Ramos
-# @Last modified time: 2019-11-07T19:20:39+00:00
+# @Last modified time: 2019-11-08T10:05:58+00:00
 
 
 
@@ -19,6 +19,16 @@ class HomeController extends Controller
     public function index() {
       return Service::all();
     }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware('service');
+    // }
+    //
+    // public function index() {
+    //     return view('service.home');
+    // }
 
     /**
      * Store a newly created resource in storage.
