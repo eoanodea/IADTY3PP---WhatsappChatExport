@@ -1853,6 +1853,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import { MdButton } from 'vue-material/dist/components'
  // Vue.use(MdButton)
 
@@ -2788,12 +2798,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import { MdButton } from 'vue-material/dist/components'
 // Vue.use(MdButton)
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      msg: "Hi"
+      msg: "Aboot, ey?"
     };
   },
   components: {//
@@ -2823,12 +2843,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import { MdButton } from 'vue-material/dist/components'
 // Vue.use(MdButton)
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      msg: "Hi"
+      msg: "We gon die!!!"
     };
   },
   components: {//
@@ -2865,14 +2895,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: null
+      services: null
     };
   },
-  mounted: function mounted() {// axios.get('http://localhost:8000/api/user/all')
-    // .then(response => (this.users = response.data))
+  mounted: function mounted() {// axios.get('http://localhost:8000/api/service/all')
+    // .then(response => (this.services = response.data))
   },
   methods: {
-    addUser: function addUser() {
+    addService: function addService() {
       console.log("hello");
     }
   }
@@ -7451,7 +7481,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: justify;\n            justify-content: space-between;\n}\n.userContainer {\n    display: -webkit-box;\n    display: flex;\n    flex-wrap: wrap;\n    -webkit-box-pack: center;\n            justify-content: center;\n    margin-bottom: 20px;\n}\n.item {\n    width: 100%;\n}\n.item:nth-child(even) {\n    background-color: #e6e6e67d;\n}\n", ""]);
+exports.push([module.i, "\n.header {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: justify;\n            justify-content: space-between;\n}\n.serviceContainer {\n    display: -webkit-box;\n    display: flex;\n    flex-wrap: wrap;\n    -webkit-box-pack: center;\n            justify-content: center;\n    margin-bottom: 20px;\n}\n.item {\n    width: 100%;\n}\n.item:nth-child(even) {\n    background-color: #e6e6e67d;\n}\n", ""]);
 
 // exports
 
@@ -39084,7 +39114,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("header", { attrs: { id: "header" } }, [
-      _c("h1", [_vm._v("\n            Vue JS Component\n        ")])
+      _c("h1", [
+        _vm._v(
+          "\n            Cloud-Based Freelancer/Client Management System \n        "
+        )
+      ])
     ])
   }
 ]

@@ -1,13 +1,29 @@
 <!--
 @Author: John Carlo M. Ramos
-@Date:   2019-11-07T18:31:22+00:00
+@Date:   2019-11-08T08:50:10+00:00
 @Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
 @Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T09:12:22+00:00
+@Last modified time: 2019-11-08T09:11:06+00:00
 -->
+
+
+
 <template>
     <div class="container">
-      <h4>Testing 123</h4>
+        <div class="header">
+            <h1>Services</h1>
+            <!-- <button v-on:click="addService()">Add Service</button>     -->
+            <add-service></add-service>
+        </div>
+
+        <hr />
+
+        <div id="fetchData" class="serviceContainer">
+            <div v-for="service in services" v-bind:key="service.id" class="item">
+                <h2>{{ service.title }}</h2>
+                <p>Description: {{service.description}}</p>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -21,12 +37,12 @@
             }
         },
         mounted () {
-            // axios.get('http://localhost:8000/api/service/all')
-            // .then(response => (this.services = response.data))
+            axios.get('http://localhost:8000/api/service/all')
+            .then(response => (this.services = response.data))
         },
         methods: {
             addService: function() {
-                console.log("hello")
+                console.log("HEYYOOOO")
             }
         }
 
