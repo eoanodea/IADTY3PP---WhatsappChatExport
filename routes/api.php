@@ -22,14 +22,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/user/all', 'Admin\AdminController@getAllUsers');
+Route::post('/user/new', 'Admin\AdminController@store');
+Route::put('/user/{id}', 'Admin\AdminController@update');
+Route::delete('/user/{id}', 'Admin\AdminController@destroy');
+
+Route::get('/user/{id}', 'User\UserController@show');
+
 Route::get('/service/all', 'Service\HomeController@index');
-
-
 Route::post('/service/new', 'Service\HomeController@store');
 
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
