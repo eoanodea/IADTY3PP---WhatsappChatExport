@@ -16,19 +16,24 @@ use App\Service;
 
 class HomeController extends Controller
 {
+  // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware('service');
+    // }  
+
     public function index() {
       return Service::all();
     }
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    //     $this->middleware('service');
-    // }
-    //
-    // public function index() {
-    //     return view('service.home');
-    // }
+    public function show($id) {
+      $service = Service::findOrFail($id);
+
+      return response()->json([
+        'status' => 'success',
+        'service' => $service->toArray()
+      ]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -60,5 +65,52 @@ class HomeController extends Controller
         'status'=> 'success',
         'service'=> $service->toArray()
       ], 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+      $service = Service::findOrFail($id);
+      
+      $request->validate([
+        'title' => 'max:191',
+        'description' => 'max:191',
+        'standard_price' => 'numeric|min:0',
+      ]);
+
+      $service->title = $request->input('title');
+      $service->description = $request->input('description');
+      $service->recurring_payment = $request->input('recurring_payment');
+      $service->standard_price = $request->input('standard_price');
+      $service->is_public = $request->input('is_public');
+
+      $service->save();
+
+      return response()->json([
+        'status'=> 'success',
+        'service'=> $service->toArray()
+      ], 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $service = Service::findOrFail($id);
+        $service->delete();
+
+        return response()->json([
+            'status' => 'success',
+        ], 200);
     }
 }

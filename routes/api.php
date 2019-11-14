@@ -35,6 +35,9 @@ Route::get('/user/{id}', 'User\UserController@show');
 
 Route::get('/service/all', 'Service\HomeController@index');
 Route::post('/service/new', 'Service\HomeController@store');
+Route::get('/service/{id}', 'Service\HomeController@show');
+Route::put('/service/{id}', 'Service\HomeController@update');
+Route::delete('/service/{id}', 'Service\HomeController@destroy');
 
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
