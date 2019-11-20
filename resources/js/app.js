@@ -11,13 +11,13 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 import router from './router';
 
-import VueMaterial from 'vue-material';
+// import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
 window.Vue = Vue;
 
-Vue.use(VueMaterial);
+// Vue.use(VueMaterial);
 Vue.use(VueRouter);
 
 

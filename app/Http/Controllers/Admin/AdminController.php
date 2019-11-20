@@ -67,7 +67,7 @@ class AdminController extends Controller
             'last_name' => 'max:191',
             'email' => 'max:191',
             'mobile_number' => 'max:191',
-            'address' => 'max:255',
+            'address' => 'max:255'
         ]);
 
         $user->first_name = $request->input('first_name');

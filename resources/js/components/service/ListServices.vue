@@ -13,7 +13,7 @@
         <div class="header">
             <h1>Services</h1>
             <!-- <button v-on:click="addService()">Add Service</button>     -->
-            <add-service></add-service>
+            <!-- <add-service></add-service> -->
         </div>
 
         <hr />

@@ -10,8 +10,10 @@
         
         <div id="fetchData" class="userContainer">
             <div v-for="user in users" v-bind:key="user.id" class="item">
-                <h2>{{ user.name }}</h2>
+                <h2>{{ user.first_name }}</h2>
+                <h2>{{ user.last_name }}</h2>
                 <p>Email: {{user.email}}</p>
+                <p>Address: {{user.address}}</p>
             </div>
         </div>
     </div>
@@ -19,6 +21,7 @@
 </template>
 <script>
     import axios from 'axios';
+    import AddUser from './AddUser'
 
     export default {
         data() {
@@ -34,6 +37,9 @@
             addUser: function() {
                 console.log("hello")
             }
+        },
+        components: {
+            AddUser
         }
         
     }
