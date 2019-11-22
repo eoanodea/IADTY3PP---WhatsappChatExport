@@ -12,6 +12,8 @@ import VueRouter from 'vue-router';
 import Home from './pages/Home';
 import About from './pages/About';
 import ListUsers from './components/user/ListUsers'
+import AddUser from './components/user/AddUser'
+import User from './components/user/User'
 import Services from './pages/Services'
 
 const routes = [
@@ -19,19 +21,26 @@ const routes = [
         path: '/admin/home',
         name: 'home',
         component: Home
-
     },
     {
         path: '/admin/about',
         name: 'about',
         component: About
-
     },
     {
         path: '/admin/users',
         name: 'users',
         component: ListUsers
-
+    },
+    {
+        path: '/admin/users/:id',
+        name: 'user',
+        component: User
+    },
+    {
+        path: '/admin/users/new',
+        name: 'addUser',
+        component: AddUser
     },
     {
         path: '/admin/services',

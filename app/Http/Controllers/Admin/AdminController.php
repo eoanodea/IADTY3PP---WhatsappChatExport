@@ -15,7 +15,7 @@ class AdminController extends Controller
         // $this->middleware('role:admin');
     }
 
-    public function getAllUsers() {
+    public function index() {
         return User::all();
     }
 

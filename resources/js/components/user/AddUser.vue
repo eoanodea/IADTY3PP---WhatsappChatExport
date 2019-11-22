@@ -1,80 +1,147 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
-            Add User
-        </button>
+        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateUser">
+            <md-card class="md-layout-item md-size-50 md-small-size-100">
+                <md-card-header>
+                    <div class="md-title">Add a User</div>
+                </md-card-header>
 
-        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-label="Add User Modal">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add a User</h2>
-            </div>
-
-            <div class="modal-body">
-            <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                    <ul>
-                    <li v-for="error in errors" v-bind:key="error.id">
-                        {{ error.message }}
-                        </li>
-                    </ul>
-                </p>
-                <input type="text" class="form-control" placeholder="Name" v-model="name"> <br />
-                <input type="email" class="form-control" placeholder="Email" v-model="email"> <br />
-                <input type="password" class="form-control" placeholder="Password" v-model="password"> <br />
-                <input type="password" class="form-control" placeholder="Password Confirmation" v-model="confirm_password"> <br />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" value="submit" class="btn btn-primary" label="Save" v-on:click="addUser()">
-            </div>
-            
-            </div>
-        </div>
-        </div>
+                <md-card-content>
+                <p v-if="errors.length">
+                        <b>Please correct the following error(s):</b>
+                        <ul>
+                        <li v-for="error in errors" v-bind:key="error.id">
+                            {{ error.message }}
+                            </li>
+                        </ul>
+                    </p>
+                    <md-field>
+                        <md-label for="first_name">First Name</md-label>
+                        <md-input name="first_name" type="text" class="form-control" placeholder="First Name" autocomplete="first_name" v-model="first_name" />
+                    </md-field>
+                    <md-field>
+                        <md-label for="last_name">Last Name</md-label>
+                        <md-input name="last_name" type="text" class="form-control" placeholder="Last Name" autocomplete="last_name" v-model="last_name" />
+                    </md-field>
+                    <md-field>
+                        <md-label for="email">Email</md-label>
+                        <md-input name="email" type="email" class="form-control" placeholder="Email" autocomplete="email" v-model="email" /> <br />
+                    </md-field>
+                    <md-field>
+                        <md-label for="mobile">Mobile Number</md-label>
+                        <md-input name="mobile" type="text" class="form-control" placeholder="Mobile Number" autocomplete="mobile" v-model="mobile" /> <br />
+                    </md-field>
+                    <md-field>
+                        <md-label for="address">Address</md-label>
+                        <md-textarea name="address" type="text" class="form-control" placeholder="Address" autocomplete="address" v-model="address" /> <br />
+                    </md-field>
+                    <md-field>
+                        <md-label for="password">Password</md-label>
+                        <md-input type="password" name="password" class="form-control" placeholder="Password" v-model="password" /> <br />
+                    </md-field>
+                    <md-field>
+                        <md-label for="confirm_password">Confirm Password</md-label>
+                        <md-input type="password" name="confirm_password" class="form-control" placeholder="Password Confirmation" v-model="confirm_password" /> <br />
+                    </md-field>
+                </md-card-content>
+                <md-card-actions>
+                    <md-button type="submit" class="md-primary md-raised" v-on:click="validateUser()">Save</md-button>
+                </md-card-actions>
+            </md-card>
+        </form>
     </div>
 </template>
 <script>
     import axios from 'axios';
+    import Vue from 'vue';
+    import router from './../../router'
+    import {MdButton, MdField, MdCard} from 'vue-material/dist/components'
+
+    Vue.use(MdButton)
+    Vue.use(MdField)
+    Vue.use(MdCard)
+    
 
     export default {
         data() {
             return {
-                name: null,
-                email: null,
-                password: null,
-                confirm_password: null,
-                errors: []
+                user: {
+                    first_name: null,
+                    last_name: null,
+                    email: null,
+                    mobile: null,
+                    address: null,
+                    password: null,
+                    confirm_password: null,
+                },
+                errors: [],
+                submitting: false
             }
         },
         methods: {
-            addUser: function() {
+            validateUser: function() {
+                console.log('hello!')
+                const {user} = this
                 if(
-                    this.name 
-                    && this.email 
-                    && this.password
-                    && this.password === this.confirm_password) {
-                    return true
+                    user.first_name 
+                    && user.last_name 
+                    && user.email 
+                    && user.mobile
+                    && user.address
+                    && user.password
+                    && user.password === user.confirm_password) {
+                        console.log('yes')
+                    this.submitUser()
                 }
 
                 this.errors = [];
-                if(!this.name) {
-                     this.errors.push({id: 0, message: 'Name required.'});
+                if(!user.first_name) {
+                     this.errors.push({id: 0, message: 'First name required.'});
                 }
-                if(!this.email) {
-                     this.errors.push({id: 1, message: 'Email required.'});
+                if(!user.last_name) {
+                     this.errors.push({id: 1, message: 'Last name required.'});
                 }
-                if(!this.password) {
-                     this.errors.push({id: 2, message: 'Password required.'});
+                if(!user.email) {
+                     this.errors.push({id: 2, message: 'Email required.'});
                 }
-                if(this.password !== this.confirm_password) {
-                     this.errors.push({id: 3, message: 'Password doesnt match.'});
+                if(!user.mobile) {
+                    this.errors.push({id: 3, message: 'Mobile required.'});
                 }
+                if(!user.address) {
+                    this.errors.push({id: 4, message: 'Address required.'});
+                }
+                if(!user.password) {
+                     this.errors.push({id: 5, message: 'Password required.'});
+                }
+                if(user.password !== user.confirm_password) {
+                     this.errors.push({id: 6, message: 'Password doesnt match.'});
+                }   
+            },
+            submitUser: function() {
+                console.log('submitting form')
+                this.submitting = true
+                const payload = this.user
+                // axios.post('http://localhost:8000/api/user/new', payload)
+                // .then(response => {
+                //     if(response.err) {
+                //         console.log("Error!", response.err)
+                //         this.submitting = false
+                //         this.errors.push({id: 0, message: response.err})
+                //     } else {
+                //         router.push({path: `/admin/users/${response.user.id}`})
+                //     }
 
-                
+                // })
             }
 
         }
     }
 </script>
+<style lang="scss" scoped>
+    .md-field {
+        flex-direction: column; 
+    }
+    .md-input {
+        color: #fff;
+    }
+</style>

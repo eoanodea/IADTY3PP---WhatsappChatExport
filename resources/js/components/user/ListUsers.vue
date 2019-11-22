@@ -3,7 +3,9 @@
         <div class="header">
             <h1>Users</h1>
             <!-- <button v-on:click="addUser()">Add User</button>     -->
-            <add-user></add-user>
+            
+            <md-button class="md-raised md-primary" to="/admin/users/new">Add User</md-button>
+
         </div>
         
         <hr />
@@ -14,6 +16,7 @@
                 <h2>{{ user.last_name }}</h2>
                 <p>Email: {{user.email}}</p>
                 <p>Address: {{user.address}}</p>
+                <md-button :to="'/admin/users/' + user.id">Profile</md-button>
             </div>
         </div>
     </div>
@@ -21,7 +24,7 @@
 </template>
 <script>
     import axios from 'axios';
-    import AddUser from './AddUser'
+    import {MdButton} from 'vue-material/dist/components'
 
     export default {
         data() {
@@ -39,7 +42,7 @@
             }
         },
         components: {
-            AddUser
+            //
         }
         
     }

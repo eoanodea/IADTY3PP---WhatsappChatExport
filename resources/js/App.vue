@@ -61,6 +61,7 @@
   @include md-register-theme("default", (
     // primaryLight: #4e4e4e,
     primary: #262626,
+    textPrimary: #fff,
     // primaryDark: #000000,
     // primaryContrast: #ffffff,
     // secondaryLight: #5fffb3,

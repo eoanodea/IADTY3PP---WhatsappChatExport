@@ -26,7 +26,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::get('/user/all', 'Admin\AdminController@getAllUsers');
+Route::get('/user/all', 'Admin\AdminController@index');
 Route::post('/user/new', 'Admin\AdminController@store');
 Route::put('/user/{id}', 'Admin\AdminController@update');
 Route::delete('/user/{id}', 'Admin\AdminController@destroy');
