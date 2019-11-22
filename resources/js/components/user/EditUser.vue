@@ -1,9 +1,9 @@
 <template>
     <div>
-        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateUser">
+        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitUser">
             <md-card class="md-layout-item md-size-50 md-small-size-100">
                 <md-card-header>
-                    <div class="md-title">Add a User</div>
+                    <div class="md-title">Edit User</div>
                 </md-card-header>
 
                 <md-card-content>
@@ -78,47 +78,19 @@
                 submitting: false
             }
         },
+        mounted() {
+            axios.get(`http://localhost:8000/api/user/${this.$route.params.id}`)
+            .then(response => {
+                if(!response.data) {
+                    console.log("Error getting user", response)
+                } else this.user = response.data.user
+            })
+        },
         methods: {
-            validateUser: function() {
-                const {user} = this
-                if(
-                    user.first_name 
-                    && user.last_name 
-                    && user.email 
-                    && user.mobile_number
-                    && user.address
-                    && user.password
-                    && user.password === user.confirm_password) {
-                    this.submitUser()
-                }
-
-                this.errors = [];
-                if(!user.first_name) {
-                     this.errors.push({id: 0, message: 'First name required.'});
-                }
-                if(!user.last_name) {
-                     this.errors.push({id: 1, message: 'Last name required.'});
-                }
-                if(!user.email) {
-                     this.errors.push({id: 2, message: 'Email required.'});
-                }
-                if(!user.mobile_number) {
-                    this.errors.push({id: 3, message: 'Mobile required.'});
-                }
-                if(!user.address) {
-                    this.errors.push({id: 4, message: 'Address required.'});
-                }
-                if(!user.password) {
-                     this.errors.push({id: 5, message: 'Password required.'});
-                }
-                if(user.password !== user.confirm_password) {
-                     this.errors.push({id: 6, message: 'Password doesnt match.'});
-                }   
-            },
             submitUser: function() {
                 this.submitting = true
                 const payload = this.user
-               axios.post('http://localhost:8000/api/user/new', payload)
+               axios.put(`http://localhost:8000/api/user/${this.user.id}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

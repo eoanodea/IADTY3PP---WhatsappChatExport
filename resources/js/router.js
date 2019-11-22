@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import ListUsers from './components/user/ListUsers'
 import AddUser from './components/user/AddUser'
+import EditUser from './components/user/EditUser'
 import User from './components/user/User'
 import Services from './pages/Services'
 
@@ -36,6 +37,11 @@ const routes = [
         path: '/admin/users/show/:id',
         name: 'user',
         component: User
+    },
+    {
+        path: '/admin/users/edit/:id',
+        name: 'editUser',
+        component: EditUser
     },
     {
         path: '/admin/users/new',

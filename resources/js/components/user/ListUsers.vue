@@ -16,7 +16,7 @@
                 <h2>{{ user.last_name }}</h2>
                 <p>Email: {{user.email}}</p>
                 <p>Address: {{user.address}}</p>
-                <md-button :to="'/admin/users/' + user.id">Profile</md-button>
+                <md-button :to="'/admin/users/show/' + user.id">Profile</md-button>
             </div>
         </div>
     </div>
