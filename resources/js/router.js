@@ -33,7 +33,7 @@ const routes = [
         component: ListUsers
     },
     {
-        path: '/admin/users/:id',
+        path: '/admin/users/show/:id',
         name: 'user',
         component: User
     },
