@@ -13,7 +13,9 @@
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <span class="md-title">My Title</span>
+        <router-link to="/admin/home">
+          <span class="md-title">My Title</span>
+        </router-link>
       </md-app-toolbar>
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
