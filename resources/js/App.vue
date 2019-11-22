@@ -6,67 +6,37 @@
 @Last modified time: 2019-11-08T09:05:19+00:00
 -->
 
-
-
 <template>
  <div class="page-container">
-    <md-app>
+    <md-app class="app-container">
       <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">My Title</span>
       </md-app-toolbar>
-
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
-
-        <md-list>
-          <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>send</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item>
-        </md-list>
+        <NavBar ref="navBarRef" />
       </md-app-drawer>
-
       <md-app-content>
           <router-view></router-view>
-    </md-app-content>
-      
+      </md-app-content>
     </md-app>
-    </div>
-    
+  </div>
 </template>
 <script>
-import Vue from 'vue';
-  
-  import NavBar from './components/NavBar'
-import {MdButton, MdIcon, MdToolbar, MdList, MdDrawer, MdApp, MdContent} from 'vue-material/dist/components'
+  import Vue from 'vue';
+  import NavBar from './components/NavBar.vue'
+  import {MdApp, MdContent, MdButton, MdToolbar} from 'vue-material/dist/components'
 
-  Vue.use(MdButton);
-  Vue.use(MdIcon);
-
-  Vue.use(MdToolbar);
-  Vue.use(MdList);
-  Vue.use(MdDrawer);
-  Vue.use(MdContent)
+  Vue.use(MdContent);
   Vue.use(MdApp);
+  Vue.use(MdToolbar);
+  Vue.use(MdButton);
 
+  
+  
   export default {
     data() {
       return {
@@ -75,17 +45,29 @@ import {MdButton, MdIcon, MdToolbar, MdList, MdDrawer, MdApp, MdContent} from 'v
     },
     components: {
       NavBar
-
+    },
+    methods: {
+      click: function() {
+        this.menuVisible = !this.menuVisible
+      }
     }
   }
 </script>
 <style lang="scss" scoped>
-  // .md-app {
-
-  //   border: 1px solid rgba(#000, .12);
-  // }
-  // .md-drawer {
-  //   width: 230px;
-  //   max-width: calc(100vw - 125px);
-  // }
+  @import "~vue-material/dist/theme/engine";
+  .app-container {
+    height: 1000px;
+  }
+  @include md-register-theme("default", (
+    // primaryLight: #4e4e4e,
+    primary: #262626,
+    // primaryDark: #000000,
+    // primaryContrast: #ffffff,
+    // secondaryLight: #5fffb3,
+    accent: #00cc83,
+    // accentDark: #009a56,
+    // accentContrast: #000000,
+    theme: dark // This can be dark or light
+  ));
+  @import "~vue-material/dist/theme/all";
   </style>
