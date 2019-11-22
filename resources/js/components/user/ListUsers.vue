@@ -1,31 +1,38 @@
 <template>
     <div class="container">
-        <div class="header">
-            <h1>Users</h1>
-            <!-- <button v-on:click="addUser()">Add User</button>     -->
+        <md-table md-card>
+            <md-table-toolbar>
+                <h1 class="md-title">Users</h1>
+                <md-button class="md-raised md-primary" to="/admin/users/new">Add User</md-button>
+            </md-table-toolbar>
             
-            <md-button class="md-raised md-primary" to="/admin/users/new">Add User</md-button>
-
-        </div>
-        
-        <hr />
-        
-        <div id="fetchData" class="userContainer">
-            <div v-for="user in users" v-bind:key="user.id" class="item">
-                <h2>{{ user.first_name }}</h2>
-                <h2>{{ user.last_name }}</h2>
-                <p>Email: {{user.email}}</p>
-                <p>Address: {{user.address}}</p>
-                <md-button :to="'/admin/users/show/' + user.id">Profile</md-button>
-            </div>
-        </div>
+            <md-table-row>
+                <md-table-head md-numeric>ID</md-table-head>
+                <md-table-head>Name</md-table-head>
+                <md-table-head>Email</md-table-head>
+                <md-table-head></md-table-head>
+            </md-table-row>
+            <md-table-row v-for="user in users" v-bind:key="user.id" class="item">
+                <md-table-cell md-numeric>{{user.id}}</md-table-cell>
+                <md-table-cell>{{ user.first_name + " " + user.last_name }}</md-table-cell>
+                <md-table-cell>{{ user.email }}</md-table-cell>
+                <md-table-cell>
+                    <md-button :to="'/admin/users/show/' + user.id" class="md-accent">Profile</md-button>
+                    <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button>
+                    <DeleteUser v-bind:id="user.id"/> 
+                </md-table-cell>
+            </md-table-row>
+        </md-table>
     </div>
 
 </template>
 <script>
+    import Vue from 'vue'
     import axios from 'axios';
-    import {MdButton} from 'vue-material/dist/components'
+    import {MdButton, MdTable} from 'vue-material/dist/components'
+    import DeleteUser from './DeleteUser'
 
+    Vue.use(MdTable)
     export default {
         data() {
             return {
@@ -37,31 +44,16 @@
             .then(response => (this.users = response.data))
         },
         methods: {
-            addUser: function() {
-                console.log("hello")
-            }
+            //
         },
         components: {
-            //
+            DeleteUser
         }
         
     }
 </script>
 <style>
-    .header {
-        display: flex;
-        justify-content: space-between;
-    }
-    .userContainer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
     .item {
-        width: 100%;
-    }
-    .item:nth-child(even) {
-        background-color: #e6e6e67d;
+        background: none!important;
     }
 </style>

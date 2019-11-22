@@ -19,7 +19,7 @@
       </md-app-toolbar>
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
-        <NavBar ref="navBarRef" />
+        <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" />
       </md-app-drawer>
       <md-app-content>
           <router-view></router-view>
@@ -55,7 +55,7 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   @import "~vue-material/dist/theme/engine";
   .app-container {
     height: 1000px;
