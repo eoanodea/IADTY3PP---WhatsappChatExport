@@ -1,20 +1,13 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-08T10:11:14+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T10:45:20+00:00
--->
 <template>
     <div>
-        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateService">
+        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitService">
             <md-card class="md-layout-item md-size-50 md-small-size-100">
                 <md-card-header>
-                    <div class="md-title">Add a Service</div>
+                    <div class="md-title">Edit Service</div>
                 </md-card-header>
 
                 <md-card-content>
-                    <p v-if="errors.length">
+                <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
                         <ul>
                         <li v-for="error in errors" v-bind:key="error.id">
@@ -22,7 +15,7 @@
                             </li>
                         </ul>
                     </p>
-                    <md-field>
+                     <md-field>
                         <label for="title">Title</label>
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="service.title" /> <br />
                     </md-field>
@@ -37,10 +30,8 @@
                         <label for="standard_price">Standard Price</label>
                         <md-input name="standard_price" type="number" class="form-control" placeholder="Standard Price" v-model="service.standard_price" /> <br />
                     </md-field>
-
                 </md-card-content>
                 <md-card-actions>
-                    <md-button class="md-secondary md-raised">Back</md-button>
                     <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
                 </md-card-actions>
             </md-card>
@@ -57,6 +48,7 @@
     Vue.use(MdField)
     Vue.use(MdCard)
     Vue.use(MdCheckbox)
+    
 
     export default {
         data() {
@@ -72,39 +64,24 @@
                 submitting: false
             }
         },
+        mounted() {
+            axios.get(`http://localhost:8000/api/service/${this.$route.params.id}`)
+            .then(response => {
+                if(!response.data) {
+                    console.log("Error getting service", response)
+                } else {
+                    let serviceObj = response.data.service
+                    serviceObj.recurring_payment == 1 ? serviceObj.recurring_payment = true : serviceObj.recurring_payment = false
+                    serviceObj.is_public == 1 ? serviceObj.is_public = true : serviceObj.is_public = false
+                    this.service = serviceObj
+                }
+            })
+        },
         methods: {
-            validateService: function() {
-                const {service} = this
-                if(
-                    service.title
-                    && service.description
-                    && service.recurring_payment
-                    && service.standard_price
-                    && service.is_public) {
-                    this.submitService()
-                }
-
-                this.errors = [];
-                if(!service.title) {
-                     this.errors.push({id: 0, message: 'Title required.'});
-                }
-                if(!service.description) {
-                     this.errors.push({id: 1, message: 'Description required.'});
-                }
-                if(!service.recurring_payment) {
-                     this.errors.push({id: 2, message: 'Input required.'});
-                }
-                if(!service.standard_price) {
-                     this.errors.push({id: 3, message: 'Standard Price required.'});
-                }
-                if(!service.is_public) {
-                     this.errors.push({id: 4, message: 'Input required.'});
-                }
-            },
             submitService: function() {
                 this.submitting = true
                 const payload = this.service
-               axios.post('http://localhost:8000/api/service/new', payload)
+               axios.put(`http://localhost:8000/api/service/${this.service.id}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)
@@ -117,3 +94,11 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+    .md-field {
+        flex-direction: column; 
+    }
+    .md-input, .md-textarea {
+        color: #fff;
+    }
+</style>

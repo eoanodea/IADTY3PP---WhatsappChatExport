@@ -10,23 +10,28 @@
 
 <template>
     <div class="container">
-        <div class="header">
-            <h1>Services</h1>
-            <!-- <button v-on:click="addService()">Add Service</button>     -->
-            <!-- <add-service></add-service> -->
-        </div>
-
-        <hr />
-
-        <div id="fetchData" class="serviceContainer">
-            <div v-for="service in services" v-bind:key="service.id" class="item">
-                <h2>{{ service.title }}</h2>
-                <p>Description: {{service.description}}</p>
-                <p>Recurring Payment: {{service.recurring_payment}}</p>
-                <p>Standard Price: {{service.standard_price}}</p>
-                <p>Public Service: {{service.is_public}}</p>
-            </div>
-        </div>
+        <md-table md-card>
+            <md-table-toolbar>
+                <h1 class="md-title">Services</h1>
+                <md-button class="md-raised md-primary" to="/admin/services/new">Add Service</md-button>
+            </md-table-toolbar>
+            
+            <md-table-row>
+                <md-table-head md-numeric>ID</md-table-head>
+                <md-table-head>Name</md-table-head>
+                <md-table-head>Standard Price</md-table-head>
+                <md-table-head></md-table-head>
+            </md-table-row>
+            <md-table-row v-for="service in services" v-bind:key="service.id" class="item">
+                <md-table-cell md-numeric>{{service.id}}</md-table-cell>
+                <md-table-cell>{{ service.title }}</md-table-cell>
+                <md-table-cell>{{service.standard_price}}</md-table-cell>
+                <md-table-cell>
+                    <md-button :to="'/admin/services/show/' + service.id" class="md-accent">View</md-button>
+                    <md-button :to="'/admin/services/edit/' + service.id">Edit</md-button>
+                </md-table-cell>
+            </md-table-row>
+        </md-table>
     </div>
 
 </template>
@@ -44,28 +49,13 @@
             .then(response => (this.services = response.data))
         },
         methods: {
-            addService: function() {
-                console.log("HEYYOOOO")
-            }
+            //
         }
 
     }
 </script>
 <style>
-    .header {
-        display: flex;
-        justify-content: space-between;
-    }
-    .serviceContainer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
     .item {
-        width: 100%;
-    }
-    .item:nth-child(even) {
-        background-color: #e6e6e67d;
+        background: none!important;
     }
 </style>
