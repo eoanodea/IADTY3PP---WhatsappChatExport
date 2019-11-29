@@ -8,6 +8,8 @@
         <p>Public: {{service.is_public}}</p>
         <md-button :to="'/admin/services/edit/' + service.id">Edit</md-button>
         <DeleteService v-bind:id="service.id"/>
+        <md-button :to="'/admin/tasks/' + service.id">Tasks</md-button>
+
     </div>
 </template>
 
@@ -15,6 +17,7 @@
     import Vue from 'vue'
     import axios from 'axios'
     import DeleteService from './DeleteService'
+    import Task from './../task/Task'
     import {MdButton} from 'vue-material/dist/components'
 
     Vue.use(MdButton);
@@ -34,7 +37,8 @@
             })
         },
         components: {
-            DeleteService
+            DeleteService,
+            Task
         }
     }
 </script>

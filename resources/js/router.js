@@ -19,6 +19,10 @@ import ListServices from './components/service/ListServices'
 import AddService from './components/service/AddService'
 import EditService from './components/service/EditService'
 import Service from './components/service/Service'
+import ListTask from './components/task/ListTask'
+import AddTask from './components/task/AddTask'
+import EditTask from './components/task/EditTask'
+import Task from './components/task/Task'
 
 const routes = [
     //Main Pages
@@ -73,6 +77,27 @@ const routes = [
         path: '/admin/services/new',
         name: 'addService',
         component: AddService
+    },
+    //Default task view
+    {
+        path: '/admin/tasks/:id',
+        name: 'tasks',
+        component: ListTask
+    },
+    {
+        path: '/admin/tasks/show/:id',
+        name: 'task',
+        component: Task
+    },
+    {
+        path: '/admin/tasks/edit/:id',
+        name: 'editTask',
+        component: EditTask
+    },
+    {
+        path: '/admin/tasks/new',
+        name: 'addTask',
+        component: AddTask
     },
 ]
 
