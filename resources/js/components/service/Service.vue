@@ -9,6 +9,7 @@
         <md-button :to="'/admin/services/edit/' + service.id">Edit</md-button>
         <DeleteService v-bind:id="service.id"/>
         <md-button :to="'/admin/tasks/' + service.id">Tasks</md-button>
+        <ListTask v-bind:id="service.id" />
 
     </div>
 </template>
@@ -17,7 +18,7 @@
     import Vue from 'vue'
     import axios from 'axios'
     import DeleteService from './DeleteService'
-    import Task from './../task/Task'
+    import ListTask from './../task/ListTask'
     import {MdButton} from 'vue-material/dist/components'
 
     Vue.use(MdButton);
@@ -25,7 +26,13 @@
     export default {
         data() {
             return {
-                service: null
+                service: {
+                    title: '',
+                    description: '',
+                    recurring_payment: false,
+                    standard_price: 0,
+                    is_public: false
+                }
             }
         },
         mounted () {
@@ -38,7 +45,7 @@
         },
         components: {
             DeleteService,
-            Task
+            ListTask
         }
     }
 </script>

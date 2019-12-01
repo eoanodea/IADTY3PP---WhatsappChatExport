@@ -10,18 +10,18 @@
 
 <template>
     <div class="container">
-        <md-table md-card>
+        <md-table md-card v-if="tasks !== null">
             <md-table-toolbar>
                 <h1 class="md-title">Tasks</h1>
-                <md-button class="md-raised md-primary" to="/admin/tasks/new">Add Task</md-button>
+                <md-button class="md-raised md-primary" :to="'/admin/tasks/' + serviceId + '/new'">Add Task</md-button>
             </md-table-toolbar>
-            
             <md-table-row>
                 <md-table-head md-numeric>ID</md-table-head>
                 <md-table-head>Name</md-table-head>
-                <md-table-head>Standard Price</md-table-head>
+                <md-table-head>Description</md-table-head>
                 <md-table-head></md-table-head>
             </md-table-row>
+            
             <md-table-row v-for="task in tasks" v-bind:key="task.id" class="item">
                 <md-table-cell md-numeric>{{task.id}}</md-table-cell>
                 <md-table-cell>{{ task.title }}</md-table-cell>
@@ -32,6 +32,7 @@
                 </md-table-cell>
             </md-table-row>
         </md-table>
+        <p v-else>There are no tasks</p>
     </div>
 
 </template>
@@ -39,13 +40,17 @@
     import axios from 'axios';
 
     export default {
+        props: ['id'],
         data() {
             return {
-                tasks: null
+                tasks: null,
+                serviceId: this.$route.params.id
+                    ? this.$route.params.id
+                    : this.id
             }
         },
         mounted () {
-            axios.get(`http://localhost:8000/api/task/by/${this.$route.params.id}`)
+            axios.get(`http://localhost:8000/api/task/by/${this.serviceId}`)
             .then(response => (this.tasks = response.data.task))
         },
         methods: {

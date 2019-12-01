@@ -10,7 +10,7 @@
 
 <template>
     <div class="container">
-        <md-table md-card>
+        <md-table md-card v-if="services !== null">
             <md-table-toolbar>
                 <h1 class="md-title">Services</h1>
                 <md-button class="md-raised md-primary" to="/admin/services/new">Add Service</md-button>
@@ -32,6 +32,7 @@
                 </md-table-cell>
             </md-table-row>
         </md-table>
+        <p v-else>There are no services</p>
     </div>
 
 </template>

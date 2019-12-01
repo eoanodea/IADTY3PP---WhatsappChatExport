@@ -52,11 +52,9 @@
         data() {
             return {
                 task: {
-                    title: null,
-                    description: null,
-                    recurring_payment: false,
-                    standard_price: null,
-                    is_public: null
+                    title: '',
+                    description: '',
+                    percent_done: ''
                 },
                 errors: [],
                 submitting: false

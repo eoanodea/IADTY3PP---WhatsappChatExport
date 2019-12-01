@@ -66,13 +66,13 @@
         data() {
             return {
                 user: {
-                    first_name: null,
-                    last_name: null,
-                    email: null,
-                    mobile_number: null,
-                    address: null,
-                    password: null,
-                    confirm_password: null,
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    mobile_number: '',
+                    address: '',
+                    password: '',
+                    confirm_password: '',
                 },
                 errors: [],
                 submitting: false

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <md-table md-card>
+        <md-table md-card v-if="users !== null">
             <md-table-toolbar>
                 <h1 class="md-title">Users</h1>
                 <md-button class="md-raised md-primary" to="/admin/users/new">Add User</md-button>
@@ -23,16 +23,18 @@
                 </md-table-cell>
             </md-table-row>
         </md-table>
+        <p v-else>There are no users</p>
     </div>
 
 </template>
 <script>
     import Vue from 'vue'
     import axios from 'axios';
-    import {MdButton, MdTable} from 'vue-material/dist/components'
+    import {MdButton, MdTable, MdRipple} from 'vue-material/dist/components'
     import DeleteUser from './DeleteUser'
 
     Vue.use(MdTable)
+    Vue.use(MdRipple)
     export default {
         data() {
             return {

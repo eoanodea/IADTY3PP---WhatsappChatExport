@@ -21,7 +21,11 @@
     export default {
         data() {
             return {
-                task: null
+                task: {
+                    title: '',
+                    description: '',
+                    percent_done: 0
+                }
             }
         },
         mounted () {

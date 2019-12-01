@@ -30,12 +30,9 @@
                         <label for="description">Description</label>
                         <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="task.description" /> <br />
                     </md-field>
-                    
-                    <md-checkbox name="recurring_payment" v-model="task.recurring_payment">Recuring Payment</md-checkbox> <br />
-                    <md-checkbox name="is_public" v-model="task.is_public">Public Task</md-checkbox>
                     <md-field>
-                        <label for="standard_price">Standard Price</label>
-                        <md-input name="standard_price" type="number" class="form-control" placeholder="Standard Price" v-model="task.standard_price" /> <br />
+                        <label for="percent_done">Percent Done</label>
+                        <md-input name="percent_done" type="number" class="form-control" placeholder="Percent Done" v-model="task.percent_done" /> <br />
                     </md-field>
 
                 </md-card-content>
@@ -62,11 +59,9 @@
         data() {
             return {
                 task: {
-                    title: null,
-                    description: null,
-                    recurring_payment: false,
-                    standard_price: null,
-                    is_public: null
+                    title: '',
+                    description: '',
+                    percent_done: ''
                 },
                 errors: [],
                 submitting: false
@@ -78,9 +73,7 @@
                 if(
                     task.title
                     && task.description
-                    && task.recurring_payment
-                    && task.standard_price
-                    && task.is_public) {
+                    && task.percent_done) {
                     this.submitTask()
                 }
 
@@ -91,20 +84,14 @@
                 if(!task.description) {
                      this.errors.push({id: 1, message: 'Description required.'});
                 }
-                if(!task.recurring_payment) {
-                     this.errors.push({id: 2, message: 'Input required.'});
-                }
-                if(!task.standard_price) {
-                     this.errors.push({id: 3, message: 'Standard Price required.'});
-                }
-                if(!task.is_public) {
-                     this.errors.push({id: 4, message: 'Input required.'});
+                if(!task.percent_done) {
+                     this.errors.push({id: 2, message: 'Percentage done is required.'});
                 }
             },
             submitTask: function() {
                 this.submitting = true
                 const payload = this.task
-               axios.post('http://localhost:8000/api/task/new', payload)
+                axios.post(`http://localhost:8000/api/task/${this.$route.params.id}/new`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

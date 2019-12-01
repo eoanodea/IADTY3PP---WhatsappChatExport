@@ -54,11 +54,11 @@
         data() {
             return {
                 service: {
-                    title: null,
-                    description: null,
+                    title: '',
+                    description: '',
                     recurring_payment: false,
-                    standard_price: null,
-                    is_public: null
+                    standard_price: 0,
+                    is_public: false
                 },
                 errors: [],
                 submitting: false

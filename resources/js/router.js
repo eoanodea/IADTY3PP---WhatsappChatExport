@@ -95,7 +95,7 @@ const routes = [
         component: EditTask
     },
     {
-        path: '/admin/tasks/new',
+        path: '/admin/tasks/:id/new',
         name: 'addTask',
         component: AddTask
     },

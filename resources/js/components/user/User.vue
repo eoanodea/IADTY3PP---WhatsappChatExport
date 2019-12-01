@@ -22,7 +22,13 @@
     export default {
         data() {
             return {
-                user: null
+                user: {
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    mobile_number: '',
+                    address: '',
+                }
             }
         },
         mounted () {
