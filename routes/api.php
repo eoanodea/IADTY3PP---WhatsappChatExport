@@ -45,6 +45,19 @@ Route::get('/task/{id}', 'Task\HomeController@show');
 Route::put('/task/{id}', 'Task\HomeController@update');
 Route::delete('/task/{id}', 'Task\HomeController@destroy');
 
+Route::get('/task/by/{service}', 'Task\HomeController@index');
+Route::post('/task/{service}/new', 'Task\HomeController@store');
+Route::get('/task/{id}', 'Task\HomeController@show');
+Route::put('/task/{id}', 'Task\HomeController@update');
+Route::delete('/task/{id}', 'Task\HomeController@destroy');
+
+Route::get('/assignment/all', 'Assignment\AssignmentController@index');
+Route::get('/assignment/by/{client}', 'Assignment\AssignmentController@indexByClient');
+Route::post('/assignment/{client}/new', 'Assignment\AssignmentController@store');
+Route::get('/assignment/{id}', 'Assignment\AssignmentController@show');
+Route::put('/assignment/{id}', 'Assignment\AssignmentController@update');
+Route::delete('/assignment/{id}', 'Assignment\AssignmentController@destroy');
+
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
 // Route::post('register', 'Auth\RegisterController@register');
