@@ -13,7 +13,7 @@ class CreateClientTable extends Migration
      */
     public function up()
     {
-        Schema::create('client', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('stripe_id')->nullable();
             $table->bigInteger('user_id')->unsigned();

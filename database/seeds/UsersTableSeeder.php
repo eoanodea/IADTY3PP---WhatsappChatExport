@@ -35,5 +35,9 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('testtest');
         $user->save();
         $user->roles()->attach($role_client);
+
+        factory(App\User::class, 20)->create()->each(function($user) {
+            $user->roles()->attach(Role::where('name', 'client')->first());
+        });
     }
 }
