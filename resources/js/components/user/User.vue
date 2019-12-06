@@ -6,6 +6,11 @@
         <p>Email: {{user.email}}</p>
         <p>Address: {{user.address}}</p>
         <p>Mobile: {{user.mobile_number}}</p>
+        <br />
+        <div v-if="client !== null">
+            <p>Client info:</p>
+            <p>{{client.user_id}}</p>
+        </div>
         <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button>
         <DeleteUser v-bind:id="user.id"/>
     </div>
@@ -28,7 +33,8 @@
                     email: '',
                     mobile_number: '',
                     address: '',
-                }
+                },
+                client: {}
             }
         },
         mounted () {
@@ -36,7 +42,10 @@
             .then(response => {
                 if(response.data.status !== "success") {
                     console.log("error ", response)
-                } else this.user = response.data.user
+                } else {
+                    this.user = response.data.user
+                    response.data.client ? this.client = response.data.client : null
+                }
             })
         },
         components: {

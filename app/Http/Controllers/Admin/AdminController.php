@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,13 @@ class AdminController extends Controller
     }
 
     public function index() {
-        return User::all();
+        $role_client = Role::where('name', 'client')->first();
+        $clients = array();
+
+        foreach($role_client->users as $user) {
+            array_push($clients, $user);   
+        }
+        return $clients;
     }
 
     /**
