@@ -12,19 +12,19 @@
   <md-list>
     <md-list-item to="/admin/home" @click="$emit('menu-visible')">
         <md-icon class="md-accent">home</md-icon>
-        <span class="md-list-item-text">Home</span>
+        <span class="md-list-item-text">Dashboard</span>
     </md-list-item>
     <md-list-item to="/admin/users" @click="$emit('menu-visible')">
       <md-icon class="md-accent">people</md-icon>
-      <span class="md-list-item-text">Users</span>
-    </md-list-item>
-    <md-list-item to="/admin/about" @click="$emit('menu-visible')">
-      <md-icon class="md-accent">send</md-icon>
-      <span class="md-list-item-text">About</span>
+      <span class="md-list-item-text">Clients</span>
     </md-list-item>
     <md-list-item to="/admin/services" @click="$emit('menu-visible')">
       <md-icon class="md-accent">assignment</md-icon>
       <span class="md-list-item-text">Services</span>
+    </md-list-item>
+    <md-list-item to="/admin/about" @click="$emit('menu-visible')">
+      <md-icon class="md-accent">send</md-icon>
+      <span class="md-list-item-text">About</span>
     </md-list-item>
   </md-list>
 </template>

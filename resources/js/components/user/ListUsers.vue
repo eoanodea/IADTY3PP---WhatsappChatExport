@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
+    <div class="fluid-container">
         <md-table md-card v-if="users !== null">
             <md-table-toolbar>
-                <h1 class="md-title">Users</h1>
-                <md-button class="md-raised md-primary" to="/admin/users/new">Add User</md-button>
+                <h1 class="md-title">Clients</h1>
+                <md-button class="md-raised md-primary" to="/admin/users/new">Add Client</md-button>
             </md-table-toolbar>
-            
+
             <md-table-row>
                 <md-table-head md-numeric>ID</md-table-head>
                 <md-table-head>Name</md-table-head>
@@ -19,7 +19,7 @@
                 <md-table-cell>
                     <md-button :to="'/admin/users/show/' + user.id" class="md-accent">Profile</md-button>
                     <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button>
-                    <DeleteUser v-bind:id="user.id"/> 
+                    <DeleteUser v-bind:id="user.id"/>
                 </md-table-cell>
             </md-table-row>
         </md-table>
@@ -51,11 +51,15 @@
         components: {
             DeleteUser
         }
-        
+
     }
 </script>
 <style>
     .item {
         background: none!important;
+    }
+
+    .md-title {
+      color: #00cc83 !important;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>User ID: 
+    <div>Client ID:
         {{ this.$route.params.id }}
         <h2>{{ user.first_name }}</h2>
         <h2>{{ user.last_name }}</h2>

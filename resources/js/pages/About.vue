@@ -10,7 +10,7 @@
 
 <template>
     <div id="main">
-        This is the about page {{ msg }}
+        This is the about page: {{ msg }}
     </div>
 </template>
 <script>
@@ -20,7 +20,7 @@
   export default {
     data() {
       return {
-        msg: "Aboot, ey?"
+        msg: "NOT ENOUGH COFFEE!!!!!!"
       }
     },
     components: {

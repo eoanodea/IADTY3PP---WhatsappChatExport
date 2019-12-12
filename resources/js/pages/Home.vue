@@ -6,24 +6,21 @@
 @Last modified time: 2019-11-08T08:54:53+00:00
 -->
 
-
-
 <template>
     <div id="main">
-        This is the Home page {{ msg }}
+      Dashboard: {{ msg }}
 
         <!-- <passport-clients></passport-clients>
         <passport-authorized-clients></passport-authorized-clients>
         <passport-personal-access-tokens></passport-personal-access-tokens> -->
-
     </div>
 </template>
-<script>
 
+<script>
   export default {
     data() {
       return {
-        msg: "We gon die!!!"
+        msg: "Welcome, Admin"
       }
     },
     components: {

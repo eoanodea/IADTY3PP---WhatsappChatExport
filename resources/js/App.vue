@@ -14,11 +14,11 @@
           <md-icon>menu</md-icon>
         </md-button>
         <router-link to="/admin/home">
-          <span class="md-title">My Title</span>
+          <span class="md-title">LOGO</span>
         </router-link>
       </md-app-toolbar>
       <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+        <md-toolbar class="md-transparent" md-elevation="0">Good day, User.</md-toolbar>
         <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" />
       </md-app-drawer>
       <md-app-content>
@@ -37,8 +37,8 @@
   Vue.use(MdToolbar);
   Vue.use(MdButton);
 
-  
-  
+
+
   export default {
     data() {
       return {
