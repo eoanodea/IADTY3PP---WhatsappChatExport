@@ -3,10 +3,10 @@
 
             <md-table-toolbar>
                 <h1 class="md-title accent">Clients</h1>
-                <md-button class="md-raised md-accent text" to="/admin/users/new">Add Client</md-button>
+                <md-button class="md-raised md-accent addBtn" to="/admin/users/new">Add Client</md-button>
             </md-table-toolbar>
 
-          <md-table class="background" md-card v-if="users !== null">
+          <md-table class="background text" md-card v-if="users !== null">
             <!-- <md-table-row class="background">
                 <md-table-head md-numeric>ID</md-table-head>
                 <md-table-head>Name</md-table-head>
@@ -15,9 +15,9 @@
             </md-table-row> -->
             <md-table-row v-for="user in users" v-bind:key="user.id" class="item background">
                 <!-- <md-table-cell class="background" md-numeric>{{user.id}}</md-table-cell> -->
-                <md-table-cell class="background">{{ user.first_name + " " + user.last_name }}</md-table-cell>
-                <md-table-cell class="background">{{ user.email }}</md-table-cell>
-                <md-table-cell class="background">
+                <md-table-cell class="background text">{{ user.first_name + " " + user.last_name }}</md-table-cell>
+                <md-table-cell class="background text">{{ user.email }}</md-table-cell>
+                <md-table-cell class="background text">
                     <md-button :to="'/admin/users/show/' + user.id" class="md-accent">View Profile</md-button>
                     <!-- <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button> -->
                     <!-- <DeleteUser v-bind:id="user.id"/> -->
@@ -70,11 +70,15 @@
       padding: 10px;
     }
 
+    .addBtn {
+      color: #fff !important;
+    }
+
     .accent {
       color: #00cc83 !important;
     }
 
     .text {
-      color: #fff !important;
+      color: #b6b6b6 !important;
     }
 </style>
