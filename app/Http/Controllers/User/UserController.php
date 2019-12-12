@@ -16,13 +16,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $client = Client::where('user_id', $id)->first();
         $user = User::findOrFail($id);
 
         return response()->json([
             'status' => 'success',
-            'user' => $user->toArray(),
-            'client' =>  $client->toArray()
+            'user' => $user->toArray()
         ]);
     }
 }
