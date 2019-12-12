@@ -18,8 +18,9 @@ class CreateAssignmentsTable extends Migration
             $table->float('total_price');
             $table->float('deposit');
             $table->float('discount');
-            $table->date('date_of_completion');
+            $table->date('date_of_completion')->nullable();
             $table->date('deadline');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('service_id')->unsigned();

@@ -53,7 +53,7 @@ Route::delete('/task/{id}', 'Task\HomeController@destroy');
 
 Route::get('/assignment/all', 'Assignment\AssignmentController@index');
 Route::get('/assignment/by/{client}', 'Assignment\AssignmentController@indexByClient');
-Route::post('/assignment/{client}/new', 'Assignment\AssignmentController@store');
+Route::post('/assignment/{serviceId}/{clientId}', 'Assignment\AssignmentController@store');
 Route::get('/assignment/{id}', 'Assignment\AssignmentController@show');
 Route::put('/assignment/{id}', 'Assignment\AssignmentController@update');
 Route::delete('/assignment/{id}', 'Assignment\AssignmentController@destroy');

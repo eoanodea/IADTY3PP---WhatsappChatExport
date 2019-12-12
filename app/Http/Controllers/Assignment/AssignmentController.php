@@ -28,17 +28,18 @@ class AssignmentController extends Controller
     }
 
     /**
-     * 
-     * 
+     * Creates a new assignment based on the request, service ID and client ID
+     * @param  \Illuminate\Http\Request  $request
+     * @param int $serviceId
+     * @param  int  $clientId
      * @return \Illuminate\Http\Response
     */
-    public function store() {
+    public function store(Request $request, $serviceId, $clientId) {
 
         $request->validate([
-            'total_price' => 'required|numeric|min:0',
-            'deposit' => 'min:0|max:100',
-            'discount' => 'min:0|max:100',
-            'date_of_completion' => 'date|required',
+            'total_price' => 'required|numeric|min:0|float',
+            'deposit' => 'required|min:0|max:100|float',
+            'discount' => 'required|min:0|max:100|float',
             'deadline' => 'date|required',
             'completed' => 'boolean'
         ]);
@@ -47,33 +48,89 @@ class AssignmentController extends Controller
         $assignment->total_price = $request->input('total_price');
         $assignment->deposit = $request->input('deposit');
         $assignment->discount = $request->input('discount');
-        $assignment->date_of_completion = $request->input('date_of_completion');
-    }
-
-    /**
-     * 
-     * 
-     * @return \Illuminate\Http\Response
-    */
-    public function show() {
-
-    }
-
-    /**
-     * 
-     * 
-     * @return \Illuminate\Http\Response
-    */
-    public function update() {
-
-    }
-
-    /**
-     * 
-     * 
-     * @return \Illuminate\Http\Response
-    */
-    public function destroy() {
+        $assignment->deadline = $request->input('deadline');
+        $assignment->completed = $request->input('completed');
         
+        $assignment->service_id = $serviceId;
+        $assignment->client_id = $clientId;
+
+        $assignment->save();
+
+        return response()->json([
+            'status'=> 'success',
+            'assignment' => $assignment->toArray()
+        ], 200);
+    }
+
+    /**
+     * Get the assignment by it's ID
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+    public function show($id) {
+        $assignment = Assignment::findOrFail($id);
+
+        return response()->json([
+            'status' => 'success',
+            'assignment' => $assignment->toArray()
+        ]);
+    }
+
+    /**
+     * 
+     * Find an assignment by it's ID
+     * and update
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+    public function update(Request $request, $id) {
+        
+        $request->validate([
+            'total_price' => 'required|numeric|min:0',
+            'deposit' => 'required|min:0|max:100',
+            'discount' => 'required|min:0|max:100',
+            'deadline' => 'date|required',
+            'completed' => 'boolean',
+            'service_id' => 'integer',
+            'client_id' => 'integer'
+        ]);
+
+        $assignment = Assignment::findOrFail($id);
+
+        $assignment->total_price = $request->input('total_price');
+        $assignment->deposit = $request->input('deposit');
+        $assignment->discount = $request->input('discount');
+        $assignment->deadline = $request->input('deadline');
+
+        if($request->input('completed')) {
+            $assignment->completed = true;
+            $assignment->date_of_completion = date('Y-m-d');
+        } else $assignment->completed = false;
+        
+        
+        $assignment->service_id = $request->input('service_id');
+        $assignment->client_id = $request->input('client_id');
+
+        $assignment->save();
+
+        return response()->json([
+            'status'=> 'success',
+            'assignment' => $assignment->toArray()
+        ], 200);
+    }
+
+    /**
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+    public function destroy($id) {
+        $assignment = Assignment::findOrFail($id);
+
+        $assignment->delete();
+        return response()->json([
+            'status' => 'success'
+        ], 200);
     }
 }
