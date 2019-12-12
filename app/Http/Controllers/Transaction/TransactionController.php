@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Transaction;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource by assignment.
      *
+     * @param  int  $assignmentId
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexByAssignment($id)
     {
-        //
+        return Transaction::where('assignment_id', $id)->get();
     }
 
     /**
@@ -31,11 +33,25 @@ class TransactionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $assignmentId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $assignment)
     {
-        //
+        $request->validate([
+            'amount' => 'required|numeric|min:0'
+        ]);
+
+        $transaction = new Transaction;
+        $transaction->amount = $request->input('amount');
+        $transaction->assignment_id = $assignment;
+
+        $transaction->save();
+
+        return response()->json([
+            'status'=> 'success',
+            'transaction' => $transaction->toArray()
+        ], 200);
     }
 
     /**
@@ -46,18 +62,12 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $transaction = Transaction::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json([
+            'status' => 'success',
+            'transaction' => $transaction->toArray()
+        ]);
     }
 
     /**
@@ -69,7 +79,19 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'amount' => 'required|numeric|min:0'
+        ]);
+
+        $transaction = Transaction::findOrFail($id);
+        $transaction->amount = $request->input('amount');
+
+        $transaction->save();
+
+        return response()->json([
+            'status'=> 'success',
+            'transaction' => $transaction->toArray()
+        ], 200);
     }
 
     /**
@@ -80,6 +102,12 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->delete();
+
+        return response()->json([
+            'status' => 'success'
+        ], 200);
     }
 }

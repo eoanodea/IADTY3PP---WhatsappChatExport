@@ -70,7 +70,11 @@ Route::post('/comments/{user}/new', 'Comment\CommentController@store');
 Route::put('/comments/{id}', 'Comment\CommentController@update');
 Route::delete('/comments/{id}', 'Comment\CommentController@destroy');
 
-Route::get('/transactions/{assignment}', 'Transaction\TransactionController@indexByAssignment');
+Route::get('/transactions/by/{assignment}', 'Transaction\TransactionController@indexByAssignment');
+Route::get('/transactions/{id}', 'Transaction\TransactionController@show');
+Route::post('/transactions/{assignment}/new', 'Transaction\TransactionController@store');
+Route::put('/transactions/{assignment}', 'Transaction\TransactionController@update');
+Route::delete('/transactions/{assignment}', 'Transaction\TransactionController@destroy');
 
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
