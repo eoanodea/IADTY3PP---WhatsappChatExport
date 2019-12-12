@@ -66,6 +66,10 @@ Route::delete('/task/active/{id}', 'Task\ActiveTaskController@destroy');
 
 Route::get('/comments/assignment/{assignment}', 'Comment\CommentController@indexByAssignment');
 Route::get('/comments/task/{task}', 'Comment\CommentController@indexByTask');
+Route::get('/comments/{id}', 'Comment\CommentController@indexByTask');
+Route::post('/comments/{user}/new', 'Comment\CommentController@store');
+Route::put('/comments/{id}', 'Comment\CommentController@update');
+Route::delete('/comments/{id}', 'Comment\CommentController@destroy');
 
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 

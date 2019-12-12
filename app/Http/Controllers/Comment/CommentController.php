@@ -37,19 +37,49 @@ class CommentController extends Controller
     }
 
     public function show($id) {
+        $comment = Comment::findOrFail($id);
 
+        return response()->json([
+            'status' => 'success',
+            'comment' => $comment
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param int $assignmentId
      * @param  int  $userId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $assignment, $user) {
+    public function store(Request $request, $user) {
+        if(!$request->input('assignment_id') && !$request->input('task_id')) {
+            return response()->json([
+                'status' => 'success',
+                'error' => 'You must provide either an assignment ID or task ID'
+            ], 400);
+        }
 
+        $request->validate([
+            'progress' => 'required|min:0|max:100',
+            'comment' => 'required|string',
+        ]);
+
+        $comment = new Comment;
+        $comment->comment = $request->input('comment');
+        $comment->progress = $request->input('progress');
+        $comment->user_id = $user;
+
+        if($request->input('assignment_id')) {
+            $comment->assignment_id = $request->input('assignment_id');
+        } else $comment->task_id = $request->input('task_id');
+
+        $comment->save();
+
+        return response()->json([
+            'status' => 'success',
+            'comment' => $comment->toArray()
+        ], 200);
     }
 
     /**
@@ -60,7 +90,21 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        $request->validate([
+            'progress' => 'required|min:0|max:100',
+            'comment' => 'required|string',
+        ]);
 
+        $comment = Comment::findOrFail($id);
+        $comment->comment = $request->input('comment');
+        $comment->progress = $request->input('progress');
+
+        $comment->save();
+
+        return response()->json([
+            'status' => 'success',
+            'comment' => $comment->toArray()
+        ], 200);
     }
 
     /**
@@ -70,6 +114,11 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
 
+        return response()->json([
+            'status' => 'success',
+        ], 200);
     }
 }
