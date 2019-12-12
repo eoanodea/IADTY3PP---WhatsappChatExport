@@ -12,4 +12,7 @@ class Assignment extends Model
     public function service() {
         return $this->belongsTo('App\Service');
     }
+    public function task() {
+        return $this->hasMany('App\ActiveTask');
+    }
 }

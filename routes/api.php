@@ -45,11 +45,11 @@ Route::get('/task/{id}', 'Task\HomeController@show');
 Route::put('/task/{id}', 'Task\HomeController@update');
 Route::delete('/task/{id}', 'Task\HomeController@destroy');
 
-Route::get('/task/by/{service}', 'Task\HomeController@index');
-Route::post('/task/{service}/new', 'Task\HomeController@store');
-Route::get('/task/{id}', 'Task\HomeController@show');
-Route::put('/task/{id}', 'Task\HomeController@update');
-Route::delete('/task/{id}', 'Task\HomeController@destroy');
+Route::get('/task/by/{service}', 'Task\DefaultTaskController@index');
+Route::post('/task/{service}/new', 'Task\DefaultTaskController@store');
+Route::get('/task/{id}', 'Task\DefaultTaskController@show');
+Route::put('/task/{id}', 'Task\DefaultTaskController@update');
+Route::delete('/task/{id}', 'Task\DefaultTaskController@destroy');
 
 Route::get('/assignment/all', 'Assignment\AssignmentController@index');
 Route::get('/assignment/by/{client}', 'Assignment\AssignmentController@indexByClient');
@@ -57,6 +57,12 @@ Route::post('/assignment/{serviceId}/{clientId}', 'Assignment\AssignmentControll
 Route::get('/assignment/{id}', 'Assignment\AssignmentController@show');
 Route::put('/assignment/{id}', 'Assignment\AssignmentController@update');
 Route::delete('/assignment/{id}', 'Assignment\AssignmentController@destroy');
+
+Route::get('/task/active/by/{assignment}', 'Task\ActiveTaskController@index');
+Route::post('/task/active/{assignment}/new', 'Task\ActiveTaskController@store');
+Route::get('/task/active/{id}', 'Task\ActiveTaskController@show');
+Route::put('/task/active/{id}', 'Task\ActiveTaskController@update');
+Route::delete('/task/active/{id}', 'Task\ActiveTaskController@destroy');
 
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 

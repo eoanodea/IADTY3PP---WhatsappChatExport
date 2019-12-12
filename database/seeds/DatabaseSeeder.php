@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ServicesTableSeeder::class);
         $this->call(DefaultTaskTableSeeder::class);
         $this->call(AssignmentsTableSeeder::class);
+        $this->call(ActiveTaskTableSeeder::class);
     }
 }

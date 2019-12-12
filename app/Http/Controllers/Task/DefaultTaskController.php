@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Service;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DefaultTaskController extends Controller
 {
     public function index($service) {
         $services = Service::findOrFail($service);
