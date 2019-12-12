@@ -64,6 +64,9 @@ Route::get('/task/active/{id}', 'Task\ActiveTaskController@show');
 Route::put('/task/active/{id}', 'Task\ActiveTaskController@update');
 Route::delete('/task/active/{id}', 'Task\ActiveTaskController@destroy');
 
+Route::get('/comments/assignment/{assignment}', 'Comment\CommentController@indexByAssignment');
+Route::get('/comments/task/{task}', 'Comment\CommentController@indexByTask');
+
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
 // Route::post('register', 'Auth\RegisterController@register');
