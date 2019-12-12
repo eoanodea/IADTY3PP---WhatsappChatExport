@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Transaction;
+use App\Assignment;
 
 class TransactionsTableSeeder extends Seeder
 {
