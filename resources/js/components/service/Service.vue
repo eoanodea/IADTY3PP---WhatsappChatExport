@@ -9,7 +9,7 @@
         <md-button :to="'/admin/services/edit/' + service.id">Edit</md-button>
         <DeleteService v-bind:id="service.id"/>
         <md-button :to="'/admin/tasks/' + service.id">Tasks</md-button>
-        <ListTask v-bind:id="service.id" />
+        <ListTask v-bind:id="service.id" v-bind:isActive="false" />
 
     </div>
 </template>

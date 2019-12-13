@@ -22,6 +22,10 @@
       <md-icon class="md-accent">assignment</md-icon>
       <span class="md-list-item-text">Services</span>
     </md-list-item>
+    <md-list-item to="/admin/assignments" @click="$emit('menu-visible')">
+      <md-icon class="md-accent">work</md-icon>
+      <span class="md-list-item-text">Assignments</span>
+    </md-list-item>
     <md-list-item to="/admin/about" @click="$emit('menu-visible')">
       <md-icon class="md-accent">send</md-icon>
       <span class="md-list-item-text">About</span>

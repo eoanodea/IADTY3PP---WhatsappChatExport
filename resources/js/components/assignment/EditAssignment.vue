@@ -1,9 +1,9 @@
 <template>
     <div>
-        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitTask">
+        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitAssignment">
             <md-card class="md-layout-item md-size-50 md-small-size-100">
                 <md-card-header>
-                    <div class="md-title">Edit Task</div>
+                    <div class="md-title">Edit Assignment</div>
                 </md-card-header>
 
                 <md-card-content>
@@ -17,17 +17,19 @@
                     </p>
                      <md-field>
                         <label for="title">Title</label>
-                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="task.title" /> <br />
+                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
                     </md-field>
                     <md-field>
                         <label for="description">Description</label>
-                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="task.description" /> <br />
+                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="assignment.description" /> <br />
                     </md-field>
+                    
+                    <md-checkbox name="recurring_payment" v-model="assignment.recurring_payment">Recuring Payment</md-checkbox> <br />
+                    <md-checkbox name="is_public" v-model="assignment.is_public">Public Assignment</md-checkbox>
                     <md-field>
-                        <label for="percent_done">Percent Done</label>
-                        <md-input name="percent_done" type="number" class="form-control" placeholder="Percent Done" v-model="task.percent_done" /> <br />
+                        <label for="standard_price">Standard Price</label>
+                        <md-input name="standard_price" type="number" class="form-control" placeholder="Standard Price" v-model="assignment.standard_price" /> <br />
                     </md-field>
- 
                 </md-card-content>
                 <md-card-actions>
                     <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
@@ -51,48 +53,41 @@
     export default {
         data() {
             return {
-                task: {
+                assignment: {
                     title: '',
                     description: '',
-                    percent_done: ''
+                    recurring_payment: false,
+                    standard_price: 0,
+                    is_public: false
                 },
                 errors: [],
-                submitting: false,
-                active: this.$route.params.active
-                    ? this.$route.params.active
-                    : this.isActive
+                submitting: false
             }
         },
         mounted() {
-            const url = this.active == 'false'||false
-                ? 'task'
-                : 'task/active'
-            axios.get(`http://localhost:8000/api/${url}/${this.$route.params.id}`)
+            axios.get(`http://localhost:8000/api/assignment/${this.$route.params.id}`)
             .then(response => {
                 if(!response.data) {
-                    console.log("Error getting task", response)
+                    console.log("Error getting assignment", response)
                 } else {
-                    let taskObj = response.data.task
-                    taskObj.recurring_payment == 1 ? taskObj.recurring_payment = true : taskObj.recurring_payment = false
-                    taskObj.is_public == 1 ? taskObj.is_public = true : taskObj.is_public = false
-                    this.task = taskObj
+                    let assignmentObj = response.data.assignment
+                    assignmentObj.recurring_payment == 1 ? assignmentObj.recurring_payment = true : assignmentObj.recurring_payment = false
+                    assignmentObj.is_public == 1 ? assignmentObj.is_public = true : assignmentObj.is_public = false
+                    this.assignment = assignmentObj
                 }
             })
         },
         methods: {
-            submitTask: function() {
+            submitAssignment: function() {
                 this.submitting = true
-                const url = this.active == 'false'||false
-                    ? 'task'
-                    : 'task/active'
-                const payload = this.task
-               axios.put(`http://localhost:8000/api/${url}/${this.task.id}`, payload)
+                const payload = this.assignment
+               axios.put(`http://localhost:8000/api/assignment/${this.assignment.id}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)
                         this.errors.push({id: 0, message: JSON.stringify(response.message)})
                         this.submitting = false
-                    } else router.push({path: `/admin/tasks/${this.active}/show/${response.data.task.id}`})
+                    } else router.push({path: `/admin/assignments/show/${response.data.assignment.id}`})
                 })
             }
 

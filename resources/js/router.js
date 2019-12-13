@@ -23,6 +23,10 @@ import ListTask from './components/task/ListTask'
 import AddTask from './components/task/AddTask'
 import EditTask from './components/task/EditTask'
 import Task from './components/task/Task'
+import ListAssignment from './components/assignment/ListAssignment'
+import AddAssignment from './components/assignment/AddAssignment'
+import EditAssignment from './components/assignment/EditAssignment'
+import Assignment from './components/assignment/Assignment'
 
 const routes = [
     //Main Pages
@@ -78,26 +82,49 @@ const routes = [
         name: 'addService',
         component: AddService
     },
-    //Default task view
+    //Task view
+    //:active parameter 
+    //- takes either true or false, if true will display active task
     {
-        path: '/admin/tasks/:id',
+        path: '/admin/tasks/:active/:id',
         name: 'tasks',
         component: ListTask
     },
     {
-        path: '/admin/tasks/show/:id',
+        path: '/admin/tasks/:active/show/:id',
         name: 'task',
         component: Task
     },
     {
-        path: '/admin/tasks/edit/:id',
+        path: '/admin/tasks/:active/edit/:id',
         name: 'editTask',
         component: EditTask
     },
     {
-        path: '/admin/tasks/:id/new',
+        path: '/admin/tasks/:active/:id/new',
         name: 'addTask',
         component: AddTask
+    },
+    //Assignment Admin view
+    {
+        path: '/admin/assignments',
+        name: 'assignments',
+        component: ListAssignment
+    },
+    {
+        path: '/admin/assignments/show/:id',
+        name: 'assignment',
+        component: Assignment
+    },
+    {
+        path: '/admin/assignments/edit/:id',
+        name: 'editAssignment',
+        component: EditAssignment
+    },
+    {
+        path: '/admin/assignments/new',
+        name: 'addAssignment',
+        component: AddAssignment
     },
 ]
 

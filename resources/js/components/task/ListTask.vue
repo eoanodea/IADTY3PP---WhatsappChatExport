@@ -27,8 +27,8 @@
                 <md-table-cell>{{ task.title }}</md-table-cell>
                 <md-table-cell>{{task.description}}</md-table-cell>
                 <md-table-cell>
-                    <md-button :to="'/admin/tasks/show/' + task.id" class="md-accent">View</md-button>
-                    <md-button :to="'/admin/tasks/edit/' + task.id">Edit</md-button>
+                    <md-button :to="`/admin/tasks/${active}/show/` + task.id" class="md-accent">View</md-button>
+                    <md-button :to="`/admin/tasks/${active}/edit/` + task.id">Edit</md-button>
                 </md-table-cell>
             </md-table-row>
         </md-table>
@@ -40,17 +40,24 @@
     import axios from 'axios';
 
     export default {
-        props: ['id'],
+        props: ['id', 'isActive'],
         data() {
             return {
                 tasks: null,
                 serviceId: this.$route.params.id
                     ? this.$route.params.id
-                    : this.id
+                    : this.id,
+                active: this.$route.params.active
+                    ? this.$route.params.active
+                    : this.isActive
             }
         },
         mounted () {
-            axios.get(`http://localhost:8000/api/task/by/${this.serviceId}`)
+            console.log('active? ', this.active)
+            const url = this.active == 'false'||false
+            ? 'task'
+            : 'task/active'
+            axios.get(`http://localhost:8000/api/${url}/by/${this.serviceId}`)
             .then(response => (this.tasks = response.data.task))
         },
         methods: {
