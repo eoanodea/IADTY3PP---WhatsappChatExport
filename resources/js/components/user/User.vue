@@ -1,18 +1,52 @@
 <template>
-    <div>Client ID:
-        {{ this.$route.params.id }}
-        <h2>{{ user.first_name }}</h2>
-        <h2>{{ user.last_name }}</h2>
-        <p>Email: {{user.email}}</p>
-        <p>Address: {{user.address}}</p>
-        <p>Mobile: {{user.mobile_number}}</p>
-        <br />
-        <div v-if="client !== null">
-            <p>Client info:</p>
-            <p>{{client.user_id}}</p>
+    <div class="fluid-container">
+
+      <md-table-toolbar>
+        <h1 class="md-title accent">Client Profile</h1>
+      </md-table-toolbar>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="card background">
+            <div class="card-body">
+              <table class="table table-hover text">
+                <tbody>
+                  <tr>
+                    <td class="subject">Client I.D</td>
+                    <td class="text">{{ this.$route.params.id }}</td>
+                  </tr>
+                  <tr>
+                    <td class="subject">First Name</td>
+                    <td class="text">{{ user.first_name }}</td>
+                  </tr>
+                  <tr>
+                    <td class="subject">Last Name</td>
+                    <td class="text">{{ user.last_name }}</td>
+                  </tr>
+                  <tr>
+                    <td class="subject">Email</td>
+                    <td class="text">{{ user.email }}</td>
+                  </tr>
+                  <tr>
+                    <td class="subject">Address</td>
+                    <td class="text">{{ user.address }}</td>
+                  </tr>
+                  <tr>
+                    <td class="subject">Phone Number</td>
+                    <td class="text">{{ user.mobile_number }}</td>
+                  </tr>
+            <!-- <div v-if="client !== null">
+                <p>Client info:</p>
+                <p>{{client.user_id}}</p>
+            </div> -->
+            <md-button class="md-raised float-left editBtn" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+            <DeleteUser class="float-left" v-bind:id="user.id"/>
+          </tbody>
+          </table>
+          </div>
+          </div>
         </div>
-        <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button>
-        <DeleteUser v-bind:id="user.id"/>
+      </div>
     </div>
 </template>
 
@@ -53,3 +87,36 @@
         }
     }
 </script>
+<style>
+    .md-title {
+      text-shadow: 1px 1px 2px #000 !important;
+    }
+
+    .background {
+      background-color: #3b3b3b !important;
+      font-size: 18px !important;
+      padding: 10px;
+    }
+
+    .editBtn {
+      color: #fff !important;
+      background-color: #ffcc66 !important;
+    }
+
+    .delBtn {
+      color: #fff !important;
+      background-color: #ee4444 !important;
+    }
+
+    .accent {
+      color: #00cc83 !important;
+    }
+
+    .subject {
+      color: #818181 !important;
+    }
+
+    .text {
+      color: #fff !important;
+    }
+</style>
