@@ -1,3 +1,20 @@
+/*
+ * --------------------
+ * Author Name: Eoan O'Dea
+ * Author Email: eoan@wspace.ie
+ * Date Created: Tuesday October 29th 2019 5:02:14 pm
+ * --------------------
+ * Project Name: IADTY3PPClientMangementSystem
+ * Version: 1.0.0
+ * --------------------
+ * File Name: _variables.scss
+ * Last Modified: Friday December 13th 2019 12:07:24 pm
+ * --------------------
+ * Copyright (c) 2019 WebSpace
+ * --------------------
+ */
+
+
 // Body
 $body-bg: #f8fafc;
 
@@ -6,7 +23,22 @@ $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-// Colors
+// Primary color variations
+$primary: #262626;
+$primaryLight: #4e4e4e;
+$primaryDark: #000000;
+$primaryContrast: #ffffff;
+
+// Accent color variations
+$accent: #00cc83;
+$accentLight: #5fffb3;
+$accentDark: #009a56;
+$accentContrast: #000000;
+
+// Buton Colors
+$warning: #ffcc66;
+$danger: #ee4444;
+
 $blue: #3490dc;
 $indigo: #6574cd;
 $purple: #9561e2;

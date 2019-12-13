@@ -37,8 +37,6 @@
   Vue.use(MdToolbar);
   Vue.use(MdButton);
 
-
-
   export default {
     data() {
       return {
@@ -56,21 +54,5 @@
   }
 </script>
 <style lang="scss">
-  @import "~vue-material/dist/theme/engine";
-  .app-container {
-    height: 1000px;
-  }
-  @include md-register-theme("default", (
-    // primaryLight: #4e4e4e,
-    primary: #262626,
-    textPrimary: #fff,
-    // primaryDark: #000000,
-    // primaryContrast: #ffffff,
-    // secondaryLight: #5fffb3,
-    accent: #00cc83,
-    // accentDark: #009a56,
-    // accentContrast: #000000,
-    theme: dark // This can be dark or light
-  ));
-  @import "~vue-material/dist/theme/all";
-  </style>
+
+</style>

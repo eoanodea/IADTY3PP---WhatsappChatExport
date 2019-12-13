@@ -4,5 +4,20 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//Import Theme Engine
+@import "~vue-material/dist/theme/engine";
+
+// Theme Colors
+@import 'colors';
+// Theme Overrides
+@import 'overrides';
+
+//Register theme with primary and accent colours
+@include md-register-theme("default", (
+  primary: $primary,
+  accent: $accent,
+  theme: dark // This can be dark or light
+));
+
+//Apply the theme
+@import "~vue-material/dist/theme/all";

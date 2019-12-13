@@ -1,0 +1,24 @@
+/*
+ * --------------------
+ * Author Name: Eoan O'Dea
+ * Author Email: eoan@wspace.ie
+ * Date Created: Friday December 13th 2019 10:22:37 am
+ * --------------------
+ * Project Name: IADTY3PPClientMangementSystem
+ * Version: 1.0.0
+ * --------------------
+ * File Name: _overrides.scss
+ * Last Modified: Friday December 13th 2019 12:01:22 pm
+ * --------------------
+ * Copyright (c) 2019 WebSpace
+ * --------------------
+ */
+
+
+//Theme Overrides
+.md-title {
+    text-shadow: 1px 1px 2px #000 !important;
+}
+.app-container {
+    height: 1000px;
+}

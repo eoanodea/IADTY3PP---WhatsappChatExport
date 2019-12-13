@@ -1,0 +1,16 @@
+
+// Primary color variations
+.primaryLight{ color: $primaryLight!important; }
+.primaryDark{ color: $primaryDark!important; }
+.primaryContrast{ color: $primaryContrast!important; }
+
+// Accent color variations
+.accentLight{ color: $accentLight!important; }
+.accentDark{ color: $accentDark!important; }
+.accentContrast{ color: $accentContrast!important; }
+
+// Button color variations
+.btnPrimary { background-color: $primary!important; }
+.btnAccent { background-color: $accent!important; }
+.btnWarning{ background-color: $warning!important; }
+.btnDanger{ background-color: $danger!important; }

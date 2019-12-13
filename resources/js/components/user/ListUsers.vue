@@ -18,7 +18,7 @@
                 <md-table-cell class="background text">{{ user.first_name + " " + user.last_name }}</md-table-cell>
                 <md-table-cell class="background text">{{ user.email }}</md-table-cell>
                 <md-table-cell class="background text">
-                    <md-button :to="'/admin/users/show/' + user.id" class="md-accent">View Profile</md-button>
+                    <md-button :to="'/admin/users/show/' + user.id" class="btnPrimary">View Profile</md-button>
                     <!-- <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button> -->
                     <!-- <DeleteUser v-bind:id="user.id"/> -->
                 </md-table-cell>
@@ -74,9 +74,9 @@
       color: #fff !important;
     }
 
-    .accent {
+    /* .accent {
       color: #00cc83 !important;
-    }
+    } */
 
     .text {
       color: #b6b6b6 !important;
