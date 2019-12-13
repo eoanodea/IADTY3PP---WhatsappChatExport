@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: _overrides.scss
- * Last Modified: Friday December 13th 2019 12:01:22 pm
+ * Last Modified: Friday December 13th 2019 12:24:12 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -16,9 +16,10 @@
 
 
 //Theme Overrides
-.md-title {
-    text-shadow: 1px 1px 2px #000 !important;
-}
 .app-container {
     height: 1000px;
+}
+
+.md-title {
+    text-shadow: 1px 1px 2px #000 !important;
 }
