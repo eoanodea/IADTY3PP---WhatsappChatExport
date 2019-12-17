@@ -27,6 +27,8 @@
 @import 'colors';
 // Theme Overrides
 @import 'overrides';
+// Theme Template
+@import  'templates/import';
 
 //Register theme with primary and accent colours
 @include md-register-theme("default", (
@@ -37,3 +39,5 @@
 
 //Apply the theme
 @import "~vue-material/dist/theme/all";
+
+
