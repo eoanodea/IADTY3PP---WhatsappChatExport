@@ -19,7 +19,7 @@ class DefaultTaskTableSeeder extends Seeder
 
         foreach($services as $service) {
             $task = new DefaultTask();
-            $task->title = $faker->title;
+            $task->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
             $task->description = $faker->sentence();
             $task->percent_done = $faker->randomFloat(2, 0, 100);
             $task->service_id = $service->id;
