@@ -32,15 +32,11 @@
                     <md-table-cell class="subject">Phone Number</md-table-cell>
                     <md-table-cell class="text">{{ user.mobile_number }}</md-table-cell>
                   </md-table-row>
-            <!-- <div v-if="client !== null">
-                <p>Client info:</p>
-                <p>{{client.user_id}}</p>
-            </div> -->
-            <md-button class="md-raised float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
-            <DeleteUser class="float-left" v-bind:id="user.id"/>
-          
-          </md-table>
-          </div>
+                  <md-button class="md-raised float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+                  <DeleteUser class="float-left" v-bind:id="user.id"/>
+                  
+              </md-table>
+            </div>
           </div>
         </div>
       </div>

@@ -37,14 +37,16 @@ class AssignmentController extends Controller
     public function store(Request $request, $serviceId, $clientId) {
 
         $request->validate([
-            'total_price' => 'required|numeric|min:0|float',
-            'deposit' => 'required|min:0|max:100|float',
-            'discount' => 'required|min:0|max:100|float',
+            'title' => 'required|string',
+            'total_price' => 'required|numeric|min:0',
+            'deposit' => 'required|min:0|max:100',
+            'discount' => 'required|min:0|max:100',
             'deadline' => 'date|required',
             'completed' => 'boolean'
         ]);
 
         $assignment = new Assignment;
+        $assignment->title = $request->input('title');
         $assignment->total_price = $request->input('total_price');
         $assignment->deposit = $request->input('deposit');
         $assignment->discount = $request->input('discount');

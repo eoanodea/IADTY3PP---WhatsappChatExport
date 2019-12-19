@@ -21,7 +21,11 @@
                     </md-field>
                     <md-field>
                         <label for="price">Price</label>
-                        <md-input name="price" type="text" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
+                        <md-input name="price" type="number" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
+                    </md-field>
+                    <md-field>
+                        <label for="deposit">Deposit</label>
+                        <md-input name="deposit" type="numer" class="form-control" placeholder="Price" v-model="assignment.deposit" /> <br />
                     </md-field>
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
                         <label for="deadline">Deadline</label>

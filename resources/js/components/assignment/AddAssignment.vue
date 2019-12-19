@@ -22,21 +22,41 @@
                             </li>
                         </ul>
                     </p>
+
+                    <md-field>
+                        <label for="service">Select a service</label>
+                        <md-select name="service" id="service" palceholder="Select a service" v-model="serviceId">
+                            <md-option v-for="service in services" v-bind:key="service.id" :value="service.id">{{service.title}}</md-option>
+                        </md-select>
+                    </md-field>
+                    <md-field>
+                        <label for="client">Select a client</label>
+                        <md-select name="client" id="client" palceholder="Select a client" v-model="clientId"> 
+                            <md-option v-for="client in clients" v-bind:key="client.id" :value="client.id">{{client.first_name + ' ' + client.last_name}}</md-option>
+                        </md-select>
+                    </md-field>
                     <md-field>
                         <label for="title">Title</label>
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="description">Description</label>
-                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="assignment.description" /> <br />
+                        <span class="md-prefix">€</span>
+                        <label for="price">Price</label>
+                        <md-input name="price" type="number" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
                     </md-field>
-                    
-                    <md-checkbox name="recurring_payment" v-model="assignment.recurring_payment">Recuring Payment</md-checkbox> <br />
-                    <md-checkbox name="is_public" v-model="assignment.is_public">Public Assignment</md-checkbox>
                     <md-field>
-                        <label for="standard_price">Standard Price</label>
-                        <md-input name="standard_price" type="number" class="form-control" placeholder="Standard Price" v-model="assignment.standard_price" /> <br />
+                        <label for="discount">Discount</label>
+                        <md-input name="discount" type="number" class="form-control" placeholder="Discount" v-model="assignment.discount" /> <br />
+                        <span class="md-suffix">%</span> <br />
                     </md-field>
+                    <md-field>
+                        <label for="deposit">Deposit</label>
+                        <md-input name="deposit" type="numer" min="0" max="100" class="form-control" placeholder="Deposit" v-model="assignment.deposit" />
+                        <span class="md-suffix">%</span> <br />
+                    </md-field>
+                    <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
+                        <label for="deadline">Deadline</label>
+                    </md-datepicker> <br />
 
                 </md-card-content>
                 <md-card-actions>
@@ -51,36 +71,61 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
+    import {MdMenu} from 'vue-material/dist/components'
+    import format from 'date-fns/format'
 
-    Vue.use(MdButton)
-    Vue.use(MdField)
-    Vue.use(MdCard)
-    Vue.use(MdCheckbox)
+    Vue.use(MdMenu);
 
     export default {
         data() {
+            let dateFormat = this.$material.locale.dateFormat || 'yyyy-MM-dd'
+            let now = new Date();
+
             return {
+                serviceId: null,
+                clientId: null,
                 assignment: {
                     title: '',
                     description: '',
                     recurring_payment: false,
                     standard_price: 0,
-                    is_public: false
+                    discount: 0,
+                    deposit: 0,
+                    deadline: format(now, dateFormat)
                 },
                 errors: [],
-                submitting: false
+                submitting: false,
+                clients: [],
+                services: []
             }
+        },
+        mounted() {
+            axios.get('/api/service/all')
+            .then(response => {
+                if(!response.data) {
+                    console.log('Error no services', response)
+                } else {
+                    axios.get('/api/user/all')
+                    .then(userResponse => {
+                        this.services = response.data
+                        this.clients = userResponse.data
+                    })
+                }
+
+            })
+            
         },
         methods: {
             validateAssignment: function() {
                 const {assignment} = this
                 if(
                     assignment.title
-                    && assignment.description
-                    && assignment.recurring_payment
-                    && assignment.standard_price
-                    && assignment.is_public) {
+                    && assignment.total_price
+                    && assignment.deposit
+                    && assignment.deadline
+                    && assignment.discount
+                    && this.serviceId
+                    && this.clientId) {
                     this.submitAssignment()
                 }
 
@@ -88,23 +133,29 @@
                 if(!assignment.title) {
                      this.errors.push({id: 0, message: 'Title required.'});
                 }
-                if(!assignment.description) {
-                     this.errors.push({id: 1, message: 'Description required.'});
+                if(!assignment.total_price) {
+                     this.errors.push({id: 1, message: 'Price required.'});
                 }
-                if(!assignment.recurring_payment) {
-                     this.errors.push({id: 2, message: 'Input required.'});
+                if(!assignment.deposit) {
+                     this.errors.push({id: 2, message: 'Deposit required.'});
                 }
-                if(!assignment.standard_price) {
-                     this.errors.push({id: 3, message: 'Standard Price required.'});
+                if(!assignment.deadline) {
+                     this.errors.push({id: 3, message: 'Deadline required.'});
                 }
-                if(!assignment.is_public) {
-                     this.errors.push({id: 4, message: 'Input required.'});
+                if(!assignment.discount) {
+                    this.errors.push({id: 4, message: 'Discount required.'});
+                }
+                if(!this.serviceId) {
+                    this.errors.push({id: 5, message: 'Service required.'});
+                }
+                if(!this.clientId) {
+                    this.errors.push({id: 6, message: 'Client required.'});
                 }
             },
             submitAssignment: function() {
                 this.submitting = true
                 const payload = this.assignment
-               axios.post('/api/assignment/new', payload)
+               axios.post(`/api/assignment/${this.serviceId}/${this.clientId}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)
