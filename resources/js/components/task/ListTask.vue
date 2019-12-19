@@ -12,7 +12,7 @@
     <div class="container">
         <md-table md-card v-if="tasks !== null">
             <md-table-toolbar>
-                <h1 class="md-title">Tasks</h1>
+                <h1 class="md-title">{{ active == true ? 'Active' : 'Default'}} Tasks</h1>
                 <md-button class="md-raised md-primary" :to="'/admin/tasks/' + serviceId + '/new'">Add Task</md-button>
             </md-table-toolbar>
             <md-table-row>
@@ -48,15 +48,17 @@
                     ? this.$route.params.id
                     : this.id,
                 active: this.$route.params.active
-                    ? this.$route.params.active
+                    ? (this.$route.params.active === 'true' ? true : false)
                     : this.isActive
             }
         },
+        //When the component mounts, check if the task is active or default
+        //Modify the fetch URL with result and fetch tasks
         mounted () {
-            console.log('active? ', this.active)
-            const url = this.active == 'false'||false
+            const url = this.active === false
             ? 'task'
             : 'task/active'
+            
             axios.get(`http://localhost:8000/api/${url}/by/${this.serviceId}`)
             .then(response => (this.tasks = response.data.task))
         },
