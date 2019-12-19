@@ -21,7 +21,7 @@ class CreateDefaultTasksTable extends Migration
             $table->decimal('percent_done');
             $table->timestamps();
 
-            $table->foreign('service_id')->references('id')->on('services')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

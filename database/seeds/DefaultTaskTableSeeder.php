@@ -15,7 +15,7 @@ class DefaultTaskTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        $services = Service::all();
+        $services = Service::where('default', false)->get();
 
         foreach($services as $service) {
             $task = new DefaultTask();

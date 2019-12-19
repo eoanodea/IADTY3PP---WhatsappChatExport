@@ -46,5 +46,14 @@ class ServicesTableSeeder extends Seeder
         $service->standard_price = 9999.99;
         $service->is_public = false;
         $service->save();
+
+        $service = new Service();
+        $service->title = 'No Service Assigned';
+        $service->description = "If you delete a service, and it has assignments created from it, they'll come here";
+        $service->recurring_payment = false;
+        $service->standard_price = 0;
+        $service->is_public = false;
+        $service->default = true;
+        $service->save();
     }
 }

@@ -26,7 +26,7 @@ class CreateAssignmentsTable extends Migration
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('service_id')->unsigned();
 
-            $table->foreign('service_id')->references('id')->on('services')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('service_id')->references('id')->on('services')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('client_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
         });
     }

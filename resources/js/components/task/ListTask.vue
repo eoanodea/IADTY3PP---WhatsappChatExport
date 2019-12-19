@@ -12,6 +12,7 @@
     <div class="container">
         <md-table md-card v-if="tasks !== null">
             <md-table-toolbar>
+                <md-button v-if="!this.id" class="md-raised md-accent" :to="`/admin/${(active === true ? 'assignments' : 'services')}/show/` + serviceId">Back</md-button>
                 <h1 class="md-title">{{ active == true ? 'Active' : 'Default'}} Tasks</h1>
                 <md-button class="md-raised md-primary" :to="`/admin/tasks/${active}/` + serviceId + '/new'">Add Task</md-button>
             </md-table-toolbar>

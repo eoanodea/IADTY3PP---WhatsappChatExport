@@ -28,6 +28,7 @@ class CreateServicesTable extends Migration
             $table->boolean('recurring_payment');
             $table->decimal('standard_price');
             $table->boolean('is_public');
+            $table->boolean('default')->default(false);
             $table->timestamps();
         });
     }

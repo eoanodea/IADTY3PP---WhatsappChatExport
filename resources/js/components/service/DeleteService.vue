@@ -3,6 +3,7 @@
         <md-button class="md-secondary md-raised" @click="showDialog = true">Delete</md-button>
         <md-dialog :md-active.sync="showDialog">
             <md-dialog-title>Are you sure you want to delete this service?</md-dialog-title>
+            <md-dialog-content>This will also delete all tasks associated with it</md-dialog-content>
             <md-dialog-actions>
                 <md-button class="md-secondary md-raised" @click="showDialog = false">Back</md-button>
                 <md-button class="md-primary md-raised" @click="deleteService">Confirm</md-button>
@@ -30,7 +31,7 @@
             deleteService: function() {
                 axios.delete(`/api/service/${this.id}`)
                 .then(response => {
-                    if(!response.data) console.log("Error: ", response)
+                    if(response.data.status !== 'success') console.log("Error: ", response)
                     else router.push({name: 'services' })
                 })
             }

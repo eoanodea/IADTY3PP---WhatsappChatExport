@@ -13,6 +13,8 @@ namespace App\Http\Controllers\Service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Service;
+use App\DefaultTask;
+use App\Assignment;
 
 class HomeController extends Controller
 {
@@ -107,6 +109,23 @@ class HomeController extends Controller
     public function destroy($id)
     {
         $service = Service::findOrFail($id);
+        $tasks = $service->task;
+
+        $assignments = Assignment::where('service_id', $id);
+        $default_service = Service::where('default', true)->first();
+
+        if($assignments) {
+          foreach($assignments as $assignment) {
+            $assignment->service_id = $default_service->id;
+            $assignment->save();
+          }
+        }
+
+        if($tasks) {
+          foreach($tasks as $task) {
+            $task->delete();
+          }
+        }
         $service->delete();
 
         return response()->json([
