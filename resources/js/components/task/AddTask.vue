@@ -91,7 +91,7 @@
             submitTask: function() {
                 this.submitting = true
                 const payload = this.task
-                axios.post(`http://localhost:8000/api/task/${this.$route.params.id}/new`, payload)
+                axios.post(`/api/task/${this.$route.params.id}/new`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

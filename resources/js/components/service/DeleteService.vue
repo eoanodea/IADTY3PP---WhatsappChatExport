@@ -28,7 +28,7 @@
         },
         methods: {
             deleteService: function() {
-                axios.delete(`http://localhost:8000/api/service/${this.id}`)
+                axios.delete(`/api/service/${this.id}`)
                 .then(response => {
                     if(!response.data) console.log("Error: ", response)
                     else router.push({name: 'services' })

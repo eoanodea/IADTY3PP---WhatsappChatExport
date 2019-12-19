@@ -65,7 +65,7 @@
             }
         },
         mounted() {
-            axios.get(`http://localhost:8000/api/service/${this.$route.params.id}`)
+            axios.get(`/api/service/${this.$route.params.id}`)
             .then(response => {
                 if(!response.data) {
                     console.log("Error getting service", response)
@@ -81,7 +81,7 @@
             submitService: function() {
                 this.submitting = true
                 const payload = this.service
-               axios.put(`http://localhost:8000/api/service/${this.service.id}`, payload)
+               axios.put(`/api/service/${this.service.id}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

@@ -104,7 +104,7 @@
             submitAssignment: function() {
                 this.submitting = true
                 const payload = this.assignment
-               axios.post('http://localhost:8000/api/assignment/new', payload)
+               axios.post('/api/assignment/new', payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

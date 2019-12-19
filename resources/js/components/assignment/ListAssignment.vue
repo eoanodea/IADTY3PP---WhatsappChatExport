@@ -46,7 +46,7 @@
             }
         },
         mounted () {
-            axios.get('http://localhost:8000/api/assignment/all')
+            axios.get('/api/assignment/all')
             .then(response => (this.assignments = response.data))
         },
         methods: {

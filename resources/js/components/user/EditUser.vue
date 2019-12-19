@@ -88,7 +88,7 @@ export default {
         }
     },
     mounted() {
-        axios.get(`http://localhost:8000/api/user/${this.$route.params.id}`)
+        axios.get(`/api/user/${this.$route.params.id}`)
             .then(response => {
                 if (!response.data) {
                     console.log("Error getting user", response)
@@ -99,7 +99,7 @@ export default {
         submitUser: function() {
             this.submitting = true
             const payload = this.user
-            axios.put(`http://localhost:8000/api/user/${this.user.id}`, payload)
+            axios.put(`/api/user/${this.user.id}`, payload)
                 .then(response => {
                     if (!response.data) {
                         console.log("Error!", response)

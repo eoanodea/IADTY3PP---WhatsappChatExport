@@ -104,7 +104,7 @@
             submitService: function() {
                 this.submitting = true
                 const payload = this.service
-               axios.post('http://localhost:8000/api/service/new', payload)
+               axios.post('/api/service/new', payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

@@ -65,7 +65,7 @@
             }
         },
         mounted() {
-            axios.get(`http://localhost:8000/api/assignment/${this.$route.params.id}`)
+            axios.get(`/api/assignment/${this.$route.params.id}`)
             .then(response => {
                 if(!response.data) {
                     console.log("Error getting assignment", response)
@@ -81,7 +81,7 @@
             submitAssignment: function() {
                 this.submitting = true
                 const payload = this.assignment
-               axios.put(`http://localhost:8000/api/assignment/${this.assignment.id}`, payload)
+               axios.put(`/api/assignment/${this.assignment.id}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

@@ -150,7 +150,7 @@ export default {
         submitUser: function() {
             this.submitting = true
             const payload = this.user
-            axios.post('http://localhost:8000/api/user/new', payload)
+            axios.post('/api/user/new', payload)
                 .then(response => {
                     if (!response.data) {
                         console.log("Error!", response)

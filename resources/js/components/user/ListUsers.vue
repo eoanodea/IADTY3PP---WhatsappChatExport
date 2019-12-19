@@ -42,7 +42,7 @@
             }
         },
         mounted () {
-            axios.get('http://localhost:8000/api/user/all')
+            axios.get('/api/user/all')
             .then(response => (this.users = response.data))
         },
         methods: {

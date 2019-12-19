@@ -59,7 +59,7 @@
             ? 'task'
             : 'task/active'
             
-            axios.get(`http://localhost:8000/api/${url}/by/${this.serviceId}`)
+            axios.get(`/api/${url}/by/${this.serviceId}`)
             .then(response => (this.tasks = response.data.task))
         },
         methods: {

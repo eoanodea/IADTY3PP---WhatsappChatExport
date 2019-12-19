@@ -67,7 +67,7 @@
             const url = this.active == 'false'||false
                 ? 'task'
                 : 'task/active'
-            axios.get(`http://localhost:8000/api/${url}/${this.$route.params.id}`)
+            axios.get(`/api/${url}/${this.$route.params.id}`)
             .then(response => {
                 if(!response.data) {
                     console.log("Error getting task", response)
@@ -86,7 +86,7 @@
                     ? 'task'
                     : 'task/active'
                 const payload = this.task
-               axios.put(`http://localhost:8000/api/${url}/${this.task.id}`, payload)
+               axios.put(`/api/${url}/${this.task.id}`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)

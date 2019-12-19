@@ -46,7 +46,7 @@
             }
         },
         mounted () {
-            axios.get('http://localhost:8000/api/service/all')
+            axios.get('/api/service/all')
             .then(response => (this.services = response.data))
         },
         methods: {

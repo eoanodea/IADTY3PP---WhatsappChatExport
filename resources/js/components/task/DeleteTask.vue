@@ -28,7 +28,7 @@
         },
         methods: {
             deleteTask: function() {
-                axios.delete(`http://localhost:8000/api/task/${this.id}`)
+                axios.delete(`/api/task/${this.id}`)
                 .then(response => {
                     if(!response.data) console.log("Error: ", response)
                     else router.push({name: 'tasks' })

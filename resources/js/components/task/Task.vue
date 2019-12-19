@@ -39,7 +39,7 @@
             const url = this.active == 'false'
             ? 'task'
             : 'task/active'
-            axios.get(`http://localhost:8000/api/${url}/${this.$route.params.id}`)
+            axios.get(`/api/${url}/${this.$route.params.id}`)
             .then(response => {
                 if(response.data.status !== "success") {
                     console.log("error ", response)

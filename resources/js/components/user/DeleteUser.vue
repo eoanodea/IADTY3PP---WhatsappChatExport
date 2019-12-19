@@ -28,7 +28,7 @@
         },
         methods: {
             deleteUser: function() {
-                axios.delete(`http://localhost:8000/api/user/${this.id}`)
+                axios.delete(`/api/user/${this.id}`)
                 .then(response => {
                     if(!response.data) console.log("Error: ", response)
                     else router.push({name: 'users' })

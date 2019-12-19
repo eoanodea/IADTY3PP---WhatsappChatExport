@@ -36,7 +36,7 @@
             }
         },
         mounted () {
-            axios.get(`http://localhost:8000/api/service/${this.$route.params.id}`)
+            axios.get(`/api/service/${this.$route.params.id}`)
             .then(response => {
                 if(response.data.status !== "success") {
                     console.log("error ", response)
