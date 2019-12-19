@@ -48,22 +48,23 @@
     import Vue from 'vue';
     import router from './../../router'
     import {MdDatepicker} from 'vue-material/dist/components'
+    import format from 'date-fns/format'
 
     Vue.use(MdDatepicker)
-    // Vue.use(MdField)
-    // Vue.use(MdCard)
-    // Vue.use(MdCheckbox)
     
 
     export default {
         data() {
+            let dateFormat = this.$material.locale.dateFormat || 'yyyy-MM-dd'
+            let now = new Date();
+
             return {
                 assignment: {
                     title: '',
                     total_price: 0.00,
                     deposit: 0.00,
-                    date_of_completeion: null,
-                    deadline: null,
+                    date_of_completeion: format(now, dateFormat),
+                    deadline: format(now, dateFormat),
                     completed: false,
                 },
                 errors: [],

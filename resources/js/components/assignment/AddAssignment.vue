@@ -57,7 +57,7 @@
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
                         <label for="deadline">Deadline</label>
                     </md-datepicker> <br />
-
+                    <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId"/>
                 </md-card-content>
                 <md-card-actions>
                     <md-button class="md-secondary md-raised">Back</md-button>
@@ -73,6 +73,7 @@
     import router from './../../router'
     import {MdMenu} from 'vue-material/dist/components'
     import format from 'date-fns/format'
+    import AddTasksToNewAssignment from './AddTasksToNewAssignment';
 
     Vue.use(MdMenu);
 
@@ -164,7 +165,9 @@
                     } else router.push({path: `/admin/assignments/show/${response.data.assignment.id}`})
                 })
             }
-
+        },
+        components: {
+            AddTasksToNewAssignment
         }
     }
 </script>
