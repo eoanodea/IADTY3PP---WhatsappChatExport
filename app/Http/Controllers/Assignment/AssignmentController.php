@@ -42,7 +42,6 @@ class AssignmentController extends Controller
             'deposit' => 'required|min:0|max:100',
             'discount' => 'required|min:0|max:100',
             'deadline' => 'date|required',
-            'completed' => 'boolean'
         ]);
 
         $assignment = new Assignment;
@@ -51,7 +50,6 @@ class AssignmentController extends Controller
         $assignment->deposit = $request->input('deposit');
         $assignment->discount = $request->input('discount');
         $assignment->deadline = $request->input('deadline');
-        $assignment->completed = $request->input('completed');
         
         $assignment->service_id = $serviceId;
         $assignment->client_id = $clientId;
