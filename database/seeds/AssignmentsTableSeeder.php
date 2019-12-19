@@ -26,6 +26,7 @@ class AssignmentsTableSeeder extends Seeder
             $service = $services[rand(0, count($services) -1)];
 
             $assignment = new Assignment;
+            $assignment->title = $faker->domainName;
             $assignment->total_price = $faker->numberBetween($min = 10, $max = 500);
             $assignment->deposit = $faker->numberBetween($min = 0, $max = 100);
             $assignment->discount = $faker->numberBetween($min = 0, $max = 100);

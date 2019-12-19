@@ -15,6 +15,7 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
             $table->float('total_price');
             $table->float('deposit');
             $table->float('discount');
