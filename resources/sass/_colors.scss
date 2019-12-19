@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: _colors.scss
- * Last Modified: Friday December 13th 2019 12:20:50 pm
+ * Last Modified: Tuesday December 17th 2019 12:03:38 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -26,7 +26,7 @@
 .accentContrast{ color: $accentContrast!important; }
 
 // Button color variations
-.btnPrimary { background-color: $primary!important; }
-.btnAccent { background-color: $accent!important; }
+.btnPrimary { background-color: $primary!important; color: $primaryContrast!important;}
+.btnAccent { background-color: $accent!important; color: $primaryContrast!important;}
 .btnWarning{ background-color: $warning!important; }
 .btnDanger{ background-color: $danger!important; }

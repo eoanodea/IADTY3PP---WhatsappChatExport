@@ -3,7 +3,7 @@
 
             <md-table-toolbar>
                 <h1 class="md-title accent">Clients</h1>
-                <md-button class="md-raised md-accent addBtn" to="/admin/users/new">Add Client</md-button>
+                <md-button class="md-raised md-accent btnAccent" to="/admin/users/new">Add Client</md-button>
             </md-table-toolbar>
           <md-table class="background text" md-card v-if="users !== null">
             <!-- <md-table-row class="background">

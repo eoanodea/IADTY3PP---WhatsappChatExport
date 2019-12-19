@@ -13,8 +13,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
+
+
 
     /**
      * Show the application dashboard.
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        echo 'starting';
         $user = $request->user();
         $home = 'user.home';
 

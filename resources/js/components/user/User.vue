@@ -39,7 +39,7 @@
                 <p>Client info:</p>
                 <p>{{client.user_id}}</p>
             </div> -->
-            <md-button class="md-raised float-left warning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+            <md-button class="md-raised float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
             <DeleteUser class="float-left" v-bind:id="user.id"/>
           </tbody>
           </table>
