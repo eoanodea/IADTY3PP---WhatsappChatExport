@@ -13,7 +13,7 @@
         <md-table md-card v-if="tasks !== null">
             <md-table-toolbar>
                 <h1 class="md-title">{{ active == true ? 'Active' : 'Default'}} Tasks</h1>
-                <md-button class="md-raised md-primary" :to="'/admin/tasks/' + serviceId + '/new'">Add Task</md-button>
+                <md-button class="md-raised md-primary" :to="`/admin/tasks/${active}/` + serviceId + '/new'">Add Task</md-button>
             </md-table-toolbar>
             <md-table-row>
                 <md-table-head md-numeric>ID</md-table-head>

@@ -98,6 +98,7 @@ class ActiveTaskController extends Controller
 
         return response()->json([
             'status' => 'success',
+            'parentId' => $task->assignment_id
         ], 200);
     }
 }

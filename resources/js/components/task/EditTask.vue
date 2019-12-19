@@ -49,6 +49,7 @@
     
 
     export default {
+        props: ['id', 'isActive'],
         data() {
             return {
                 task: {
@@ -59,12 +60,12 @@
                 errors: [],
                 submitting: false,
                 active: this.$route.params.active
-                    ? this.$route.params.active
+                    ? (this.$route.params.active === 'true' ? true : false)
                     : this.isActive
             }
         },
         mounted() {
-            const url = this.active == 'false'||false
+            const url = this.active === false
                 ? 'task'
                 : 'task/active'
             axios.get(`/api/${url}/${this.$route.params.id}`)
@@ -82,7 +83,7 @@
         methods: {
             submitTask: function() {
                 this.submitting = true
-                const url = this.active == 'false'||false
+                const url = this.active === false
                     ? 'task'
                     : 'task/active'
                 const payload = this.task

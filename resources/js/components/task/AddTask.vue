@@ -56,6 +56,7 @@
     Vue.use(MdCheckbox)
 
     export default {
+        props: ['id', 'isActive'],
         data() {
             return {
                 task: {
@@ -64,7 +65,10 @@
                     percent_done: ''
                 },
                 errors: [],
-                submitting: false
+                submitting: false,
+                active: this.$route.params.active
+                    ? (this.$route.params.active === 'true' ? true : false)
+                    : this.isActive
             }
         },
         methods: {
@@ -90,14 +94,19 @@
             },
             submitTask: function() {
                 this.submitting = true
+
+                const url = this.active === false
+                ? 'task'
+                : 'task/active'
                 const payload = this.task
-                axios.post(`/api/task/${this.$route.params.id}/new`, payload)
+
+                axios.post(`/api/${url}/${this.$route.params.id}/new`, payload)
                 .then(response => {
                     if(!response.data) {
                         console.log("Error!", response)
                         this.errors.push({id: 0, message: JSON.stringify(response.message)})
                         this.submitting = false
-                    } else router.push({path: `/admin/tasks/show/${response.data.task.id}`})
+                    } else router.push({path: `/admin/tasks/${this.active}/show/${response.data.task.id}`})
                 })
             }
 

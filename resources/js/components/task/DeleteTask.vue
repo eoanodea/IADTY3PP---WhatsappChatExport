@@ -20,18 +20,28 @@
     Vue.use(MdButton)
 
     export default {
-        props: ['id'],
+        props: ['id', 'isActive'],
         data() {
             return {
                 showDialog: false,
+                active: this.$route.params.active
+                    ? (this.$route.params.active === 'true' ? true : false)
+                    : this.isActive
             }
         },
         methods: {
             deleteTask: function() {
-                axios.delete(`/api/task/${this.id}`)
+                const url = this.active === false
+                    ? 'task'
+                    : 'task/active'
+                axios.delete(`/api/${url}/${this.id}`)
                 .then(response => {
                     if(!response.data) console.log("Error: ", response)
-                    else router.push({name: 'tasks' })
+                    else {
+                    console.log(response.data)
+                    router.push({path: `/admin/tasks/${this.active}/${response.data.parentId}` })
+                        
+                    }
                 })
             }
         },

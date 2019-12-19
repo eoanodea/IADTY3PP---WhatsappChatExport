@@ -11,6 +11,7 @@
         
         <md-button :to="`/admin/tasks/${active}/edit/` + task.id">Edit</md-button>
         <DeleteTask v-bind:id="task.id" v-bind:isActive="active" />
+        <md-button :to="`/admin/tasks/${active}/${parentId}`" class="btnAccent">Back</md-button>
     </div>
 </template>
 
@@ -31,19 +32,26 @@
                     percent_done: 0
                 },
                 active: this.$route.params.active
-                    ? this.$route.params.active
-                    : this.isActive
+                    ? (this.$route.params.active === 'true' ? true : false)
+                    : this.isActive,
+                parentId: null
             }
         },
         mounted () {
-            const url = this.active == 'false'
+            const url = this.active === false
             ? 'task'
             : 'task/active'
+            console.log('going ', url)
             axios.get(`/api/${url}/${this.$route.params.id}`)
             .then(response => {
                 if(response.data.status !== "success") {
                     console.log("error ", response)
-                } else this.task = response.data.task
+                } else {
+                    this.task = response.data.task
+                    this.parentId = this.active === false
+                        ? response.data.task.service_id
+                        : response.data.task.assignment_id
+                }
             })
         },
         components: {
