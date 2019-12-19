@@ -1,48 +1,45 @@
 <template>
     <div class="fluid-container">
-
-      <md-table-toolbar>
-        <h1 class="md-title accent">Client Profile</h1>
-      </md-table-toolbar>
-
       <div class="row">
         <div class="col-6">
           <div class="card background">
             <div class="card-body">
-              <table class="table table-hover text">
-                <tbody>
-                  <tr>
-                    <td class="subject">Client I.D</td>
-                    <td class="text">{{ this.$route.params.id }}</td>
-                  </tr>
-                  <tr>
-                    <td class="subject">First Name</td>
-                    <td class="text">{{ user.first_name }}</td>
-                  </tr>
-                  <tr>
-                    <td class="subject">Last Name</td>
-                    <td class="text">{{ user.last_name }}</td>
-                  </tr>
-                  <tr>
-                    <td class="subject">Email</td>
-                    <td class="text">{{ user.email }}</td>
-                  </tr>
-                  <tr>
-                    <td class="subject">Address</td>
-                    <td class="text">{{ user.address }}</td>
-                  </tr>
-                  <tr>
-                    <td class="subject">Phone Number</td>
-                    <td class="text">{{ user.mobile_number }}</td>
-                  </tr>
+              <md-table class="table table-hover text">
+                <md-table-toolbar>
+                  <h1 class="md-title accent">Client Profile</h1>
+                </md-table-toolbar>
+                  <md-table-row>
+                    <md-table-cell class="subject">Client I.D</md-table-cell>
+                    <md-table-cell class="text">{{ this.$route.params.id }}</md-table-cell>
+                  </md-table-row>
+                  <md-table-row>
+                    <md-table-cell class="subject">First Name</md-table-cell>
+                    <md-table-cell class="text">{{ user.first_name }}</md-table-cell>
+                  </md-table-row>
+                  <md-table-row>
+                    <md-table-cell class="subject">Last Name</md-table-cell>
+                    <md-table-cell class="text">{{ user.last_name }}</md-table-cell>
+                  </md-table-row>
+                  <md-table-row>
+                    <md-table-cell class="subject">Email</md-table-cell>
+                    <md-table-cell class="text">{{ user.email }}</md-table-cell>
+                  </md-table-row>
+                  <md-table-row>
+                    <md-table-cell class="subject">Address</md-table-cell>
+                    <md-table-cell class="text">{{ user.address }}</md-table-cell>
+                  </md-table-row>
+                  <md-table-row>
+                    <md-table-cell class="subject">Phone Number</md-table-cell>
+                    <md-table-cell class="text">{{ user.mobile_number }}</md-table-cell>
+                  </md-table-row>
             <!-- <div v-if="client !== null">
                 <p>Client info:</p>
                 <p>{{client.user_id}}</p>
             </div> -->
             <md-button class="md-raised float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
             <DeleteUser class="float-left" v-bind:id="user.id"/>
-          </tbody>
-          </table>
+          
+          </md-table>
           </div>
           </div>
         </div>
@@ -68,7 +65,6 @@
                     mobile_number: '',
                     address: '',
                 },
-                client: {}
             }
         },
         mounted () {
@@ -78,7 +74,6 @@
                     console.log("error ", response)
                 } else {
                     this.user = response.data.user
-                    response.data.client ? this.client = response.data.client : null
                 }
             })
         },
