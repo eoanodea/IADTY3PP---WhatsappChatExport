@@ -20,16 +20,17 @@
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="description">Description</label>
-                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="assignment.description" /> <br />
+                        <label for="price">Price</label>
+                        <md-input name="price" type="text" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
                     </md-field>
+                    <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
+                        <label for="deadline">Deadline</label>
+                    </md-datepicker> <br />
+                    <md-datepicker name="date_of_completeion" class="md-field-clear" placeholder="Deadline" v-model="assignment.date_of_completeion">
+                        <label for="date_of_completeion">Date of completeion</label>    
+                    </md-datepicker> <br />
+                    <md-checkbox name="completed" v-model="assignment.completed">Completed</md-checkbox> <br />
                     
-                    <md-checkbox name="recurring_payment" v-model="assignment.recurring_payment">Recuring Payment</md-checkbox> <br />
-                    <md-checkbox name="is_public" v-model="assignment.is_public">Public Assignment</md-checkbox>
-                    <md-field>
-                        <label for="standard_price">Standard Price</label>
-                        <md-input name="standard_price" type="number" class="form-control" placeholder="Standard Price" v-model="assignment.standard_price" /> <br />
-                    </md-field>
                 </md-card-content>
                 <md-card-actions>
                     <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
@@ -42,12 +43,12 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
+    import {MdDatepicker} from 'vue-material/dist/components'
 
-    Vue.use(MdButton)
-    Vue.use(MdField)
-    Vue.use(MdCard)
-    Vue.use(MdCheckbox)
+    Vue.use(MdDatepicker)
+    // Vue.use(MdField)
+    // Vue.use(MdCard)
+    // Vue.use(MdCheckbox)
     
 
     export default {
@@ -55,10 +56,11 @@
             return {
                 assignment: {
                     title: '',
-                    description: '',
-                    recurring_payment: false,
-                    standard_price: 0,
-                    is_public: false
+                    total_price: 0.00,
+                    deposit: 0.00,
+                    date_of_completeion: null,
+                    deadline: null,
+                    completed: false,
                 },
                 errors: [],
                 submitting: false

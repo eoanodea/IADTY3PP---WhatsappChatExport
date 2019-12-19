@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: _overrides.scss
- * Last Modified: Friday December 13th 2019 12:24:12 pm
+ * Last Modified: Thursday December 19th 2019 4:56:24 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -22,4 +22,8 @@
 
 .md-title {
     text-shadow: 1px 1px 2px #000 !important;
+}
+
+.md-field-clear {
+    flex-direction: inherit!important;
 }
