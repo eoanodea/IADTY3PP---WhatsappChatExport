@@ -20,8 +20,7 @@ class ServicesTableSeeder extends Seeder
      */
     public function run()
     {
-        // $service_list = Service::where('title')->first();
-
+        
         $service = new Service ();
         $service->title = 'Model Photography';
         $service->description = 'A studio-based/public setting photoshoots.';
@@ -29,7 +28,6 @@ class ServicesTableSeeder extends Seeder
         $service->standard_price = 500.00;
         $service->is_public = true;
         $service->save();
-        // $service->services()->attach($service_list);
 
         $service = new Service ();
         $service->title = 'Web. Development';
@@ -48,7 +46,7 @@ class ServicesTableSeeder extends Seeder
         $service->save();
 
         $service = new Service();
-        $service->title = 'No Service Assigned';
+        $service->title = 'Default Service';
         $service->description = "If you delete a service, and it has assignments created from it, they'll come here";
         $service->recurring_payment = false;
         $service->standard_price = 0;

@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Thursday December 19th 2019 11:53:35 pm
+ * Last Modified: Friday December 20th 2019 11:06:22 am
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -68,10 +68,10 @@
                 let plural = ''
 
                 if (count > 1) {
-                plural = 's'
+                    plural = 's'
                 }
 
-                return `${count} user${plural} selected`
+                return `${count} task${plural} selected`
             }
         }
     }
