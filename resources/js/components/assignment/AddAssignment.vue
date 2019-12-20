@@ -46,12 +46,12 @@
                     </md-field>
                     <md-field>
                         <label for="discount">Discount</label>
-                        <md-input name="discount" type="number" class="form-control" placeholder="Discount" v-model="assignment.discount" /> <br />
+                        <md-input name="discount" type="number" min="0" max="100" class="form-control" placeholder="Discount" v-model="assignment.discount" /> <br />
                         <span class="md-suffix">%</span> <br />
                     </md-field>
                     <md-field>
                         <label for="deposit">Deposit</label>
-                        <md-input name="deposit" type="numer" min="0" max="100" class="form-control" placeholder="Deposit" v-model="assignment.deposit" />
+                        <md-input name="deposit" type="number" min="0" max="100" class="form-control" placeholder="Deposit" v-model="assignment.deposit" />
                         <span class="md-suffix">%</span> <br />
                     </md-field>
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
@@ -122,9 +122,9 @@
                 if(
                     assignment.title
                     && assignment.total_price
-                    && assignment.deposit
+                    && (assignment.deposit >= 0 && assignment.deposit <= 100)
                     && assignment.deadline
-                    && assignment.discount
+                    && (assignment.discount >= 0 && assignment.discount <= 100 )
                     && this.serviceId
                     && this.clientId) {
                     this.submitAssignment()
@@ -137,14 +137,14 @@
                 if(!assignment.total_price) {
                      this.errors.push({id: 1, message: 'Price required.'});
                 }
-                if(!assignment.deposit) {
-                     this.errors.push({id: 2, message: 'Deposit required.'});
+                if(assignment.deposit < 0 || assignment.deposit > 100) {
+                     this.errors.push({id: 2, message: 'Deposit required, must be between 0 and 100'});
                 }
                 if(!assignment.deadline) {
                      this.errors.push({id: 3, message: 'Deadline required.'});
                 }
-                if(!assignment.discount) {
-                    this.errors.push({id: 4, message: 'Discount required.'});
+                if(assignment.discount < 0 || assignment.discount > 100) {
+                    this.errors.push({id: 4, message: 'Discount required, must be between 0 and 100'});
                 }
                 if(!this.serviceId) {
                     this.errors.push({id: 5, message: 'Service required.'});

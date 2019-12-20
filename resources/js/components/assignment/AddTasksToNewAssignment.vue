@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Friday December 20th 2019 12:30:13 pm
+ * Last Modified: Friday December 20th 2019 5:54:56 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -18,32 +18,45 @@
 
 <template>
     <div>
-    <md-table v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
-        <md-table-toolbar>
-            <h1 class="md-title">Select tasks</h1>
-            <div class="md-toolbar-section-end">
-                <CreateNewTaskForAssignment v-on:new-task="newTask"/>
-            </div>
-        </md-table-toolbar>
-        <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
-            <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
-            <div class="md-toolbar-section-end">
-                <md-button class="md-icon-button" @click="submitTasks" :disabled="submitting">
-                    <md-icon>check</md-icon>
-                </md-button>
-            </div>
-        </md-table-toolbar>
-        <md-table-row slot="md-table-row" slot-scope="{ item }" md-selectable="multiple" md-auto-select :disabled="submitting">
-            <md-table-cell md-label="Title" md-sort-by="title">{{item.title + (item.saved === false ? '(Not saved)' : '')}}</md-table-cell>
-            <md-table-cell md-label="Percent Complete" md-sort-by="percent_done">{{item.percent_done}}</md-table-cell>
-        </md-table-row>
-    </md-table>
-    <p v-else>Select a service</p>
+        <div v-if="!submitted">
+            <md-table v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
+                <md-table-toolbar>
+                    <h1 class="md-title">Select tasks</h1>
+                    <div class="md-toolbar-section-end">
+                        <CreateNewTaskForAssignment v-on:new-task="newTask"/>
+                    </div>
+                </md-table-toolbar>
+                <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
+                    <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
+                    <div class="md-toolbar-section-end">
+                        <md-button class="md-icon-button" @click="submitTasks" :disabled="submitted">
+                            <md-icon>check</md-icon>
+                        </md-button>
+                    </div>
+                </md-table-toolbar>
+                <md-table-row slot="md-table-row" slot-scope="{ item }" md-selectable="multiple" md-auto-select :disabled="submitted">
+                    <md-table-cell md-label="Title" md-sort-by="title">{{item.title + (item.saved === false ? '(Not saved)' : '')}}</md-table-cell>
+                    <md-table-cell md-label="Percent Complete" md-sort-by="percent_done">{{item.percent_done}}</md-table-cell>
+                </md-table-row>
+            </md-table>
+            <p v-else>Select a service</p>
+        </div>
+        <md-empty-state
+            v-else
+            class="md-accent"
+            md-icon="done"
+            md-label="Tasks Added"
+            md-description="The tasks you selected have been added to this assignment">
+        </md-empty-state>
     </div>
 </template>
 <script>
+    import Vue from 'vue'
     import axios from 'axios';
     import CreateNewTaskForAssignment from './CreateNewTaskForNewAssignment'
+    import {MdEmptyState} from 'vue-material/dist/components'
+
+    Vue.use(MdEmptyState)
 
     export default {
         props: ['serviceId'],
@@ -51,7 +64,7 @@
             return {
                 tasks: null,
                 selected: [],
-                submitting: false
+                submitted: false
             }
         },
         mounted() {
@@ -84,7 +97,7 @@
                 this.tasks.push(task)
             },
             submitTasks() {
-                this.submitting = true
+                this.submitted = true
                 const {selected} = this
                 this.$emit('selected-tasks', selected)
             }

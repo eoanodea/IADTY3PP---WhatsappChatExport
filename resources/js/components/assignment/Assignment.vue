@@ -7,6 +7,7 @@
         <p>Price: {{assignment.total_price}}</p>
         <p>Date of completeion: {{assignment.date_of_completeion}}</p>
         <p>Deadline: {{assignment.deadline}}</p>
+        <p>Discount: {{assignment.discount}}</p>
         <p>Completed: {{assignment.completed}}</p>
         <md-button :to="'/admin/assignments/edit/' + assignment.id">Edit</md-button>
         <DeleteAssignment v-bind:id="assignment.id"/>
