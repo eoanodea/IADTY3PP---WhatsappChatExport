@@ -37,11 +37,7 @@
                 axios.delete(`/api/${url}/${this.id}`)
                 .then(response => {
                     if(!response.data) console.log("Error: ", response)
-                    else {
-                    console.log(response.data)
-                    router.push({path: `/admin/tasks/${this.active}/${response.data.parentId}` })
-                        
-                    }
+                    else router.push({path: `/admin/tasks/${this.active}/${response.data.parentId}` })
                 })
             }
         },

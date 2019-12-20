@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Friday December 20th 2019 11:06:22 am
+ * Last Modified: Friday December 20th 2019 12:30:13 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -21,34 +21,37 @@
     <md-table v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
         <md-table-toolbar>
             <h1 class="md-title">Select tasks</h1>
+            <div class="md-toolbar-section-end">
+                <CreateNewTaskForAssignment v-on:new-task="newTask"/>
+            </div>
         </md-table-toolbar>
         <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
-        <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
-
-        <div class="md-toolbar-section-end">
-          <md-button class="md-icon-button">
-            <md-icon>delete</md-icon>
-          </md-button>
-        </div>
+            <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
+            <div class="md-toolbar-section-end">
+                <md-button class="md-icon-button" @click="submitTasks" :disabled="submitting">
+                    <md-icon>check</md-icon>
+                </md-button>
+            </div>
         </md-table-toolbar>
-        <md-table-row slot="md-table-row" slot-scope="{ item }" md-selectable="multiple" md-auto-select>
-            <md-table-cell md-label="Title" md-sort-by="title">{{item.title}}</md-table-cell>
+        <md-table-row slot="md-table-row" slot-scope="{ item }" md-selectable="multiple" md-auto-select :disabled="submitting">
+            <md-table-cell md-label="Title" md-sort-by="title">{{item.title + (item.saved === false ? '(Not saved)' : '')}}</md-table-cell>
             <md-table-cell md-label="Percent Complete" md-sort-by="percent_done">{{item.percent_done}}</md-table-cell>
         </md-table-row>
-      
     </md-table>
     <p v-else>Select a service</p>
     </div>
 </template>
 <script>
     import axios from 'axios';
+    import CreateNewTaskForAssignment from './CreateNewTaskForNewAssignment'
 
     export default {
         props: ['serviceId'],
         data() {
             return {
                 tasks: null,
-                selected: []
+                selected: [],
+                submitting: false
             }
         },
         mounted() {
@@ -72,7 +75,22 @@
                 }
 
                 return `${count} task${plural} selected`
+            },
+            newTask(task) {
+                const lastTaskId = this.tasks[this.tasks.length - 1].id
+                let newTask = task
+                newTask.id = lastTaskId + 1
+                newTask.saved = false
+                this.tasks.push(task)
+            },
+            submitTasks() {
+                this.submitting = true
+                const {selected} = this
+                this.$emit('selected-tasks', selected)
             }
+        },
+        components: {
+            CreateNewTaskForAssignment
         }
     }
 </script>

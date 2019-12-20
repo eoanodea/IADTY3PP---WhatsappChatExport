@@ -57,7 +57,7 @@
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
                         <label for="deadline">Deadline</label>
                     </md-datepicker> <br />
-                    <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId"/>
+                    <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
                 </md-card-content>
                 <md-card-actions>
                     <md-button class="md-secondary md-raised">Back</md-button>
@@ -152,6 +152,9 @@
                 if(!this.clientId) {
                     this.errors.push({id: 6, message: 'Client required.'});
                 }
+            },
+            addTasksToAssignment(tasks) {
+                this.assignment.tasks = tasks
             },
             submitAssignment: function() {
                 this.submitting = true
