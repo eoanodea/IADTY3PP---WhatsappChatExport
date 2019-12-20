@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Assignment;
 use App\User;
+use App\ActiveTask;
 
 class AssignmentController extends Controller
 {
@@ -55,6 +56,19 @@ class AssignmentController extends Controller
         $assignment->client_id = $clientId;
 
         $assignment->save();
+
+        if($request->input('tasks')) {
+            $tasks = $request->input('tasks');
+
+            foreach($tasks as $task) {
+                $newTask = new ActiveTask();
+                $newTask->title = $task['title'];
+                $newTask->description = $task['description'];
+                $newTask->percent_done = $task['percent_done'];
+                $newTask->assignment_id = $assignment->id; 
+                $newTask->save();
+            }
+        }
 
         return response()->json([
             'status'=> 'success',
