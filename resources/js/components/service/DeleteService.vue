@@ -38,8 +38,3 @@
         },
     }
 </script>
-<style lang="scss" scopred>
-    .md-overlay {
-        background: none!important;
-    }
-</style>

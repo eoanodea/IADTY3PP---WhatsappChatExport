@@ -1,14 +1,12 @@
 <template>
 <div class="fluid-container">
-
-    <md-card-toolbar>
-        <div class="md-title accent">Add a Client</div>
-    </md-card-toolbar>
-
     <div class="row">
         <div class="col-6">
             <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateUser">
                 <md-card class="md-layout-item background">
+                    <md-card-header>
+                        <div class="md-title accent">Add a Client</div>
+                    </md-card-header>
                     <md-card-content>
                         <p v-if="errors.length">
                             <b>Please correct the following error(s):</b>

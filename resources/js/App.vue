@@ -30,12 +30,13 @@
 <script>
   import Vue from 'vue';
   import NavBar from './components/NavBar.vue'
-  import {MdApp, MdContent, MdButton, MdToolbar} from 'vue-material/dist/components'
+  import {MdApp, MdContent, MdButton, MdToolbar, MdDrawer} from 'vue-material/dist/components'
 
   Vue.use(MdContent);
   Vue.use(MdApp);
   Vue.use(MdToolbar);
   Vue.use(MdButton);
+  Vue.use(MdDrawer);
 
   export default {
     data() {

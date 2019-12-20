@@ -38,10 +38,6 @@
     }
 </script>
 <style>
-    .md-overlay {
-        background: none!important;
-    }
-
     .backBtn {
       color: #fff !important;
       background-color: #24b6f7 !important;

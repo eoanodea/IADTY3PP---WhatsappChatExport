@@ -34,16 +34,10 @@
 </template>
 <script>
   import Vue from 'vue';
-  import {MdApp, MdButton, MdIcon, MdToolbar, MdList, MdDrawer} from 'vue-material/dist/components'
+  import {MdIcon, MdList } from 'vue-material/dist/components'
 
-  Vue.use(MdButton);
   Vue.use(MdIcon);
-  Vue.use(MdToolbar);
   Vue.use(MdList);
-  Vue.use(MdDrawer);
-  Vue.use(MdApp);
-
-
 
   export default {
     data: () => ({
@@ -51,6 +45,3 @@
     })
   }
 </script>
-<style lang="scss" scoped>
-
-</style>
