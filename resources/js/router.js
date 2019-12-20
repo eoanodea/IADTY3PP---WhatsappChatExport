@@ -24,7 +24,7 @@ import AddTask from './components/task/AddTask'
 import EditTask from './components/task/EditTask'
 import Task from './components/task/Task'
 import ListAssignment from './components/assignment/ListAssignment'
-import AddAssignment from './components/assignment/add/AddAssignment'
+import AddAssignmentStepper from './components/assignment/add/AddAssignmentStepper'
 import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
 
@@ -124,7 +124,7 @@ const routes = [
     {
         path: '/admin/assignments/new',
         name: 'addAssignment',
-        component: AddAssignment
+        component: AddAssignmentStepper
     },
 ]
 
