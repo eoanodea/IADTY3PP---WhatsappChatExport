@@ -24,7 +24,7 @@ import AddTask from './components/task/AddTask'
 import EditTask from './components/task/EditTask'
 import Task from './components/task/Task'
 import ListAssignment from './components/assignment/ListAssignment'
-import AddAssignment from './components/assignment/AddAssignment'
+import AddAssignment from './components/assignment/add/AddAssignment'
 import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
 

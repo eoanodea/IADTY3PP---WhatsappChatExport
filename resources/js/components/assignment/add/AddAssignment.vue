@@ -70,7 +70,7 @@
 <script>
     import axios from 'axios';
     import Vue from 'vue';
-    import router from './../../router'
+    import router from './../../../router'
     import {MdMenu} from 'vue-material/dist/components'
     import format from 'date-fns/format'
     import AddTasksToNewAssignment from './AddTasksToNewAssignment';

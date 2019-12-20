@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Friday December 20th 2019 5:54:56 pm
+ * Last Modified: Friday December 20th 2019 6:29:43 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -18,7 +18,15 @@
 
 <template>
     <div>
-        <div v-if="!submitted">
+        <md-empty-state
+            v-if="submitted"
+            class="md-accent"
+            md-icon="done"
+            md-label="Tasks Added"
+            md-description="The tasks you selected have been added to this assignment">
+            <md-button class="md-accent md-raised" @click="submitted = false">Select Again</md-button>
+        </md-empty-state>
+        <div v-else>
             <md-table v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
                 <md-table-toolbar>
                     <h1 class="md-title">Select tasks</h1>
@@ -29,7 +37,7 @@
                 <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
                     <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
                     <div class="md-toolbar-section-end">
-                        <md-button class="md-icon-button" @click="submitTasks" :disabled="submitted">
+                        <md-button class="md-icon-button md-accent md-raised" @click="submitTasks" :disabled="submitted">
                             <md-icon>check</md-icon>
                         </md-button>
                     </div>
@@ -41,13 +49,7 @@
             </md-table>
             <p v-else>Select a service</p>
         </div>
-        <md-empty-state
-            v-else
-            class="md-accent"
-            md-icon="done"
-            md-label="Tasks Added"
-            md-description="The tasks you selected have been added to this assignment">
-        </md-empty-state>
+
     </div>
 </template>
 <script>
@@ -59,6 +61,8 @@
     Vue.use(MdEmptyState)
 
     export default {
+        //This component will only work 
+        //when it is given a serviceId as a prop
         props: ['serviceId'],
         data() {
             return {
@@ -67,16 +71,26 @@
                 submitted: false
             }
         },
-        mounted() {
-            axios.get(`/api/task/by/${this.serviceId}`)
-            .then(response => {
-                if(response.data.status !== 'success') console.log('error', response.data)
-                else {
-                    this.tasks = response.data.task
-                }
-            })
+        created() {
+            this.fetchData()
+        },
+        watch: { 
+            //Watch the serviceId Prop for changes, on change 
+            //fetch new data
+            serviceId: function(newVal, oldVal) {
+                this.fetchData()
+            }
         },
         methods: {
+            fetchData() {
+                axios.get(`/api/task/by/${this.serviceId}`)
+                .then(response => {
+                    if(response.data.status !== 'success') console.log('error', response.data)
+                    else {
+                        this.tasks = response.data.task
+                    }
+                })
+            },
             onSelect (items) {
                 this.selected = items
             },
