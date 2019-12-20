@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Friday December 20th 2019 6:29:43 pm
+ * Last Modified: Friday December 20th 2019 9:21:14 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -19,12 +19,13 @@
 <template>
     <div>
         <md-empty-state
-            v-if="submitted"
+            v-if="saved"
             class="md-accent"
             md-icon="done"
             md-label="Tasks Added"
             md-description="The tasks you selected have been added to this assignment">
-            <md-button class="md-accent md-raised" @click="submitted = false">Select Again</md-button>
+            <md-button class="md-primary md-raised" @click="submitted = false">Select Again</md-button>
+            <md-button class="md-accent md-raised" @click="submitTasks">Complete Assignment</md-button>
         </md-empty-state>
         <div v-else>
             <md-table v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
@@ -37,7 +38,7 @@
                 <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
                     <div class="md-toolbar-section-start">{{ getAlternateLabel(count) }}</div>
                     <div class="md-toolbar-section-end">
-                        <md-button class="md-icon-button md-accent md-raised" @click="submitTasks" :disabled="submitted">
+                        <md-button class="md-icon-button md-accent md-raised" @click="saved = true" :disabled="saved">
                             <md-icon>check</md-icon>
                         </md-button>
                     </div>
@@ -68,7 +69,8 @@
             return {
                 tasks: null,
                 selected: [],
-                submitted: false
+                submitted: false,
+                saved: false
             }
         },
         created() {

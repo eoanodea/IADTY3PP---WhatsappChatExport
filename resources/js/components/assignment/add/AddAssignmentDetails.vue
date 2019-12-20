@@ -24,18 +24,6 @@
                     </p>
 
                     <md-field>
-                        <label for="service">Select a service</label>
-                        <md-select name="service" id="service" palceholder="Select a service" v-model="serviceId">
-                            <md-option v-for="service in services" v-bind:key="service.id" :value="service.id">{{service.title}}</md-option>
-                        </md-select>
-                    </md-field>
-                    <md-field>
-                        <label for="client">Select a client</label>
-                        <md-select name="client" id="client" palceholder="Select a client" v-model="clientId"> 
-                            <md-option v-for="client in clients" v-bind:key="client.id" :value="client.id">{{client.first_name + ' ' + client.last_name}}</md-option>
-                        </md-select>
-                    </md-field>
-                    <md-field>
                         <label for="title">Title</label>
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
                     </md-field>
@@ -57,10 +45,8 @@
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
                         <label for="deadline">Deadline</label>
                     </md-datepicker> <br />
-                    <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
                 </md-card-content>
                 <md-card-actions>
-                    <md-button class="md-secondary md-raised">Back</md-button>
                     <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
                 </md-card-actions>
             </md-card>
@@ -68,14 +54,8 @@
     </div>
 </template>
 <script>
-    import axios from 'axios';
     import Vue from 'vue';
-    import router from './../../../router'
-    import {MdMenu} from 'vue-material/dist/components'
     import format from 'date-fns/format'
-    import AddTasksToNewAssignment from './AddTasksToNewAssignment';
-
-    Vue.use(MdMenu);
 
     export default {
         data() {
@@ -83,8 +63,6 @@
             let now = new Date();
 
             return {
-                serviceId: null,
-                clientId: null,
                 assignment: {
                     title: '',
                     description: '',
@@ -96,25 +74,10 @@
                 },
                 errors: [],
                 submitting: false,
-                clients: [],
-                services: []
             }
         },
         mounted() {
-            axios.get('/api/service/all')
-            .then(response => {
-                if(!response.data) {
-                    console.log('Error no services', response)
-                } else {
-                    axios.get('/api/user/all')
-                    .then(userResponse => {
-                        this.services = response.data
-                        this.clients = userResponse.data
-                    })
-                }
-
-            })
-            
+            //
         },
         methods: {
             validateAssignment: function() {
@@ -123,11 +86,9 @@
                     assignment.title
                     && assignment.total_price
                     && (assignment.deposit >= 0 && assignment.deposit <= 100)
-                    && assignment.deadline
                     && (assignment.discount >= 0 && assignment.discount <= 100 )
-                    && this.serviceId
-                    && this.clientId) {
-                    this.submitAssignment()
+                    && assignment.deadline) {
+                    this.$emit('selected-assignment', assignment)
                 }
 
                 this.errors = [];
@@ -146,31 +107,11 @@
                 if(assignment.discount < 0 || assignment.discount > 100) {
                     this.errors.push({id: 4, message: 'Discount required, must be between 0 and 100'});
                 }
-                if(!this.serviceId) {
-                    this.errors.push({id: 5, message: 'Service required.'});
-                }
-                if(!this.clientId) {
-                    this.errors.push({id: 6, message: 'Client required.'});
-                }
+                if(this.errors.length > 0) this.$emit('selected-assignment', null, 'Error adding assignment details')
             },
             addTasksToAssignment(tasks) {
                 this.assignment.tasks = tasks
             },
-            submitAssignment: function() {
-                this.submitting = true
-                const payload = this.assignment
-               axios.post(`/api/assignment/${this.serviceId}/${this.clientId}`, payload)
-                .then(response => {
-                    if(!response.data) {
-                        console.log("Error!", response)
-                        this.errors.push({id: 0, message: JSON.stringify(response.message)})
-                        this.submitting = false
-                    } else router.push({path: `/admin/assignments/show/${response.data.assignment.id}`})
-                })
-            }
-        },
-        components: {
-            AddTasksToNewAssignment
         }
     }
 </script>
