@@ -12,9 +12,13 @@
 */
 
 Route::get('/{any?}', function() {
-    return view('admin.home');  
+    return view('welcome');  
 })->where('any', '^(?!api\/)[\/\w\.-]*');
 
 Auth::routes();
+
+Route::get('/', function() {
+    return view('welcome');  
+});
 
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
