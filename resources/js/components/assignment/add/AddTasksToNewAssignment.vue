@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Friday December 20th 2019 9:21:14 pm
+ * Last Modified: Wednesday January 8th 2020 6:16:44 pm
  * --------------------
  * Copyright (c) 2019 WebSpace
  * --------------------
@@ -24,7 +24,7 @@
             md-icon="done"
             md-label="Tasks Added"
             md-description="The tasks you selected have been added to this assignment">
-            <md-button class="md-primary md-raised" @click="submitted = false">Select Again</md-button>
+            <md-button class="md-primary md-raised" @click="saved = false">Select Again</md-button>
             <md-button class="md-accent md-raised" @click="submitTasks">Complete Assignment</md-button>
         </md-empty-state>
         <div v-else>
