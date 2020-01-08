@@ -33,11 +33,10 @@
                 <md-table-cell class="text background">{{ user.mobile_number }}</md-table-cell>
               </md-table-row>
             </md-table>
-            <md-button
-              class="md-raised float-left btnWarning"
-              :to="'/admin/users/edit/' + user.id"
-            >Edit</md-button>
-            <DeleteUser class="float-left" v-bind:id="user.id" />
+            <div>
+              <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+              <DeleteUser class="float-left" v-bind:id="user.id" />
+            </div>
           </div>
         </div>
       </div>
