@@ -4,6 +4,7 @@
       <div class="col-6">
         <md-table-toolbar>
           <h1 class="md-title accent">Client Profile</h1>
+          <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit Client</md-button>
         </md-table-toolbar>
         <div class="card">
           <div class="card-body background">
@@ -33,9 +34,6 @@
                 <md-table-cell class="text background">{{ user.mobile_number }}</md-table-cell>
               </md-table-row>
             </md-table>
-            <div>
-              <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
-            </div>
           </div>
         </div>
       </div>
@@ -61,8 +59,8 @@
       </div>
     </div>
     
-    <div class="row">
-      <DeleteUser class="md-alignment-right" v-bind:id="user.id" />
+    <div class="row float-right">
+      <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
     </div>
   </div>
 </template>
@@ -79,14 +77,14 @@ Vue.use(MdProgress);
 export default {
   data() {
     return {
-      amount: 70,
       user: {
         first_name: "",
         last_name: "",
         email: "",
         mobile_number: "",
         address: ""
-      }
+      },
+      amount: 70
     };
   },
   mounted() {
