@@ -5,7 +5,7 @@
         
         <p>Deposit: {{assignment.deposit}}</p>
         <p>Price: {{assignment.total_price}}</p>
-        <p>Date of completeion: {{assignment.date_of_completeion}}</p>
+        <p>Date of completeion: {{assignment.date_of_completion}}</p>
         <p>Deadline: {{assignment.deadline}}</p>
         <p>Discount: {{assignment.discount}}</p>
         <p>Completed: {{assignment.completed}}</p>
