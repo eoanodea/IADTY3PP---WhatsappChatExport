@@ -99,7 +99,7 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import { MdButton, MdProgress, MdAvatar, MdCard, MdContent, MdElevation, MdIcon, MdLayout } from "vue-material/dist/components";
+import { MdButton, MdProgress, MdAvatar, MdCard, MdContent, MdElevation, MdIcon, MdImage, MdLayout, MdRipple, MdToolbar } from "vue-material/dist/components";
 
 Vue.use(MdButton);
 Vue.use(MdProgress);
@@ -108,7 +108,10 @@ Vue.use(MdCard);
 Vue.use(MdContent);
 Vue.use(MdElevation);
 Vue.use(MdIcon);
+Vue.use(MdImage);
 Vue.use(MdLayout);
+Vue.use(MdRipple);
+Vue.use(MdToolbar);
 
 export default {
   data() {
