@@ -112,9 +112,9 @@
       </div>
     </div>
 
-    <div class="row float-right">
+    <md-card-actions>
       <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
-    </div>
+    </md-card-actions>
   </div>
 </template>
 
