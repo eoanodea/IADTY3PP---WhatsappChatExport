@@ -1,10 +1,40 @@
 <template>
   <div class="fluid-container">
-    <div class="row">
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <md-table-toolbar>
+          <h1 class="md-title accent">Client Profile</h1>
+          <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+        </md-table-toolbar>
+      </div>
+    </div>
+
+    <div class="md-layout">
+      <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
+        <md-card md-with-hover class="md-elevation-15 background">
+          <md-ripple>
+            <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent">
+              <md-ripple></md-ripple>
+            </md-avatar>
+            <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
+              <md-card-header class="accent md-display-3">{{ user.first_name }} {{ user.last_name }}</md-card-header>
+              <md-card-header class="text md-display-1">{{ user.email }}</md-card-header>
+              <md-card-header class="subject md-headline">
+                {{ user.address }}
+                <br />
+                {{ user.mobile_number }}
+              </md-card-header>
+            </div>
+          </md-ripple>
+        </md-card>
+      </div>
+    </div>
+
+    <!-- <div class="row">
       <div class="col-6">
         <md-table-toolbar>
           <h1 class="md-title accent">Client Profile</h1>
-              <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+          <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
         </md-table-toolbar>
         <div class="card">
           <div class="card-body background">
@@ -37,7 +67,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="row">
       <md-table-toolbar>
@@ -50,15 +80,15 @@
           md-mode="determinate"
           :md-value="amount"
           :md-diameter="750"
-          :md-stroke="30">
-        </md-progress-spinner>
+          :md-stroke="30"
+        ></md-progress-spinner>
       </div>
       <div>
         <input type="range" v-model.number="amount" />
         {{ amount }}%
       </div>
     </div>
-    
+
     <div class="row float-right">
       <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
     </div>
@@ -69,10 +99,16 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import { MdButton, MdProgress } from "vue-material/dist/components";
+import { MdButton, MdProgress, MdAvatar, MdCard, MdContent, MdElevation, MdIcon, MdLayout } from "vue-material/dist/components";
 
 Vue.use(MdButton);
 Vue.use(MdProgress);
+Vue.use(MdAvatar);
+Vue.use(MdCard);
+Vue.use(MdContent);
+Vue.use(MdElevation);
+Vue.use(MdIcon);
+Vue.use(MdLayout);
 
 export default {
   data() {
