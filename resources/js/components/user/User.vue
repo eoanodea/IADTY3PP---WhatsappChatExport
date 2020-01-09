@@ -4,7 +4,7 @@
       <div class="col-6">
         <md-table-toolbar>
           <h1 class="md-title accent">Client Profile</h1>
-          <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit Client</md-button>
+              <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
         </md-table-toolbar>
         <div class="card">
           <div class="card-body background">
