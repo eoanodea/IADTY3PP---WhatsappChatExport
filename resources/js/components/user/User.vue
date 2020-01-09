@@ -1,10 +1,11 @@
 <template>
   <div class="fluid-container">
+    <!-- Client Profile -->
     <div class="md-layout">
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Client Profile</h1>
-          <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
+          <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit Details</md-button>
         </md-table-toolbar>
       </div>
     </div>
@@ -30,6 +31,7 @@
       </div>
     </div>
 
+    <!-- Send Message -->
     <div class="md-layout">
       <div class="md-layout-item">
         <md-table-toolbar>
@@ -92,26 +94,31 @@
       </div>
     </div>-->
 
-    <div class="row">
-      <md-table-toolbar>
-        <h1 class="md-title accent">Project Completion</h1>
-      </md-table-toolbar>
-      <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
-      <div class="spinnerColor">
-        <md-progress-spinner
-          class="md-accent"
-          md-mode="determinate"
-          :md-value="amount"
-          :md-diameter="750"
-          :md-stroke="30"
-        ></md-progress-spinner>
-      </div>
-      <div>
-        <input type="range" v-model.number="amount" />
-        {{ amount }}%
+    <!-- Project Completion -->
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <md-table-toolbar>
+          <h1 class="md-title accent">Project Completion</h1>
+        </md-table-toolbar>
       </div>
     </div>
 
+    <div class="md-layout">
+      <md-card-actions class="progessSpinner">
+        <input type="range" v-model.number="amount" />
+        {{ amount }}%
+        <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
+      </md-card-actions>
+      <md-progress-spinner
+        class="md-accent"
+        md-mode="determinate"
+        :md-value="amount"
+        :md-diameter="600"
+        :md-stroke="30"
+      ></md-progress-spinner>
+    </div>
+
+    <!-- Delete Client Button -->
     <md-card-actions>
       <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
     </md-card-actions>
