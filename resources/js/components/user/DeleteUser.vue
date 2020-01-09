@@ -5,7 +5,7 @@
             <md-dialog-title>Are you sure you want to delete this client?</md-dialog-title>
             <md-dialog-actions>
                 <md-button class="md-secondary md-raised backBtn" @click="showDialog = false">Back</md-button>
-                <md-button class="md-primary md-raised danger" @click="deleteUser">Confirm</md-button>
+                <md-button class="md-primary md-raised btnDanger" @click="deleteUser">Confirm</md-button>
             </md-dialog-actions>
         </md-dialog>
     </div>

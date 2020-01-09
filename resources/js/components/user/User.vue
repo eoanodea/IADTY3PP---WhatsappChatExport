@@ -40,13 +40,12 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <md-table-toolbar>
         <h1 class="md-title accent">Project Completion</h1>
       </md-table-toolbar>
-
       <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
-
       <div class="spinnerColor">
         <md-progress-spinner
           class="md-accent"
@@ -56,14 +55,14 @@
           :md-stroke="30">
         </md-progress-spinner>
       </div>
-
       <div>
         <input type="range" v-model.number="amount" />
         {{ amount }}%
       </div>
     </div>
+    
     <div class="row">
-      <DeleteUser class="float-right" v-bind:id="user.id" />
+      <DeleteUser class="md-alignment-right" v-bind:id="user.id" />
     </div>
   </div>
 </template>
