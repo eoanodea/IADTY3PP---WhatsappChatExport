@@ -30,6 +30,29 @@
       </div>
     </div>
 
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <md-table-toolbar>
+          <h1 class="md-title accent">Send Message</h1>
+        </md-table-toolbar>
+      </div>
+    </div>
+
+    <md-field>
+      <label class="accent" for="compose_message">Compose Message</label>
+      <md-input
+        name="Compose Message"
+        type="text"
+        class="form-control"
+        placeholder="Compose Message"
+        autocomplete="given-name"
+      />
+    </md-field>
+
+    <md-card-actions>
+      <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Send</md-button>
+    </md-card-actions>
+
     <!-- <div class="row">
       <div class="col-6">
         <md-table-toolbar>
@@ -99,7 +122,19 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import { MdButton, MdProgress, MdAvatar, MdCard, MdContent, MdElevation, MdIcon, MdImage, MdLayout, MdRipple, MdToolbar } from "vue-material/dist/components";
+import {
+  MdButton,
+  MdProgress,
+  MdAvatar,
+  MdCard,
+  MdContent,
+  MdElevation,
+  MdIcon,
+  MdImage,
+  MdLayout,
+  MdRipple,
+  MdToolbar
+} from "vue-material/dist/components";
 
 Vue.use(MdButton);
 Vue.use(MdProgress);
