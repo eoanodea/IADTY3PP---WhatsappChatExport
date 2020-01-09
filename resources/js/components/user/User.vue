@@ -41,6 +41,28 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <md-table-toolbar>
+        <h1 class="md-title accent">Project Completion</h1>
+      </md-table-toolbar>
+
+      <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
+
+      <div class="spinnerColor">
+      <md-progress-spinner
+        class=" md-accent"
+        md-mode="determinate"
+        :md-value="amount"
+        :md-diameter="750"
+        :md-stroke="30">
+      </md-progress-spinner>
+      </div>
+      
+      <div>
+        <input type="range" v-model.number="amount" />
+        {{ amount }}%
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,13 +70,15 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import { MdButton } from "vue-material/dist/components";
+import { MdButton, MdProgress } from "vue-material/dist/components";
 
 Vue.use(MdButton);
+Vue.use(MdProgress);
 
 export default {
   data() {
     return {
+      amount: 70,
       user: {
         first_name: "",
         last_name: "",
@@ -85,11 +109,6 @@ export default {
   padding: 10px;
 }
 
-.editBtn {
-  color: #fff !important;
-  background-color: #ffcc66 !important;
-}
-
 .delBtn {
   color: #fff !important;
   background-color: #ee4444 !important;
@@ -105,5 +124,29 @@ export default {
 
 .text {
   color: #fff !important;
+}
+
+.md-progress-spinner {
+  top: 50%; 
+  left: 50%;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  margin-left: -375px;
+}
+
+.progressSpinner {
+  top: 50%; 
+  left: 50%;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-left: -375px;
+}
+
+.spinnerColor {
+  color: #24b6f7 !important;
 }
 </style>
