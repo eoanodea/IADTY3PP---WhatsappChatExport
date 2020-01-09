@@ -35,7 +35,6 @@
             </md-table>
             <div>
               <md-button class="float-left btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
-              <DeleteUser class="float-left" v-bind:id="user.id" />
             </div>
           </div>
         </div>
@@ -49,19 +48,22 @@
       <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
 
       <div class="spinnerColor">
-      <md-progress-spinner
-        class=" md-accent"
-        md-mode="determinate"
-        :md-value="amount"
-        :md-diameter="750"
-        :md-stroke="30">
-      </md-progress-spinner>
+        <md-progress-spinner
+          class="md-accent"
+          md-mode="determinate"
+          :md-value="amount"
+          :md-diameter="750"
+          :md-stroke="30">
+        </md-progress-spinner>
       </div>
-      
+
       <div>
         <input type="range" v-model.number="amount" />
         {{ amount }}%
       </div>
+    </div>
+    <div class="row">
+      <DeleteUser class="float-right" v-bind:id="user.id" />
     </div>
   </div>
 </template>
@@ -127,7 +129,7 @@ export default {
 }
 
 .md-progress-spinner {
-  top: 50%; 
+  top: 50%;
   left: 50%;
   display: block;
   position: absolute;
@@ -137,7 +139,7 @@ export default {
 }
 
 .progressSpinner {
-  top: 50%; 
+  top: 50%;
   left: 50%;
   display: block;
   position: relative;

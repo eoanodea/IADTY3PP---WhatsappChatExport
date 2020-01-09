@@ -1,6 +1,6 @@
 <template>
     <div>
-        <md-button class="md-secondary md-raised btnDanger" @click="showDialog = true">Delete</md-button>
+        <md-button class="md-secondary md-raised btnDanger" @click="showDialog = true">Delete Client</md-button>
         <md-dialog :md-active.sync="showDialog">
             <md-dialog-title>Are you sure you want to delete this client?</md-dialog-title>
             <md-dialog-actions>
