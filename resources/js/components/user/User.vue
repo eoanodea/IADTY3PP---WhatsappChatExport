@@ -12,7 +12,7 @@
 
     <div class="md-layout spacing">
       <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-        <md-card md-with-hover class="md-elevation-15 background">
+        <md-card md-with-hover class="md-elevation-10 background">
           <md-ripple>
             <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent">
               <md-ripple></md-ripple>
