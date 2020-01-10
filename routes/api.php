@@ -76,6 +76,13 @@ Route::post('/transactions/{assignment}/new', 'Transaction\TransactionController
 Route::put('/transactions/{assignment}', 'Transaction\TransactionController@update');
 Route::delete('/transactions/{assignment}', 'Transaction\TransactionController@destroy');
 
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
+    Route::post('login', 'AuthController@login');
+    Route::post('signout', 'SignOutController');
+
+    Route::get('get', 'UserController');
+});
+
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
 // Route::post('register', 'Auth\RegisterController@register');
