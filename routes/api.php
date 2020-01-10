@@ -78,13 +78,8 @@ Route::delete('/transactions/{assignment}', 'Transaction\TransactionController@d
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
     Route::post('login', 'AuthController@login');
-    Route::post('signout', 'SignOutController');
+    Route::post('logout', 'AuthController@logout');
 
-    Route::get('get', 'UserController');
+    Route::get('get', 'AuthController@me');
+    Route::get('refresh', 'AuthController@refresh');
 });
-
-// Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
-
-// Route::post('register', 'Auth\RegisterController@register');
-// Route::post('login', 'Auth\LoginController@login');
-// Route::post('logout', 'Auth\LoginController@logout');
