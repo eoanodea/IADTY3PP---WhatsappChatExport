@@ -18,7 +18,7 @@
         </router-link>
       </md-app-toolbar>
       <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">Good day, User.</md-toolbar>
+        <md-toolbar class="md-transparent" md-elevation="0">Good day, <p v-if="user">{{user.first_name}}</p></md-toolbar>
         <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" />
       </md-app-drawer>
       <md-app-content>
@@ -28,6 +28,7 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   import Vue from 'vue';
   import NavBar from './components/NavBar.vue'
   import {MdApp, MdContent, MdButton, MdToolbar, MdDrawer} from 'vue-material/dist/components'
@@ -46,6 +47,12 @@
     },
     components: {
       NavBar
+    },
+    computed: {
+      ...mapGetters({
+          authenticated: 'auth/authenticated',
+          user: 'auth/user'
+      })
     },
     methods: {
       click: function() {

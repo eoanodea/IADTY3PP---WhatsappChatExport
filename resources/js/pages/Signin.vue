@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: Signin.vue
- * Last Modified: Friday January 10th 2020 5:05:32 pm
+ * Last Modified: Friday January 10th 2020 5:33:20 pm
  * --------------------
  * Copyright (c) 2020 WebSpace
  * --------------------
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { mapActions } from 'vuex'
 
   export default {
     data() {
@@ -62,22 +62,15 @@
         validateSignin() {
             const {user} = this;
             if(user.email && user.password) {
-                this.signIn()
+                this.submitting = true;
+                this.signIn(this.user)    
             }
             if(!user.email) this.errors.push({message: "Email is required"})
             if(!user.password) this.errors.push({message: "Password is required"})
         },
-        async signIn() {
-            this.submitting = true;
-
-            const payload = this.user
-            axios.post('/api/auth/login', payload)
-                .then(response => {
-                    if(response.access_token) {
-                        console.log('yes!')
-                    } else console.log('nah!')
-                })
-        }
+        ...mapActions({
+            signIn: 'auth/signIn'
+        })
     },
     components: {
         //
