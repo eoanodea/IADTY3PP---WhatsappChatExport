@@ -1,10 +1,15 @@
 <template>
-    <div>
+    <div fluid-container>
+        <div class="md-layout">
+            <div class="md-layout-item">
+                <md-table-toolbar>
+                    <h1 class="md-title accent">Edit Project Details</h1>
+                </md-table-toolbar>
+            </div>
+        </div>
+
         <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitAssignment">
-            <md-card class="md-layout-item md-size-50 md-small-size-100">
-                <md-card-header>
-                    <div class="md-title">Edit Assignment</div>
-                </md-card-header>
+            <md-card class="md-layout-item background">
 
                 <md-card-content>
                 <p v-if="errors.length">
@@ -16,22 +21,22 @@
                         </ul>
                     </p>
                      <md-field>
-                        <label for="title">Title</label>
+                        <label class="accent" for="title">Title</label>
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="price">Price</label>
+                        <label class="accent" for="price">Price</label>
                         <md-input name="price" type="number" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="deposit">Deposit</label>
+                        <label class="accent" for="deposit">Deposit</label>
                         <md-input name="deposit" type="numer" class="form-control" placeholder="Price" v-model="assignment.deposit" /> <br />
                     </md-field>
-                    <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
-                        <label for="deadline">Deadline</label>
+                    <md-datepicker name="deadline" class="md-field-clear accent" placeholder="Deadline" v-model="assignment.deadline">
+                        <label class="accent" for="deadline">Deadline</label>
                     </md-datepicker> <br />
-                    <md-datepicker name="date_of_completeion" class="md-field-clear" placeholder="Deadline" v-model="assignment.date_of_completeion">
-                        <label for="date_of_completeion">Date of completeion</label>    
+                    <md-datepicker name="date_of_completeion" class="md-field-clear accent" placeholder="Deadline" v-model="assignment.date_of_completeion">
+                        <label class="accent" for="date_of_completeion">Date of completeion</label>    
                     </md-datepicker> <br />
                     <md-checkbox name="completed" v-model="assignment.completed">Completed</md-checkbox> <br />
                     
