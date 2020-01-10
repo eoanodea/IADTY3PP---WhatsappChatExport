@@ -1,23 +1,13 @@
-/*
- * --------------------
- * Author Name: Eoan O'Dea
- * Author Email: eoan@wspace.ie
- * Date Created: Thursday December 19th 2019 11:24:54 pm
- * --------------------
- * Project Name: IADTY3PPClientMangementSystem
- * Version: 1.0.0
- * --------------------
- * File Name: AddTasksToNewAssignment.vue
- * Last Modified: Wednesday January 8th 2020 6:16:44 pm
- * --------------------
- * Copyright (c) 2019 WebSpace
- * --------------------
- */
-
-
-
 <template>
-    <div>
+    <div class="fluid-container">
+        <div class="md-layout">
+            <div class="md-layout-item">
+                <md-table-toolbar>
+                    <h1 class="md-title accent">Select Tasks</h1>
+                </md-table-toolbar>
+            </div>
+        </div>
+
         <md-empty-state
             v-if="saved"
             class="md-accent"
@@ -28,11 +18,11 @@
             <md-button class="md-accent md-raised" @click="submitTasks">Complete Assignment</md-button>
         </md-empty-state>
         <div v-else>
-            <md-table v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
-                <md-table-toolbar>
-                    <h1 class="md-title">Select tasks</h1>
-                    <div class="md-toolbar-section-end">
-                        <CreateNewTaskForAssignment v-on:new-task="newTask"/>
+            <md-table class="background text" v-if="tasks" v-model="tasks" md-card @md-selected="onSelect">
+                <md-table-toolbar class="background text">
+                    <!-- <h1 class="md-title">Select tasks</h1> -->
+                    <div class="md-toolbar-section-end background text">
+                        <span class="subject">Add Task</span><CreateNewTaskForAssignment v-on:new-task="newTask"/>
                     </div>
                 </md-table-toolbar>
                 <md-table-toolbar slot="md-table-alternate-header" slot-scope="{ count }">
@@ -48,7 +38,7 @@
                     <md-table-cell md-label="Percent Complete" md-sort-by="percent_done">{{item.percent_done}}</md-table-cell>
                 </md-table-row>
             </md-table>
-            <p v-else>Select a service</p>
+            <p v-else>Select a Service</p>
         </div>
 
     </div>

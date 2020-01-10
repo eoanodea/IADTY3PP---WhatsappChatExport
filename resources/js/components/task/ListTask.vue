@@ -1,35 +1,25 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-08T08:50:10+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T11:13:54+00:00
--->
-
-
-
 <template>
-    <div class="container">
-        <md-table md-card v-if="tasks !== null">
-            <md-table-toolbar>
-                <md-button v-if="!this.id" class="md-raised md-accent" :to="`/admin/${(active === true ? 'assignments' : 'services')}/show/` + serviceId">Back</md-button>
-                <h1 class="md-title">{{ active == true ? 'Active' : 'Default'}} Tasks</h1>
-                <md-button class="md-raised md-primary" :to="`/admin/tasks/${active}/` + serviceId + '/new'">Add Task</md-button>
-            </md-table-toolbar>
-            <md-table-row>
-                <md-table-head md-numeric>ID</md-table-head>
-                <md-table-head>Name</md-table-head>
-                <md-table-head>Description</md-table-head>
+    <div class="fluid-container">
+        <md-table-toolbar>
+            <h1 class="md-title accent">Default Tasks</h1>
+            <md-button class="md-raised md-accent btnAccent" :to="`/admin/tasks/${active}/` + serviceId + '/new'">Add Default Task</md-button>
+        </md-table-toolbar>
+
+
+        <md-table class="background text" md-card v-if="tasks !== null">
+            <md-table-row class="background subject">
+                <!-- <md-table-head md-numeric>ID</md-table-head> -->
+                <md-table-head class="subject">Title</md-table-head>
+                <md-table-head class="subject">Description</md-table-head>
                 <md-table-head></md-table-head>
             </md-table-row>
-            
             <md-table-row v-for="task in tasks" v-bind:key="task.id" class="item">
-                <md-table-cell md-numeric>{{task.id}}</md-table-cell>
-                <md-table-cell>{{ task.title }}</md-table-cell>
-                <md-table-cell>{{task.description}}</md-table-cell>
-                <md-table-cell>
-                    <md-button :to="`/admin/tasks/${active}/show/` + task.id" class="md-accent">View</md-button>
-                    <md-button :to="`/admin/tasks/${active}/edit/` + task.id">Edit</md-button>
+                <!-- <md-table-cell md-numeric>{{task.id}}</md-table-cell> -->
+                <md-table-cell class="background text">{{ task.title }}</md-table-cell>
+                <md-table-cell class="background text">{{task.description}}</md-table-cell>
+                <md-table-cell class="background text">
+                    <md-button :to="`/admin/tasks/${active}/show/` + task.id" class="md-accent">View Task</md-button>
+                    <!-- <md-button :to="`/admin/tasks/${active}/edit/` + task.id">Edit</md-button> -->
                 </md-table-cell>
             </md-table-row>
         </md-table>

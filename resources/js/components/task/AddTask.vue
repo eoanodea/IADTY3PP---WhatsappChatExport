@@ -1,17 +1,14 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-08T10:11:14+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T10:45:20+00:00
--->
 <template>
-    <div>
+    <div class="fluid-container">
+        <div class="md-layout">
+            <div class="md-layout-item">
+                <md-table-toolbar>
+                    <h1 class="md-title accent">Add Default Task</h1>
+                </md-table-toolbar>
+            </div>
+        </div>
         <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateTask">
-            <md-card class="md-layout-item md-size-50 md-small-size-100">
-                <md-card-header>
-                    <div class="md-title">Add a Task</div>
-                </md-card-header>
+            <md-card class="md-layout-item background">
 
                 <md-card-content>
                     <p v-if="errors.length">
@@ -23,22 +20,23 @@
                         </ul>
                     </p>
                     <md-field>
-                        <label for="title">Title</label>
+                        <label class="accent" for="title">Title</label>
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="task.title" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="description">Description</label>
+                        <label class="accent" for="description">Description</label>
                         <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="task.description" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="percent_done">Percent Done</label>
+                        <label class="accent" for="percent_done">Percent Done</label>
+                        <span class="md-prefix">%</span>
                         <md-input name="percent_done" type="number" class="form-control" placeholder="Percent Done" v-model="task.percent_done" /> <br />
                     </md-field>
 
                 </md-card-content>
                 <md-card-actions>
-                    <md-button class="md-secondary md-raised">Back</md-button>
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
+                    <!-- <md-button class="md-secondary md-raised">Back</md-button> -->
+                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
                 </md-card-actions>
             </md-card>
         </form>
