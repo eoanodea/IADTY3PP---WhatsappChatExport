@@ -30,18 +30,25 @@
         </div>
     </div>
 
-    <div>Service ID: 
-        {{ this.$route.params.id }}
-        <h2>{{ service.title }}</h2>
-        <h2>{{ service.description }}</h2>
-        <p>Recurring Payment: {{service.recurring_payment}}</p>
-        <p>Price: {{service.standard_price}}</p>
-        <p>Public: {{service.is_public}}</p>
-        <!-- <md-button :to="'/admin/services/edit/' + service.id">Edit</md-button> -->
-        <DeleteService v-bind:id="service.id"/>
+    <!-- Default Tasks Details -->
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <md-table-toolbar>
+          <h1 class="md-title accent">Default Tasks</h1>
+          <md-button class="btnWarning" :to="'/admin/services/edit/' + service.id">Edit Details</md-button>
+        </md-table-toolbar>
+      </div>
+    </div>
+
+    <div>
         <md-button :to="`/admin/tasks/${false}/` + service.id">Tasks</md-button>
         <ListTask v-bind:id="service.id" v-bind:isActive="false" />
     </div>
+
+    <!-- Delete Service Button -->
+    <md-card-actions>
+        <DeleteService v-bind:id="service.id"/>
+    </md-card-actions>
     </div>
 
     
