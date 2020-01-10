@@ -1,15 +1,5 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-08T08:50:10+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T11:13:54+00:00
--->
-
-
-
 <template>
-    <div class="container">
+    <div class="fluid-container">
         <md-table md-card v-if="tasks !== null">
             <md-table-toolbar>
                 <md-button v-if="!this.id" class="md-raised md-accent" :to="`/admin/${(active === true ? 'assignments' : 'services')}/show/` + serviceId">Back</md-button>
