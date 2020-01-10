@@ -1,12 +1,4 @@
 <?php
-# @Author: John Carlo M. Ramos
-# @Date:   2019-11-03T22:20:18+00:00
-# @Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-# @Last modified by:   John Carlo M. Ramos
-# @Last modified time: 2019-11-07T19:21:08+00:00
-
-
-
 
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
@@ -21,10 +13,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::get('/user/all', 'Admin\AdminController@index');
 Route::post('/user/new', 'Admin\AdminController@store');
