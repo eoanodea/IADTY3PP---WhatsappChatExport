@@ -8,12 +8,14 @@
             <md-table-row class="background subject">
                 <!-- <md-table-head md-numeric>ID</md-table-head> -->
                 <md-table-head class="subject">Title</md-table-head>
+                <md-table-head class="subject">Service</md-table-head>
                 <md-table-head class="subject">Standard Price</md-table-head>
                 <md-table-head class="background"></md-table-head>
             </md-table-row>
             <md-table-row v-for="assignment in assignments" v-bind:key="assignment.id" class="item">
                 <!-- <md-table-cell md-numeric>{{assignment.id}}</md-table-cell> -->
                 <md-table-cell class="background text">{{ assignment.title }}</md-table-cell>
+                <md-table-cell class="background text">{{ service.title }}</md-table-cell>
                 <md-table-cell class="background text">{{assignment.standard_price}}</md-table-cell>
                 <md-table-cell class="background text">
                     <md-button :to="'/admin/assignments/show/' + assignment.id" class="md-accent">View Project</md-button>
@@ -27,11 +29,15 @@
 </template>
 <script>
     import axios from 'axios';
+    import ListServices from './../service/ListServices'
 
     export default {
         data() {
             return {
-                assignments: null
+                assignments: null,
+                service: {
+                    title: ''
+                }
             }
         },
         mounted () {
