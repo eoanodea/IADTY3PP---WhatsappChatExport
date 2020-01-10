@@ -17,6 +17,7 @@
                     <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
                         <md-card-header class="accent md-display-3">{{ assignment.title }}</md-card-header>
                         <md-card-header class="text md-display-1"><span class="subject">Deadline: </span>{{assignment.deadline}}</md-card-header>
+                        <md-card-header class="text md-display-1"><span class="subject">Service: </span>{{service.title}}</md-card-header>
                         <md-card-header class="subject md-headline">
                             Discount: {{assignment.discount}}%
                             <br/>
@@ -44,6 +45,7 @@
     import Vue from 'vue'
     import axios from 'axios'
     import DeleteAssignment from './DeleteAssignment'
+    import ListServices from './../service/ListServices'
     import ListTask from './../task/ListTask'
     import {
     MdButton,
@@ -81,6 +83,9 @@
                     date_of_completeion: null,
                     deadline: null,
                     completed: false,
+                },
+                service: {
+                    title: ''
                 }
             }
         },
