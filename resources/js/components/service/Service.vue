@@ -31,14 +31,14 @@
     </div>
 
     <!-- Default Tasks Details -->
-    <div class="md-layout">
+    <!-- <div class="md-layout">
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Default Tasks</h1>
           <md-button class="btnWarning" :to="'/admin/services/edit/' + service.id">Edit Details</md-button>
         </md-table-toolbar>
       </div>
-    </div>
+    </div> -->
 
     <div>
         <!-- <md-button :to="`/admin/tasks/${false}/` + service.id">Tasks</md-button> -->
