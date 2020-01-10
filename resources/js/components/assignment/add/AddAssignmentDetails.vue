@@ -1,18 +1,15 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-08T10:11:14+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T10:45:20+00:00
--->
 <template>
-    <div>
-        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateAssignment">
-            <md-card class="md-layout-item md-size-50 md-small-size-100">
-                <md-card-header>
-                    <div class="md-title">Add a Assignment</div>
-                </md-card-header>
+    <div class="fluid-container">
+        <div class="md-layout">
+            <div class="md-layout-item">
+                <md-table-toolbar>
+                    <h1 class="md-title accent">Add a Project</h1>
+                </md-table-toolbar>
+            </div>
+        </div>
 
+        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateAssignment">
+            <md-card class="md-layout-item background">
                 <md-card-content>
                     <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
@@ -24,30 +21,30 @@
                     </p>
 
                     <md-field>
-                        <label for="title">Title</label>
+                        <label class="accent" for="title">Title</label>
                         <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
                     </md-field>
                     <md-field>
                         <span class="md-prefix">€</span>
-                        <label for="price">Price</label>
+                        <label class="accent" for="price">Price</label>
                         <md-input name="price" type="number" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
                     </md-field>
                     <md-field>
-                        <label for="discount">Discount</label>
+                        <label class="accent" for="discount">Discount</label>
                         <md-input name="discount" type="number" min="0" max="100" class="form-control" placeholder="Discount" v-model="assignment.discount" /> <br />
                         <span class="md-suffix">%</span> <br />
                     </md-field>
                     <md-field>
-                        <label for="deposit">Deposit</label>
+                        <label class="accent" for="deposit">Deposit</label>
                         <md-input name="deposit" type="number" min="0" max="100" class="form-control" placeholder="Deposit" v-model="assignment.deposit" />
                         <span class="md-suffix">%</span> <br />
                     </md-field>
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
-                        <label for="deadline">Deadline</label>
+                        <label class="accent" for="deadline">Deadline</label>
                     </md-datepicker> <br />
                 </md-card-content>
                 <md-card-actions>
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
+                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
                 </md-card-actions>
             </md-card>
         </form>
