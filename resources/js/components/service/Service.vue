@@ -41,7 +41,7 @@
     </div>
 
     <div>
-        <md-button :to="`/admin/tasks/${false}/` + service.id">Tasks</md-button>
+        <!-- <md-button :to="`/admin/tasks/${false}/` + service.id">Tasks</md-button> -->
         <ListTask v-bind:id="service.id" v-bind:isActive="false" />
     </div>
 
