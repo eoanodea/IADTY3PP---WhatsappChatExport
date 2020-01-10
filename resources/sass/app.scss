@@ -25,8 +25,7 @@
 
 // Theme Colors
 @import 'colors';
-// Theme Overrides
-@import 'overrides';
+
 // Theme Template
 @import  'templates/import';
 
@@ -36,6 +35,9 @@
   accent: $accent,
   theme: dark // This can be dark or light
 ));
+
+// Theme Overrides
+@import 'overrides';
 
 //Apply the theme
 @import "~vue-material/dist/theme/all";
