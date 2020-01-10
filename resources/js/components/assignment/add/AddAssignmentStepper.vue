@@ -21,7 +21,7 @@
             <md-step id="first" md-label="Client & Service" md-description="Choose a client and Service for your new assignment" :md-done.sync="first">
                 <AddClientAndService v-on:selected-service-client="handleServiceAndClientId"/>
             </md-step>
-            <md-step id="second" md-label="Assignment Details" md-description="Enter details on the assignment" :md-done.sync="second" :md-error="secondStepError">
+            <md-step id="second" md-label="Project Details" md-description="Enter details on the assignment" :md-done.sync="second" :md-error="secondStepError">
                 <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
             </md-step>
             <md-step id="third" md-label="Add Tasks" md-description="Add tasks to the new assignment" :md-done.sync="third">
