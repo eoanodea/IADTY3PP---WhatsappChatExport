@@ -9,6 +9,7 @@
 
 
 import VueRouter from 'vue-router';
+import Signin from './pages/Signin';
 import Home from './pages/Home';
 import About from './pages/About';
 import ListUsers from './components/user/ListUsers'
@@ -29,6 +30,12 @@ import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
 
 const routes = [
+    //Authentication
+    {
+        path: '/',
+        name: 'signin',
+        component: Signin
+    },    
     //Main Pages
     {
         path: '/admin/home',
