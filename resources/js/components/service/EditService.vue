@@ -99,9 +99,6 @@
     }
 </script>
 <style lang="scss" scoped>
-    .md-field {
-        flex-direction: column; 
-    }
     .md-input, .md-textarea {
         color: #fff;
     }
