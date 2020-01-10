@@ -15,28 +15,27 @@
             <md-card md-with-hover class="md-elevation-10 background">
                 <md-ripple>
                     <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-                        
+                        <md-card-header class="accent md-display-3">{{ assignment.title }}</md-card-header>
+                        <md-card-header class="text md-display-1"><span class="subject">Deadline: </span>{{assignment.deadline}}</md-card-header>
+                        <md-card-header class="subject md-headline">
+                            Discount: {{assignment.discount}}%
+                            <br/>
+                            Deposit: {{assignment.deposit}}%
+                            <br/>
+                            Total Price: €{{assignment.total_price}}
+                            <br/>
+                            Completed: {{assignment.completed}}
+                            <br/>
+                            Date of Completeion: {{assignment.date_of_completion}}
+                        </md-card-header>
                     </div>
                 </md-ripple>
             </md-card>
         </div>
     </div>
 
-    <div>Assignment ID: 
-        {{ this.$route.params.id }}
-        <h2>{{ assignment.title }}</h2>
-        
-        <p>Deposit: {{assignment.deposit}}</p>
-        <p>Price: {{assignment.total_price}}</p>
-        <p>Date of completeion: {{assignment.date_of_completion}}</p>
-        <p>Deadline: {{assignment.deadline}}</p>
-        <p>Discount: {{assignment.discount}}</p>
-        <p>Completed: {{assignment.completed}}</p>
-        <md-button :to="'/admin/assignments/edit/' + assignment.id">Edit</md-button>
-        <DeleteAssignment v-bind:id="assignment.id"/>
-        <md-button :to="`/admin/tasks/${true}/` + assignment.id">Tasks</md-button>
+    <div>
         <ListTask v-bind:id="assignment.id" v-bind:isActive="true" />
-
     </div>
     </div>
 </template>
