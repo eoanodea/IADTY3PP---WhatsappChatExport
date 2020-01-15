@@ -12,6 +12,7 @@ import router from './router';
 import store from './store/index'
 import 'vue-material/dist/vue-material.min.css'
 
+require('./store/subscriber')
 
 window.Vue = Vue;
 

@@ -30,6 +30,10 @@
       <md-icon class="md-accent">send</md-icon>
       <span class="md-list-item-text">About</span>
     </md-list-item>
+    <md-list-item to="/" @click="$emit('menu-visible')">
+      <md-icon class="md-accent">send</md-icon>
+      <span class="md-list-item-text">Sign Out</span>
+    </md-list-item>
   </md-list>
 </template>
 <script>

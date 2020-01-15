@@ -9,18 +9,19 @@
 <template>
  <div class="page-container">
     <md-app md-waterfall md-mode="fixed" class="app-container">
-      <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <router-link to="/admin/home">
+      <md-app-toolbar class="md-primary space-between">
+        <router-link to="/">
           <span class="md-title">LOGO</span>
         </router-link>
-      </md-app-toolbar>
-      <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">Good day, <p v-if="user">{{user.first_name}}</p></md-toolbar>
-        <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" />
-      </md-app-drawer>
+        <md-button class="md-icon-button" @click="menuVisible = !menuVisible" v-if="authenticated">
+          <md-icon>menu</md-icon>
+        </md-button>
+        </md-app-toolbar>
+        <md-app-drawer :md-active.sync="menuVisible" v-if="authenticated">
+          <md-toolbar class="md-transparent" md-elevation="0">Good day, {{user.first_name}}</md-toolbar>
+          <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" />
+        </md-app-drawer>
+      
       <md-app-content>
           <router-view></router-view>
       </md-app-content>

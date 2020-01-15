@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: Signin.vue
- * Last Modified: Friday January 10th 2020 5:33:20 pm
+ * Last Modified: Wednesday January 15th 2020 12:32:21 pm
  * --------------------
  * Copyright (c) 2020 WebSpace
  * --------------------
@@ -63,7 +63,14 @@
             const {user} = this;
             if(user.email && user.password) {
                 this.submitting = true;
-                this.signIn(this.user)    
+                this.signIn(this.user).then(() => {
+                    this.$router.replace({
+                        name: 'home'
+                    }).catch(() => {
+                        this.errors.push({message: "Login failed"})
+                        this.submitting = false
+                    })
+                })
             }
             if(!user.email) this.errors.push({message: "Email is required"})
             if(!user.password) this.errors.push({message: "Password is required"})

@@ -34,23 +34,21 @@ export default {
         async signIn({ dispatch }, credentials) {
             let response = await axios.post('/api/auth/login', credentials)
 
-            dispatch('attempt', response.data)
+            return dispatch('attempt', response.data)
         },
 
         async attempt ({ commit }, token) {
-            commit('SET_TOKEN', token)
+            if(token) {
+                commit('SET_TOKEN', token)
 
-            try {
-                let response = await axios.get('/api/auth/get', {
-                    headers: {
-                        'Authorization': `${token.token_type} ${token.access_token}`
-                    }
-                })
+                try {
+                    let response = await axios.get('/api/auth/get')
 
-                commit('SET_USER', response.data)
-            } catch(e) {
-                commit('SET_TOKEN', null)
-                commit('SET_USER', null)
+                    commit('SET_USER', response.data)
+                } catch(e) {
+                    commit('SET_TOKEN', null)
+                    commit('SET_USER', null)
+                }
             }
         }
     },
