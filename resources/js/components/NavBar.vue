@@ -30,7 +30,7 @@
       <md-icon class="md-accent">send</md-icon>
       <span class="md-list-item-text">About</span>
     </md-list-item>
-    <md-list-item to="/" @click="$emit('menu-visible')">
+    <md-list-item @click="signOut">
       <md-icon class="md-accent">send</md-icon>
       <span class="md-list-item-text">Sign Out</span>
     </md-list-item>
@@ -39,6 +39,7 @@
 <script>
   import Vue from 'vue';
   import {MdIcon, MdList } from 'vue-material/dist/components'
+  import { mapActions } from 'vuex' 
 
   Vue.use(MdIcon);
   Vue.use(MdList);
@@ -46,6 +47,20 @@
   export default {
     data: () => ({
       menuVisible: false
-    })
+    }),
+    methods: {
+      ...mapActions({
+        signOutAction: 'auth/signOut'
+      }),
+
+      signOut() {
+        this.signOutAction().then(() => {
+          this.$emit('menu-visible')
+          this.$router.replace({
+            name: 'signin'
+          })
+        })
+      }
+    }
   }
 </script>

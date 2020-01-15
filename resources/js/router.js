@@ -30,6 +30,10 @@ import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
 import store from './store/index'
 
+/*
+ * Checks if the user is authenticated in the store
+ * if not redirect to signin
+ */
 function beforeEnter(to, from, next) {
     if(!store.getters['auth/authenticated']) {
         return next({
