@@ -10,7 +10,7 @@
  <div class="page-container">
     <md-app md-waterfall md-mode="fixed" class="app-container">
       <md-app-toolbar class="md-primary space-between">
-        <router-link to="/">
+        <router-link to="/admin/home">
           <span class="md-title">LOGO</span>
         </router-link>
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible" v-if="authenticated">
