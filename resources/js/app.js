@@ -18,22 +18,15 @@ window.Vue = Vue;
 
 Vue.use(VueRouter);
 
-if(localStorage.getItem('access_token')) {
-    const token = {
-        access_token: localStorage.getItem('access_token'),
-        token_type: localStorage.getItem('token_type')
-    }
-    store.dispatch('auth/attempt', token)
+const token = {
+    access_token: localStorage.getItem('access_token'),
+    token_type: localStorage.getItem('token_type')
 }
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-new Vue({
-    router,
-    store,
-    render: h => h(App)
-}).$mount('#app');
+store.dispatch('auth/attempt', token).then(() => {
+    new Vue({
+        router,
+        store,
+        render: h => h(App)
+    }).$mount('#app');
+})

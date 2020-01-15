@@ -22,8 +22,13 @@ export default {
 
     mutations: {
         SET_TOKEN (state, token) {
-            state.token = token.access_token
-            state.token_type = token.token_type
+            if(!token) {
+                state.token = null
+                state.token_type = null
+            } else {
+                state.token = token.access_token
+                state.token_type = token.token_type
+            }
         },
         SET_USER (state, data) {
             state.user = data
@@ -40,16 +45,17 @@ export default {
         async attempt ({ commit }, token) {
             if(token) {
                 commit('SET_TOKEN', token)
-
-                try {
-                    let response = await axios.get('/api/auth/get')
-
-                    commit('SET_USER', response.data)
-                } catch(e) {
-                    commit('SET_TOKEN', null)
-                    commit('SET_USER', null)
-                }
             }
+            
+            try {
+                let response = await axios.get('/api/auth/get')
+
+                commit('SET_USER', response.data)
+            } catch(e) {
+                commit('SET_TOKEN', null)
+                commit('SET_USER', null)
+            }
+        
         }
     },
 }
