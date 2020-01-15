@@ -9,6 +9,7 @@
 
 
 import VueRouter from 'vue-router';
+import Signin from './pages/Signin';
 import Home from './pages/Home';
 import About from './pages/About';
 import ListUsers from './components/user/ListUsers'
@@ -27,13 +28,34 @@ import ListAssignment from './components/assignment/ListAssignment'
 import AddAssignmentStepper from './components/assignment/add/AddAssignmentStepper'
 import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
+import store from './store/index'
+
+/*
+ * Checks if the user is authenticated in the store
+ * if not redirect to signin
+ */
+function beforeEnter(to, from, next) {
+    if(!store.getters['auth/authenticated']) {
+        return next({
+            name: 'signin'
+        })
+    }
+    next()
+}
 
 const routes = [
+    //Authentication
+    {
+        path: '/',
+        name: 'signin',
+        component: Signin
+    },    
     //Main Pages
     {
         path: '/admin/home',
         name: 'home',
-        component: Home
+        component: Home,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/about',
@@ -44,43 +66,51 @@ const routes = [
     {
         path: '/admin/users',
         name: 'users',
-        component: ListUsers
+        component: ListUsers,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/users/show/:id',
         name: 'user',
-        component: User
+        component: User,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/users/edit/:id',
         name: 'editUser',
-        component: EditUser
+        component: EditUser,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/users/new',
         name: 'addUser',
-        component: AddUser
+        component: AddUser,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     //Service Admin view
     {
         path: '/admin/services',
         name: 'services',
-        component: ListServices
+        component: ListServices,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/services/show/:id',
         name: 'service',
-        component: Service
+        component: Service,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/services/edit/:id',
         name: 'editService',
-        component: EditService
+        component: EditService,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/services/new',
         name: 'addService',
-        component: AddService
+        component: AddService,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     //Task view
     //:active parameter 
@@ -88,43 +118,51 @@ const routes = [
     {
         path: '/admin/tasks/:active/:id',
         name: 'tasks',
-        component: ListTask
+        component: ListTask,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/tasks/:active/show/:id',
         name: 'task',
-        component: Task
+        component: Task,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/tasks/:active/edit/:id',
         name: 'editTask',
-        component: EditTask
+        component: EditTask,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/tasks/:active/:id/new',
         name: 'addTask',
-        component: AddTask
+        component: AddTask,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     //Assignment Admin view
     {
         path: '/admin/assignments',
         name: 'assignments',
-        component: ListAssignment
+        component: ListAssignment,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/assignments/show/:id',
         name: 'assignment',
-        component: Assignment
+        component: Assignment,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/assignments/edit/:id',
         name: 'editAssignment',
-        component: EditAssignment
+        component: EditAssignment,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
         path: '/admin/assignments/new',
         name: 'addAssignment',
-        component: AddAssignmentStepper
+        component: AddAssignmentStepper,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
 ]
 
