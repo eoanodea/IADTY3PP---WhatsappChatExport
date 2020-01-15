@@ -18,6 +18,13 @@ window.Vue = Vue;
 
 Vue.use(VueRouter);
 
+if(localStorage.getItem('access_token')) {
+    const token = {
+        access_token: localStorage.getItem('access_token'),
+        token_type: localStorage.getItem('token_type')
+    }
+    store.dispatch('auth/attempt', token)
+}
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

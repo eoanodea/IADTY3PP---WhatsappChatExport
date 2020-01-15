@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * --------------------
  * File Name: subscriber.js
- * Last Modified: Wednesday January 15th 2020 12:49:25 pm
+ * Last Modified: Wednesday January 15th 2020 12:57:55 pm
  * --------------------
  * Copyright (c) 2020 WebSpace
  * --------------------
@@ -23,7 +23,13 @@ store.subscribe((mutation) => {
         case 'auth/SET_TOKEN':
             if(mutation.payload) {
                 axios.defaults.headers.common['Authorization'] = `${mutation.payload.token_type} ${mutation.payload.access_token}`
-            } else axios.defaults.headers.common['Authorization'] = null
+                localStorage.setItem('access_token', mutation.payload.access_token)
+                localStorage.setItem('token_type', mutation.payload.token_type)
+            } else {
+                axios.defaults.headers.common['Authorization'] = null
+                localStorage.removeItem('access_token')
+                localStorage.removeItem('token_type')
+            }
             break;
 
     }
