@@ -1,18 +1,26 @@
-// Primary color variations
-.primaryLight{ color: $primaryLight!important; }
-.primaryDark{ color: $primaryDark!important; }
-.primaryContrast{ color: $primaryContrast!important; }
+// Primary Colour Variations:
+.primary{ color: $primary!important; }
 
-// Accent color variations
+// Secondary Colour Variations:
+.primaryLight{ color: $primaryLight!important; }
+
+// Tertiary Colour Variations:
+.primaryDark{ color: $primaryDark!important; }
+
+// Accent Colour Variations:
+.accent { color: $accent!important; }
 .accentLight{ color: $accentLight!important; }
 .accentDark{ color: $accentDark!important; }
 .accentContrast{ color: $accentContrast!important; }
 
-// Button color variations
-.btnPrimary { background-color: $primary!important; color: $primaryContrast!important;}
-.btnAccent { background-color: $accent!important; color: $primaryContrast!important;}
+// Button Colour Variations:
+.btnPrimary { background-color: $primary!important; color: $primaryText!important;}
+.btnAccent { background-color: $accent!important; color: $primaryText!important;}
 .btnWarning{ background-color: $warning!important; }
 .btnDanger{ background-color: $danger!important; }
 
-// Error Colour:
-.error {color: $danger!important; }
+// Text Colours:
+.text { color: $primaryText!important; }
+.subject { color: $secondaryText!important; }
+.accent { color: $accent!important; }
+.error { color: $danger!important; }
