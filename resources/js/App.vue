@@ -17,7 +17,7 @@
           <md-icon>menu</md-icon>
         </md-button>
         </md-app-toolbar>
-        <md-app-drawer :md-active.sync="menuVisible" v-if="authenticated">
+        <md-app-drawer md-right md-persistent="full" :md-active.sync="menuVisible" v-if="authenticated">
           <md-toolbar class="md-transparent" md-elevation="0">Good day, {{user.first_name}}</md-toolbar>
           <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" />
         </md-app-drawer>
