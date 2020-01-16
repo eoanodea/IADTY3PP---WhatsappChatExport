@@ -16,9 +16,9 @@
 
 
 <template>
-    <md-card>
+    <md-card class="background">
         <md-card-header>
-            <div class="md-title">Sign in</div>
+            <div class="md-title accent">Sign in</div>
         </md-card-header>
         <md-card-content>
             <p v-if="errors.length">
@@ -39,7 +39,7 @@
             </md-field>
         </md-card-content>
         <md-card-actions>
-            <md-button type="submit" :disabled="submitting" @click="validateSignin" class="md-primary md-raised">Submit</md-button>
+            <md-button type="submit" :disabled="submitting" @click="validateSignin" class="md-primary md-raised btnAccent">Submit</md-button>
         </md-card-actions>
     </md-card>
 </template>
