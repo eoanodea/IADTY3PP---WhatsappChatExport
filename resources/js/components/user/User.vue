@@ -182,24 +182,12 @@ export default {
   }
 };
 </script>
+
 <style>
 .background {
   background-color: #3b3b3b !important;
   font-size: 18px !important;
   padding: 10px;
-}
-
-.delBtn {
-  color: #fff !important;
-  background-color: #ee4444 !important;
-}
-
-.accent {
-  color: #00cc83 !important;
-}
-
-.subject {
-  color: #818181 !important;
 }
 
 .text {
