@@ -12,21 +12,17 @@
 
     <div class="md-layout spacing">
       <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-        <md-card md-with-hover class="md-elevation-10 background">
-          <md-ripple>
-            <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent">
-              <md-ripple></md-ripple>
-            </md-avatar>
-            <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-              <md-card-header class="accent md-display-3">{{ user.first_name }} {{ user.last_name }}</md-card-header>
-              <md-card-header class="text md-display-1">{{ user.email }}</md-card-header>
-              <md-card-header class="subject md-headline">
-                {{ user.address }}
-                <br />
-                {{ user.mobile_number }}
-              </md-card-header>
-            </div>
-          </md-ripple>
+        <md-card md-with-hover class="background">
+          <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent"></md-avatar>
+          <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
+            <md-card-header class="accent md-display-3">{{ user.first_name }} {{ user.last_name }}</md-card-header>
+            <md-card-header class="text md-display-1">{{ user.email }}</md-card-header>
+            <md-card-header class="subject md-headline">
+              {{ user.address }}
+              <br />
+              {{ user.mobile_number }}
+            </md-card-header>
+          </div>
         </md-card>
       </div>
     </div>
@@ -54,45 +50,6 @@
     <md-card-actions>
       <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Send</md-button>
     </md-card-actions>
-
-    <!-- <div class="row">
-      <div class="col-6">
-        <md-table-toolbar>
-          <h1 class="md-title accent">Client Profile</h1>
-          <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit</md-button>
-        </md-table-toolbar>
-        <div class="card">
-          <div class="card-body background">
-            <md-table class="table table-hover text">
-              <md-table-row>
-                <md-table-cell class="subject background">Client I.D</md-table-cell>
-                <md-table-cell class="text background">{{ this.$route.params.id }}</md-table-cell>
-              </md-table-row>
-              <md-table-row>
-                <md-table-cell class="subject background">First Name</md-table-cell>
-                <md-table-cell class="text background">{{ user.first_name }}</md-table-cell>
-              </md-table-row>
-              <md-table-row>
-                <md-table-cell class="subject background">Last Name</md-table-cell>
-                <md-table-cell class="text background">{{ user.last_name }}</md-table-cell>
-              </md-table-row>
-              <md-table-row>
-                <md-table-cell class="subject background">Email</md-table-cell>
-                <md-table-cell class="text background">{{ user.email }}</md-table-cell>
-              </md-table-row>
-              <md-table-row>
-                <md-table-cell class="subject background">Address</md-table-cell>
-                <md-table-cell class="text background">{{ user.address }}</md-table-cell>
-              </md-table-row>
-              <md-table-row>
-                <md-table-cell class="subject background">Phone Number</md-table-cell>
-                <md-table-cell class="text background">{{ user.mobile_number }}</md-table-cell>
-              </md-table-row>
-            </md-table>
-          </div>
-        </div>
-      </div>
-    </div>-->
 
     <!-- Project Completion -->
     <div class="md-layout">
@@ -185,7 +142,7 @@ export default {
 
 <style>
 .background {
-  background-color: #3b3b3b !important;
+  background-color: #003153 !important;
   font-size: 18px !important;
   padding: 10px;
 }
