@@ -184,7 +184,7 @@ export default {
 </script>
 <style>
 .background {
-  background-color: #003153 !important;
+  background-color: #3b3b3b !important;
   font-size: 18px !important;
   padding: 10px;
 }
