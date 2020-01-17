@@ -23,7 +23,7 @@
                 </md-table-cell>
             </md-table-row>
         </md-table>
-        <p v-else>There are no tasks</p>
+        <p v-else>There are no Default Tasks.</p>
     </div>
 
 </template>
@@ -59,8 +59,3 @@
 
     }
 </script>
-<style>
-    .item {
-        background: none!important;
-    }
-</style>
