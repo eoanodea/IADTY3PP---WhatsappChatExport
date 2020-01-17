@@ -12,9 +12,9 @@
             <md-card class="md-layout-item background">
                 <md-card-content>
                     <p v-if="errors.length">
-                        <b>Please correct the following error(s):</b>
+                        <b class="error">Please correct the following error(s):</b>
                         <ul>
-                        <li v-for="error in errors" v-bind:key="error.id">
+                        <li v-for="error in errors" v-bind:key="error.id" class="error">
                             {{ error.message }}
                             </li>
                         </ul>
