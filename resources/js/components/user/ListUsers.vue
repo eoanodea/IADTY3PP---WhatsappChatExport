@@ -52,31 +52,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.item {
-  background: none !important;
-}
-
-.md-title {
-  text-shadow: 1px 1px 2px #000 !important;
-}
-
-.background {
-  background-color: #3b3b3b !important;
-  font-size: 18px !important;
-  padding: 10px;
-}
-
-.addBtn {
-  color: #fff !important;
-}
-
-/* .accent {
-      color: #00cc83 !important;
-    } */
-
-.text {
-  color: #b6b6b6 !important;
-}
-</style>
