@@ -1,32 +1,15 @@
-/*
- * --------------------
- * Author Name: Eoan O'Dea
- * Author Email: eoan@wspace.ie
- * Date Created: Friday December 20th 2019 11:43:13 am
- * --------------------
- * Project Name: IADTY3PPClientMangementSystem
- * Version: 1.0.0
- * --------------------
- * File Name: CreateNewTaskForNewAssignment.vue
- * Last Modified: Friday December 20th 2019 12:20:12 pm
- * --------------------
- * Copyright (c) 2019 WebSpace
- * --------------------
- */
-
-
 <template>
     <div>
         <md-button class="md-icon-button" @click="showDialog = true">
             <md-icon>add</md-icon>
         </md-button>
         <md-dialog :md-active.sync="showDialog">
-            <md-dialog-title>Add a new task</md-dialog-title>
+            <md-dialog-title>Add a new Task</md-dialog-title>
             <md-dialog-content>
                 <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
+                    <b class="error">Please correct the following error(s):</b>
                     <ul>
-                    <li v-for="error in errors" v-bind:key="error.id">
+                    <li v-for="error in errors" v-bind:key="error.id" class="error">
                         {{ error.message }}
                         </li>
                     </ul>
