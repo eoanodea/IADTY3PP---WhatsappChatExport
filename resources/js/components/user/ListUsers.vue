@@ -23,7 +23,7 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
-    <p v-else>There are no users</p>
+    <p v-else>There are no money-I mean clients 😢</p>
   </div>
 </template>
 
