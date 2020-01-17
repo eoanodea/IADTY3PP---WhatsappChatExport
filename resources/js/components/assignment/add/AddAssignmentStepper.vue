@@ -1,30 +1,13 @@
-/*
- * --------------------
- * Author Name: Eoan O'Dea
- * Author Email: eoan@wspace.ie
- * Date Created: Friday December 20th 2019 6:48:47 pm
- * --------------------
- * Project Name: IADTY3PPClientMangementSystem
- * Version: 1.0.0
- * --------------------
- * File Name: Stepper.vue
- * Last Modified: Friday December 20th 2019 9:08:28 pm
- * --------------------
- * Copyright (c) 2019 WebSpace
- * --------------------
- */
-
-
 <template>
     <div>
         <md-steppers :md-active-step.sync="active" md-linear>
-            <md-step id="first" md-label="Client & Service" md-description="Choose a client and Service for your new assignment" :md-done.sync="first">
+            <md-step id="first" md-label="Client & Service" md-description="Choose a Client and Service for your new Project." :md-done.sync="first">
                 <AddClientAndService v-on:selected-service-client="handleServiceAndClientId"/>
             </md-step>
-            <md-step id="second" md-label="Project Details" md-description="Enter details on the assignment" :md-done.sync="second" :md-error="secondStepError">
+            <md-step id="second" md-label="Project Details" md-description="Enter details on the Project." :md-done.sync="second" :md-error="secondStepError">
                 <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
             </md-step>
-            <md-step id="third" md-label="Add Tasks" md-description="Add tasks to the new assignment" :md-done.sync="third">
+            <md-step id="third" md-label="Add Tasks" md-description="Add Tasks to the new Project" :md-done.sync="third">
                 <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
             </md-step>
         </md-steppers>
