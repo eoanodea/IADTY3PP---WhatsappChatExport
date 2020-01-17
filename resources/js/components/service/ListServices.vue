@@ -22,7 +22,7 @@
                 </md-table-cell>
             </md-table-row>
         </md-table>
-        <p v-else>There are no services</p>
+        <p v-else>There are no motivat-I mean Services.</p>
     </div>
 
 </template>
@@ -45,8 +45,3 @@
 
     }
 </script>
-<style>
-    .item {
-        background: none!important;
-    }
-</style>
