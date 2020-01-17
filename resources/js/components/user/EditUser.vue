@@ -12,9 +12,9 @@
         <md-card class="md-layout-item background">
             <md-card-content>
                 <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
+                    <b class="error">Please correct the following error(s):</b>
                     <ul>
-                        <li v-for="error in errors" v-bind:key="error.id">
+                        <li v-for="error in errors" v-bind:key="error.id" class="error">
                             {{ error.message }}
                         </li>
                     </ul>
@@ -116,44 +116,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-// .md-field {
-//     flex-direction: column;
-// }
-// .md-input,
-// .md-textarea {
-//     color: #fff;
-// }
-
-// .row {
-//     display: flex;
-//     justify-content: center;
-// }
-
-// .md-title {
-//     text-shadow: 1px 1px 2px #000 !important;
-// }
-
-// .background {
-//     background-color: #3b3b3b !important;
-//     font-size: 18px !important;
-//     padding: 10px;
-// }
-
-// .saveBtn {
-//     color: #fff !important;
-//     background-color: #00cc83 !important;
-// }
-
-// .accent {
-//     color: #00cc83 !important;
-// }
-
-// .subject {
-//     color: #818181 !important;
-// }
-
-// .text {
-//     color: #fff !important;
-// }
-</style>
