@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <div class="md-layout">
+    <!-- <div class="md-layout">
       <md-card-actions class="progessSpinner">
         <input type="range" v-model.number="amount" />
         {{ amount }}%
@@ -73,7 +73,11 @@
         :md-diameter="600"
         :md-stroke="30"
       ></md-progress-spinner>
-    </div>
+    </div> -->
+
+    <progressSpinner>
+      
+    </progressSpinner>
 
     <!-- Delete Client Button -->
     <md-card-actions>
@@ -86,6 +90,7 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
+import progressSpinner from "./components/progressSpinner";
 import {
   MdButton,
   MdProgress,
@@ -121,8 +126,8 @@ export default {
         email: "",
         mobile_number: "",
         address: ""
-      },
-      amount: 70
+      }
+      // amount: 70
     };
   },
   mounted() {
@@ -135,7 +140,8 @@ export default {
     });
   },
   components: {
-    DeleteUser
+    DeleteUser,
+    progressSpinner
   }
 };
 </script>
@@ -151,7 +157,7 @@ export default {
   color: #fff !important;
 }
 
-.md-progress-spinner {
+/* .md-progress-spinner {
   top: 50%;
   left: 50%;
   display: block;
@@ -173,5 +179,5 @@ export default {
 
 .spinnerColor {
   color: #24b6f7 !important;
-}
+} */
 </style>
