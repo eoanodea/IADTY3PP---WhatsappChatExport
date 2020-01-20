@@ -75,9 +75,7 @@
       ></md-progress-spinner>
     </div> -->
 
-    <progressSpinner>
-      
-    </progressSpinner>
+    <progressSpinner/>
 
     <!-- Delete Client Button -->
     <md-card-actions>
@@ -101,7 +99,6 @@ import {
   MdIcon,
   MdImage,
   MdLayout,
-  MdRipple,
   MdToolbar
 } from "vue-material/dist/components";
 
@@ -114,7 +111,6 @@ Vue.use(MdElevation);
 Vue.use(MdIcon);
 Vue.use(MdImage);
 Vue.use(MdLayout);
-Vue.use(MdRipple);
 Vue.use(MdToolbar);
 
 export default {
@@ -126,8 +122,8 @@ export default {
         email: "",
         mobile_number: "",
         address: ""
-      }
-      // amount: 70
+      },
+      amount: 70
     };
   },
   mounted() {
@@ -158,26 +154,26 @@ export default {
 }
 
 /* .md-progress-spinner {
-  top: 50%;
-  left: 50%;
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: auto;
-  margin-left: -375px;
-}
+  /* top: 50%;
+  left: 50%; */
+  /* display: block; */
+  /* position: relative; */
+  /* width: 100%; */
+  /* height: auto; */
+  /* margin-left: -375px; */
+/* } */
 
-.progressSpinner {
-  top: 50%;
-  left: 50%;
-  display: block;
-  position: relative;
-  width: 100%;
-  height: auto;
-  margin-left: -375px;
-}
+/* .progressSpinner {
+  /* top: 50%; */
+  /* left: 145%; */
+  /* display: block; */
+  /* position: relative; */
+  /* width: 100%; */
+  /* height: auto; */
+  /* margin-left: -375px; */
+/* }  */
 
-.spinnerColor {
+/* .spinnerColor {
   color: #24b6f7 !important;
-} */
+} */ 
 </style>

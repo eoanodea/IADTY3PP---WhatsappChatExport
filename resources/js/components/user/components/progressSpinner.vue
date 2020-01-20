@@ -25,10 +25,7 @@ import {
     MdContent,
     MdElevation,
     MdIcon,
-    MdImage,
-    MdLayout,
-    MdRipple,
-    MdToolbar
+    MdLayout
 } from "vue-material/dist/components";
 
 Vue.use(MdButton);
@@ -38,10 +35,7 @@ Vue.use(MdCard);
 Vue.use(MdContent);
 Vue.use(MdElevation);
 Vue.use(MdIcon);
-Vue.use(MdImage);
 Vue.use(MdLayout);
-Vue.use(MdRipple);
-Vue.use(MdToolbar);
 
 export default {
     data() {
@@ -52,23 +46,23 @@ export default {
 
 <style scoped>
 .md-progress-spinner {
-    top: 50%;
-    left: 50%;
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: auto;
-    margin-left: -375px;
+  /* top: 50%;
+  left: 50%; */
+  display: block;
+  position: relative;
+  /* width: 100%; */
+  /* height: auto; */
+  /* margin-left: -375px; */
 }
 
 .progressSpinner {
-    top: 50%;
-    left: 50%;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin-left: -375px;
+  /* top: 50%; */
+  left: 145%;
+  display: block;
+  position: relative;
+  /* width: 100%; */
+  /* height: auto; */
+  /* margin-left: -375px; */
 }
 
 .spinnerColor {
