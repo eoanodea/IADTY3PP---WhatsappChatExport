@@ -12,7 +12,7 @@
 
     <div class="md-layout spacing">
       <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-        <md-card md-with-hover class="background">
+        <md-card class="background">
           <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent"></md-avatar>
           <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
             <md-card-header class="accent md-display-3">{{ user.first_name }} {{ user.last_name }}</md-card-header>
@@ -54,9 +54,9 @@
     <!-- Project Completion -->
     <div class="md-layout">
       <div class="md-layout-item">
-        <md-table-toolbar>
+        <!-- <md-table-toolbar> -->
           <h1 class="md-title accent">Project Completion</h1>
-        </md-table-toolbar>
+        <!-- </md-table-toolbar> -->
       </div>
     </div>
 
@@ -91,7 +91,6 @@ import DeleteUser from "./DeleteUser";
 import progressSpinner from "./components/progressSpinner";
 import {
   MdButton,
-  MdProgress,
   MdAvatar,
   MdCard,
   MdContent,
@@ -103,7 +102,6 @@ import {
 } from "vue-material/dist/components";
 
 Vue.use(MdButton);
-Vue.use(MdProgress);
 Vue.use(MdAvatar);
 Vue.use(MdCard);
 Vue.use(MdContent);

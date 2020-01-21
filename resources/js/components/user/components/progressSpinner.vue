@@ -1,10 +1,5 @@
 <template>
-<div class="md-layout">
-    <md-card-actions class="progessSpinner">
-        <input type="range" v-model.number="amount" />
-        {{ amount }}%
-        <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
-    </md-card-actions>
+<div class="spinner-container">
     <md-progress-spinner
         class="md-accent"
         md-mode="determinate"
@@ -12,57 +7,42 @@
         :md-diameter="600"
         :md-stroke="30"
     ></md-progress-spinner>
+    <h1 class="spinner-percentage">{{amount}}%</h1>
 </div>
 </template>
 
 <script>
 import Vue from "vue";
 import {
-    MdButton,
-    MdProgress,
-    MdAvatar,
-    MdCard,
-    MdContent,
-    MdElevation,
-    MdIcon,
-    MdLayout
+    MdProgress
 } from "vue-material/dist/components";
 
-Vue.use(MdButton);
+
 Vue.use(MdProgress);
-Vue.use(MdAvatar);
-Vue.use(MdCard);
-Vue.use(MdContent);
-Vue.use(MdElevation);
-Vue.use(MdIcon);
-Vue.use(MdLayout);
 
 export default {
     data() {
-        amount: 70
+        return {
+            amount: 70
+        }
     }
 };
 </script>
 
 <style scoped>
-.md-progress-spinner {
-  /* top: 50%;
-  left: 50%; */
-  display: block;
-  position: relative;
-  /* width: 100%; */
-  /* height: auto; */
-  /* margin-left: -375px; */
+.spinner-container {
+    display: block;
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
 }
 
-.progressSpinner {
-  /* top: 50%; */
-  left: 145%;
-  display: block;
-  position: relative;
-  /* width: 100%; */
-  /* height: auto; */
-  /* margin-left: -375px; */
+.spinner-percentage {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
 
 .spinnerColor {

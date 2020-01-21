@@ -18,3 +18,11 @@
 .space-between {
     justify-content: space-between;
 }
+
+.md-theme-default, .md-app:not(.md-overlap).md-theme-default {
+    background-color: $primaryLight!important;
+}
+
+.md-toolbar {
+    background-color: $primary!important;
+}
