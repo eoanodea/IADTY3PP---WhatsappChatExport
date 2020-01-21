@@ -3,10 +3,10 @@
     <!-- Client Profile -->
     <div class="md-layout">
       <div class="md-layout-item">
-        <md-table-toolbar>
+        <!-- <md-table-toolbar> -->
           <h1 class="md-title accent">Client Profile</h1>
           <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit Details</md-button>
-        </md-table-toolbar>
+        <!-- </md-table-toolbar> -->
       </div>
     </div>
 
@@ -30,9 +30,9 @@
     <!-- Send Message -->
     <div class="md-layout">
       <div class="md-layout-item">
-        <md-table-toolbar>
+        <!-- <md-table-toolbar> -->
           <h1 class="md-title accent">Send Message</h1>
-        </md-table-toolbar>
+        <!-- </md-table-toolbar> -->
       </div>
     </div>
 
@@ -56,7 +56,7 @@
       <div class="md-layout-item">
         <!-- <md-table-toolbar> -->
           <h1 class="md-title accent">Project Completion</h1>
-        <!-- </md-table-toolbar> -->
+        <!-- </md-table-tool  bar> -->
       </div>
     </div>
 
