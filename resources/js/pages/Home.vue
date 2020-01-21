@@ -8,20 +8,27 @@
 
 <template>
     <div>
-      Dashboard: {{ msg }}
+      Dashboard: <p v-if="user">{{msg}}, {{ user.first_name }}</p>
 
     </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     data() {
       return {
-        msg: "Welcome, Admin"
+        msg: 'Welcome'
       }
     },
     components: {
-        //
+      //
+    },
+    computed: {
+      ...mapGetters({
+        user: 'auth/user'
+      })
     }
   }
 </script>

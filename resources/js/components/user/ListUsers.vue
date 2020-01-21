@@ -5,18 +5,18 @@
       <md-button class="md-raised md-accent btnAccent" to="/admin/users/new">Add Client</md-button>
     </md-table-toolbar>
 
-    <md-table class="background text" md-card v-if="users !== null">
-      <!-- <md-table-row class="background">
+    <md-table  md-card v-if="users !== null">
+      <!-- <md-table-row >
                 <md-table-head md-numeric>ID</md-table-head>
                 <md-table-head>Name</md-table-head>
                 <md-table-head>Email</md-table-head>
                 <md-table-head></md-table-head>
       </md-table-row>-->
       <md-table-row v-for="user in users" v-bind:key="user.id" class="item background">
-        <!-- <md-table-cell class="background" md-numeric>{{user.id}}</md-table-cell> -->
-        <md-table-cell class="background text">{{ user.first_name + " " + user.last_name }}</md-table-cell>
-        <md-table-cell class="background text">{{ user.email }}</md-table-cell>
-        <md-table-cell class="background text">
+        <!-- <md-table-cell  md-numeric>{{user.id}}</md-table-cell> -->
+        <md-table-cell >{{ user.first_name + " " + user.last_name }}</md-table-cell>
+        <md-table-cell >{{ user.email }}</md-table-cell>
+        <md-table-cell >
           <md-button :to="'/admin/users/show/' + user.id" class="accentLight">View Profile</md-button>
           <!-- <md-button :to="'/admin/users/edit/' + user.id">Edit</md-button> -->
           <!-- <DeleteUser v-bind:id="user.id"/> -->
