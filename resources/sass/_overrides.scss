@@ -1,8 +1,4 @@
 //Theme Overrides
-.app-container {
-    height: 1000px;
-}
-
 .md-title {
     text-shadow: 1px 1px 2px #000 !important;
 }
@@ -19,10 +15,10 @@
     justify-content: space-between;
 }
 
-.md-theme-default, .md-app:not(.md-overlap).md-theme-default {
-    background-color: $primaryLight!important;
+.md-app:not(.md-overlap).md-theme-default {
+    background-color: $primaryLight;
 }
 
 .md-toolbar {
-    background-color: $primary!important;
+    background-color: $primary;
 }

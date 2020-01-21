@@ -1,26 +1,26 @@
 // Primary Colour Variations:
-.primary{ color: $primary!important; }
+.primary{ color: $primary; }
 
 // Secondary Colour Variations:
-.primaryLight{ color: $primaryLight!important; }
+.primaryLight{ color: $primaryLight; }
 
 // Tertiary Colour Variations:
-.primaryDark{ color: $primaryDark!important; }
+.primaryDark{ color: $primaryDark; }
 
 // Accent Colour Variations:
-.accent { color: $accent!important; }
-.accentLight{ color: $accentLight!important; }
-.accentDark{ color: $accentDark!important; }
-.accentContrast{ color: $accentContrast!important; }
+.accent { color: $accent; }
+.accentLight{ color: $accentLight; }
+.accentDark{ color: $accentDark; }
+.accentContrast{ color: $accentContrast; }
 
 // Button Colour Variations:
-.btnPrimary { background-color: $primary!important; color: $primaryText!important;}
-.btnAccent { background-color: $accent!important; color: $primaryText!important;}
-.btnWarning{ background-color: $warning!important; }
-.btnDanger{ background-color: $danger!important; }
+.btnPrimary { background-color: $primary; color: $primaryText;}
+.btnAccent { background-color: $accent; color: $primaryText;}
+.btnWarning{ background-color: $warning; }
+.btnDanger{ background-color: $danger; }
 
 // Text Colours:
-.text { color: $primaryText!important; }
-.subject { color: $secondaryText!important; }
-.accent { color: $accent!important; }
-.error { color: $danger!important; }
+.text { color: $primaryText; }
+.subject { color: $secondaryText; }
+.accent { color: $accent; }
+.error { color: $danger; }

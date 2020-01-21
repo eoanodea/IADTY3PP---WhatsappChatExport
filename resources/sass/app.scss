@@ -23,6 +23,9 @@
 //Import Theme Engine
 @import "~vue-material/dist/theme/engine";
 
+//Apply the theme
+@import "~vue-material/dist/theme/all";
+
 // Theme Colors
 @import 'colors';
 
@@ -42,7 +45,5 @@
 // Theme Cards
 @import 'cards'; 
 
-//Apply the theme
-@import "~vue-material/dist/theme/all";
 
 
