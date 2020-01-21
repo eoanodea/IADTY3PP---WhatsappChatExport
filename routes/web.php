@@ -15,9 +15,3 @@ Route::get('/{any?}', function() {
     return view('welcome');  
 })->where('any', '^(?!api\/)[\/\w\.-]*');
 
-
-// Route::get('/', function() {
-//     return view('welcome');  
-// });
-
-// Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
