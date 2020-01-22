@@ -1,6 +1,13 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+//Apply the theme
+// @import "~vue-material/dist/theme/all";
+// @import 'carbon/themes';
+@import '@carbon/themes/scss/themes';
+$carbon--theme: $carbon--theme--g90;
+@include carbon--theme();
+
 // Variables
 @import 'variables';
 
@@ -9,13 +16,15 @@
 
 //Apply the theme
 // @import "~vue-material/dist/theme/all";
-@import 'carbon/themes';
+// @import 'carbon/themes';
+// @import '@carbon/themes/scss/themes';
 
 // Theme Colors
 @import 'colors';
 
+
 // Theme Template
-@import  'templates/import';
+// @import  'templates/import';
 
 //Register theme with primary and accent colours
 // @include md-register-theme("default", (

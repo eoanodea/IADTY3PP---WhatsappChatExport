@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@carbon/themes": "^10.9.2",
         "@carbon/vue": "^2.20.1",
         "date-fns": "^2.8.1",
         "npm": "^6.13.6",
