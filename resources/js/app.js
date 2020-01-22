@@ -10,13 +10,16 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 import router from './router';
 import store from './store/index'
-import 'vue-material/dist/vue-material.min.css'
+// import 'vue-material/dist/vue-material.min.css'
+import 'carbon-components/css/carbon-components.css';
+import CarbonComponentsVue from '@carbon/vue/src/index';
 
 require('./store/subscriber')
 
 window.Vue = Vue;
 
 Vue.use(VueRouter);
+Vue.use(CarbonComponentsVue);
 
 const token = {
     access_token: localStorage.getItem('access_token'),

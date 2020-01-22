@@ -16,7 +16,13 @@
 
 
 <template>
-    <md-card class="background">
+<article class="bx--card" tabindex="0" aria-labelledby="card-title-2">
+    <div class="bx--card__card-overview">
+
+    </div>
+</article>
+
+    <!-- <md-card class="background">
         <md-card-header>
             <div class="md-title accent">Sign in</div>
         </md-card-header>
@@ -41,10 +47,14 @@
         <md-card-actions>
             <md-button type="submit" :disabled="submitting" @click="validateSignin" class="md-primary md-raised btnAccent">Submit</md-button>
         </md-card-actions>
-    </md-card>
+    </md-card> -->
 </template>
 
 <script>
+import Vue from 'vue'
+import 'carbon-components/css/carbon-components.css';
+import CarbonComponentsVue from '@carbon/vue/src/index';
+Vue.use(CarbonComponentsVue);
   import { mapActions } from 'vuex'
 
   export default {
