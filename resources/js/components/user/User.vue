@@ -141,7 +141,7 @@ export default {
 </script>
 
 <style>
-.background {
+/* .background {
   background-color: #003153 !important;
   font-size: 18px !important;
   padding: 10px;
@@ -149,7 +149,7 @@ export default {
 
 .text {
   color: #fff !important;
-}
+} */
 
 /* .md-progress-spinner {
   /* top: 50%;
