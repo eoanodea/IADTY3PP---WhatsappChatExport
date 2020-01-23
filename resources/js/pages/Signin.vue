@@ -30,9 +30,19 @@
                     v-model="user.password" 
                     placeholder="Password">
                 </cv-text-input>
-                <cv-button class="dangerBtn" type="submit" :disabled="submitting" @click="validateSignin">
-                    Submit
-                </cv-button>
+                <cv-button-set>
+                    <cv-button 
+                        kind="primary" 
+                        :tip-text="Submit"
+                        :tip-position="right"
+                        :tip-alignment="center"
+                        class="" 
+                        type="submit" 
+                        :disabled="submitting" 
+                        @click="validateSignin">
+                            Submit
+                    </cv-button>
+                </cv-button-set>
             </cv-form>
         </section>
     </div>
