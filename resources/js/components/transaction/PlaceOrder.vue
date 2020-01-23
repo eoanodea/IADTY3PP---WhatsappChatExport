@@ -7,7 +7,8 @@
 -->
 
 <template>
-    <div class="cardContainer">
+  <span>
+    <div class="cardContainer" v-if="payload">
       <div ref="card" class="cardElement">
       </div>
       <br />
@@ -15,6 +16,8 @@
       <br />
       <p v-if='error'>{{error}}</p>
     </div>
+    <p v-else>There was a problem loading the checkout details</p>
+  </span>
 </template>
 
 <script>
@@ -42,6 +45,7 @@
     card = undefined;
 
   export default {
+    props: ['payload'],
     data() {
       return {
         error: null
@@ -54,11 +58,10 @@
       purchase() {
         stripe.createToken(card).then(result => {
           if(result.error) {
-            console.log('error!', result.error.message)
-            console.log('error in state', this.error)
             this.error = result.error.message
+            return
           }
-          console.log('token created!!', result)
+          
 
 
         })

@@ -14,11 +14,11 @@
         <p>Discount: {{assignment.discount}}</p>
         <p>Amount Paid: {{assignment.amount_paid}}</p>
 
-        Amount Due €{{calculateDiscount(assignment.total_price, assignment.discount)}}
+        Amount Due €{{checkoutPayload.amount}}
         <button @click="checkout = !checkout">Checkout</button>
 
         
-        <place-order v-if="checkout"></place-order>
+        <place-order v-if="checkout" v-bind:payload="checkoutPayload"></place-order>
           
 
       </div>
@@ -36,8 +36,12 @@
     data() {
       return {
         assignment: null,
-        transaction: null,
-        checkout: false
+        checkout: false,
+        checkoutPayload: {
+          amount: 0,
+          assignmentId: null,
+          userId: null,
+        }
       }
     },
     components: {
@@ -53,7 +57,14 @@
         .then(response => {
             if(response.data.status !== "success") {
                 console.log("error ", response)
-            } else this.assignment = response.data.assignment
+            } else {
+              let { checkoutPayload } = this
+              checkoutPayload.assignmentId = response.data.assignment.id
+              checkoutPayload.amount = this.calculateDiscount(response.data.assignment.total_price, response.data.assignment.discount)
+              checkoutPayload.userId = this.user.id
+              this.checkoutPayload = checkoutPayload
+              this.assignment = response.data.assignment
+            }
         })
     },
     computed: {
