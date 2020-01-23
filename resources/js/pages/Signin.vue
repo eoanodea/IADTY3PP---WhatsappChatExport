@@ -18,7 +18,40 @@
 <template>
 <article class="bx--card" tabindex="0" aria-labelledby="card-title-2">
     <div class="bx--card__card-overview">
-
+        <section class="bx--card-overview__about">
+            <header class="bx--about__title">
+                <p id="card-title-2" class="bx--about__title--name bx--type-gamma" title="Sign In">Sign In</p>
+            </header>
+            <article class="bx--card-overview">
+                <p v-if="errors.length">
+                    <b class="error">Please correct the following error(s):</b>
+                        <ul>
+                            <li v-for="error in errors" v-bind:key="error.id" class="error">
+                                {{ error.message }}
+                            </li>
+                        </ul>
+                </p>
+            </article>
+            <cv-form>
+                <cv-text-input 
+                    name="email" 
+                    type="email" 
+                    class="form-control"
+                    v-model="user.email"
+                    placeholder="Email Address">
+                </cv-text-input>
+                <cv-text-input
+                    name="password" 
+                    type="password" 
+                    class="form-control"
+                    v-model="user.password" 
+                    placeholder="Password">
+                </cv-text-input>
+            </cv-form>
+            <cv-button type="submit" :disabled="submitting" @click="validateSignin" class="">
+                Submit
+            </cv-button>
+        </section>
     </div>
 </article>
 
@@ -52,10 +85,16 @@
 
 <script>
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 Vue.use(CarbonComponentsVue);
-  import { mapActions } from 'vuex'
+import { 
+    CvForm,  
+    CvButton } from '@carbon/vue/src';
+
+Vue.use(CvForm);
+Vue.use(CvButton);
 
   export default {
     data() {
