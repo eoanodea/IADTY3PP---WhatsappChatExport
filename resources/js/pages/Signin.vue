@@ -85,11 +85,13 @@ Vue.use(CarbonComponentsVue);
 import { 
     CvForm,  
     CvButton,
-    CvTextInput } from '@carbon/vue/src';
+    CvTextInput,
+    CvButtonSet } from '@carbon/vue/src';
 
 Vue.use(CvForm);
 Vue.use(CvButton);
 Vue.use(CvTextInput);
+Vue.use(CvButtonSet);
 
   export default {
     data() {
