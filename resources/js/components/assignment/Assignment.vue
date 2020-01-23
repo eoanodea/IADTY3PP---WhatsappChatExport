@@ -5,6 +5,7 @@
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Project Details</h1>
+          <md-button class="btnWarning" :to="'/checkout/' + assignment.id">Pay bill</md-button>
           <md-button class="btnWarning" :to="'/admin/assignments/edit/' + assignment.id">Edit Details</md-button>
         </md-table-toolbar>
       </div>
@@ -12,25 +13,25 @@
 
     <div class="md-layout spacing">
         <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-            <md-card md-with-hover class="md-elevation-10 background">
-                <md-ripple>
-                    <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-                        <md-card-header class="accent md-display-3">{{ assignment.title }}</md-card-header>
-                        <md-card-header class="text md-display-1"><span class="subject">Deadline: </span>{{assignment.deadline}}</md-card-header>
-                        <md-card-header class="text md-display-1"><span class="subject">Service: </span>{{service.title}}</md-card-header>
-                        <md-card-header class="subject md-headline">
-                            Discount: {{assignment.discount}}%
-                            <br/>
-                            Deposit: {{assignment.deposit}}%
-                            <br/>
-                            Total Price: €{{assignment.total_price}}
-                            <br/>
-                            Completed: {{assignment.completed}}
-                            <br/>
-                            Date of Completeion: {{assignment.date_of_completion}}
-                        </md-card-header>
-                    </div>
-                </md-ripple>
+            <md-card class="md-elevation-10 background">
+                <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
+                    <md-card-header class="accent md-display-3">{{ assignment.title }}</md-card-header>
+                    <md-card-header class="text md-display-1"><span class="subject">Deadline: </span>{{assignment.deadline}}</md-card-header>
+                    <md-card-header class="text md-display-1"><span class="subject">Service: </span>{{service.title}}</md-card-header>
+                    <md-card-header class="subject md-headline">
+                        Discount: {{assignment.discount}}%
+                        <br/>
+                        Deposit: {{assignment.deposit}}%
+                        <br/>
+                        Total Price: €{{assignment.total_price}}
+                        <br/>
+                        Completed: {{assignment.completed}}
+                        <br/>
+                        Date of Completeion: {{assignment.date_of_completion}}
+                        <br />
+                        Amount Paid: €{{assignment.amount_paid}}
+                    </md-card-header>
+                </div>
             </md-card>
         </div>
     </div>

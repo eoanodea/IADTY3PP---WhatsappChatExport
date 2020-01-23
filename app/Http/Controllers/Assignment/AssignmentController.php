@@ -136,6 +136,31 @@ class AssignmentController extends Controller
 
     /**
      * 
+     * Find an assignment by it's ID
+     * and update the amount paid
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+    public function updatePayment(Request $request, $id) {
+        $assignment = Assignment::findOrFail($id);
+
+        $request->validate([
+            'amount_paid' => 'required|numeric|min:0'
+        ]);
+
+        $assignment->amount_paid = $request->input('amount_paid');
+
+        $assignment->save();
+
+        return response()->json([
+            'status'=> 'success',
+            'assignment' => $assignment->toArray()
+        ], 200);
+    }
+
+    /**
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
     */

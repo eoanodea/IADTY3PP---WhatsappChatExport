@@ -12,6 +12,7 @@ import VueRouter from 'vue-router';
 import Signin from './pages/Signin';
 import Home from './pages/Home';
 import About from './pages/About';
+import Checkout from './pages/Checkout';
 import ListUsers from './components/user/ListUsers'
 import AddUser from './components/user/AddUser'
 import EditUser from './components/user/EditUser'
@@ -162,6 +163,14 @@ const routes = [
         path: '/admin/assignments/new',
         name: 'addAssignment',
         component: AddAssignmentStepper,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    //Checkout
+    //Param - Assignment ID
+    {
+        path: '/checkout/:id',
+        name: 'assignments',
+        component: Checkout,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
 ]

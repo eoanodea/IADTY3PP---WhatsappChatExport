@@ -1,0 +1,57 @@
+<!--
+@Author: John Carlo M. Ramos
+@Date:   2019-11-03T22:20:18+00:00
+@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
+@Last modified by:   John Carlo M. Ramos
+@Last modified time: 2019-11-08T08:54:53+00:00
+-->
+
+<template>
+    <div>
+      Checkout: <p v-if="user">{{ user.first_name }}</p>
+      <div v-if="assignment">
+        <p>Total: {{assignment.total_price}}</p>
+        <p>Discount: {{assignment.discount}}</p>
+        <p>Amount Paid: {{assignment.amount_paid}}</p>
+
+        Amount Due €{{calculateDiscount(assignment.total_price, assignment.discount)}}
+      </div>
+      <p v-else>There is no assignment</p>
+    </div>
+</template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  import Vue from 'vue'
+  import axios from 'axios'
+
+  export default {
+    data() {
+      return {
+        assignment: null,
+        transaction: null
+      }
+    },
+    components: {
+      //
+    },
+    methods: {
+      calculateDiscount(total, discount) {
+        return ((100 - discount)/100 * total)
+      }
+    },
+    mounted() {
+      axios.get(`/api/assignment/${this.$route.params.id}`)
+        .then(response => {
+            if(response.data.status !== "success") {
+                console.log("error ", response)
+            } else this.assignment = response.data.assignment
+        })
+    },
+    computed: {
+      ...mapGetters({
+        user: 'auth/user'
+      })
+    }
+  }
+</script>
