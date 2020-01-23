@@ -1,32 +1,15 @@
-/*
- * --------------------
- * Author Name: Eoan O'Dea
- * Author Email: eoan@wspace.ie
- * Date Created: Friday January 10th 2020 4:31:23 pm
- * --------------------
- * Project Name: IADTY3PPClientMangementSystem
- * Version: 1.0.0
- * --------------------
- * File Name: Signin.vue
- * Last Modified: Wednesday January 15th 2020 12:32:21 pm
- * --------------------
- * Copyright (c) 2020 WebSpace
- * --------------------
- */
-
-
 <template>
-<article class="bx--card" tabindex="0" aria-labelledby="card-title-2">
+<article class="bx--card overlayBg" tabindex="0" aria-labelledby="card-title-2">
     <div class="bx--card__card-overview">
         <section class="bx--card-overview__about">
             <header class="bx--about__title">
-                <p id="card-title-2" class="bx--about__title--name bx--type-gamma" title="Sign In">Sign In</p>
+                <p id="card-title-2" class="bx--about__title--name bx--type-gamma primaryText" title="Sign In">Sign In</p>
             </header>
             <article class="bx--card-overview">
                 <p v-if="errors.length">
-                    <b class="error">Please correct the following error(s):</b>
+                    <b class="error dangerText">Please correct the following error(s):</b>
                         <ul>
-                            <li v-for="error in errors" v-bind:key="error.id" class="error">
+                            <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
                                 {{ error.message }}
                             </li>
                         </ul>
@@ -36,21 +19,21 @@
                 <cv-text-input 
                     name="email" 
                     type="email" 
-                    class="form-control"
+                    class=""
                     v-model="user.email"
                     placeholder="Email Address">
                 </cv-text-input>
                 <cv-text-input
                     name="password" 
                     type="password" 
-                    class="form-control"
+                    class=""
                     v-model="user.password" 
                     placeholder="Password">
                 </cv-text-input>
+                <cv-button class="dangerBtn" type="submit" :disabled="submitting" @click="validateSignin">
+                    Submit
+                </cv-button>
             </cv-form>
-            <cv-button type="submit" :disabled="submitting" @click="validateSignin" class="">
-                Submit
-            </cv-button>
         </section>
     </div>
 </article>
@@ -91,10 +74,12 @@ import CarbonComponentsVue from '@carbon/vue/src/index';
 Vue.use(CarbonComponentsVue);
 import { 
     CvForm,  
-    CvButton } from '@carbon/vue/src';
+    CvButton,
+    CvTextInput } from '@carbon/vue/src';
 
 Vue.use(CvForm);
 Vue.use(CvButton);
+Vue.use(CvTextInput);
 
   export default {
     data() {
