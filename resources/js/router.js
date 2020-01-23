@@ -12,7 +12,7 @@ import VueRouter from 'vue-router';
 import Signin from './pages/Signin';
 import Home from './pages/Home';
 import About from './pages/About';
-import Checkout from './pages/Checkout';
+import Checkout from './components/transaction/Checkout';
 import ListUsers from './components/user/ListUsers'
 import AddUser from './components/user/AddUser'
 import EditUser from './components/user/EditUser'

@@ -15,6 +15,12 @@
         <p>Amount Paid: {{assignment.amount_paid}}</p>
 
         Amount Due €{{calculateDiscount(assignment.total_price, assignment.discount)}}
+        <button @click="checkout = !checkout">Checkout</button>
+
+        
+        <place-order v-if="checkout"></place-order>
+          
+
       </div>
       <p v-else>There is no assignment</p>
     </div>
@@ -24,16 +30,18 @@
   import { mapGetters } from 'vuex'
   import Vue from 'vue'
   import axios from 'axios'
+  import PlaceOrder from './PlaceOrder'
 
   export default {
     data() {
       return {
         assignment: null,
-        transaction: null
+        transaction: null,
+        checkout: false
       }
     },
     components: {
-      //
+      PlaceOrder
     },
     methods: {
       calculateDiscount(total, discount) {
