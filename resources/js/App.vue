@@ -1,10 +1,10 @@
 <template>
 <div>
 <cv-header aria-label="Carbon header">
-  <cv-skip-to-content href="/admin/home">
+  <cv-skip-to-content to="/admin/home">
     Skip to Content
   </cv-skip-to-content>
-  <cv-header-name href="/admin/home" prefix="CLIENTELIGENCE">
+  <cv-header-name to="/admin/home" prefix="CLIENTELIGENCE">
     <router-link to="/admin/home">
     </router-link>
   </cv-header-name>
