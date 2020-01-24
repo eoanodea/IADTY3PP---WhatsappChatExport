@@ -10,7 +10,7 @@
         <button @click="checkout = !checkout">Checkout</button>
 
         
-        <place-order v-if="checkout" v-bind:payload="checkoutPayload"></place-order>
+        <place-order v-if="checkout" v-bind:payload="checkoutPayload" v-bind:user="user"></place-order>
           
 
       </div>

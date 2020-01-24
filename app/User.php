@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.

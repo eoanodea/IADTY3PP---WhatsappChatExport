@@ -39,7 +39,7 @@
     card = undefined;
 
   export default {
-    props: ['payload'],
+    props: ['payload', 'user'],
     data() {
       return {
         error: null
@@ -50,13 +50,20 @@
     },
     methods: {
       purchase() {
-        stripe.createToken(card).then(result => {
+        stripe.createPaymentMethod(
+          'card', 
+          card,
+          { billing_details: {
+            name: `${this.user.first_name} ${this.user.last_name}`
+          } }
+          ).then(result => {
           if(result.error) {
             this.error = result.error.message
             return
           }
+          console.log('no error', result)
           this.error = null
-          this.payload.token = result.token.id
+          this.payload.token = result.paymentMethod.id
           axios.post(`/api/transactions/new`, this.payload)
             .then(response => {
               if(response.data.status !== 'success') {
@@ -72,6 +79,10 @@
     mounted() {
       card = elements.create('card', style);
       card.mount(this.$refs.card);
+    },
+    beforeDestroy() {
+      card.destroy(this.$refs.card)
+      card = null
     }
   }
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Transaction;
+use App\User;
 
 class TransactionController extends Controller
 {
@@ -44,6 +45,12 @@ class TransactionController extends Controller
             'assignmentId' => 'required|numeric',
             'token' => 'required|string'
         ]);
+
+        $user = User::findOrFail($request->input('userId'));
+
+        dd($request);
+
+        $user->createAsStripeCustomer();
 
         $transaction = new Transaction;
         $transaction->amount = $request->input('amount');
