@@ -1,19 +1,19 @@
 <template>
-<div class="bx--grid">
-    <div class="bx--row">
+<!-- <div class="bx--grid"> -->
+    <!-- <div class="bx--row"> -->
         <article class="bx--card overlayBg" tabindex="0" aria-labelledby="card-title-2">
             <div class="bx--card__card-overview">
                 <section class="bx--card-overview__about">
-                    <div class="bx--row">
-                        <div class="bx--col-lg-16">
+                    <!-- <div class="bx--row"> -->
+                        <!-- <div class="bx--col-lg-16"> -->
                             <header class="bx--about__title">
                                 <p id="card-title-2" class="bx--about__title--name bx--type-gamma primaryText" title="Sign In">Sign In</p>
                             </header>
-                        </div>
-                    </div>
+                        <!-- </div> -->
+                    <!-- </div> -->
 
-                    <div class="bx--row">
-                        <div class="bx--col-lg-16">
+                    <!-- <div class="bx--row"> -->
+                        <!-- <div class="bx--col-lg-16"> -->
                             <article class="bx--card-overview">
                                 <p v-if="errors.length">
                                     <b class="error dangerText">Please correct the following error(s):</b>
@@ -24,32 +24,32 @@
                                         </ul>
                                 </p>
                             </article>
-                        </div>
-                    </div>
+                        <!-- </div> -->
+                    <!-- </div> -->
                     
                     <cv-form>
-                        <div class="bx--row">
+                        <!-- <div class="bx--row"> -->
                             <cv-text-input 
                                 name="email" 
                                 type="email" 
-                                class="bx--col-lg-16"
+                                class=""
                                 v-model="user.email"
                                 placeholder="Email Address">
                             </cv-text-input>
-                        </div>
+                        <!-- </div> -->
 
-                        <div class="bx--row">
+                        <!-- <div class="bx--row"> -->
                             <cv-text-input
                                 name="password" 
                                 type="password" 
-                                class="bx--col-lg-16"
+                                class=""
                                 v-model="user.password" 
                                 placeholder="Password">
                             </cv-text-input>
-                        </div>
+                        <!-- </div> -->
 
-                        <div class="bx--row">
-                            <div class="bx--col-lg-16">
+                        <!-- <div class="bx--row"> -->
+                            <!-- <div class="bx--col-lg-16"> -->
                                 <cv-button-set>
                                         <cv-button 
                                             kind="primary" 
@@ -63,14 +63,14 @@
                                                 Submit
                                         </cv-button>
                                 </cv-button-set>
-                            </div>
-                        </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
                     </cv-form>
                 </section>
             </div>
         </article>
-    </div>
-</div>
+    <!-- </div> -->
+<!-- </div> -->
 
     <!-- <md-card class="background">
         <md-card-header>

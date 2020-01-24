@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid">
+<!-- <div class="bx--grid"> -->
   <div class="bx--row">
     <cv-header aria-label="Carbon header">
       <cv-skip-to-content to="/admin/home">
@@ -48,7 +48,7 @@
         </cv-header-global-action>
       </template>
 
-      <template slot="right-panels" @click="menuVisible = !menuVisible" v-if="areRightPanels && authenticated">
+      <template slot="right-panels" @click="menuVisible = !menuVisible" v-if="authenticated">
         <cv-header-panel class="" id="switcher-panel">
           <cv-header-name>
             Good day, {{user.first_name}}
@@ -96,10 +96,10 @@
       </template>
     </cv-header>
     
-    <div class="bx--row">
-      <router-view class="bx--col-lg-16" style="padding: 200px;"></router-view>
-    </div>
-  </div>
+    <!-- <div class="bx--row"> -->
+      <router-view class="" style="padding: 200px;"></router-view>
+    <!-- </div> -->
+  <!-- </div> -->
 </div>
  <!-- <div class="page-container">
     <md-app md-waterfall md-mode="fixed" class="app-container">
@@ -183,7 +183,7 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
   export default {
     data() {
       return {
-        menuVisible: false,
+        menuVisible: true,
       }
     },
     components: {
@@ -214,6 +214,7 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
           user: 'auth/user'
       }),
       areRightPanels() {
+        return true;
         // return settings.group.rightPanels.length > 0;
       },
     },
@@ -233,11 +234,12 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
         })
       },
       actionAppSwitcher() {
-        this.doActionSwitcher();
+        // this.doActionSwitcher();
+        this.menuVisible = true;
       },
     },
     mounted() {
-      this.doActionSwitcher = () => action('Notifications - click');
+      // this.doActionSwitcher = () => ;
     }
   }
 </script>
