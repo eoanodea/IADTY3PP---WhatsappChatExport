@@ -3,10 +3,13 @@
     <div class="cardContainer" v-if="payload">
       <div ref="card" class="cardElement">
       </div>
-      <br />
-      <button v-on:click="purchase">Purchase</button>
-      <br />
-      <p v-if='error'>{{error}}</p>
+      <div v-if="intent">
+        <br />
+        <p v-if='error'>{{error}}</p>
+        <button v-on:click="purchase" id="submit">Purchase</button>
+        <br />
+      </div>
+      <p v-else>Loading transaction stuff</p>
     </div>
     <p v-else>There was a problem loading the checkout details</p>
   </span>
@@ -20,7 +23,6 @@
     base: {
       border: '1px solid #D8D8D8',
       borderRadius: '4px',
-      // color: "#fff",
       color: "#424770",
       letterSpacing: "0.025em",
       "::placeholder": {
@@ -42,43 +44,58 @@
     props: ['payload', 'user'],
     data() {
       return {
-        error: null
+        error: null,
+        intent: null
       }
     },
     components: {
       //
     },
     methods: {
-      purchase() {
-        stripe.createPaymentMethod(
-          'card', 
-          card,
-          { billing_details: {
-            name: `${this.user.first_name} ${this.user.last_name}`
-          } }
+      purchase() {        
+        stripe.handleCardSetup(
+          this.intent.client_secret, card, {
+            payment_method_data: {
+              billing_details: { name: `${this.user.first_name} ${this.user.last_name}` }
+            }
+          }
           ).then(result => {
+            console.log(result)
           if(result.error) {
             this.error = result.error.message
             return
           }
+          else if(result.setupIntent.status !== "succeeded") {
+            console.log('error!', result)
+            
+            return
+          }
           console.log('no error', result)
           this.error = null
-          this.payload.token = result.paymentMethod.id
+          this.payload.token = result.setupIntent.payment_method
           axios.post(`/api/transactions/new`, this.payload)
             .then(response => {
               if(response.data.status !== 'success') {
                 console.log('error!', response.data.error)
+                this.error = result.error.message
                 return
               }
-              console.log('success!!', response.data)
             })
-
         })
       }
     },
     mounted() {
-      card = elements.create('card', style);
-      card.mount(this.$refs.card);
+      axios.get(`/api/transactions/createIntent/${this.user.id}`)
+        .then(response => {
+          if(response.data.status !== 'success') {
+            console.log('error!', response.data)
+            return
+          }
+          this.intent = response.data.intent
+            
+          card = elements.create('card', style);
+          card.mount(this.$refs.card);
+        })
     },
     beforeDestroy() {
       card.destroy(this.$refs.card)

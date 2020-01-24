@@ -21,13 +21,19 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Creates a Payment Method Intent with Stripe
+     * Before displaying form to user
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createIntent($user)
     {
-        //
+        $user = User::findOrFail($user);
+
+        return response()->json([
+            'status'=> 'success',
+            'intent' => $user->createSetupIntent()
+        ], 200);
     }
 
     /**
@@ -47,10 +53,10 @@ class TransactionController extends Controller
         ]);
 
         $user = User::findOrFail($request->input('userId'));
-
-        dd($request);
-
-        $user->createAsStripeCustomer();
+        
+        if(!$user->stripe_id) $user->createAsStripeCustomer();
+        $user->addPaymentMethod($request->input('token'));
+dd($user);
 
         $transaction = new Transaction;
         $transaction->amount = $request->input('amount');
