@@ -1,52 +1,76 @@
 <template>
-<article class="bx--card overlayBg" tabindex="0" aria-labelledby="card-title-2">
-    <div class="bx--card__card-overview">
-        <section class="bx--card-overview__about">
-            <header class="bx--about__title">
-                <p id="card-title-2" class="bx--about__title--name bx--type-gamma primaryText" title="Sign In">Sign In</p>
-            </header>
-            <article class="bx--card-overview">
-                <p v-if="errors.length">
-                    <b class="error dangerText">Please correct the following error(s):</b>
-                        <ul>
-                            <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
-                                {{ error.message }}
-                            </li>
-                        </ul>
-                </p>
-            </article>
-            <cv-form>
-                <cv-text-input 
-                    name="email" 
-                    type="email" 
-                    class=""
-                    v-model="user.email"
-                    placeholder="Email Address">
-                </cv-text-input>
-                <cv-text-input
-                    name="password" 
-                    type="password" 
-                    class=""
-                    v-model="user.password" 
-                    placeholder="Password">
-                </cv-text-input>
-                <cv-button-set>
-                    <cv-button 
-                        kind="primary" 
-                        :tip-text="Submit"
-                        :tip-position="right"
-                        :tip-alignment="center"
-                        class="" 
-                        type="submit" 
-                        :disabled="submitting" 
-                        @click="validateSignin">
-                            Submit
-                    </cv-button>
-                </cv-button-set>
-            </cv-form>
-        </section>
+<div class="bx--grid">
+    <div class="bx--row">
+        <article class="bx--card overlayBg" tabindex="0" aria-labelledby="card-title-2">
+            <div class="bx--card__card-overview">
+                <section class="bx--card-overview__about">
+                    <div class="bx--row">
+                        <div class="bx--col-lg-16">
+                            <header class="bx--about__title">
+                                <p id="card-title-2" class="bx--about__title--name bx--type-gamma primaryText" title="Sign In">Sign In</p>
+                            </header>
+                        </div>
+                    </div>
+
+                    <div class="bx--row">
+                        <div class="bx--col-lg-16">
+                            <article class="bx--card-overview">
+                                <p v-if="errors.length">
+                                    <b class="error dangerText">Please correct the following error(s):</b>
+                                        <ul>
+                                            <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
+                                                {{ error.message }}
+                                            </li>
+                                        </ul>
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                    
+                    <cv-form>
+                        <div class="bx--row">
+                            <cv-text-input 
+                                name="email" 
+                                type="email" 
+                                class="bx--col-lg-16"
+                                v-model="user.email"
+                                placeholder="Email Address">
+                            </cv-text-input>
+                        </div>
+
+                        <div class="bx--row">
+                            <cv-text-input
+                                name="password" 
+                                type="password" 
+                                class="bx--col-lg-16"
+                                v-model="user.password" 
+                                placeholder="Password">
+                            </cv-text-input>
+                        </div>
+
+                        <div class="bx--row">
+                            <div class="bx--col-lg-16">
+                                <cv-button-set>
+                                        <cv-button 
+                                            kind="primary" 
+                                            :tip-text="Submit"
+                                            :tip-position="right"
+                                            :tip-alignment="center"
+                                            class="" 
+                                            type="submit" 
+                                            :disabled="submitting" 
+                                            @click="validateSignin">
+                                                Submit
+                                        </cv-button>
+                                </cv-button-set>
+                            </div>
+                        </div>
+                    </cv-form>
+                </section>
+            </div>
+        </article>
     </div>
-</article>
+</div>
 
     <!-- <md-card class="background">
         <md-card-header>

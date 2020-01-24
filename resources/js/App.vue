@@ -97,7 +97,7 @@
     </cv-header>
     
     <div class="bx--row">
-      <router-view class="bx--col-lg-16"></router-view>
+      <router-view class="bx--col-lg-16" style="padding: 200px;"></router-view>
     </div>
   </div>
 </div>
