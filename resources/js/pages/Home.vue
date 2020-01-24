@@ -7,7 +7,7 @@
 -->
 
 <template>
-    <div>
+    <div class="display-1">
       Dashboard: <p v-if="user">{{msg}}, {{ user.first_name }}</p>
 
     </div>

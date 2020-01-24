@@ -29,14 +29,16 @@
 
       <cv-header-menu-item to="/admin/about" @click="$emit('menu-visible')">
         About
-      </cv-header-menu-item>
-
-      <cv-header-menu-item @click="signOut">
-        Sign Out
-      </cv-header-menu-item>
+      </cv-header-menu-item>      
     </cv-header-nav>
 
-    <template slot="header-global">
+    <template slot="header-global" @click="menuVisible = !menuVisible" v-if="authenticated">
+      <cv-header-nav>
+        <cv-header-menu-item @click="signOut">
+          Sign Out
+        </cv-header-menu-item>
+      </cv-header-nav>
+      
       <cv-header-global-action
         aria-label="App switcher"
         aria-controls="switcher-panel"
