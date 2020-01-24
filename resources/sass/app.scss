@@ -11,6 +11,9 @@ $carbon--theme: $carbon--theme--g90;
 // Variables
 @import 'variables';
 
+// Theme Grid:
+@import '@carbon/grid/scss/grid';
+
 //Import Theme Engine
 // @import "~vue-material/dist/theme/engine";
 
