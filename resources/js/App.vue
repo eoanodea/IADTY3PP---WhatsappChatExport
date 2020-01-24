@@ -1,101 +1,105 @@
 <template>
-<div>
-  <cv-header aria-label="Carbon header">
-    <cv-skip-to-content to="/admin/home">
-      Skip to Content
-    </cv-skip-to-content>
+<div class="bx--grid">
+  <div class="bx--row">
+    <cv-header aria-label="Carbon header">
+      <cv-skip-to-content to="/admin/home">
+        Skip to Content
+      </cv-skip-to-content>
 
-    <cv-header-name to="/admin/home" prefix="CLIENTELIGENCE">
-      <router-link to="/admin/home">
-      </router-link>
-    </cv-header-name>
+      <cv-header-name to="/admin/home" prefix="CLIENTELIGENCE">
+        <router-link to="/admin/home">
+        </router-link>
+      </cv-header-name>
 
-    <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" v-if="authenticated">
-      <cv-header-menu-item to="/admin/home">
-        Dashboard
-      </cv-header-menu-item>
-
-      <cv-header-menu-item to="/admin/users" @click="$emit('menu-visible')">
-        Clients
-      </cv-header-menu-item>
-
-      <cv-header-menu-item to="/admin/services" @click="$emit('menu-visible')">
-        Services
-      </cv-header-menu-item>
-
-      <cv-header-menu-item to="/admin/assignments" @click="$emit('menu-visible')">
-        Projects
-      </cv-header-menu-item>
-
-      <cv-header-menu-item to="/admin/about" @click="$emit('menu-visible')">
-        About
-      </cv-header-menu-item>      
-    </cv-header-nav>
-
-    <template slot="header-global" @click="menuVisible = !menuVisible" v-if="authenticated">
-      <cv-header-nav>
-        <cv-header-menu-item @click="signOut">
-          Sign Out
+      <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" v-if="authenticated">
+        <cv-header-menu-item to="/admin/home">
+          Dashboard
         </cv-header-menu-item>
+
+        <cv-header-menu-item to="/admin/users" @click="$emit('menu-visible')">
+          Clients
+        </cv-header-menu-item>
+
+        <cv-header-menu-item to="/admin/services" @click="$emit('menu-visible')">
+          Services
+        </cv-header-menu-item>
+
+        <cv-header-menu-item to="/admin/assignments" @click="$emit('menu-visible')">
+          Projects
+        </cv-header-menu-item>
+
+        <cv-header-menu-item to="/admin/about" @click="$emit('menu-visible')">
+          About
+        </cv-header-menu-item>      
       </cv-header-nav>
-      
-      <cv-header-global-action
-        aria-label="App switcher"
-        aria-controls="switcher-panel"
-        @click="actionAppSwitcher">
-        <AppSwitcher20 />
-      </cv-header-global-action>
-    </template>
 
-    <template slot="right-panels" @click="menuVisible = !menuVisible" v-if="areRightPanels && authenticated">
-      <cv-header-panel class="" id="switcher-panel">
-        <cv-header-name>
-          Good day, {{user.first_name}}
-        </cv-header-name>
+      <template slot="header-global" @click="menuVisible = !menuVisible" v-if="authenticated">
+        <cv-header-nav>
+          <cv-header-menu-item @click="signOut">
+            Sign Out
+          </cv-header-menu-item>
+        </cv-header-nav>
+        
+        <cv-header-global-action
+          aria-label="App switcher"
+          aria-controls="switcher-panel"
+          @click="actionAppSwitcher">
+          <AppSwitcher20 />
+        </cv-header-global-action>
+      </template>
 
-        <cv-switcher>
-          <cv-switcher-item>
-            <cv-switcher-item-link to="/admin/home" @click="$emit('menu-visible')">
-              <!-- <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" /> -->
-              Dashboard
-            </cv-switcher-item-link>
-          </cv-switcher-item>
+      <template slot="right-panels" @click="menuVisible = !menuVisible" v-if="areRightPanels && authenticated">
+        <cv-header-panel class="" id="switcher-panel">
+          <cv-header-name>
+            Good day, {{user.first_name}}
+          </cv-header-name>
 
-          <cv-switcher-item>
-            <cv-switcher-item-link to="/admin/users" @click="$emit('menu-visible')">
-              Clients
-            </cv-switcher-item-link>
-          </cv-switcher-item>
-          <cv-switcher-item>
+          <cv-switcher>
+            <cv-switcher-item>
+              <cv-switcher-item-link to="/admin/home" @click="$emit('menu-visible')">
+                <!-- <NavBar ref="navBarRef" v-on:menu-visible="menuVisible = !menuVisible" /> -->
+                Dashboard
+              </cv-switcher-item-link>
+            </cv-switcher-item>
 
-            <cv-switcher-item-link to="/admin/services" @click="$emit('menu-visible')">
-              Services
-            </cv-switcher-item-link>
-          </cv-switcher-item>
+            <cv-switcher-item>
+              <cv-switcher-item-link to="/admin/users" @click="$emit('menu-visible')">
+                Clients
+              </cv-switcher-item-link>
+            </cv-switcher-item>
+            <cv-switcher-item>
 
-          <cv-switcher-item>
-            <cv-switcher-item-link to="/admin/assignments" @click="$emit('menu-visible')">
-              Projects
-            </cv-switcher-item-link>
-          </cv-switcher-item>
+              <cv-switcher-item-link to="/admin/services" @click="$emit('menu-visible')">
+                Services
+              </cv-switcher-item-link>
+            </cv-switcher-item>
 
-          <cv-switcher-item>
-            <cv-switcher-item-link to="/admin/about" @click="$emit('menu-visible')">
-              About
-            </cv-switcher-item-link>
-          </cv-switcher-item>
+            <cv-switcher-item>
+              <cv-switcher-item-link to="/admin/assignments" @click="$emit('menu-visible')">
+                Projects
+              </cv-switcher-item-link>
+            </cv-switcher-item>
 
-          <cv-switcher-item>
-            <cv-switcher-item-link @click="signOut">
-              Sign Out
-            </cv-switcher-item-link>
-          </cv-switcher-item>
+            <cv-switcher-item>
+              <cv-switcher-item-link to="/admin/about" @click="$emit('menu-visible')">
+                About
+              </cv-switcher-item-link>
+            </cv-switcher-item>
 
-        </cv-switcher>
-      </cv-header-panel>
-    </template>
-  </cv-header>
-  <router-view style="padding:150px;"></router-view>
+            <cv-switcher-item>
+              <cv-switcher-item-link @click="signOut">
+                Sign Out
+              </cv-switcher-item-link>
+            </cv-switcher-item>
+          </cv-switcher>
+        </cv-header-panel>
+      </template>
+    </cv-header>
+    
+    <div class="bx--row">
+      <router-view class="bx--col-lg-16"></router-view>
+    </div>
+  </div>
 </div>
  <!-- <div class="page-container">
     <md-app md-waterfall md-mode="fixed" class="app-container">
