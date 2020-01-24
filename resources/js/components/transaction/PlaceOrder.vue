@@ -1,11 +1,3 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-03T22:20:18+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T08:54:53+00:00
--->
-
 <template>
   <span>
     <div class="cardContainer" v-if="payload">
@@ -22,6 +14,8 @@
 
 <script>
   import Vue from 'vue'
+  import axios from 'axios'
+
   let style = {
     base: {
       border: '1px solid #D8D8D8',
@@ -61,8 +55,16 @@
             this.error = result.error.message
             return
           }
-          
-
+          this.error = null
+          this.payload.token = result.token.id
+          axios.post(`/api/transactions/new`, this.payload)
+            .then(response => {
+              if(response.data.status !== 'success') {
+                console.log('error!', response.data.error)
+                return
+              }
+              console.log('success!!', response.data)
+            })
 
         })
       }

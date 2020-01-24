@@ -36,15 +36,19 @@ class TransactionController extends Controller
      * @param  int  $assignmentId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $assignment)
+    public function store(Request $request)
     {
         $request->validate([
-            'amount' => 'required|numeric|min:0'
+            'amount' => 'required|numeric|min:0',
+            'userId' => 'required|numeric',
+            'assignmentId' => 'required|numeric',
+            'token' => 'required|string'
         ]);
 
         $transaction = new Transaction;
         $transaction->amount = $request->input('amount');
-        $transaction->assignment_id = $assignment;
+        $transaction->assignment_id = $request->input('assignmentId');
+        $transaction->user_id = $request->input('userId');
 
         $transaction->save();
 
