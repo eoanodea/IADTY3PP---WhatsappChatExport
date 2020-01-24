@@ -88,10 +88,10 @@ import {
     CvTextInput,
     CvButtonSet } from '@carbon/vue/src';
 
-Vue.use(CvForm);
-Vue.use(CvButton);
-Vue.use(CvTextInput);
-Vue.use(CvButtonSet);
+// Vue.use(CvForm);
+// Vue.use(CvButton);
+// Vue.use(CvTextInput);
+// Vue.use(CvButtonSet);
 
   export default {
     data() {
@@ -105,7 +105,8 @@ Vue.use(CvButtonSet);
       }
     },
     methods: {
-        validateSignin() {
+        validateSignin(e) {
+            e.preventDefault();
             const {user} = this;
             if(user.email && user.password) {
                 this.submitting = true;
@@ -118,6 +119,7 @@ Vue.use(CvButtonSet);
                     })
                 })
             }
+            this.errors = []
             if(!user.email) this.errors.push({message: "Email is required"})
             if(!user.password) this.errors.push({message: "Password is required"})
         },

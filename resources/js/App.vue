@@ -95,7 +95,7 @@
       </cv-header-panel>
     </template>
   </cv-header>
-  <router-view style="margin-top:300px;"></router-view>
+  <router-view style="padding:150px;"></router-view>
 </div>
  <!-- <div class="page-container">
     <md-app md-waterfall md-mode="fixed" class="app-container">
@@ -156,25 +156,25 @@
 } from '@carbon/vue/src';
 import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
 
-Vue.use(CvHeader);
-Vue.use(CvHeaderGlobalAction);
-Vue.use(CvHeaderMenu);
-Vue.use(CvHeaderMenuButton);
-Vue.use(CvHeaderMenuItem);
-Vue.use(CvHeaderName);
-Vue.use(CvHeaderNav);
-Vue.use(CvHeaderPanel);
-Vue.use(CvSideNav);
-Vue.use(CvSideNavItems);
-Vue.use(CvSideNavLink);
-Vue.use(CvSideNavMenu);
-Vue.use(CvSideNavMenuItem);
-Vue.use(CvSkipToContent);
-Vue.use(CvSwitcher);
-Vue.use(CvSwitcherItem);
-Vue.use(CvSwitcherItemLink);
-Vue.use(CvHeaderSideNavItems);
-Vue.use(AppSwitcher20);
+// Vue.use(CvHeader);
+// Vue.use(CvHeaderGlobalAction);
+// Vue.use(CvHeaderMenu);
+// Vue.use(CvHeaderMenuButton);
+// Vue.use(CvHeaderMenuItem);
+// Vue.use(CvHeaderName);
+// Vue.use(CvHeaderNav);
+// Vue.use(CvHeaderPanel);
+// Vue.use(CvSideNav);
+// Vue.use(CvSideNavItems);
+// Vue.use(CvSideNavLink);
+// Vue.use(CvSideNavMenu);
+// Vue.use(CvSideNavMenuItem);
+// Vue.use(CvSkipToContent);
+// Vue.use(CvSwitcher);
+// Vue.use(CvSwitcherItem);
+// Vue.use(CvSwitcherItemLink);
+// Vue.use(CvHeaderSideNavItems);
+// Vue.use(AppSwitcher20);
 
   export default {
     data() {
