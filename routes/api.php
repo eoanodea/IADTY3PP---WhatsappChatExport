@@ -58,12 +58,14 @@ Route::post('/comments/{user}/new', 'Comment\CommentController@store');
 Route::put('/comments/{id}', 'Comment\CommentController@update');
 Route::delete('/comments/{id}', 'Comment\CommentController@destroy');
 
-Route::get('/transactions/createIntent/{userId}', 'Transaction\TransactionController@createIntent');
 Route::get('/transactions/by/{assignment}', 'Transaction\TransactionController@indexByAssignment');
 Route::get('/transactions/{id}', 'Transaction\TransactionController@show');
 Route::post('/transactions/new', 'Transaction\TransactionController@store');
 Route::put('/transactions/{assignment}', 'Transaction\TransactionController@update');
 Route::delete('/transactions/{assignment}', 'Transaction\TransactionController@destroy');
+
+Route::get('/customers/{userId}', 'Customer\CustomerController@index');
+Route::get('/customers/createIntent/{userId}', 'Customer\CustomerController@createIntent');
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
     Route::post('login', 'AuthController@login');

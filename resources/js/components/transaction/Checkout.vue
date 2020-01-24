@@ -30,6 +30,7 @@
         assignment: null,
         checkout: false,
         checkoutPayload: {
+          recurring: 0,
           amount: 0,
           assignmentId: null,
           userId: null,
@@ -51,6 +52,7 @@
                 console.log("error ", response)
             } else {
               let { checkoutPayload } = this
+              checkoutPayload.recurring = response.data.assignment.recurring_payment
               checkoutPayload.assignmentId = response.data.assignment.id
               checkoutPayload.amount = this.calculateDiscount(response.data.assignment)
               checkoutPayload.userId = this.user.id

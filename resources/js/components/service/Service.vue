@@ -22,7 +22,7 @@
                             <br/>
                             Recurring Payment? {{service.recurring_payment}}
                             <br/>
-                            Public Service? {{service.is_public}}
+                            Public Service {{service.is_public = 0 ? "False" : "True"}}
                         </md-card-header>
                     </div>
                 </md-ripple>

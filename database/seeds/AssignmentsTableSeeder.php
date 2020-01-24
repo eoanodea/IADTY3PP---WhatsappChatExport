@@ -20,7 +20,6 @@ class AssignmentsTableSeeder extends Seeder
         $role_client = Role::where('name', 'client')->first();
         $services = Service::all();
         
-        
         foreach($role_client->users as $user) {
             //Get a random service and assign it to the Assignment
             $service = $services[rand(0, count($services) -1)];

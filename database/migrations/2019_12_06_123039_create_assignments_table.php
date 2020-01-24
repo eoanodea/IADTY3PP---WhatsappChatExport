@@ -23,6 +23,7 @@ class CreateAssignmentsTable extends Migration
             $table->date('date_of_completion')->nullable();
             $table->date('deadline');
             $table->boolean('completed')->default(false);
+            $table->boolean('recurring_payment')->default(false);
             $table->timestamps();
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('service_id')->unsigned();

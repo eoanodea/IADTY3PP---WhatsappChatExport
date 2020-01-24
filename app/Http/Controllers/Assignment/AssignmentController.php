@@ -48,6 +48,10 @@ class AssignmentController extends Controller
         $assignment = new Assignment;
         $assignment->title = $request->input('title');
         $assignment->total_price = $request->input('total_price');
+        
+        if($request->input('recurring_price')) $assignment->recurring_payment = 1;
+        else $assignment->recurring_payment = 0;
+        
         $assignment->deposit = $request->input('deposit');
         $assignment->discount = $request->input('discount');
         $assignment->deadline = $request->input('deadline');

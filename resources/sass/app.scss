@@ -33,11 +33,11 @@
 @import  'templates/import';
 
 //Register theme with primary and accent colours
-@include md-register-theme("default", (
-  primary: $primary,
-  accent: $accent,
-  theme: dark // This can be dark or light
-));
+// @include md-register-theme("default", (
+//   primary: $primary,
+//   accent: $accent,
+//   theme: dark // This can be dark or light
+// ));
 
 // Theme Overrides
 @import 'overrides';

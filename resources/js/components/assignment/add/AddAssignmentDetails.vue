@@ -39,6 +39,7 @@
                         <md-input name="deposit" type="number" min="0" max="100" class="form-control" placeholder="Deposit" v-model="assignment.deposit" />
                         <span class="md-suffix">%</span> <br />
                     </md-field>
+                    <md-checkbox name="recurring_payment" v-model="assignment.recurring_payment">Recuring Payment</md-checkbox> <br />
                     <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
                         <label class="accent" for="deadline">Deadline</label>
                     </md-datepicker> <br />

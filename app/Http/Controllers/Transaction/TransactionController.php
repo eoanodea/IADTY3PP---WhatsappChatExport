@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\User;
+use App\Assignment;
 
 class TransactionController extends Controller
 {
@@ -18,22 +19,6 @@ class TransactionController extends Controller
     public function indexByAssignment($id)
     {
         return Transaction::where('assignment_id', $id)->get();
-    }
-
-    /**
-     * Creates a Payment Method Intent with Stripe
-     * Before displaying form to user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createIntent($user)
-    {
-        $user = User::findOrFail($user);
-
-        return response()->json([
-            'status'=> 'success',
-            'intent' => $user->createSetupIntent()
-        ], 200);
     }
 
     /**
@@ -52,16 +37,38 @@ class TransactionController extends Controller
             'token' => 'required|string'
         ]);
 
+        $amount = round($request->input('amount')*100);
+
         $user = User::findOrFail($request->input('userId'));
-        
+        $paymentMethod = $request->input('token');
+
         if(!$user->stripe_id) $user->createAsStripeCustomer();
-        $user->addPaymentMethod($request->input('token'));
-dd($user);
+        // else if($user->hasPaymentMethod()) {
+        //     dd('using default');
+        //     $paymentMethod = $user->defaultPaymentMethod();
+        // }
+        // } else {
+            
+        $user->addPaymentMethod($paymentMethod);
+
+        $assignment = Assignment::findOrFail($request->input('assignmentId'));
+        $charge;
+
+        try {
+            $charge = $user->charge($amount, $paymentMethod);
+            
+        } catch (IncompletePayment $exception) {
+            
+            return response()->json([
+                'status'=> 'failure',
+                'error' => $exception->toArray()
+            ], 200);
+        }
 
         $transaction = new Transaction;
         $transaction->amount = $request->input('amount');
         $transaction->assignment_id = $request->input('assignmentId');
-        $transaction->user_id = $request->input('userId');
+        $transaction->stripe_id = $charge->id;
 
         $transaction->save();
 

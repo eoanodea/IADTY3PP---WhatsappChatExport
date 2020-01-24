@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class DefaultTaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index($service) {
         $services = Service::findOrFail($service);
         $tasks = $services->task;

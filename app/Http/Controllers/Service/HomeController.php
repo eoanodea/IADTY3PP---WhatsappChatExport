@@ -18,11 +18,10 @@ use App\Assignment;
 
 class HomeController extends Controller
 {
-  // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    //     $this->middleware('service');
-    // }  
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }  
 
     public function index() {
       return Service::all();

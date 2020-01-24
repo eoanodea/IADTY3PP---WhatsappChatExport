@@ -9,6 +9,11 @@ use App\ActiveTask;
 
 class ActiveTaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($assignment) {
         $assignments = Assignment::findOrFail($assignment);
         $tasks = $assignments->task;

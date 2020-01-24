@@ -85,7 +85,7 @@
       }
     },
     mounted() {
-      axios.get(`/api/transactions/createIntent/${this.user.id}`)
+      axios.get(`/api/customers/createIntent/${this.user.id}`)
         .then(response => {
           if(response.data.status !== 'success') {
             console.log('error!', response.data)
