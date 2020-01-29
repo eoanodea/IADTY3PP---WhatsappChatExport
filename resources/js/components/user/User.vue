@@ -1,5 +1,33 @@
 <template>
-  <div class="fluid-container">
+  <div class="bx--grid">
+    <!-- Client Details (Notification Card)-->
+    <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
+      <div class="bx--inline-notification__details">
+        <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
+        
+        <!-- Client Details Contents -->
+        <div class="bx--row">
+          <div class="bx--inline-notification__text-wrapper">
+            <div class="bx--col-lg-16">
+              <p class="bx--inline-notification__title">{{ user.first_name }} {{ user.last_name }}</p>
+              <p class="bx--inline-notification__subtitle">{{ user.email }}</p>
+              <p class="bx--inline-notification__subtitle">{{ user.mobile_number }}</p>
+              <p class="bx--inline-notification__subtitle">{{ user.address }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Edit Button -->
+        <div class="bx--row">
+          <cv-link :to="'/admin/users/edit/' + user.id">
+            <button data-notification-btn class="bx--btn bx--btn--sm bx--btn--primary">
+              Edit Client
+            </button>
+          </cv-link>
+        </div>
+    </div>
+
     <!-- Client Profile -->
     <div class="md-layout">
       <div class="md-layout-item">
@@ -10,11 +38,11 @@
       </div>
     </div>
 
-    <div class="md-layout spacing">
-      <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
+    <md-card-header class="md-layout spacing">
+      <md-card-header class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
         <md-card class="background">
           <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent"></md-avatar>
-          <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
+          <md-card-header class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
             <md-card-header class="accent md-display-3">{{ user.first_name }} {{ user.last_name }}</md-card-header>
             <md-card-header class="text md-display-1">{{ user.email }}</md-card-header>
             <md-card-header class="subject md-headline">
@@ -22,10 +50,10 @@
               <br />
               {{ user.mobile_number }}
             </md-card-header>
-          </div>
+          </md-card-header>
         </md-card>
-      </div>
-    </div>
+      </md-card-header>
+    </md-card-header>
 
     <!-- Send Message -->
     <div class="md-layout">
@@ -100,6 +128,11 @@ import {
   MdLayout,
   MdToolbar
 } from "vue-material/dist/components";
+import 'carbon-components/css/carbon-components.css';
+import CarbonComponentsVue from '@carbon/vue/src/index';
+import { Notification } from 'carbon-components';
+
+Vue.use(CarbonComponentsVue);
 
 Vue.use(MdButton);
 Vue.use(MdAvatar);
@@ -135,7 +168,8 @@ export default {
   },
   components: {
     DeleteUser,
-    progressSpinner
+    progressSpinner,
+    Notification
   }
 };
 </script>
