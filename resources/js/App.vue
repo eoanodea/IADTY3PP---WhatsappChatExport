@@ -113,7 +113,7 @@
     </cv-header>
     
     <!-- <div class="bx--row"> -->
-      <router-view class="" style="padding: 200px;"></router-view>
+      <router-view class="" style="padding: 60px;"></router-view>
     <!-- </div> -->
   </div>
 </div>
