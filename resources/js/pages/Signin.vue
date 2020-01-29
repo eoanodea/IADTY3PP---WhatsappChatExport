@@ -1,5 +1,7 @@
 <template>
 <div class="bx--grid">
+
+    <!-- Email -->
     <div class="bx--row">
         <div class="bx--form-item bx--text-input-wrapper">
             <label for="text-input-3" class="bx--label">Email</label>
@@ -12,42 +14,44 @@
                 class="bx--text-input" 
                 placeholder="Email">
             </div>
+                <p v-if="errors.length">
+                    <ul>
+                        <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                            {{ error.emailError }}
+                        </li>
+                        <br/>
+                    </ul>
+                </p>
         </div>
     </div>
     
+    <!-- Password -->
+    <br/>
     <div class="bx--row">
-        <p v-if="errors.length">
-            <ul>
-                <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
-                    {{ error.emailError }}
-                </li>
-            </ul>
-        </p>
-    </div>
-
-    <div class="bx--row">
-        <div class="bx--form-item">
+        <div class="bx--form-item bx--text-input-wrapper">
             <label for="text-input-2" class="bx--label">Password</label>
-            <input 
+            <div class="bx--text-input__field-wrapper">
+                <input 
                 id="text-input-2" 
                 name="password" 
                 type="password" 
                 v-model="user.password" 
                 class="bx--text-input" 
                 placeholder="Password">
+            </div>
+                <p v-if="errors.length">
+                    <ul>
+                        <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                            {{ error.passwordError }}
+                        </li>
+                        <br/>
+                    </ul>
+                </p>
         </div>
     </div>
 
-    <div class="bx--row">
-        <p v-if="errors.length">
-            <ul>
-                <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
-                    {{ error.passwordError }}
-                </li>
-            </ul>
-        </p>
-    </div>
-
+    <!-- Button -->
+    <br/>
     <div class="bx--row">
         <div class="bx--form-item">
             <button 
