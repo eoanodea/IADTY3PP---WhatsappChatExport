@@ -1,16 +1,28 @@
 <template>
 <div class="bx--grid">
     <div class="bx--row">
-        <div class="bx--form-item">
+        <div class="bx--form-item bx--text-input-wrapper">
             <label for="text-input-3" class="bx--label">Email</label>
-            <input 
+            <div class="bx--text-input__field-wrapper">
+                <input 
                 id="text-input-3" 
                 name="email" 
                 type="email" 
                 v-model="user.email" 
                 class="bx--text-input" 
                 placeholder="Email">
+            </div>
         </div>
+    </div>
+    
+    <div class="bx--row">
+        <p v-if="errors.length">
+            <ul>
+                <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
+                    {{ error.emailError }}
+                </li>
+            </ul>
+        </p>
     </div>
 
     <div class="bx--row">
@@ -27,6 +39,16 @@
     </div>
 
     <div class="bx--row">
+        <p v-if="errors.length">
+            <ul>
+                <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
+                    {{ error.passwordError }}
+                </li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="bx--row">
         <div class="bx--form-item">
             <button 
                 class="bx--btn bx--btn--primary" 
@@ -39,24 +61,6 @@
         </div>
     </div>
 </div>
-
-        <!-- <article class="bx--card overlayBg" tabindex="0" aria-labelledby="card-title-2">
-            <div class="bx--card__card-overview">
-                <section class="bx--card-overview__about">
-                            <header class="bx--about__title">
-                                <p id="card-title-2" class="bx--about__title--name bx--type-gamma primaryText" title="Sign In">Sign In</p>
-                            </header>
-                            <article class="bx--card-overview">
-                                <p v-if="errors.length">
-                                    <b class="error dangerText">Please correct the following error(s):</b>
-                                        <ul>
-                                            <li v-for="error in errors" v-bind:key="error.id" class="dangerText">
-                                                {{ error.message }}
-                                            </li>
-                                        </ul>
-                                </p>
-                            </article> -->
-
 </template>
 
 <script>
@@ -103,8 +107,8 @@ import 'carbon-components/css/carbon-components.css';
                 })
             }
             this.errors = []
-            if(!user.email) this.errors.push({message: "Email is required"})
-            if(!user.password) this.errors.push({message: "Password is required"})
+            if(!user.email) this.errors.push({emailError: "Email is required"})
+            if(!user.password) this.errors.push({passwordError: "Password is required"})
         },
         ...mapActions({
             signIn: 'auth/signIn'
