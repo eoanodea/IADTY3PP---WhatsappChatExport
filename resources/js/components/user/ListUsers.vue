@@ -95,12 +95,15 @@
     </table>
 
     <!-- Loading/Error -->
-    <div v-else data-loading class="bx--loading">
-      <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-        <title>Loading</title>
-        <circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
-      </svg>
+    <div v-else>
       <p>Please wait while we load up your clients.</p>
+      
+      <div data-loading class="bx--loading">
+        <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+          <title>Loading</title>
+          <circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
+        </svg>
+      </div>
     </div>
   </div> <!-- Close Table -->
 
@@ -198,7 +201,7 @@ import CarbonComponentsVue from '@carbon/vue/src/index';
 import { DataTable } from 'carbon-components';
 
 Vue.use(CarbonComponentsVue);
-Vue.use(DataTable);
+// Vue.use(DataTable);
 
 // Vue.use(MdTable);
 // Vue.use(MdRipple);
