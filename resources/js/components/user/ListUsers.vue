@@ -4,13 +4,12 @@
     <!-- Title -->
     <div class="bx--data-table-header">
       <h4 class="bx--data-table-header__title">Clients</h4>
-      <p class="bx--data-table-header__description"></p>
     </div>
 
     <!-- Toolbar Contents -->
     <section class="bx--table-toolbar">
       <!-- Batch Actions -->
-      <div class="bx--batch-actions" aria-label="Table Action Bar">
+      <!-- <div class="bx--batch-actions" aria-label="Table Action Bar">
           <div class="bx--action-list">
             <button data-event="action-bar-cancel" class="bx--btn bx--btn--primary bx--batch-summary__cancel">Cancel</button>
           </div>
@@ -21,28 +20,30 @@
               items selected
 				    </p>
           </div>
-      </div>
+      </div> -->
 
       <!-- Persistent Search -->
       <div class="bx--toolbar-content">
         <!-- Add Client Button -->
-        <button to="/admin/users/new" class="bx--btn bx--btn--sm bx--btn--primary">
-             Add Client 
-          <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
-        </button>
+        <cv-link to="/admin/users/new"> 
+          <button href="/admin/users/new" class="bx--btn bx--btn--sm bx--btn--primary">
+              Add Client 
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
+          </button>
+        </cv-link>
       </div>
     </section>
 
     <!-- Table -->
-    <table v-if="users !== null" class="bx--data-table bx--data-table--sort ">
+    <table v-if="users !== null" class="bx--data-table bx--data-table--sort">
       <!-- Headings -->
       <thead>
         <tr>
           <!-- Checkbox (All) -->
-          <th class="bx--table-column-checkbox">
+          <!-- <th class="bx--table-column-checkbox">
             <input data-event="select-all" id="bx--checkbox-20" class="bx--checkbox" type="checkbox" value="green" name="checkbox-20">
 					  <label for="bx--checkbox-20" class="bx--checkbox-label" aria-label="Label name"></label>
-          </th>
+          </th> -->
 
           <!-- Name -->
           <th>
@@ -70,10 +71,10 @@
       <!-- Body -->
       <tbody v-for="user in users" v-bind:key="user.id">
         <!-- Checkboxes (Individual) -->
-        <td class="bx--table-column-checkbox">
+        <!-- <td class="bx--table-column-checkbox">
           <input data-event="select" id="bx--checkbox-13" class="bx--checkbox" type="checkbox" value="green" name="checkbox-13">
 					<label for="bx--checkbox-13" class="bx--checkbox-label" aria-label="Label name"></label>
-        </td>
+        </td> -->
 
         <!-- Names -->
         <td>
@@ -87,17 +88,18 @@
 
         <!-- View Profile Buttons -->
         <td>
-          <button :to="'/admin/users/show/' + user.id" class="bx--table-sort" data-event="sort" title="Name">
-              View Profile
-          </button>
+          <cv-link :to="'/admin/users/show/' + user.id"> 
+            <button class="bx--table-sort" data-event="sort" title="Name">
+                View Profile
+            </button>
+          </cv-link>
         </td>
       </tbody>
     </table>
 
     <!-- Loading/Error -->
     <div v-else>
-      <p>Please wait while we load up your clients.</p>
-      
+    <p>Please wait while we load up your clients.</p>
       <div data-loading class="bx--loading">
         <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
           <title>Loading</title>
