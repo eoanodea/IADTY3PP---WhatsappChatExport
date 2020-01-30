@@ -51,24 +51,35 @@
     <div class="bx--row">
       <div class="bx--col-lg-12">
         <!-- <cv-link> -->
-          <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+          <button class="bx--btn bx--btn--lg bx--btn--primary">
             Send
           </button>
         <!-- </cv-link> -->
       </div>
     </div>
 
-    <!-- Client Profile -->
-    <div class="md-layout">
-      <div class="md-layout-item">
-        <!-- <md-table-toolbar> -->
-          <h1 class="md-title accent">Client Profile</h1>
-          <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit Details</md-button>
-        <!-- </md-table-toolbar> -->
+    <!-- Delete Client Button -->
+    <div class="bx--row">
+      <div class="bx--col-lg-12">
+        <!-- <cv-link> -->
+          <!-- <button data-notification-btn class="bx--btn bx--btn--sm bx--btn--danger"> -->
+            <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
+          <!-- </button> -->
+        <!-- </cv-link> -->
       </div>
     </div>
 
-    <md-card-header class="md-layout spacing">
+    <!-- Client Profile -->
+    <!-- <div class="md-layout"> -->
+      <!-- <div class="md-layout-item"> -->
+        <!-- <md-table-toolbar> -->
+          <!-- <h1 class="md-title accent">Client Profile</h1> -->
+          <!-- <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit Details</md-button> -->
+        <!-- </md-table-toolbar> -->
+      <!-- </div> -->
+    <!-- </div> -->
+
+    <!-- <md-card-header class="md-layout spacing">
       <md-card-header class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
         <md-card class="background">
           <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent"></md-avatar>
@@ -83,18 +94,18 @@
           </md-card-header>
         </md-card>
       </md-card-header>
-    </md-card-header>
+    </md-card-header> -->
 
     <!-- Send Message -->
-    <div class="md-layout">
-      <div class="md-layout-item">
+    <!-- <div class="md-layout"> -->
+      <!-- <div class="md-layout-item"> -->
         <!-- <md-table-toolbar> -->
-          <h1 class="md-title accent">Send Message</h1>
+          <!-- <h1 class="md-title accent">Send Message</h1> -->
         <!-- </md-table-toolbar> -->
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
 
-    <md-field>
+    <!-- <md-field>
       <label class="accent" for="compose_message">Compose Message</label>
       <md-input
         name="Compose Message"
@@ -107,7 +118,7 @@
 
     <md-card-actions>
       <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Send</md-button>
-    </md-card-actions>
+    </md-card-actions> -->
 
     <!-- Project Completion -->
     <div class="md-layout">
