@@ -61,7 +61,7 @@
     <!-- Progression Indicator -->
     <div class="bx--row">
       <div class="bx--col-lg-12">
-        <ProgressIndicator />
+        <progressIndicator v-bind:id="user.id"/>
       </div>
     </div>
 
@@ -167,17 +167,17 @@ import axios from "axios";
 import DeleteUser from "./DeleteUser";
 import progressSpinner from "./components/progressSpinner";
 import progressIndicator from "./components/progressIndicator";
-import {
-  MdButton,
-  MdAvatar,
-  MdCard,
-  MdContent,
-  MdElevation,
-  MdIcon,
-  MdImage,
-  MdLayout,
-  MdToolbar
-} from "vue-material/dist/components";
+// import {
+//   MdButton,
+//   MdAvatar,
+//   MdCard,
+//   MdContent,
+//   MdElevation,
+//   MdIcon,
+//   MdImage,
+//   MdLayout,
+//   MdToolbar
+// } from "vue-material/dist/components";
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import { Notification } from 'carbon-components';
@@ -186,15 +186,15 @@ import { Modal } from 'carbon-components';
 
 Vue.use(CarbonComponentsVue);
 
-Vue.use(MdButton);
-Vue.use(MdAvatar);
-Vue.use(MdCard);
-Vue.use(MdContent);
-Vue.use(MdElevation);
-Vue.use(MdIcon);
-Vue.use(MdImage);
-Vue.use(MdLayout);
-Vue.use(MdToolbar);
+// Vue.use(MdButton);
+// Vue.use(MdAvatar);
+// Vue.use(MdCard);
+// Vue.use(MdContent);
+// Vue.use(MdElevation);
+// Vue.use(MdIcon);
+// Vue.use(MdImage);
+// Vue.use(MdLayout);
+// Vue.use(MdToolbar);
 
 export default {
   data() {
