@@ -173,7 +173,7 @@ import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
-import { CvModal } from '@carbon/vue/src';
+// import { CvModal } from '@carbon/vue/src';
 
 Vue.use(CarbonComponentsVue);
 
@@ -213,8 +213,8 @@ export default {
     DeleteUser,
     progressSpinner,
     Notification,
-    Modal,
-    CvModal
+    Modal
+    // CvModal
   }
 };
 </script>
