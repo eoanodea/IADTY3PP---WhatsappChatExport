@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid">
+<div>
     <!-- Modal Button -->
     <button 
         class="bx--btn--sm bx--btn--danger" 
