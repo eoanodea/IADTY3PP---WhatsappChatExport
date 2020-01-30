@@ -62,9 +62,50 @@
             </div>
         </div>
 
+        <!-- Recurring Payment Checkbox -->
+        <br/>
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <label for="recurring_payment" class="bx--label">Recurring Payment</label>
+                <cv-checkbox
+                    name="recurring_payment" 
+                    v-model="service.recurring_payment"
+                    :disabled="disabled">
+                </cv-checkbox>
+            </div>
+        </div>
+
+        <!-- Recurring Payment Checkbox -->
+        <br/>
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <label for="is_public" class="bx--label">Public Service</label>
+                <cv-checkbox
+                    name="is_public" 
+                    v-model="service.is_public"
+                    :disabled="disabled">
+                </cv-checkbox>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <br/>
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <div class="bx--form-item">
+                    <button 
+                        class="bx--btn bx--btn--primary" 
+                        type="submit"
+                        :disabled="submitting">
+                            Save
+                    </button>
+                </div>
+            </div>
+        </div>
 
 
-        <div class="md-layout">
+
+        <!-- <div class="md-layout">
             <div class="md-layout-item">
                 <md-table-toolbar>
                     <h1 class="md-title accent">Add Service</h1>
@@ -99,12 +140,12 @@
                     <md-checkbox name="recurring_payment" v-model="service.recurring_payment">Recuring Payment</md-checkbox> <br />
                     <md-checkbox name="is_public" v-model="service.is_public">Public Service</md-checkbox>
                 </md-card-content>
-                <md-card-actions>
+                <md-card-actions> -->
                     <!-- <md-button class="md-secondary md-raised">Back</md-button> -->
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
+                    <!-- <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
                 </md-card-actions>
             </md-card>
-        </form>
+        </form> -->
     </div>
 </template>
 <script>
@@ -113,6 +154,7 @@
     import router from './../../router'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { CvCheckbox } from '@carbon/vue/src'
     // import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
 
     Vue.use(CarbonComponentsVue);
@@ -178,6 +220,9 @@
                 })
             }
 
+        },
+        components: {
+            CvCheckbox
         }
     }
 </script>
