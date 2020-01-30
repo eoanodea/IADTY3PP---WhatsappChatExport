@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Edit Button -->
         <div class="bx--row">
           <cv-link :to="'/admin/users/edit/' + user.id">
@@ -26,6 +26,36 @@
             </button>
           </cv-link>
         </div>
+    </div>
+
+    <!-- Send Message -->
+    <div class="bx--row">
+      <div class="bx--col-lg-12">
+          <div class="bx--form-item bx--text-input-wrapper">
+              <label for="compose_message" class="bx--label">Send a message to {{ user.first_name }} {{ user.last_name }}</label>
+              <div class="bx--text-input__field-wrapper">
+              <textarea 
+                  id="text-area-2" 
+                  name="compose_message" 
+                  type="text" 
+                  class="bx--text-area"
+                  rows="4" 
+                  cols="50"
+                  placeholder="Compose Message"></textarea>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Send Message Button -->
+    <div class="bx--row">
+      <div class="bx--col-lg-12">
+        <!-- <cv-link> -->
+          <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+            Send
+          </button>
+        <!-- </cv-link> -->
+      </div>
     </div>
 
     <!-- Client Profile -->
