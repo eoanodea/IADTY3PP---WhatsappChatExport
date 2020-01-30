@@ -58,6 +58,14 @@
       </div>
     </div>
 
+    <!-- Progression Indicator -->
+    <div class="bx--row">
+      <div class="bx--col-lg-12">
+        <ProgressIndicator />
+      </div>
+    </div>
+
+
     <!-- Delete Client Button -->
     <div class="bx--row">
       <div class="bx--col-lg-12">
@@ -158,6 +166,7 @@ import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
 import progressSpinner from "./components/progressSpinner";
+import progressIndicator from "./components/progressIndicator";
 import {
   MdButton,
   MdAvatar,
@@ -213,7 +222,8 @@ export default {
     DeleteUser,
     progressSpinner,
     Notification,
-    Modal
+    Modal,
+    progressIndicator
     // CvModal
   }
 };
