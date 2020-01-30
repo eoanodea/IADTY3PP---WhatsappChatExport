@@ -8,7 +8,7 @@
         <!-- Client Details Contents -->
         <div class="bx--row">
           <div class="bx--inline-notification__text-wrapper">
-            <div class="bx--col-lg-16">
+            <div class="bx--col-lg-12">
               <p class="bx--inline-notification__title">{{ user.first_name }} {{ user.last_name }}</p>
               <p class="bx--inline-notification__subtitle">{{ user.email }}</p>
               <p class="bx--inline-notification__subtitle">{{ user.mobile_number }}</p>
@@ -59,6 +59,7 @@
     </div>
 
     <!-- Progression Indicator -->
+    <br/>
     <div class="bx--row">
       <div class="bx--col-lg-12">
         <progressIndicator v-bind:id="user.id"/>
@@ -67,11 +68,12 @@
 
 
     <!-- Delete Client Button -->
+    <br/>
     <div class="bx--row">
       <div class="bx--col-lg-12">
         <!-- <cv-link> -->
           <!-- <button data-notification-btn class="bx--btn bx--btn--sm bx--btn--danger"> -->
-            <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
+            <DeleteUser style="text-align:right;" class="md-alignment-top-right" v-bind:id="user.id" />
           <!-- </button> -->
         <!-- </cv-link> -->
       </div>
@@ -129,13 +131,13 @@
     </md-card-actions> -->
 
     <!-- Project Completion -->
-    <div class="md-layout">
-      <div class="md-layout-item">
+    <!-- <div class="md-layout"> -->
+      <!-- <div class="md-layout-item"> -->
         <!-- <md-table-toolbar> -->
-          <h1 class="md-title accent">Project Completion</h1>
+          <!-- <h1 class="md-title accent">Project Completion</h1> -->
         <!-- </md-table-tool  bar> -->
-      </div>
-    </div>
+      <!-- </div> -->
+    <!-- </div> -->
 
     <!-- <div class="md-layout">
       <md-card-actions class="progessSpinner">
@@ -152,12 +154,12 @@
       ></md-progress-spinner>
     </div> -->
 
-    <progressSpinner/>
+    <!-- <progressSpinner/> -->
 
     <!-- Delete Client Button -->
-    <md-card-actions>
-      <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" />
-    </md-card-actions>
+    <!-- <md-card-actions> -->
+      <!-- <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" /> -->
+    <!-- </md-card-actions> -->
   </div>
 </template>
 
