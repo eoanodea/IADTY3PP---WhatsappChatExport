@@ -200,7 +200,7 @@ import axios from "axios";
 import DeleteUser from "./DeleteUser";
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
-import { DataTable } from 'carbon-components';
+import { DataTable, Loading } from 'carbon-components';
 
 Vue.use(CarbonComponentsVue);
 // Vue.use(DataTable);
@@ -221,7 +221,8 @@ export default {
   },
   components: {
     DeleteUser,
-    DataTable
+    DataTable,
+    Loading
   }
 };
 </script>
