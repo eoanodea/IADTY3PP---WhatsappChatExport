@@ -60,6 +60,7 @@
 
     <!-- Progression Indicator -->
     <br/>
+    <label for="compose_message" class="bx--label">Project Completion with {{ user.first_name }} {{ user.last_name }}</label>
     <div class="bx--row">
       <div class="bx--col-lg-12">
         <progressIndicator v-bind:id="user.id"/>
