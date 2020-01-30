@@ -103,6 +103,19 @@
             </div>
         </div>
 
+        <!-- Error -->
+        <br/>
+        <div class="bx--row">
+            <p v-if="errors.length">
+            <b class="bx--form-requirement">Please correct the following error(s):</b>
+                <ul>
+                    <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                        {{ error.message }}
+                    </li>
+                </ul>
+            </p>
+        </div>
+
 
 
         <!-- <div class="md-layout">
