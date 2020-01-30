@@ -1,13 +1,13 @@
 <template>
 <div class="bx--grid">
     <!-- Modal Button -->
-    <cv-modal 
+    <button 
         class="bx--btn--sm bx--btn--danger" 
         type="button" 
         data-modal-target="#modal-ptxyfo5520i"
         @click="showDialog = true">
             Delete Client
-    </cv-modal>
+    </button>
 
     <!-- Modal -->
     <div data-modal 
@@ -86,7 +86,7 @@
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Modal } from 'carbon-components';
-    import { CvModal } from '@carbon/vue/src';
+    // import { CvModal } from '@carbon/vue/src';
 
 
     // Vue.use(MdDialog)
@@ -110,7 +110,7 @@
         },
         components: {
             Modal,
-            CvModal
+            // CvModal
         }
     }
 </script>
