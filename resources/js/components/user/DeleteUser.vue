@@ -11,12 +11,13 @@
 
     <!-- Modal -->
     <cv-modal
+            kind="danger"
             :visible="showDialog"
             @modal-shown="showDialog = true"
             @modal-hidden="showDialog = false"
             @modal-hide-request="showDialog = false"
-            @primary-click="deleteUser"
             @secondary-click="actionSecondary"
+            @primary-click="deleteUser"
         >
         <!-- <template slot="label">Label of modal</template> -->
         <template slot="title">WARNING</template>
@@ -24,14 +25,14 @@
 
         <!-- Buttons -->
         <template slot="secondary-button">No</template>
-        <template  slot="primary-button">Yes</template>
+        <template @click="deleteUser" slot="primary-button">Yes</template>
     </cv-modal>
 
 
 
 
 
-    <div data-modal 
+    <!-- <div data-modal 
     :visible="showDialog"
         @modal-shown="showDialog = true"
         @modal-hidden="showDialog = false"
@@ -42,43 +43,43 @@
         aria-modal="true" 
         aria-labelledby="modal-ptxyfo5520i-label" 
         aria-describedby="modal-ptxyfo5520i-heading" 
-        tabindex="-1">
+        tabindex="-1"> -->
 
-        <div class="bx--modal-container">
+        <!-- <div class="bx--modal-container"> -->
             <!-- Heading -->
-            <div class="bx--modal-header">
+            <!-- <div class="bx--modal-header">
                 <p 
                 class="bx--modal-header__heading bx--type-beta" 
                 id="modal-ptxyfo5520i-heading">
-                    WARNING</p>
+                    WARNING</p> -->
 
                 <!-- Close Modal Button (Top-right corner) -->
-                <button 
+                <!-- <button 
                     class="bx--modal-close" 
                     type="button" 
                     data-modal-close aria-label="close modal">
                         <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--modal-close__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path></svg>
                 </button>
-            </div>
+            </div> -->
 
             <!-- Contents -->
-            <div class="bx--modal-content">
+            <!-- <div class="bx--modal-content">
                 <p>Are you sure you want to delete this client?</p>
-            </div>
+            </div> -->
 
             <!-- Buttons -->
-            <div class="bx--modal-footer">
+            <!-- <div class="bx--modal-footer"> -->
                 <!-- Cancel -->
-                <button 
+                <!-- <button 
                     @click="showDialog = false" 
                     class="bx--btn bx--btn--secondary" 
                     type="button" 
                     data-modal-close>
                         Cancel
-                </button>
+                </button> -->
 			    
                 <!-- Delete -->
-                <button 
+                <!-- <button 
                     @click="deleteUser" 
                     class="bx--btn bx--btn--danger" 
                     type="button" 
@@ -88,7 +89,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
     <!-- <div>
