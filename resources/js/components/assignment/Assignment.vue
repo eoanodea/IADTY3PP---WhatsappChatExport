@@ -5,7 +5,7 @@
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Project Details</h1>
-          <md-button class="btnWarning" :to="'/checkout/' + assignment.id">Pay bill</md-button>
+          <md-button class="btnWarning" :to="'/checkout/' + assignment.id" v-if="paymentDue() > 0">Pay bill</md-button>
           <md-button class="btnWarning" :to="'/admin/assignments/edit/' + assignment.id">Edit Details</md-button>
         </md-table-toolbar>
       </div>
@@ -30,6 +30,8 @@
                         Date of Completeion: {{assignment.date_of_completion}}
                         <br />
                         Amount Paid: €{{assignment.amount_paid}}
+                        <br />
+                        Amount Due: €{{paymentDue()}}
                     </md-card-header>
                 </div>
             </md-card>
@@ -101,6 +103,14 @@
         components: {
             DeleteAssignment,
             ListTask
+        },
+        methods: {
+            paymentDue() {
+                const { assignment } = this
+                const amount = Math.round(((100 - assignment.discount)/100 * assignment.total_price) - assignment.amount_paid)
+                
+                return amount
+            }
         }
     }
 </script>

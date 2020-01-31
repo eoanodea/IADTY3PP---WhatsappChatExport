@@ -7,7 +7,10 @@
         <p>Amount Paid: {{assignment.amount_paid}}</p>
 
         Amount Due €{{checkoutPayload.amount}}
-        <button @click="checkout = !checkout">Checkout</button>
+        <template v-if="checkoutPayload.amount > 0">
+          <button @click="checkout = !checkout">Checkout</button>
+        </template>
+        <p v-else>No payment due</p>
 
         
         <place-order v-if="checkout" v-bind:payload="checkoutPayload" v-bind:user="user"></place-order>
@@ -42,7 +45,7 @@
     },
     methods: {
       calculateDiscount(assignment) {
-        return (((100 - assignment.discount)/100 * assignment.total_price) - assignment.amount_paid)
+        return Math.round(((100 - assignment.discount)/100 * assignment.total_price) - assignment.amount_paid)
       }
     },
     mounted() {

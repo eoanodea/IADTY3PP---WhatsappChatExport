@@ -67,10 +67,9 @@
           }
           else if(result.setupIntent.status !== "succeeded") {
             console.log('error!', result)
-            
+
             return
           }
-          console.log('no error', result)
           this.error = null
           this.payload.token = result.setupIntent.payment_method
           axios.post(`/api/transactions/new`, this.payload)
@@ -80,6 +79,10 @@
                 this.error = result.error.message
                 return
               }
+              console.log('success!', response.data.transaction.id)
+              this.$router.push({
+                path: `/transaction/${response.data.transaction.id}`
+              })
             })
         })
       }

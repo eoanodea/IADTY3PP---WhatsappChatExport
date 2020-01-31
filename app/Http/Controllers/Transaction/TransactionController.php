@@ -72,6 +72,9 @@ class TransactionController extends Controller
 
         $transaction->save();
 
+        $assignment->amount_paid = $transaction->amount;
+        $assignment->save();
+
         return response()->json([
             'status'=> 'success',
             'transaction' => $transaction->toArray()

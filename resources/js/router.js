@@ -30,6 +30,7 @@ import AddAssignmentStepper from './components/assignment/add/AddAssignmentStepp
 import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
 import store from './store/index'
+import Transaction from './components/transaction/Transaction'
 
 /*
  * Checks if the user is authenticated in the store
@@ -173,6 +174,13 @@ const routes = [
         component: Checkout,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
+    //Transaction
+    {
+        path: '/transaction/:id',
+        name: 'transaction',
+        component: Transaction,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    }
 ]
 
 const router = new VueRouter({
