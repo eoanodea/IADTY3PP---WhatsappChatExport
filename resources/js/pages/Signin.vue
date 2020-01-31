@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid">
+<div>
 
     <!-- Email -->
     <div class="bx--row">

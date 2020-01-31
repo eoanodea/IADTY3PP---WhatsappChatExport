@@ -10,15 +10,39 @@
     </button>
 
     <!-- Modal -->
+    <cv-modal
+            :visible="showDialog"
+            @modal-shown="showDialog = true"
+            @modal-hidden="showDialog = false"
+            @modal-hide-request="showDialog = false"
+            @primary-click="deleteUser"
+            @secondary-click="actionSecondary"
+        >
+        <!-- <template slot="label">Label of modal</template> -->
+        <template slot="title">WARNING</template>
+        <template slot="content"><p>Are you sure you want to delete this client?</p></template>
+
+        <!-- Buttons -->
+        <template slot="secondary-button">No</template>
+        <template  slot="primary-button">Yes</template>
+    </cv-modal>
+
+
+
+
+
     <div data-modal 
+    :visible="showDialog"
+        @modal-shown="showDialog = true"
+        @modal-hidden="showDialog = false"
+        @modal-hide-request="showDialog = false"
         id="modal-ptxyfo5520i" 
         class="bx--modal bx--modal--danger" 
         role="dialog" 
         aria-modal="true" 
         aria-labelledby="modal-ptxyfo5520i-label" 
         aria-describedby="modal-ptxyfo5520i-heading" 
-        tabindex="-1"
-        :md-active.sync="showDialog">
+        tabindex="-1">
 
         <div class="bx--modal-container">
             <!-- Heading -->
@@ -86,7 +110,7 @@
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Modal } from 'carbon-components';
-    // import { CvModal } from '@carbon/vue/src';
+    import { CvModal } from '@carbon/vue/src';
 
 
     // Vue.use(MdDialog)
@@ -110,7 +134,7 @@
         },
         components: {
             Modal,
-            // CvModal
+            CvModal
         }
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
 <div class="bx--grid">
-  <div class="bx--row">
+  <div>
     <cv-header aria-label="Carbon header">
       <cv-skip-to-content to="/admin/home">
         Skip to Content
@@ -11,6 +11,7 @@
         <router-link to="/admin/home">
         </router-link>
       </cv-header-name>
+      
 
       <!-- Dashboard -->
       <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" v-if="authenticated">
@@ -19,22 +20,22 @@
         </cv-header-menu-item>
 
         <!-- Clients -->
-        <cv-header-menu-item to="/admin/users" @click="$emit('menu-visible')">
+        <cv-header-menu-item to="/admin/users" @click="click">
           Clients
         </cv-header-menu-item>
 
         <!-- Services -->
-        <cv-header-menu-item to="/admin/services" @click="$emit('menu-visible')">
+        <cv-header-menu-item to="/admin/services" @click="click">
           Services
         </cv-header-menu-item>
 
         <!-- Projects -->
-        <cv-header-menu-item to="/admin/assignments" @click="$emit('menu-visible')">
+        <cv-header-menu-item to="/admin/assignments" @click="click">
           Projects
         </cv-header-menu-item>
 
         <!-- About -->
-        <cv-header-menu-item to="/admin/about" @click="$emit('menu-visible')">
+        <cv-header-menu-item to="/admin/about" @click="click">
           About
         </cv-header-menu-item>      
       </cv-header-nav>
@@ -68,42 +69,42 @@
 
             <!-- Dashboard -->
             <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/home" @click="$emit('menu-visible')">
+              <cv-switcher-item-link to="/admin/home" @click="click">
                 Dashboard
               </cv-switcher-item-link>
             </cv-switcher-item>
 
             <!-- Clients -->
             <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/users" @click="$emit('menu-visible')">
+              <cv-switcher-item-link to="/admin/users" @click="click">
                 Clients
               </cv-switcher-item-link>
             </cv-switcher-item>
 
             <!-- Services -->
             <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/services" @click="$emit('menu-visible')">
+              <cv-switcher-item-link to="/admin/services" @click="click">
                 Services
               </cv-switcher-item-link>
             </cv-switcher-item>
 
             <!-- Projects -->
             <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/assignments" @click="$emit('menu-visible')">
+              <cv-switcher-item-link to="/admin/assignments" v-on:click="click">
                 Projects
               </cv-switcher-item-link>
             </cv-switcher-item>
 
             <!-- About -->
             <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/about" @click="$emit('menu-visible')">
+              <cv-switcher-item-link to="/admin/about" @click="click">
                 About
               </cv-switcher-item-link>
             </cv-switcher-item>
 
             <!-- Sign Out -->
             <cv-switcher-item>
-              <cv-switcher-item-link @click="signOut">
+              <cv-switcher-item-link href="javascript:void(0)" @click="signOut">
                 Sign Out
               </cv-switcher-item-link>
             </cv-switcher-item>
@@ -113,7 +114,7 @@
     </cv-header>
     
     <!-- <div class="bx--row"> -->
-      <router-view class="" style="padding: 60px;"></router-view>
+      <router-view class="" style="padding: 60px 0;"></router-view>
     <!-- </div> -->
   </div>
 </div>
@@ -188,6 +189,7 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
     },
     methods: {
       click: function() {
+        console.log('menu click!!')
         this.menuVisible = !this.menuVisible
       },
       ...mapActions({

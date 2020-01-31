@@ -29,9 +29,19 @@
         </div>
     </div>
 
+    <!-- Default Tasks Table -->
+    <br/>
+    <div class="bx--row">
+        <ListTask v-bind:id="service.id" v-bind:isActive="false" />
+    </div>
+
+
+
+
+
 
     <!-- Service Details -->
-    <div class="md-layout">
+    <!-- <div class="md-layout">
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Service Details</h1>
@@ -58,13 +68,13 @@
                 </md-ripple>
             </md-card>
         </div>
-    </div>
+    </div> -->
 
     <!-- Default Tasks Details -->
-    <div>
+    <!-- <div> -->
         <!-- <md-button :to="`/admin/tasks/${false}/` + service.id">Tasks</md-button> -->
-        <ListTask v-bind:id="service.id" v-bind:isActive="false" />
-    </div>
+        <!-- <ListTask v-bind:id="service.id" v-bind:isActive="false" /> -->
+    <!-- </div> -->
 
     <!-- Delete Service Button -->
     <md-card-actions>
@@ -82,7 +92,7 @@
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
-    import { Modal } from 'carbon-components';
+    import { Modal, DataTable, Loading } from 'carbon-components';
 
     Vue.use(CarbonComponentsVue);
 //     import {
@@ -135,7 +145,9 @@
             DeleteService,
             ListTask,
             Notification,
-            Modal
+            Modal,
+            DataTable, 
+            Loading
         }
     }
 </script>
