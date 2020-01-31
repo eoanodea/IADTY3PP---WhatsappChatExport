@@ -17,7 +17,7 @@
             @modal-hidden="showDialog = false"
             @modal-hide-request="showDialog = false"
             @secondary-click="actionSecondary"
-            @primary-click="deleteUser"
+            @primary-click="actionPrimary"
         >
         <!-- <template slot="label">Label of modal</template> -->
         <template slot="title">WARNING</template>
@@ -25,7 +25,7 @@
 
         <!-- Buttons -->
         <template slot="secondary-button">No</template>
-        <template @click="deleteUser" slot="primary-button">Yes</template>
+        <template slot="primary-button">Yes</template>
     </cv-modal>
 
 
@@ -125,13 +125,14 @@
             }
         },
         methods: {
-            deleteUser: function() {
+            actionPrimary() {
                 axios.delete(`/api/user/${this.id}`)
                 .then(response => {
                     if(!response.data) console.log("Error: ", response)
                     else router.push({name: 'users' })
                 })
             }
+            
         },
         components: {
             Modal,
