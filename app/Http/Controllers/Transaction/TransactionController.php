@@ -18,7 +18,12 @@ class TransactionController extends Controller
      */
     public function indexByAssignment($id)
     {
-        return Transaction::where('assignment_id', $id)->get();
+        $transactions = Transaction::where('assignment_id', $id)->get();
+
+        return response()->json([
+            'status'=> 'success',
+            'transactions' => $transactions->toArray()
+        ], 200);
     }
 
     /**

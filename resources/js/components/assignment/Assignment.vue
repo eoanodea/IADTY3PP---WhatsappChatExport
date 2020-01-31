@@ -41,6 +41,9 @@
     <div>
         <ListTask v-bind:id="assignment.id" v-bind:isActive="true" />
     </div>
+    <div>
+        <ListTransaction v-bind:id="assignment.id" />
+    </div>
     </div>
 </template>
 
@@ -50,6 +53,7 @@
     import DeleteAssignment from './DeleteAssignment'
     import ListServices from './../service/ListServices'
     import ListTask from './../task/ListTask'
+    import ListTransaction from './../transaction/ListTransaction'
     import {
     MdButton,
     MdProgress,
@@ -102,7 +106,8 @@
         },
         components: {
             DeleteAssignment,
-            ListTask
+            ListTask,
+            ListTransaction
         },
         methods: {
             paymentDue() {

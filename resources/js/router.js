@@ -30,6 +30,7 @@ import AddAssignmentStepper from './components/assignment/add/AddAssignmentStepp
 import EditAssignment from './components/assignment/EditAssignment'
 import Assignment from './components/assignment/Assignment'
 import store from './store/index'
+import ListTransaction from './components/transaction/ListTransaction'
 import Transaction from './components/transaction/Transaction'
 
 /*
@@ -175,6 +176,12 @@ const routes = [
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     //Transaction
+    {
+        path: '/transactions/:id',
+        name: 'transactions',
+        component: ListTransaction,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
     {
         path: '/transaction/:id',
         name: 'transaction',
