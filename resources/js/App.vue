@@ -114,7 +114,7 @@
     </cv-header>
     
     <!-- <div class="bx--row"> -->
-      <router-view class="" style="padding: 60px 0;"></router-view>
+      <router-view></router-view>
     <!-- </div> -->
   </div>
 </div>

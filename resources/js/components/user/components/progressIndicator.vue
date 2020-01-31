@@ -76,7 +76,7 @@
 		        <span class="bx--tooltip__caret"></span>
 		        <p class="bx--tooltip__text"></p>
 	        </div>
-	        <span class="bx--progress-line"></span>
+	        <!-- <span class="bx--progress-line"></span> -->
         </li>
     </ul>
 </template>

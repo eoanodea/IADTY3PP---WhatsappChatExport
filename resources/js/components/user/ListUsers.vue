@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid"> <!-- Open Grid -->
+<div style="padding: 60px 250px;"> <!-- Open Grid -->
   <div class="bx--data-table-container" data-table> <!-- Open Table -->
     <!-- Title -->
     <div class="bx--data-table-header">
@@ -25,9 +25,8 @@
       <!-- Persistent Search -->
       <div class="bx--toolbar-content">
         <!-- Add Client Button -->
-        <cv-link to="/admin/users/new"> 
-        
-          <button href="/admin/users/new" class="bx--btn bx--btn--sm bx--btn--primary">
+        <cv-link to="/admin/users/new" style="text-decoration: none;"> 
+          <button href="/admin/users/new" class="bx--btn bx--btn--lg bx--btn--primary">
               Add Client 
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
           </button>
@@ -89,8 +88,8 @@
 
         <!-- View Profile Buttons -->
         <td>
-          <cv-link :to="'/admin/users/show/' + user.id"> 
-            <button class="bx--table-sort" data-event="sort" title="Name">
+          <cv-link :to="'/admin/users/show/' + user.id" style="text-decoration: none;"> 
+            <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
                 View Profile
             </button>
           </cv-link>

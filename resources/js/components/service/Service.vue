@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid">
+<div class="bx--grid" style="padding: 40px 0px;">
     <!-- Service Details (Notification Card) -->
     <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
         <div class="bx--inline-notification__details">
@@ -20,13 +20,11 @@
         </div>
 
         <!-- Edit Button -->
-        <div class="bx--row">
-            <cv-link :to="'/admin/services/edit/' + service.id">
-                <button data-notification-btn class="bx--btn bx--btn--sm bx--btn--primary">
-                    Edit Service
-                </button>
-            </cv-link>
-        </div>
+        <cv-link :to="'/admin/services/edit/' + service.id" style="text-decoration: none;">
+            <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+                Edit Service
+            </button>
+        </cv-link>
     </div>
 
     <!-- Default Tasks Table -->

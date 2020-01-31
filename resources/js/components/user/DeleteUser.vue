@@ -2,7 +2,7 @@
 <div>
     <!-- Modal Button -->
     <button 
-        class="bx--btn--sm bx--btn--danger" 
+        class="bx--btn bx--btn--lg bx--btn--danger" 
         type="button" 
         data-modal-target="#modal-ptxyfo5520i"
         @click="showDialog = true">

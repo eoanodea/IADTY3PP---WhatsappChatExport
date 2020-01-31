@@ -9,7 +9,7 @@
 
 
 <template>
-    <div id="main">
+    <div id="main" style="padding: 50px 0px;">
         Work in Progress {{ msg }}
     </div>
 </template>

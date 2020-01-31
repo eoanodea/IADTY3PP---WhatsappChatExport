@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid">
+<div class="bx--grid" style="padding: 60px 250px;">
     <div class="bx--data-table-container" data-table>
         <!-- Title -->
         <div class="bx--data-table-header">
@@ -10,8 +10,8 @@
         <section class="bx--table-toolbar">
             <!-- Persistent Search -->
             <div class="bx--toolbar-content">
-                <cv-link to="/admin/services/new">
-                    <button href="/admin/services/new" class="bx--btn bx--btn--sm bx--btn--primary">
+                <cv-link to="/admin/services/new" style="text-decoration: none;">
+                    <button href="/admin/services/new" class="bx--btn bx--btn--lg bx--btn--primary">
                         Add Service 
                         <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
                     </button>
@@ -61,8 +61,8 @@
 
                 <!-- View Profile Buttons -->
                 <td>
-                    <cv-link :to="'/admin/services/show/' + service.id"> 
-                        <button class="bx--table-sort" data-event="sort" title="Service">
+                    <cv-link :to="'/admin/services/show/' + service.id" style="text-decoration: none;"> 
+                        <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Service">
                             View Service
                         </button>
                     </cv-link>
