@@ -63,7 +63,7 @@
                     <td>
                         <cv-link :to="`/admin/tasks/${active}/show/` + task.id" style="text-decoration: none;"> 
                             <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="default_task">
-                                View Default Task
+                                View
                             </button>
                         </cv-link>
                     </td>
