@@ -1,5 +1,35 @@
 <template>
-    <div class="fluid-container">
+<div class="bx--grid">
+    <!-- Service Details (Notification Card) -->
+    <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
+        <div class="bx--inline-notification__details">
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
+
+            <!-- Client Details Contents -->
+            <div class="bx--row">
+                <div class="bx--inline-notification__text-wrapper">
+                    <div class="bx--col-lg-12">
+                        <p class="bx--inline-notification__title">{{ service.title }}</p>
+                        <p class="bx--inline-notification__title">{{ service.description }}</p>
+                        <p class="bx--inline-notification__title">Standard Price: {{service.standard_price}}</p>
+                        <p class="bx--inline-notification__title">Recurring Payment? {{service.recurring_payment}}</p>
+                        <p class="bx--inline-notification__title">Public Service? {{service.is_public}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Button -->
+        <div class="bx--row">
+            <cv-link :to="'/admin/services/edit/' + service.id">
+                <button data-notification-btn class="bx--btn bx--btn--sm bx--btn--primary">
+                    Edit Service
+                </button>
+            </cv-link>
+        </div>
+    </div>
+
+
     <!-- Service Details -->
     <div class="md-layout">
       <div class="md-layout-item">
@@ -40,9 +70,8 @@
     <md-card-actions>
         <DeleteService v-bind:id="service.id"/>
     </md-card-actions>
-    </div>
-
     
+</div>
 </template>
 
 <script>
@@ -50,31 +79,37 @@
     import axios from 'axios'
     import DeleteService from './DeleteService'
     import ListTask from './../task/ListTask'
-    import {
-    MdButton,
-    MdProgress,
-    MdAvatar,
-    MdCard,
-    MdContent,
-    MdElevation,
-    MdIcon,
-    MdImage,
-    MdLayout,
-    MdRipple,
-    MdToolbar
-} from "vue-material/dist/components";
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { Notification } from 'carbon-components';
+    import { Modal } from 'carbon-components';
 
-    Vue.use(MdButton);
-    Vue.use(MdProgress);
-    Vue.use(MdAvatar);
-    Vue.use(MdCard);
-    Vue.use(MdContent);
-    Vue.use(MdElevation);
-    Vue.use(MdIcon);
-    Vue.use(MdImage);
-    Vue.use(MdLayout);
-    Vue.use(MdRipple);
-    Vue.use(MdToolbar);
+    Vue.use(CarbonComponentsVue);
+//     import {
+//     MdButton,
+//     MdProgress,
+//     MdAvatar,
+//     MdCard,
+//     MdContent,
+//     MdElevation,
+//     MdIcon,
+//     MdImage,
+//     MdLayout,
+//     MdRipple,
+//     MdToolbar
+// } from "vue-material/dist/components";
+
+    // Vue.use(MdButton);
+    // Vue.use(MdProgress);
+    // Vue.use(MdAvatar);
+    // Vue.use(MdCard);
+    // Vue.use(MdContent);
+    // Vue.use(MdElevation);
+    // Vue.use(MdIcon);
+    // Vue.use(MdImage);
+    // Vue.use(MdLayout);
+    // Vue.use(MdRipple);
+    // Vue.use(MdToolbar);
 
     export default {
         data() {
@@ -98,7 +133,9 @@
         },
         components: {
             DeleteService,
-            ListTask
+            ListTask,
+            Notification,
+            Modal
         }
     }
 </script>
