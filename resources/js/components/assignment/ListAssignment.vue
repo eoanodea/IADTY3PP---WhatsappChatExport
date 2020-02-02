@@ -201,7 +201,10 @@ Vue.use(CarbonComponentsVue);
         },
         mounted () {
             axios.get('/api/assignment/all')
-            .then(response => (this.assignments = response.data))
+            .then(response => (this.assignments = response.data)),
+
+            axios.get('/api/service/all')
+            .then(response => (this.services = response.data))
         },
         methods: {
             //
