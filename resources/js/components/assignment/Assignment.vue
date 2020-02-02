@@ -13,10 +13,10 @@
                             <div class="bx--col-lg-12">
                                 <p class="bx--inline-notification__title">Project: {{ assignment.title }}</p>
                                 <p class="bx--inline-notification__title">Service: {{ service.title }}</p>
-                                <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
                                 <p class="bx--inline-notification__title">Deposit: {{ assignment.deposit }}%</p>
                                 <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
                                 <p class="bx--inline-notification__title">Total Price: €{{ assignment.total_price }}</p>
+                                <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
                                 <p class="bx--inline-notification__title">Completed? {{ assignment.completed }}</p>
                                 <p class="bx--inline-notification__title">Date of Completeion: {{ assignment.date_of_completion }}</p>
                             </div>
