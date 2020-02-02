@@ -41,19 +41,19 @@
             </div>
         </div>
 
-        <!-- Standard Price -->
+        <!-- Percentage Done -->
         <br/>
         <div class="bx--row">
             <div class="bx--col-lg-12">
                 <div class="bx--form-item bx--text-input-wrapper">
-                    <label for="standard_price" class="bx--label">Percentage Done</label>
+                    <label for="percent_done" class="bx--label">Percentage Done</label>
                     <div class="bx--text-input__field-wrapper">
                         <input 
                         id="text-input-3" 
-                        name="standard_price" 
+                        name="percent_done" 
                         type="number" 
-                        autocomplete="given-standard_price" 
-                        v-model="task.standard_price"
+                        autocomplete="given-percent_done" 
+                        v-model="task.percent_done"
                         class="bx--text-input" 
                         placeholder="Percentage Done">
                         <span>%</span>
