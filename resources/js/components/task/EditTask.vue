@@ -1,5 +1,84 @@
 <template>
-    <div class="fluid-container">
+    <div class="bx--grid" style="padding: 60px 250px;">
+        <!-- Title -->
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <div class="bx--form-item bx--text-input-wrapper">
+                    <label for="title" class="bx--label">Title</label>
+                    <div class="bx--text-input__field-wrapper">
+                        <input 
+                        id="text-input-3" 
+                        name="title" 
+                        type="text" 
+                        autocomplete="given-title" 
+                        v-model="task.title"
+                        class="bx--text-input" 
+                        placeholder="Title">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <br/>
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <div class="bx--form-item bx--text-input-wrapper">
+                    <label for="description" class="bx--label">Description</label>
+                    <div class="bx--text-input__field-wrapper">
+                        <textarea 
+                            id="text-area-2" 
+                            name="description" 
+                            type="description" 
+                            autocomplete="description" 
+                            v-model="task.description"
+                            class="bx--text-area"
+                            rows="4" 
+                            cols="50" 
+                            placeholder="Description"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Standard Price -->
+        <br/>
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <div class="bx--form-item bx--text-input-wrapper">
+                    <label for="standard_price" class="bx--label">Percentage Done</label>
+                    <div class="bx--text-input__field-wrapper">
+                        <input 
+                        id="text-input-3" 
+                        name="standard_price" 
+                        type="number" 
+                        autocomplete="given-standard_price" 
+                        v-model="task.standard_price"
+                        class="bx--text-input" 
+                        placeholder="Percentage Done">
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <br/>
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <div class="bx--form-item">
+                    <button 
+                        class="bx--btn bx--btn--primary" 
+                        type="submit"
+                        :disabled="submitting">
+                            Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="md-layout">
             <div class="md-layout-item">
                 <md-table-toolbar>
@@ -45,13 +124,16 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    // import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
 
-    Vue.use(MdButton)
-    Vue.use(MdField)
-    Vue.use(MdCard)
-    Vue.use(MdCheckbox)
+    // Vue.use(MdButton)
+    // Vue.use(MdField)
+    // Vue.use(MdCard)
+    // Vue.use(MdCheckbox)
     
+    Vue.use(CarbonComponentsVue);
 
     export default {
         props: ['id', 'isActive'],
