@@ -13,11 +13,30 @@
                             <div class="bx--col-lg-12">
                                 <p class="bx--inline-notification__title">Project {{ assignment.title }}</p>
                                 <p class="bx--inline-notification__title">Service: {{ service.title }}</p>
+                                <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
+                                <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
+                                <p class="bx--inline-notification__title">Total Price: €{{ assignment.total_price }}</p>
+                                <p class="bx--inline-notification__title">Completed? {{ assignment.completed }}</p>
+                                <p class="bx--inline-notification__title">Date of Completeion: {{ assignment.date_of_completion }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Edit Button -->
+                <cv-link :to="'/admin/assignments/edit/' + assignment.id" style="text-decoration: none;">
+                    <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+                        Edit Project
+                    </button>
+                </cv-link>
+                <DeleteAssignment v-bind:id="assignment.id"/>
             </div>
+        </div>
+
+        <!-- Default Tasks Table -->
+        <br/>
+        <div class="bx--col-lg-6">
+            <ListTask v-bind:id="assignment.id" v-bind:isActive="false" />
         </div>
     </div>
 
@@ -27,7 +46,7 @@
 
 
     <!-- Project Details -->
-    <div class="md-layout">
+    <!-- <div class="md-layout">
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Project Details</h1>
@@ -63,7 +82,7 @@
 
     <div>
         <ListTask v-bind:id="assignment.id" v-bind:isActive="true" />
-    </div>
+    </div> -->
 </div>
 </template>
 
