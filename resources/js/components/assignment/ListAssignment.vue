@@ -70,7 +70,7 @@
 
                 <!-- Deadline -->
                 <td>
-                    {{ assignment.date_of_completion }}
+                    {{ assignment.deadline }}
                 </td>
 
                 <!-- View Profile Buttons -->
