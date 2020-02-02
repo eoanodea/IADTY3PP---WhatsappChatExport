@@ -18,7 +18,7 @@
                                 <p class="bx--inline-notification__title">Total Price: €{{ assignment.total_price }}</p>
                                 <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
                                 <p class="bx--inline-notification__title">Completed? {{ assignment.completed }}</p>
-                                <p class="bx--inline-notification__title">Date of Completeion: {{ assignment.date_of_completion }}</p>
+                                <p class="bx--inline-notification__title">Date of Completion: {{ assignment.date_of_completion }}</p>
                             </div>
                         </div>
                     </div>
