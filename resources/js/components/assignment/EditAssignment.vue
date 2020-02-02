@@ -20,22 +20,62 @@
         </div>
     </div>
 
-    <!-- Deposit -->
+    <!-- Percentages Data -->
+    <br/>
+    <div class="bx--row">
+        <!-- Deposit -->
+        <div class="bx--col-lg-6">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="deposit" class="bx--label">Deposit</label>
+                <div class="bx--text-input__field-wrapper">
+                    <input 
+                    id="text-input-3" 
+                    name="deposit" 
+                    type="number" 
+                    autocomplete="given-deposit" 
+                    v-model="assignment.deposit"
+                    class="bx--text-input" 
+                    placeholder="Deposit %">
+                    <span>%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discount -->
+        <div class="bx--col-lg-6">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="discount" class="bx--label">Discount</label>
+                <div class="bx--text-input__field-wrapper">
+                    <input 
+                    id="text-input-3" 
+                    name="discount" 
+                    type="number" 
+                    autocomplete="given-discount" 
+                    v-model="assignment.discount"
+                    class="bx--text-input" 
+                    placeholder="Discount">
+                    <span>%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Price -->
     <br/>
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="standard_price" class="bx--label">Deposit</label>
+                <label for="total_price" class="bx--label">Total Price</label>
                 <div class="bx--text-input__field-wrapper">
+                    <span>€</span>
                     <input 
                     id="text-input-3" 
-                    name="standard_price" 
+                    name="total_price" 
                     type="number" 
-                    autocomplete="given-standard_price" 
-                    v-model="assignment.deposit"
+                    autocomplete="given-total_price" 
+                    v-model="assignment.total_price"
                     class="bx--text-input" 
-                    placeholder="€Standard Price">
-                    <span>%</span>
+                    placeholder="Total Price">
                 </div>
             </div>
         </div>
@@ -88,8 +128,36 @@
         </div>
     </div>
 
+    <!-- Button -->
+    <br/>
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item">
+                <button 
+                    class="bx--btn bx--btn--primary" 
+                    type="submit"
+                    :disabled="submitting">
+                        Save
+                </button>
+            </div>
+        </div>
+    </div>
 
-        <div class="md-layout">
+    <!-- Error -->
+    <br/>
+    <div class="bx--row">
+        <p v-if="errors.length">
+        <b class="bx--form-requirement">Please correct the following error(s):</b>
+            <ul>
+                <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                    {{ error.message }}
+                </li>
+            </ul>
+        </p>
+    </div>
+
+
+        <!-- <div class="md-layout">
             <div class="md-layout-item">
                 <md-table-toolbar>
                     <h1 class="md-title accent">Edit Project Details</h1>
@@ -134,7 +202,7 @@
                     <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
                 </md-card-actions>
             </md-card>
-        </form>
+        </form> -->
 </div>
 </template>
 
