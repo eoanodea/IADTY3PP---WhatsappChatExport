@@ -11,7 +11,7 @@
                     <div class="bx--row">
                         <div class="bx--inline-notification__text-wrapper">
                             <div class="bx--col-lg-12">
-                                <p class="bx--inline-notification__title">Project {{ assignment.title }}</p>
+                                <p class="bx--inline-notification__title">Project: {{ assignment.title }}</p>
                                 <p class="bx--inline-notification__title">Service: {{ service.title }}</p>
                                 <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
                                 <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
@@ -146,6 +146,12 @@
                 if(response.data.status !== "success") {
                     console.log("error ", response)
                 } else this.assignment = response.data.assignment
+            }),
+            axios.get(`/api/service/${this.$route.params.id}`)
+            .then(response => {
+                if(response.data.status !== "success") {
+                    console.log("error ", response)
+                } else this.service = response.data.service
             })
         },
         components: {

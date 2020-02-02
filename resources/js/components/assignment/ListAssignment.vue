@@ -203,8 +203,14 @@ Vue.use(CarbonComponentsVue);
             axios.get('/api/assignment/all')
             .then(response => (this.assignments = response.data)),
 
-            axios.get('/api/service/all')
-            .then(response => (this.services = response.data))
+            // axios.get('/api/service/all')
+            // .then(response => (this.services = response.data))
+            axios.get(`/api/service/${this.$route.params.id}`)
+            .then(response => {
+                if(response.data.status !== "success") {
+                    console.log("error ", response)
+                } else this.service = response.data.service
+            })
         },
         methods: {
             //
