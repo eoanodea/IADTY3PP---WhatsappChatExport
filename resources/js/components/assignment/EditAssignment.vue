@@ -1,5 +1,94 @@
 <template>
-    <div fluid-container>
+<div class="bx--grid" style="padding: 60px 250px;">
+    <!-- Project -->
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">Project</label>
+                
+                <div class="bx--text-input__field-wrapper">
+                    <input 
+                    id="text-input-3" 
+                    name="title" 
+                    type="text" 
+                    autocomplete="given-title" 
+                    v-model="assignment.title"
+                    class="bx--text-input" 
+                    placeholder="Project">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit -->
+    <br/>
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="standard_price" class="bx--label">Deposit</label>
+                <div class="bx--text-input__field-wrapper">
+                    <input 
+                    id="text-input-3" 
+                    name="standard_price" 
+                    type="number" 
+                    autocomplete="given-standard_price" 
+                    v-model="assignment.deposit"
+                    class="bx--text-input" 
+                    placeholder="€Standard Price">
+                    <span>%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dates -->
+    <br/>
+    <div class="bx--row">
+        <!-- Deadline -->
+        <div class="bx--col-lg-6">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <cv-date-picker
+                    date-label="Deadline"
+                    kind="single"
+                    :cal-options="calOptions"
+                    autocomplete="given-deadline"
+                    v-model="assignment.deadline"
+                    placeholder="Day/Month/Year">
+
+                </cv-date-picker>
+            </div>
+        </div>
+
+        <!-- Date of Completion -->
+        <div class="bx--col-lg-6">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <cv-date-picker
+                    date-label="Date of Completion"
+                    kind="single"
+                    :cal-options="calOptions"
+                    autocomplete="given-date_of_completion"
+                    v-model="assignment.date_of_completion"
+                    placeholder="Day/Month/Year">
+
+                </cv-date-picker>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completed Checkbox -->
+    <br/>
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <label for="completed" class="bx--label">Project Completed</label>
+            <cv-checkbox
+                name="completed" 
+                v-model="assignment.completed"
+                :disabled="disabled">
+            </cv-checkbox>
+        </div>
+    </div>
+
+
         <div class="md-layout">
             <div class="md-layout-item">
                 <md-table-toolbar>
@@ -46,16 +135,22 @@
                 </md-card-actions>
             </md-card>
         </form>
-    </div>
+</div>
 </template>
+
 <script>
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    import {MdDatepicker} from 'vue-material/dist/components'
+    // import {MdDatepicker} from 'vue-material/dist/components'
     import format from 'date-fns/format'
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { CvCheckbox, CvDatePicker } from '@carbon/vue/src'
 
-    Vue.use(MdDatepicker)
+    Vue.use(CarbonComponentsVue);
+
+    // Vue.use(MdDatepicker)
     
 
     export default {
@@ -73,7 +168,11 @@
                     completed: false,
                 },
                 errors: [],
-                submitting: false
+                submitting: false,
+                "calOptions": {
+                "dateFormat": "d/m/Y"
+                },
+                // "dateLabel": "Deadline"
             }
         },
         mounted() {
@@ -102,7 +201,10 @@
                     } else router.push({path: `/admin/assignments/show/${response.data.assignment.id}`})
                 })
             }
-
+        },
+        components: {
+            CvCheckbox,
+            CvDatePicker
         }
     }
 </script>
