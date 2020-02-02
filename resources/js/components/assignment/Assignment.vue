@@ -1,5 +1,16 @@
 <template>
-    <div class="fluid-container">
+<div class="bx--grid" style="padding: 40px 0px;">
+    <div class="bx--row">
+        <div class="bx--col-lg-6">
+
+        </div>
+    </div>
+
+
+
+
+
+
     <!-- Project Details -->
     <div class="md-layout">
       <div class="md-layout-item">
@@ -38,7 +49,7 @@
     <div>
         <ListTask v-bind:id="assignment.id" v-bind:isActive="true" />
     </div>
-    </div>
+</div>
 </template>
 
 <script>
@@ -47,31 +58,37 @@
     import DeleteAssignment from './DeleteAssignment'
     import ListServices from './../service/ListServices'
     import ListTask from './../task/ListTask'
-    import {
-    MdButton,
-    MdProgress,
-    MdAvatar,
-    MdCard,
-    MdContent,
-    MdElevation,
-    MdIcon,
-    MdImage,
-    MdLayout,
-    MdRipple,
-    MdToolbar
-} from "vue-material/dist/components";
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { Notification } from 'carbon-components';
+    import { Modal, DataTable, Loading } from 'carbon-components';
 
-    Vue.use(MdButton);
-    Vue.use(MdProgress);
-    Vue.use(MdAvatar);
-    Vue.use(MdCard);
-    Vue.use(MdContent);
-    Vue.use(MdElevation);
-    Vue.use(MdIcon);
-    Vue.use(MdImage);
-    Vue.use(MdLayout);
-    Vue.use(MdRipple);
-    Vue.use(MdToolbar);
+    Vue.use(CarbonComponentsVue);
+//     import {
+//     MdButton,
+//     MdProgress,
+//     MdAvatar,
+//     MdCard,
+//     MdContent,
+//     MdElevation,
+//     MdIcon,
+//     MdImage,
+//     MdLayout,
+//     MdRipple,
+//     MdToolbar
+// } from "vue-material/dist/components";
+
+    // Vue.use(MdButton);
+    // Vue.use(MdProgress);
+    // Vue.use(MdAvatar);
+    // Vue.use(MdCard);
+    // Vue.use(MdContent);
+    // Vue.use(MdElevation);
+    // Vue.use(MdIcon);
+    // Vue.use(MdImage);
+    // Vue.use(MdLayout);
+    // Vue.use(MdRipple);
+    // Vue.use(MdToolbar);
 
     export default {
         data() {
