@@ -2,7 +2,9 @@
 <div class="bx--grid" style="padding: 60px 250px;">
     <!-- Switcher Buttons -->
     <cv-content-switcher>
-        <cv-content-switcher-button :active="first" id="first" :selected="isSelected(0)" :icon="icon">
+        <!-- Client and Services Button -->
+        <cv-content-switcher-button :active="first" id="first" :selected="isSelected(0)">
+            <AddFilled16 />
             Client & Service
         </cv-content-switcher-button>
     </cv-content-switcher>
@@ -100,7 +102,8 @@
             AddTasksToNewAssignment,
             CvContentSwitcher, 
             CvContentSwitcherButton, 
-            CvContentSwitcherContent
+            CvContentSwitcherContent,
+            AddFilled16
             // ProgressIndicator,
             // CvProgress, 
             // CvProgressStep
