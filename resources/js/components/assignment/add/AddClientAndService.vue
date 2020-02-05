@@ -1,6 +1,33 @@
 <template>
-    <div class="md-layout">
-        <md-field>
+<div>
+    <!-- Select Service -->
+    <label for="service">Select a Service</label>
+    <cv-dropdown :value="value" name="service" id="service" v-model="serviceId" class="cv-dropdown" placeholder="Select a Service">
+        <cv-dropdown-item v-for="service in services" v-bind:key="service.id" :value="service.id">
+            {{service.title}}
+        </cv-dropdown-item>
+    </cv-dropdown>
+
+    <!-- Select Client -->
+    <br/>
+    <label for="client">Select a Client</label>
+    <cv-dropdown :value="value" name="client" id="client" v-model="clientId" class="cv-dropdown" placeholder="Select a Client">
+        <cv-dropdown-item value="20" v-for="client in clients" v-bind:key="client.id" :value="client.id">
+            {{client.first_name + ' ' + client.last_name}}
+        </cv-dropdown-item>
+    </cv-dropdown>
+
+    <!-- Save Button -->
+    <br/>
+    <cv-link :disabled="!serviceId || !clientId" @click="returnData" style="text-decoration: none;">
+        <button :disabled="!serviceId || !clientId" @click="returnData" class="bx--btn bx--btn--lg bx--btn--primary">
+            Save
+        </button>
+    </cv-link>
+
+
+
+        <!-- <md-field>
             <label class="accent" for="service">Select a Service</label>
             <md-select name="service" id="service" palceholder="Select a Service" v-model="serviceId">
                 <md-option v-for="service in services" v-bind:key="service.id" :value="service.id">{{service.title}}</md-option>
@@ -11,17 +38,28 @@
             <md-select name="client" id="client" palceholder="Select a Client" v-model="clientId"> 
                 <md-option v-for="client in clients" v-bind:key="client.id" :value="client.id">{{client.first_name + ' ' + client.last_name}}</md-option>
             </md-select>
-        </md-field>
-        <md-button :disabled="!serviceId || !clientId" class="md-accent md-raised" @click="returnData">Save</md-button>
-    </div>
+        </md-field> -->
+        <!-- <md-button :disabled="!serviceId || !clientId" class="md-accent md-raised" @click="returnData">Save</md-button> -->
+</div>
 </template>
 
 <script>
     import axios from 'axios';
     import Vue from 'vue';
-    import {MdMenu} from 'vue-material/dist/components'
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { 
+        CvContentSwitcher, 
+        CvContentSwitcherButton, 
+        CvContentSwitcherContent,
+        CvDropdown, 
+        CvDropdownItem, 
+        CvDropdownSkeleton } from '@carbon/vue/src'
 
-    Vue.use(MdMenu);
+    Vue.use(CarbonComponentsVue);
+    // import {MdMenu} from 'vue-material/dist/components'
+
+    // Vue.use(MdMenu);
 
     export default {
         data() {
@@ -29,7 +67,20 @@
                 serviceId: null,
                 clientId: null,
                 clients: [],
-                services: []
+                services: [],
+                value: {
+                    config: [
+                        'value',
+                        {
+                            default: '',
+                            'Value 10': '10',
+                            'Value 20': '20',
+                            'Value 30': '30',
+                            'Value 40': '40',
+                            'Value 50': '50',
+                        }
+                    ]
+                }
             }
         },
         mounted() {
@@ -60,6 +111,14 @@
             returnData() {
                 this.$emit('selected-service-client', this.serviceId, this.clientId)
             }
+        },
+        components: {
+            CvContentSwitcher, 
+            CvContentSwitcherButton, 
+            CvContentSwitcherContent,
+            CvDropdown, 
+            CvDropdownItem, 
+            CvDropdownSkeleton
         }   
     }
 </script>
