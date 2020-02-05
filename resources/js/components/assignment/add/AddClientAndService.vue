@@ -12,7 +12,7 @@
     <br/>
     <label for="client">Select a Client</label>
     <cv-dropdown :value="value" name="client" id="client" v-model="clientId" class="cv-dropdown" placeholder="Select a Client">
-        <cv-dropdown-item value="20" v-for="client in clients" v-bind:key="client.id" :value="client.id">
+        <cv-dropdown-item v-for="client in clients" v-bind:key="client.id" :value="client.id">
             {{client.first_name + ' ' + client.last_name}}
         </cv-dropdown-item>
     </cv-dropdown>
