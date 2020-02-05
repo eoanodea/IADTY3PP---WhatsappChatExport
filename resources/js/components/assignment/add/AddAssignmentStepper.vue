@@ -1,40 +1,11 @@
 <template>
 <div class="bx--grid" style="padding: 60px 250px;">
-    <!-- Indicator Container -->
-    <ul data-progress data-progress-current class="bx--progress ">
-        <!-- Client and Service -->
-        <li id="first" class="bx--progress-step bx--progress-step--current">
-            <svg><path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path></svg>
-            <p tabindex="0" class="bx--progress-label" aria-describedby="label-tooltipfvsw9xwdq7">
-                Client & Service
-            </p>
-            <div id="label-tooltip" role="tooltip" data-floating-menu-direction="bottom" class="bx--tooltip" data-avoid-focus-on-open>
-                <span class="bx--tooltip__caret"></span>
-                <p class="bx--tooltip__text">Client & Service</p>
-            </div>
-            <p class="bx--progress-optional">Choose a Client and Service for your new Project.</p>
-		    <span class="bx--progress-line"></span>
-            
-            <!-- <AddClientAndService v-on:selected-service-client="handleServiceAndClientId"/> -->
-        </li>
-
-        <!-- Assignment Details -->
-        <li id="second" class="bx--progress-step bx--progress-step--incomplete">
-            <svg><path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"></path></svg>
-            <p tabindex="0" class="bx--progress-label" aria-describedby="label-tooltipd88ssqwl1mc">
-                Project Details
-            </p>
-            <div id="label-tooltipd88ssqwl1mc" role="tooltip" data-floating-menu-direction="bottom" class="bx--tooltip" data-avoid-focus-on-open>
-                <span class="bx--tooltip__caret"></span>
-			    <p class="bx--tooltip__text">Project Details</p>
-            </div>
-            <p class="bx--progress-optional">Enter Details about the Project.</p>
-		    <span class="bx--progress-line"></span>
-
-            <!-- <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/> -->
-        </li>
-    </ul>
-
+    <!-- Switcher Buttons -->
+    <cv-content-switcher>
+        <cv-content-switcher-button :active="first" id="first" :selected="isSelected(0)" :icon="icon">
+            Client & Service
+        </cv-content-switcher-button>
+    </cv-content-switcher>
 
 
 
@@ -62,8 +33,9 @@
     import AddTasksToNewAssignment from './AddTasksToNewAssignment';
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
-    import { ProgressIndicator } from 'carbon-components';
-    import { CvProgress, CvProgressStep } from '@carbon/vue/src'
+    // import { ProgressIndicator } from 'carbon-components';
+    import { CvContentSwitcher, CvContentSwitcherButton, CvContentSwitcherContent } from '@carbon/vue/src'
+    import AddFilled16 from '@carbon/icons-vue/es/add--filled/16';
 
     Vue.use(CarbonComponentsVue);
     // Vue.use(MdSteppers)
@@ -78,7 +50,8 @@
                 secondStepError: null,
                 serviceId: null,
                 clientId: null,
-                assignment: null
+                assignment: null,
+                "initialSelected": 0
             }
         },
         methods: {
@@ -125,9 +98,17 @@
             AddClientAndService,
             AddAssignmentDetails,
             AddTasksToNewAssignment,
-            ProgressIndicator,
-            CvProgress, 
-            CvProgressStep
+            CvContentSwitcher, 
+            CvContentSwitcherButton, 
+            CvContentSwitcherContent
+            // ProgressIndicator,
+            // CvProgress, 
+            // CvProgressStep
+        },
+        computed: {
+            isSelected() {
+                return index => this.initialSelected === index;
+            },
         }
     }
 </script>
