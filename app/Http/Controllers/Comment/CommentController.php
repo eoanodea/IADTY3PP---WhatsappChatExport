@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Comment;
+// use App\User;
 
 class CommentController extends Controller
 {
@@ -14,7 +15,7 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function indexByAssignment($id) {
-        $comments = Comment::where('assignment_id', $id)->get();
+        $comments = Comment::with('User')->where('assignment_id', $id)->get();
 
         return response()->json([
             'status' => 'success',
@@ -28,8 +29,8 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function indexByTask($id) {
-        $comments = Comment::where('task_id', $id)->get();
-
+        $comments = Comment::with('User')->where('task_id', $id)->get();
+        
         return response()->json([
             'status' => 'success',
             'comment' => $comments
