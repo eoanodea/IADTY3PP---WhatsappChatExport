@@ -32,6 +32,10 @@ import Assignment from './components/assignment/Assignment'
 import store from './store/index'
 import ListTransaction from './components/transaction/ListTransaction'
 import Transaction from './components/transaction/Transaction'
+import ListComment from './components/comment/ListComment'
+import AddComment from './components/comment/AddComment'
+import EditComment from './components/comment/EditComment'
+import Comment from './components/comment/Comment'
 
 /*
  * Checks if the user is authenticated in the store
@@ -186,6 +190,31 @@ const routes = [
         path: '/transaction/:id',
         name: 'transaction',
         component: Transaction,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    //Comment
+    {
+        path: '/admin/comments/:active/:id',
+        name: 'comments',
+        component: ListComment,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    {
+        path: '/admin/comments/:active/show/:id',
+        name: 'comment',
+        component: Comment,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    {
+        path: '/admin/comments/:active/edit/:id',
+        name: 'editComment',
+        component: EditComment,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    {
+        path: '/admin/comments/:active/:id/new',
+        name: 'addComment',
+        component: AddComment,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     }
 ]
