@@ -1,26 +1,101 @@
-// Primary Colour Variations:
-.primary{ color: $primary; }
+// // Primary Colour Variations:
+// .primary{ color: $primary; }
 
-// Secondary Colour Variations:
-.primaryLight{ color: $primaryLight; }
+// // Secondary Colour Variations:
+// .primaryLight{ color: $primaryLight; }
 
-// Tertiary Colour Variations:
-.primaryDark{ color: $primaryDark; }
+// // Tertiary Colour Variations:
+// .primaryDark{ color: $primaryDark; }
 
-// Accent Colour Variations:
-.accent { color: $accent; }
-.accentLight{ color: $accentLight; }
-.accentDark{ color: $accentDark; }
-.accentContrast{ color: $accentContrast; }
+// // Accent Colour Variations:
+// .accent { color: $accent; }
+// .accentLight{ color: $accentLight; }
+// .accentDark{ color: $accentDark; }
+// .accentContrast{ color: $accentContrast; }
 
-// Button Colour Variations:
-.btnPrimary { background-color: $primary; color: $primaryText;}
-.btnAccent { background-color: $accent; color: $primaryText;}
-.btnWarning{ background-color: $warning; }
-.btnDanger{ background-color: $danger; }
+// // Button Colour Variations:
+// .btnPrimary { background-color: $primary; color: $primaryText;}
+// .btnAccent { background-color: $accent; color: $primaryText;}
+// .btnWarning{ background-color: $warning; }
+// .btnDanger{ background-color: $danger; }
 
-// Text Colours:
-.text { color: $primaryText; }
-.subject { color: $secondaryText; }
-.accent { color: $accent; }
-.error { color: $danger; }
+// // Text Colours:
+// .text { color: $primaryText; }
+// .subject { color: $secondaryText; }
+// .accent { color: $accent; }
+// .error { color: $danger; }
+
+// *** BACKGROUND COLOUR VARIATIONS *** //
+// Primary:
+.primaryBg { background-color: $ui-background; }
+
+// Secondary:
+.secondaryBg { background-color: $ui-01; }
+.secondaryBgLight { background-color: $ui-02; }
+
+// Tertiary:
+.tertiaryBg { background-color: $ui-03; }
+.tertiaryBgHighConOne { background-color: $ui-04; }
+.tertiaryBgHighConTwo { background-color: $ui-05; }
+
+// Overlay:
+.overlayBg { background-color: $overlay-01; }
+
+// Fields:
+.fieldBg { background-color: $field-01; }
+.fieldBgLight { background-color: $field-02; }
+
+// Inverse:
+.inverse { background-color: $inverse-02; }
+
+// *** TEXT *** //
+// Primary:
+.primaryText { color: $text-01; }
+
+// Secondary:
+.secondaryText { color: $text-02; }
+
+// Tertiary:
+.tertiaryText { color: $text-05; }
+
+// Placeholder Text:
+.placeText { color: $text-03; }
+
+// Links:
+.primaryLink { color: $link-01; }
+
+// Info:
+.successText { color: $support-02; }
+.warningText { color: $support-03; }
+.dangerText { color: $support-01; }
+.infoText { color: $support-04; }
+
+// Inverse:
+.inverseText { color: $inverse-01; }
+.inverseLink { color: $inverse-link; }
+
+// *** BUTTONS ** //
+// Primary:
+.primaryBtn { background-color: $interactive-01; color: $text-01; }
+
+// Secondary:
+.secondaryBtn { background-color: $interactive-02; color: $text-01;}
+
+// Tertiary:
+.tertiaryBtn { background-color: $interactive-03; color: $inverse-01;}
+
+// Accent:
+.accentBtn { background-color: $interactive-04; color: $text-01;}
+
+// Info:
+.successBtn { background-color: $inverse-support-02; color: $text-01;}
+.warningBtn { background-color: $inverse-support-03; color: $inverse-01;}
+.dangerBtn { background-color: $inverse-support-01; color: $inverse-01;}
+.infoBtn { background-color: $inverse-support-04; color: $text-01;}
+
+//  *** ICONS *** //
+// Primary:
+.iconPrimary { color: $icon-01; }
+
+// Secondary:
+.iconSecondary { color: $icon-02; }

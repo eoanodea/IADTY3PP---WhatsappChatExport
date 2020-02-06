@@ -1,39 +1,502 @@
-// Typography:
-$font-family-sans-serif: 'Raleway', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// // Typography:
+// $font-family-sans-serif: 'Raleway', sans-serif;
+// $font-size-base: 0.9rem;
+// $line-height-base: 1.6;
 
-// Text Colours:
-$primaryText: #fff;
-$secondaryText: #818181;
+// // Text Colours:
+// $primaryText: #fff;
+// $secondaryText: #818181;
 
-// Primary Colours:
-$primary: #00171F;
+// // Primary Colours:
+// $primary: #00171F;
 
-// Secondary Colours:
-$primaryLight: #002641;
+// // Secondary Colours:
+// $primaryLight: #002641;
 
-// Tertiary Colours:
-$primaryDark: #003153;
+// // Tertiary Colours:
+// $primaryDark: #003153;
 
-// Accent Colours:
-$accent: #9370DB;
-$accentLight: #9e87ce;
-$accentDark: #7b4bda;
-$accentContrast: #000000;
+// // Accent Colours:
+// $accent: #9370DB;
+// $accentLight: #9e87ce;
+// $accentDark: #7b4bda;
+// $accentContrast: #000000;
 
-// Button Colours:
-$warning: #ffb520;
-$danger: #ee4444;
+// // Button Colours:
+// $warning: #ffb520;
+// $danger: #ee4444;
 
-// Default:
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+// // Default:
+// $blue: #3490dc;
+// $indigo: #6574cd;
+// $purple: #9561e2;
+// $pink: #f66d9b;
+// $red: #e3342f;
+// $orange: #f6993f;
+// $yellow: #ffed4a;
+// $green: #38c172;
+// $teal: #4dc0b5;
+// $cyan: #6cb2eb;
+
+// *** CARBON COLOURISATION WITH RULES *** //
+//Core Colour Tokens:
+$ui-background: #262626 !default;  // Default page background
+$interactive-01: #0f62fe !default; // Primary interactive color; Primary buttons
+$interactive-02: #6f6f6f !default; // Secondary interactive color; Secondary button
+$interactive-03: #ffffff !default; // 4.5:1 AA contrast; Tertiary button
+$interactive-04: #4589ff !default; // 3:1 AA contrast; Selected elements; Active elements; Accent icons
+$danger: #da1e28 !default; // Danger button background; 3:1 AA contrast
+$ui-01: #393939 !default; // Container background on $ui-background; Secondary page background
+$ui-02: #525252 !default; // Container background on $ui-01; `Light` variant background
+$ui-03: #525252 !default; // Subtle border; Tertiary background
+$ui-04: #8d8d8d !default; // 3:1 aa element contrast; Medium contrast border
+$ui-05: #f4f4f4 !default; // 4.5:1 aa element contrast; High contrast border; Emphasis elements
+$text-01: #f4f4f4 !default; // Primary text; Body copy; Headers; Hover text color for $text-02
+$text-02: #c6c6c6 !default; // Secondary text; Input labels
+$text-03: #6f6f6f !default; // Placeholder text
+$text-04: #ffffff !default; // Text on interactive colors
+$text-05: #8d8d8d !default; // Tertiary text; Help text
+$link-01: #78a9ff !default; // Primary links; Ghost button
+$inverse-link: #0f62fe !default; // Links on $inverse-02 backgrounds
+$icon-01: #f4f4f4 !default; // Primary icons 
+$icon-02:#c6c6c6 !default; // Secondary icons 
+$icon-03:#ffffff !default; // Icons on interactive colors; Icons on non-ui colors 
+$field-01:#393939 !default; // Default input fields; Fields on $ui-backgrounds 
+$field-02:#525252 !default; // `Light` variant input fields; Fields on $ui-02 backgrounds 
+$inverse-01: #161616 !default; // Inverse text color; Inverse icon color 
+$inverse-02: #f4f4f4 !default; // High contrast backgrounds; High contrast elements
+$support-01: #fa4d56 !default; // Error 
+$support-02: #42be65 !default; // Success
+$support-03: #f1c21b !default; // Warning
+$support-04: #4589ff !default; // Information
+$inverse-support-01: #da1e28 !default; // Danger in high contrast moments
+$inverse-support-02: #24a148 !default; // Success in high contrast moments
+$inverse-support-03: #f1c21b !default; // Warning in high contrast moments
+$inverse-support-04: #0043ce !default; // Information in high contrast moments
+$overlay-01: #1616169c !default; // Background overlay
+
+// Interactive Colour Tokens:
+$focus: #ffffff !default; // Focus border; Focus underline
+$inverse-focus-ui: #0f62fe !default; // Focus on high contrast moments
+$hover-primary: #0353e9 !default; // $interactive-01 hovers
+$hover-primary-text: #054ada !default; // $interactive-01 text hover 
+$hover-secondary: #606060 !default; // $interactive-02 hover
+$hover-tertiary: #f4f4f4 !default; // $interactive-03 hover; $inverse-01 hover
+$hover-ui: #4c4c4c !default; // $ui-01 hover; $ui-02 hover; Transparent background hover
+$hover-selected-ui: #656565 !default; // Selected row hover
+$hover-danger: #ba1b23 !default; // Danger hover; $support-01 hover
+$hover-row: #4c4c4c !default; // Row hover
+$inverse-hover-ui: #e5e5e5 !default; // Hover for $inverse-02
+$active-primary: #002d9c !default; // $interactive-01 active
+$active-secondary: #393939 !default; // $interactive-02 active; $inverse-01 active
+$active-tertiary: #c6c6c6 !default; // $interactive-03 active 
+$active-ui: #6f6f6f !default; // $ui-01 active; $ui-02 active
+$active-danger: #750e13 !default; // Danger active; $support-01 active
+$selected-ui: #525252 !default; // Selected UI elements
+$highlight: #002d9c !default; // $interactive-01 highlight
+$skeleton-01: #353535 !default; // Skeleton state of graphics
+$skeleton-02: #525252 !default; // Skeleton state of texts
+$visited-link: #be95ff !default; // Visited links 
+$disabled-01: #393939 !default; // Disabled fields; Disabled backgrounds; Disabled border
+$disabled-02: #6f6f6f !default; // Disabled elements on $disabled-01; Disabled label; Disabled text on $disabled-01; Disabled icons; Disabled border
+$disabled-03: #8d8d8d !default; // Disabled text on $disabled-02; Disabled icons on $disabled-02
+
+// *** CARBON SPACING *** //
+// Baseline:
+$spacing-baseline: 1rem !default;
+
+// Spacing Scale:
+$spacing-4xs: $spacing-baseline * 0.0625 !default;
+$spacing-3xs: $spacing-baseline * 0.125 !default;
+$spacing-2xs: $spacing-baseline * 0.25 !default;
+$spacing-xs: $spacing-baseline * 0.5 !default;
+$spacing-sm: $spacing-baseline * 0.75 !default;
+$spacing-md: $spacing-baseline !default;
+$spacing-lg: $spacing-baseline * 1.5 !default;
+$spacing-xl: $spacing-baseline * 2 !default;
+$spacing-2xl: $spacing-baseline * 2.5 !default;
+$spacing-3xl: $spacing-baseline * 3 !default;
+
+// Layout Scale:
+$layout-2xs: $spacing-baseline !default;
+$layout-xs: $spacing-baseline * 1.5 !default;
+$layout-sm: $spacing-baseline * 2 !default;
+$layout-md: $spacing-baseline * 3 !default;
+$layout-lg: $spacing-baseline * 4 !default;
+$layout-xl: $spacing-baseline * 6 !default;
+$layout-2xl: $spacing-baseline * 10 !default;
+
+// *** TYPOGRAPHY *** //
+// Universal:
+$caption-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(1),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(16px),
+  letter-spacing: 0.32px,
+) !default;
+
+$label-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(1),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(16px),
+  letter-spacing: 0.32px,
+) !default;
+
+$helper-text-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(1),
+  font-style: italic,
+  line-height: carbon--rem(16px),
+  letter-spacing: 0.32px,
+) !default;
+
+$body-short-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(2),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(18px),
+  letter-spacing: 0.16px,
+) !default;
+
+$body-long-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(2),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(20px),
+  letter-spacing: 0.16px,
+) !default;
+
+$body-short-02: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(3),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(22px),
+  letter-spacing: 0,
+) !default;
+
+$body-long-02: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(3),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(24px),
+  letter-spacing: 0,
+) !default;
+
+$code-01: (
+  font-family: carbon--font-family('mono'),
+  font-size: carbon--type-scale(1),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(16px),
+  letter-spacing: 0.32px,
+) !default;
+
+$code-02: (
+  font-family: carbon--font-family('mono'),
+  font-size: carbon--type-scale(2),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(20px),
+  letter-spacing: 0.32px,
+) !default;
+
+$heading-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(2),
+  font-weight: carbon--font-weight('semibold'),
+  line-height: carbon--rem(18px),
+  letter-spacing: 0.16px,
+) !default;
+
+$heading-02: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(3),
+  font-weight: carbon--font-weight('semibold'),
+  line-height: carbon--rem(22px),
+  letter-spacing: 0,
+) !default;
+
+// Productive:
+$productive-heading-03: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(5),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(26px),
+  letter-spacing: 0,
+) !default;
+
+$productive-heading-04: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(7),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(36px),
+  letter-spacing: 0,
+) !default;
+
+$productive-heading-05: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(8),
+  font-weight: carbon--font-weight('regular'),
+  line-height: carbon--rem(40px),
+  letter-spacing: 0,
+) !default;
+
+// Expressive:
+$expressive-heading-03: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(5),
+  font-weight: carbon--font-weight('regular'),
+  line-height: 130%,
+  letter-spacing: 0,
+  breakpoints: (
+    xlg: (
+      font-size: carbon--type-scale(5),
+      line-height: 125%,
+    ),
+    max: (
+      font-size: carbon--type-scale(6),
+    ),
+  ),
+) !default;
+
+$expressive-heading-04: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(7),
+  font-weight: carbon--font-weight('regular'),
+  line-height: 129%,
+  letter-spacing: 0,
+  breakpoints: (
+    xlg: (
+      font-size: carbon--type-scale(7),
+      line-height: 125%,
+    ),
+    max: (
+      font-size: carbon--type-scale(8),
+    ),
+  ),
+) !default;
+
+$expressive-heading-05: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(8),
+  font-weight: carbon--font-weight('regular'),
+  line-height: 125%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(9),
+      line-height: 122%,
+    ),
+    lg: (
+      font-size: carbon--type-scale(10),
+      line-height: 119%,
+    ),
+    xlg: (
+      font-size: carbon--type-scale(11),
+      line-height: 117%,
+    ),
+    max: (
+      font-size: carbon--type-scale(13),
+    ),
+  ),
+) !default;
+
+$expressive-heading-06: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(8),
+  font-weight: carbon--font-weight('semibold'),
+  line-height: 125%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(9),
+      line-height: 122%,
+    ),
+    lg: (
+      font-size: carbon--type-scale(10),
+      line-height: 119%,
+    ),
+    xlg: (
+      font-size: carbon--type-scale(11),
+      line-height: 117%,
+    ),
+    max: (
+      font-size: carbon--type-scale(13),
+    ),
+  ),
+) !default;
+
+$expressive-paragraph-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(6),
+  font-weight: carbon--font-weight('light'),
+  line-height: 125%,
+  letter-spacing: 0,
+  breakpoints: (
+    lg: (
+      font-size: carbon--type-scale(7),
+      line-height: 129%,
+    ),
+    max: (
+      font-size: carbon--type-scale(8),
+      line-height: 125%,
+    ),
+  ),
+);
+
+// Additional Styles:
+$quotation-01: (
+  font-family: carbon--font-family('serif'),
+  font-size: carbon--type-scale(5),
+  font-weight: carbon--font-weight('regular'),
+  line-height: 130%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(5),
+    ),
+    lg: (
+      font-size: carbon--type-scale(6),
+      line-height: 125%,
+    ),
+    xlg: (
+      font-size: carbon--type-scale(7),
+      line-height: 129%,
+    ),
+    max: (
+      font-size: carbon--type-scale(8),
+      line-height: 125%,
+    ),
+  ),
+) !default;
+
+$quotation-02: (
+  font-family: carbon--font-family('serif'),
+  font-size: carbon--type-scale(8),
+  font-weight: carbon--font-weight('light'),
+  line-height: 125%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(9),
+      line-height: 122%,
+    ),
+    lg: (
+      font-size: carbon--type-scale(10),
+      line-height: 119%,
+    ),
+    xlg: (
+      font-size: carbon--type-scale(11),
+      line-height: 117%,
+    ),
+    max: (
+      font-size: carbon--type-scale(13),
+    ),
+  ),
+) !default;
+
+$display-01: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(10),
+  font-weight: carbon--font-weight('light'),
+  line-height: 119%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(10),
+    ),
+    lg: (
+      font-size: carbon--type-scale(12),
+    ),
+    xlg: (
+      font-size: carbon--type-scale(13),
+      line-height: 117%,
+    ),
+    max: (
+      font-size: carbon--type-scale(15),
+      line-height: 113%,
+    ),
+  ),
+) !default;
+
+$display-02: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(10),
+  font-weight: carbon--font-weight('semibold'),
+  line-height: 119%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(10),
+    ),
+    lg: (
+      font-size: carbon--type-scale(12),
+    ),
+    xlg: (
+      font-size: carbon--type-scale(13),
+      line-height: 116%,
+    ),
+    max: (
+      font-size: carbon--type-scale(15),
+      line-height: 113%,
+    ),
+  ),
+) !default;
+
+$display-03: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(10),
+  font-weight: carbon--font-weight('light'),
+  line-height: 119%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(14),
+      line-height: 115%,
+    ),
+    lg: (
+      font-size: carbon--type-scale(17),
+      line-height: 111%,
+      letter-spacing: -0.64px,
+    ),
+    xlg: (
+      font-size: carbon--type-scale(20),
+      line-height: 107%,
+      letter-spacing: -0.64px,
+    ),
+    max: (
+      font-size: carbon--type-scale(23),
+      line-height: 105%,
+      letter-spacing: -0.96px,
+    ),
+  ),
+) !default;
+
+$display-04: (
+  font-family: carbon--font-family('sans'),
+  font-size: carbon--type-scale(10),
+  font-weight: carbon--font-weight('semibold'),
+  line-height: 119%,
+  letter-spacing: 0,
+  breakpoints: (
+    md: (
+      font-size: carbon--type-scale(14),
+      line-height: 115%,
+    ),
+    lg: (
+      font-size: carbon--type-scale(17),
+      line-height: 111%,
+      letter-spacing: -0.64px,
+    ),
+    xlg: (
+      font-size: carbon--type-scale(20),
+      line-height: 107%,
+      letter-spacing: -0.64px,
+    ),
+    max: (
+      font-size: carbon--type-scale(23),
+      line-height: 105%,
+      letter-spacing: -0.96px,
+    ),
+  ),
+) !default;

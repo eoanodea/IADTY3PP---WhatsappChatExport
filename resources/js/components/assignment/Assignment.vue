@@ -1,7 +1,53 @@
 <template>
-    <div class="fluid-container">
+<div class="bx--grid" style="padding: 40px 0px;">
+    <div class="bx--row">
+        <div class="bx--col-lg-6">
+            <!-- Project Detailes (Notification) -->
+            <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
+                <div class="bx--inline-notification__details">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
+
+                    <!-- Project Details Contents -->
+                    <div class="bx--row">
+                        <div class="bx--inline-notification__text-wrapper">
+                            <div class="bx--col-lg-12">
+                                <p class="bx--inline-notification__title">Project: {{ assignment.title }}</p>
+                                <p class="bx--inline-notification__title">Service: {{ service.title }}</p>
+                                <p class="bx--inline-notification__title">Deposit: {{ assignment.deposit }}%</p>
+                                <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
+                                <p class="bx--inline-notification__title">Total Price: €{{ assignment.total_price }}</p>
+                                <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
+                                <p class="bx--inline-notification__title">Completed? {{ assignment.completed }}</p>
+                                <p class="bx--inline-notification__title">Date of Completion: {{ assignment.date_of_completion }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Button -->
+                <cv-link :to="'/admin/assignments/edit/' + assignment.id" style="text-decoration: none;">
+                    <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+                        Edit Project
+                    </button>
+                </cv-link>
+                <DeleteAssignment v-bind:id="assignment.id"/>
+            </div>
+        </div>
+
+        <!-- Default Tasks Table -->
+        <br/>
+        <div class="bx--col-lg-6">
+            <ListTask v-bind:id="assignment.id" v-bind:isActive="false" />
+        </div>
+    </div>
+
+
+
+
+
+
     <!-- Project Details -->
-    <div class="md-layout">
+    <!-- <div class="md-layout">
       <div class="md-layout-item">
         <md-table-toolbar>
           <h1 class="md-title accent">Project Details</h1>
@@ -40,11 +86,8 @@
 
     <div>
         <ListTask v-bind:id="assignment.id" v-bind:isActive="true" />
-    </div>
-    <div>
-        <ListTransaction v-bind:id="assignment.id" />
-    </div>
-    </div>
+    </div> -->
+</div>
 </template>
 
 <script>
@@ -52,33 +95,39 @@
     import axios from 'axios'
     import DeleteAssignment from './DeleteAssignment'
     import ListServices from './../service/ListServices'
-    import ListTask from './../task/ListTask'
     import ListTransaction from './../transaction/ListTransaction'
-    import {
-    MdButton,
-    MdProgress,
-    MdAvatar,
-    MdCard,
-    MdContent,
-    MdElevation,
-    MdIcon,
-    MdImage,
-    MdLayout,
-    MdRipple,
-    MdToolbar
-} from "vue-material/dist/components";
+    import ListTask from './../task/ListTask'
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { Notification } from 'carbon-components';
+    import { Modal, DataTable, Loading } from 'carbon-components';
 
-    Vue.use(MdButton);
-    Vue.use(MdProgress);
-    Vue.use(MdAvatar);
-    Vue.use(MdCard);
-    Vue.use(MdContent);
-    Vue.use(MdElevation);
-    Vue.use(MdIcon);
-    Vue.use(MdImage);
-    Vue.use(MdLayout);
-    Vue.use(MdRipple);
-    Vue.use(MdToolbar);
+    Vue.use(CarbonComponentsVue);
+//     import {
+//     MdButton,
+//     MdProgress,
+//     MdAvatar,
+//     MdCard,
+//     MdContent,
+//     MdElevation,
+//     MdIcon,
+//     MdImage,
+//     MdLayout,
+//     MdRipple,
+//     MdToolbar
+// } from "vue-material/dist/components";
+
+    // Vue.use(MdButton);
+    // Vue.use(MdProgress);
+    // Vue.use(MdAvatar);
+    // Vue.use(MdCard);
+    // Vue.use(MdContent);
+    // Vue.use(MdElevation);
+    // Vue.use(MdIcon);
+    // Vue.use(MdImage);
+    // Vue.use(MdLayout);
+    // Vue.use(MdRipple);
+    // Vue.use(MdToolbar);
 
     export default {
         data() {
@@ -102,6 +151,12 @@
                 if(response.data.status !== "success") {
                     console.log("error ", response)
                 } else this.assignment = response.data.assignment
+            }),
+            axios.get(`/api/service/${this.$route.params.id}`)
+            .then(response => {
+                if(response.data.status !== "success") {
+                    console.log("error ", response)
+                } else this.service = response.data.service
             })
         },
         components: {

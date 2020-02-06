@@ -1,51 +1,88 @@
-/*
- * --------------------
- * Author Name: Eoan O'Dea
- * Author Email: eoan@wspace.ie
- * Date Created: Friday January 10th 2020 4:31:23 pm
- * --------------------
- * Project Name: IADTY3PPClientMangementSystem
- * Version: 1.0.0
- * --------------------
- * File Name: Signin.vue
- * Last Modified: Wednesday January 15th 2020 12:32:21 pm
- * --------------------
- * Copyright (c) 2020 WebSpace
- * --------------------
- */
-
-
 <template>
-    <md-card class="background">
-        <md-card-header>
-            <div class="md-title accent">Sign in</div>
-        </md-card-header>
-        <md-card-content>
-            <p v-if="errors.length">
-                <b class="error">Please correct the following error(s):</b>
-                <ul>
-                    <li v-for="error in errors" v-bind:key="error.id" class="error">
-                        {{ error.message }}
-                    </li>
-                </ul>
-            </p>
-            <md-field>
-                <label class="accent" for="email">Email Address</label>
-                <md-input name="email" type="email" class="form-control" placeholder="Email Address" v-model="user.email" />
-            </md-field>
-            <md-field>
-                <label class="accent" for="password">Password</label>
-                <md-input name="password" type="password" class="form-control" placeholder="Password" v-model="user.password" />
-            </md-field>
-        </md-card-content>
-        <md-card-actions>
-            <md-button type="submit" :disabled="submitting" @click="validateSignin" class="md-primary md-raised btnAccent">Submit</md-button>
-        </md-card-actions>
-    </md-card>
+<div class="bx--grid" style="padding: 230px;">
+
+    <!-- Email -->
+    <div class="bx--row">
+        <div class="bx--form-item bx--text-input-wrapper">
+            <label for="text-input-3" class="bx--label">Email</label>
+            <div class="bx--text-input__field-wrapper">
+                <input 
+                id="text-input-3" 
+                name="email" 
+                type="email" 
+                v-model="user.email" 
+                class="bx--text-input" 
+                placeholder="Email">
+            </div>
+                <p v-if="errors.length">
+                    <ul>
+                        <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                            {{ error.emailError }}
+                        </li>
+                        <br/>
+                    </ul>
+                </p>
+        </div>
+    </div>
+    
+    <!-- Password -->
+    <br/>
+    <div class="bx--row">
+        <div class="bx--form-item bx--text-input-wrapper">
+            <label for="text-input-2" class="bx--label">Password</label>
+            <div class="bx--text-input__field-wrapper">
+                <input 
+                id="text-input-2" 
+                name="password" 
+                type="password" 
+                v-model="user.password" 
+                class="bx--text-input" 
+                placeholder="Password">
+            </div>
+                <p v-if="errors.length">
+                    <ul>
+                        <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                            {{ error.passwordError }}
+                        </li>
+                        <br/>
+                    </ul>
+                </p>
+        </div>
+    </div>
+
+    <!-- Button -->
+    <br/>
+    <div class="bx--row">
+        <div class="bx--form-item">
+            <button 
+                class="bx--btn bx--btn--primary" 
+                type="submit"
+                :tip-text="Submit"
+                :disabled="submitting" 
+                @click="validateSignin">
+                    Submit
+            </button>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+import Vue from 'vue'
+import { mapActions } from 'vuex'
+import 'carbon-components/css/carbon-components.css';
+// import CarbonComponentsVue from '@carbon/vue/src/index';
+// Vue.use(CarbonComponentsVue);
+// import { 
+//     CvForm,  
+//     CvButton,
+//     CvTextInput,
+//     CvButtonSet } from '@carbon/vue/src';
+
+// Vue.use(CvForm);
+// Vue.use(CvButton);
+// Vue.use(CvTextInput);
+// Vue.use(CvButtonSet);
 
   export default {
     data() {
@@ -59,7 +96,8 @@
       }
     },
     methods: {
-        validateSignin() {
+        validateSignin(e) {
+            e.preventDefault();
             const {user} = this;
             if(user.email && user.password) {
                 this.submitting = true;
@@ -72,8 +110,9 @@
                     })
                 })
             }
-            if(!user.email) this.errors.push({message: "Email is required"})
-            if(!user.password) this.errors.push({message: "Password is required"})
+            this.errors = []
+            if(!user.email) this.errors.push({emailError: "Email is required"})
+            if(!user.password) this.errors.push({passwordError: "Password is required"})
         },
         ...mapActions({
             signIn: 'auth/signIn'

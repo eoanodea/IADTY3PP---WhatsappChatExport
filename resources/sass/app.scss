@@ -1,36 +1,33 @@
-/*
- * --------------------
- * Author Name: Eoan O'Dea
- * Author Email: eoan@wspace.ie
- * Date Created: Tuesday October 29th 2019 5:02:14 pm
- * --------------------
- * Project Name: IADTY3PPClientMangementSystem
- * Version: 1.0.0
- * --------------------
- * File Name: app.scss
- * Last Modified: Tuesday December 17th 2019 12:00:04 pm
- * --------------------
- * Copyright (c) 2019 WebSpace
- * --------------------
- */
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+// @import url('https://fonts.googleapis.com/css?family=Raleway');
+
+//Apply the theme
+// @import "~vue-material/dist/theme/all";
+// @import 'carbon/themes';
+@import '@carbon/themes/scss/themes';
+$carbon--theme: $carbon--theme--g90;
+@include carbon--theme();
 
 // Variables
 @import 'variables';
 
-//Import Theme Engine
-@import "~vue-material/dist/theme/engine";
+// Theme Grid:
+@import '@carbon/grid/scss/grid';
 
-//Apply the theme
-@import "~vue-material/dist/theme/all";
+//Import Theme Engine
+// @import "~vue-material/dist/theme/engine";
 
 // Theme Colors
 @import 'colors';
 
+// Theme Spacings:
+@import 'spacing';
+
+// Theme Fonts:
+@import 'fonts';
+
 // Theme Template
-@import  'templates/import';
+// @import  'templates/import';
 
 //Register theme with primary and accent colours
 // @include md-register-theme("default", (
@@ -43,7 +40,7 @@
 @import 'overrides';
 
 // Theme Cards
-@import 'cards'; 
+// @import 'cards'; 
 
 
 
