@@ -53,6 +53,7 @@ Route::put('/task/active/{id}', 'Task\ActiveTaskController@update');
 Route::delete('/task/active/{id}', 'Task\ActiveTaskController@destroy');
 
 Route::get('/comments/assignment/{assignment}', 'Comment\CommentController@indexByAssignment');
+Route::get('/comments/{id}', 'Comment\CommentController@show');
 Route::get('/comments/task/{task}', 'Comment\CommentController@indexByTask');
 Route::post('/comments/{user}/new', 'Comment\CommentController@store');
 Route::put('/comments/{id}', 'Comment\CommentController@update');

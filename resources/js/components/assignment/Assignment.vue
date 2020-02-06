@@ -39,6 +39,12 @@
         <div class="bx--col-lg-6">
             <ListTask v-bind:id="assignment.id" v-bind:isActive="false" />
         </div>
+
+        <!-- Comments Section -->
+        <br/>
+        <div class="bx--col-lg-6">
+            <ListComment v-bind:id="assignment.id" v-bind:isAssignment="true" />
+        </div>
     </div>
 
 
@@ -101,6 +107,7 @@
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
     import { Modal, DataTable, Loading } from 'carbon-components';
+    import ListComment from './../comment/ListComment'
 
     Vue.use(CarbonComponentsVue);
 //     import {
@@ -162,7 +169,8 @@
         components: {
             DeleteAssignment,
             ListTask,
-            ListTransaction
+            ListTransaction,
+            ListComment
         },
         methods: {
             paymentDue() {

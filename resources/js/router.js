@@ -193,26 +193,28 @@ const routes = [
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     //Comment
+    //:active parameter 
+    //- takes either true or false, if true will display active task
     {
-        path: '/admin/comments/:active/:id',
+        path: '/admin/comments/:isAssignment/:id',
         name: 'comments',
         component: ListComment,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
-        path: '/admin/comments/:active/show/:id',
+        path: '/admin/comment/show/:id',
         name: 'comment',
         component: Comment,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
-        path: '/admin/comments/:active/edit/:id',
+        path: '/admin/comments/:isAssignment/edit/:id',
         name: 'editComment',
         component: EditComment,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
-        path: '/admin/comments/:active/:id/new',
+        path: '/admin/comments/:isAssignment/:id/new',
         name: 'addComment',
         component: AddComment,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)

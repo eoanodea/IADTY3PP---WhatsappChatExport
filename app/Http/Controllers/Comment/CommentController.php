@@ -9,6 +9,7 @@ use App\Comment;
 
 class CommentController extends Controller
 {
+
     /**
      * Retreive comments by assignment
      * @param  int  $assignmentId
@@ -38,7 +39,7 @@ class CommentController extends Controller
     }
 
     public function show($id) {
-        $comment = Comment::findOrFail($id);
+        $comment = Comment::with('User')->where('id', $id)->first();
 
         return response()->json([
             'status' => 'success',

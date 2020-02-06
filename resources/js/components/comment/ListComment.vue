@@ -3,16 +3,16 @@
         <div class="bx--data-table-container" data-table>
             <!-- Title -->
             <div class="bx--data-table-header">
-                <h4 class="bx--data-table-header__title">Default Comments</h4>
+                <h4 class="bx--data-table-header__title">Comments</h4>
             </div>
 
             <!-- Toolbar Contents -->
             <section class="bx--table-toolbar">
                 <!-- Persistent Search -->
                 <div class="bx--toolbar-content">
-                    <cv-link :to="`/admin/comments/${isTask}/` + serviceId + '/new'" style="text-decoration: none;">
+                    <cv-link :to="`/admin/comments/${assignment}/` + commentId + '/new'" style="text-decoration: none;">
                         <button class="bx--btn bx--btn--lg bx--btn--primary">
-                            Add Default Comment 
+                            Add Comment 
                             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
                         </button>
                     </cv-link>
@@ -51,7 +51,9 @@
                 <tbody v-for="comment in comments" v-bind:key="comment.id">
                     <!-- Title -->
                     <td>
-                        {{ comment.user_id }}
+                        <cv-link :to="`/admin/users/show/${comment.user_id}`">
+                            {{ comment.user.first_name + " " + comment.user.last_name }}
+                        </cv-link>
                     </td>
 
                     <!-- Description -->
@@ -61,7 +63,7 @@
 
                     <!-- View Comment Button -->
                     <td>
-                        <cv-link :to="`/admin/comments/${isTask}/show/` + comment.id" style="text-decoration: none;"> 
+                        <cv-link :to="`/admin/comment/show/` + comment.id" style="text-decoration: none;"> 
                             <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="default_comment">
                                 View
                             </button>
@@ -146,8 +148,8 @@
 
 
         <!-- <md-table-toolbar>
-            <h1 class="md-title accent">Default Comments</h1>
-            <md-button class="md-raised md-accent btnAccent" :to="`/admin/comments/${isTask}/` + serviceId + '/new'">Add Default Comment</md-button>
+            <h1 class="md-title accent">Comments</h1>
+            <md-button class="md-raised md-accent btnAccent" :to="`/admin/comments/${assignment}/` + commentId + '/new'">Add Comment</md-button>
         </md-table-toolbar>
 
 
@@ -163,12 +165,12 @@
                 <!-- <md-table-cell class="background text">{{ comment.title }}</md-table-cell>
                 <md-table-cell class="background text">{{comment.description}}</md-table-cell>
                 <md-table-cell class="background text">
-                    <md-button :to="`/admin/comments/${isTask}/show/` + comment.id" class="md-accent">View Comment</md-button> -->
-                    <!-- <md-button :to="`/admin/comments/${isTask}/edit/` + comment.id">Edit</md-button> -->
+                    <md-button :to="`/admin/comments/${assignment}/show/` + comment.id" class="md-accent">View Comment</md-button> -->
+                    <!-- <md-button :to="`/admin/comments/${assignment}/edit/` + comment.id">Edit</md-button> -->
                 <!-- </md-table-cell>
             </md-table-row>
         </md-table>
-        <p v-else>There are no Default Comments.</p> -->
+        <p v-else>There are no Comments.</p> -->
     </div>
 
 </template>
@@ -182,26 +184,26 @@ import { DataTable, Loading } from 'carbon-components';
 Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['id', 'isActive'],
+        props: ['id', 'isAssignment'],
         data() {
             return {
                 comments: null,
-                serviceId: this.$route.params.id
+                commentId: this.$route.params.id
                     ? this.$route.params.id
                     : this.id,
-                isTask: this.$route.params.active
-                    ? (this.$route.params.active === 'true' ? true : false)
-                    : this.isActive
+                assignment: this.$route.params.isAssignment
+                    ? (this.$route.params.isAssignment === 'true' ? true : false)
+                    : this.isAssignment
             }
         },
-        //When the component mounts, check if the comment is active or default
+        //When the component mounts, check if the comment is assignment or not
         //Modify the fetch URL with result and fetch comments
         mounted () {
-            const url = this.isTask
+            const url = this.assignment
             ? 'comments/assignment'
             : 'comments/task'
             
-            axios.get(`/api/${url}/${this.serviceId}`)
+            axios.get(`/api/${url}/${this.commentId}`)
             .then(response => (this.comments = response.data.comment))
         },
         methods: {

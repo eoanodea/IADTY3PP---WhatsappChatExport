@@ -1,41 +1,30 @@
 <template>
     <div class="bx--grid" style="padding: 60px 250px;">
-        <!-- Title -->
-        <div class="bx--row">
-            <div class="bx--col-lg-12">
-                <div class="bx--form-item bx--text-input-wrapper">
-                    <label for="title" class="bx--label">Title</label>
-                    <div class="bx--text-input__field-wrapper">
-                        <input 
-                        id="text-input-3" 
-                        name="title" 
-                        type="text" 
-                        autocomplete="given-title" 
-                        v-model="comment.title"
-                        class="bx--text-input" 
-                        placeholder="Title">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Description -->
+        <!-- Comment -->
         <br/>
+        <p v-if="errors.length">
+            <b class="error">Please correct the following error(s):</b>
+            <ul>
+            <li v-for="error in errors" v-bind:key="error.id" class="error">
+                {{ error.message }}
+                </li>
+            </ul>
+        </p>
         <div class="bx--row">
             <div class="bx--col-lg-12">
                 <div class="bx--form-item bx--text-input-wrapper">
-                    <label for="description" class="bx--label">Description</label>
+                    <label for="comment" class="bx--label">Comment</label>
                     <div class="bx--text-input__field-wrapper">
                         <textarea 
                             id="text-area-2" 
-                            name="description" 
-                            type="description" 
-                            autocomplete="description" 
-                            v-model="comment.description"
+                            name="comment" 
+                            type="text" 
+                            autocomplete="comment" 
+                            v-model="comment.comment"
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
-                            placeholder="Description"></textarea>
+                            placeholder="Comment"></textarea>
                     </div>
                 </div>
             </div>
@@ -70,6 +59,7 @@
                     <button 
                         class="bx--btn bx--btn--primary" 
                         type="submit"
+                        v-on:click="validateComment"
                         :disabled="submitting">
                             Save
                     </button>
@@ -137,19 +127,18 @@
     Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['id', 'isActive'],
+        props: ['id', 'isAssignment'],
         data() {
             return {
                 comment: {
-                    title: '',
-                    description: '',
+                    comment: '',
                     percent_done: ''
                 },
                 errors: [],
                 submitting: false,
-                active: this.$route.params.active
-                    ? (this.$route.params.active === 'true' ? true : false)
-                    : this.isActive
+                assignment: this.$route.params.isAssignment
+                    ? (this.$route.params.isAssignment === 'true' ? true : false)
+                    : this.isAssignment
             }
         },
         methods: {
@@ -163,22 +152,20 @@
                 }
 
                 this.errors = [];
-                if(!comment.title) {
-                     this.errors.push({id: 0, message: 'Title required.'});
-                }
-                if(!comment.description) {
-                     this.errors.push({id: 1, message: 'Description required.'});
+                if(!comment.comment) {
+                     this.errors.push({id: 0, message: 'Comment required.'});
                 }
                 if(!comment.percent_done) {
-                     this.errors.push({id: 2, message: 'Percentage done is required.'});
+                     this.errors.push({id: 1, message: 'Percentage done is required.'});
                 }
             },
             submitComment: function() {
                 this.submitting = true
 
-                const url = this.active === false
-                ? 'comment'
-                : 'comment/active'
+                const url = this.assignment
+                ? 'comments/assignment'
+                : 'comments/task'
+
                 const payload = this.comment
 
                 axios.post(`/api/${url}/${this.$route.params.id}/new`, payload)
@@ -187,7 +174,7 @@
                         console.log("Error!", response)
                         this.errors.push({id: 0, message: JSON.stringify(response.message)})
                         this.submitting = false
-                    } else router.push({path: `/admin/comments/${this.active}/show/${response.data.comment.id}`})
+                    } else router.push({path: `/admin/comment/show/${response.data.comment.id}`})
                 })
             }
         }
