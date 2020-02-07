@@ -43,7 +43,7 @@
         <!-- Comments Section -->
         <br/>
         <div class="bx--col-lg-6">
-            <ListComment v-bind:id="assignment.id" v-bind:isAssignment="true" />
+            <CommentTile v-bind:id="assignment.id" v-bind:isAssignment="true" />
         </div>
     </div>
 
@@ -107,7 +107,7 @@
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
     import { Modal, DataTable, Loading } from 'carbon-components';
-    import ListComment from './../comment/ListComment'
+    import CommentTile from './../comment/CommentTile'
 
     Vue.use(CarbonComponentsVue);
 //     import {
@@ -170,7 +170,7 @@
             DeleteAssignment,
             ListTask,
             ListTransaction,
-            ListComment
+            CommentTile
         },
         methods: {
             paymentDue() {

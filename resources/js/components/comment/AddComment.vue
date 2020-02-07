@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="add-comment-container">
         <!-- Comment -->
         <div class="bx--text-input__field-wrapper">
             <textarea 
@@ -8,10 +8,12 @@
                 type="text" 
                 autocomplete="comment" 
                 v-model="comment.comment"
-                class="bx--text-area"
+                class="bx--text-area comment-textarea"
                 rows="4" 
                 cols="50" 
-                placeholder="Comment"></textarea>
+                placeholder="Comment"
+                v-on:keydown.enter="validateComment"
+                ></textarea>
         </div>
         <p v-if="errors.length" class="bx--form-requirement">
             <b class="error">Please correct the following error(s):</b>
@@ -132,3 +134,11 @@
         }
     }
 </script>
+<style lang="scss">
+    .add-comment-container {
+        display: flex;
+    }
+    .comment-textarea {
+        height: 3rem;
+    }
+</style>
