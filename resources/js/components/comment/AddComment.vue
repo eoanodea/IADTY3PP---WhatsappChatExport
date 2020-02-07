@@ -35,14 +35,14 @@
         <div class="bx--row">
             <div class="bx--col-lg-12">
                 <div class="bx--form-item bx--text-input-wrapper">
-                    <label for="percent_done" class="bx--label">Percentage Done</label>
+                    <label for="progress" class="bx--label">Percentage Done</label>
                     <div class="bx--text-input__field-wrapper">
                         <input 
                         id="text-input-3" 
-                        name="percent_done" 
+                        name="progress" 
                         type="number" 
-                        autocomplete="given-percent_done" 
-                        v-model="comment.percent_done"
+                        autocomplete="given-progress" 
+                        v-model="comment.progress"
                         class="bx--text-input" 
                         placeholder="Percentage Done">
                         <span>%</span>
@@ -97,9 +97,9 @@
                         <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="comment.description" /> <br />
                     </md-field>
                     <md-field>
-                        <label class="accent" for="percent_done">Percent Done</label>
+                        <label class="accent" for="progress">Percent Done</label>
                         <span class="md-prefix">%</span>
-                        <md-input name="percent_done" type="number" class="form-control" placeholder="Percent Done" v-model="comment.percent_done" /> <br />
+                        <md-input name="progress" type="number" class="form-control" placeholder="Percent Done" v-model="comment.progress" /> <br />
                     </md-field>
 
                 </md-card-content>
@@ -117,12 +117,7 @@
     import router from './../../router'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
-    // import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
-
-    // Vue.use(MdButton)
-    // Vue.use(MdField)
-    // Vue.use(MdCard)
-    // Vue.use(MdCheckbox)
+    import { mapGetters } from 'vuex'
 
     Vue.use(CarbonComponentsVue);
 
@@ -132,7 +127,8 @@
             return {
                 comment: {
                     comment: '',
-                    percent_done: ''
+                    progress: '',
+                    user_id: null
                 },
                 errors: [],
                 submitting: false,
@@ -143,24 +139,29 @@
         },
         methods: {
             validateComment: function() {
-                const {comment} = this
+                const {comment, user, submitComment} = this
+
                 if(
-                    comment.title
-                    && comment.description
-                    && comment.percent_done) {
-                    this.submitComment()
-                }
+                    comment.comment
+                    && comment.progress
+                    && user) submitComment()
 
                 this.errors = [];
                 if(!comment.comment) {
                      this.errors.push({id: 0, message: 'Comment required.'});
                 }
-                if(!comment.percent_done) {
+                if(!comment.progress) {
                      this.errors.push({id: 1, message: 'Percentage done is required.'});
+                }
+                if(!user) {
+                    this.errors.push({id: 2, message: 'There was a problem submitting your request. Please re-authenticate yourself.'});
                 }
             },
             submitComment: function() {
                 this.submitting = true
+
+                let {comment} = this
+                comment.user_id = this.user.id
 
                 const url = this.assignment
                 ? 'comments/assignment'
@@ -177,6 +178,11 @@
                     } else router.push({path: `/admin/comment/show/${response.data.comment.id}`})
                 })
             }
+        },
+        computed: {
+            ...mapGetters({
+                user: 'auth/user'
+            })
         }
     }
 </script>

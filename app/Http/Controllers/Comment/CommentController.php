@@ -51,30 +51,26 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $userId
+     * @param String $isAssignment
+     * @param  int  $assignmentId / $taskId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $user) {
-        if(!$request->input('assignment_id') && !$request->input('task_id')) {
-            return response()->json([
-                'status' => 'success',
-                'error' => 'You must provide either an assignment ID or task ID'
-            ], 400);
-        }
+    public function store(Request $request, $isAssignment, $id) {
 
         $request->validate([
             'progress' => 'required|min:0|max:100',
             'comment' => 'required|string',
+            'user_id' => 'unique:users,id,'.$request->input('user_id')
         ]);
 
         $comment = new Comment;
         $comment->comment = $request->input('comment');
         $comment->progress = $request->input('progress');
-        $comment->user_id = $user;
+        $comment->user_id = $request->input('user_id');;
 
-        if($request->input('assignment_id')) {
-            $comment->assignment_id = $request->input('assignment_id');
-        } else $comment->task_id = $request->input('task_id');
+        if($isAssignment === 'assignment') {
+            $comment->assignment_id = $id;
+        } else $comment->task_id = $id;
 
         $comment->save();
 
