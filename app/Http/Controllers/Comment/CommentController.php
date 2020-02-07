@@ -74,9 +74,11 @@ class CommentController extends Controller
 
         $comment->save();
 
+        $commentWithUser = Comment::with('User')->where('id', $comment->id)->get();
+
         return response()->json([
             'status' => 'success',
-            'comment' => $comment->toArray()
+            'comment' => $commentWithUser
         ], 200);
     }
 

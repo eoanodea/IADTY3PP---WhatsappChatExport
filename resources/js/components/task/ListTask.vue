@@ -70,8 +70,8 @@
                 </tbody>
             </table>
 
-            <!-- Loading/Error -->
-            <div v-else>
+        <!-- Loading/Error -->
+        <div v-else>
             <p>Please wait while we load up your default tasks.</p>
                 <div data-loading class="bx--loading">
                     <svg class="bx--loading__svg" viewBox="-75 -75 150 150">

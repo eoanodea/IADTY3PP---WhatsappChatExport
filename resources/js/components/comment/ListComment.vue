@@ -19,181 +19,112 @@
                 </div>
             </section>
 
-            <!-- Table -->
-            <table v-if="comments !== null" class="bx--data-table bx--data-table--sort">
-                <!-- Headings -->
-                <thead>
-                    <tr>
-                        <!-- Title -->
-                         <th>
-                            <button class="bx--table-sort" data-event="sort" title="title">
-                                <span class="bx--table-header-label">User</span>
-                                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path></svg>
-                                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path></svg>
-                            </button>
-                        </th>
+                <!-- Chat app -->
+        <div class="chat">
+            <div class="container">
+                <div class="msg-header">
+                    <div class="active">
+                        <h5>Comments</h5>
+                    </div>
+                </div>
 
-                        <!-- Description -->
-                        <th>
-                            <button class="bx--table-sort" data-event="sort" title="description">
-                                <span class="bx--table-header-label">Comment</span>
-                                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path></svg>
-                                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path></svg>
-                            </button>
-                        </th>
+                <div class="chat-page">
+                    <div class="msg-inbox">
+                        <div class="chats" id="chats">
+                            <div class="msg-page" id="msg-page">
 
-                        <!-- Space for View Profile Buttons -->
-                    	<th></th>
-                    </tr>
-                </thead>
+                                <div
+                                    v-if="loadingMessages"
+                                    class="loading-messages-container"
+                                >
+                                    <span class="loading-text">
+                                        Loading Messages
+                                    </span>
+                                    <loading-indicator />
+                                </div>
+                                <div class="text-center img-fluid empty-chat" v-else-if="!comments.length" >
+                                    <div class="empty-chat-holder">
+                                        <!-- <img src="../../assets/empty-state.svg" class="img-res" alt="empty chat image"> -->
+                                        <p>Empty chat</p>
+                                    </div>
 
-                <!-- Body -->
-                <tbody v-for="comment in comments" v-bind:key="comment.id">
-                    <!-- Title -->
-                    <td>
-                        <cv-link :to="`/admin/users/show/${comment.user_id}`">
-                            {{ comment.user.first_name + " " + comment.user.last_name }}
-                        </cv-link>
-                    </td>
+                                    <div>
+                                        <h2> No new message? </h2>
+                                        <h6 class="empty-chat-sub-title">
+                                            Send your first message below.
+                                        </h6>
+                                    </div>
+                                </div>
 
-                    <!-- Description -->
-                    <td>
-                        {{comment.comment}}
-                    </td>
+                                <div v-else>
+                                    <div v-for="message in comments" v-bind:key="message.id">
+                                        <div class="received-chats" v-if="message.user.id !== user.id">
+                                            <div class="received-msg">
+                                                <div class="received-msg-inbox">
+                                                    <cv-link :to="`/admin/comments/${assignment}/` + commentId + '/new'" style="text-decoration: none;">
+                                                    
+                                                    </cv-link>
+                                                    <p><cv-link :to="`/admin/users/show/${message.user.id}/`">{{ message.user.first_name }}</cv-link><br>{{ message.comment }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                    <!-- View Comment Button -->
-                    <td>
-                        <cv-link :to="`/admin/comment/show/` + comment.id" style="text-decoration: none;"> 
-                            <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="default_comment">
-                                View
-                            </button>
-                        </cv-link>
-                    </td>
-                </tbody>
-            </table>
 
-            <!-- Loading/Error -->
-            <div v-else>
-            <p>Please wait while we load up your default comments.</p>
-                <div data-loading class="bx--loading">
-                    <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-                        <title>Loading</title>
-                        <circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
-                    </svg>
+                                        <div class="outgoing-chats" v-else>
+                                            <div class="outgoing-chats-msg">
+                                                <p>{{ message.comment }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-bottom">
+                        <add-comment v-on:comment-added="addComment" v-bind:isAssignment="assignment"></add-comment>
+                        <!-- <form class="message-form" v-on:submit.prevent="sendGroupMessage">
+                            <div class="input-group">
+                                <input type="text" class="form-control message-input" placeholder="Type something" v-model="chatMessage" required>
+                                <spinner
+                                    v-if="sendingMessage"
+                                    class="sending-message-spinner"
+                                    :size="30"
+                                />
+                            </div>
+                        </form> -->
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="bx--pagination" data-pagination> <!-- Open Pagination -->
-            <!-- Left Pagination -->
-            <div class="bx--pagination__left">
-            <label id="select-id-pagination-count-label" class="bx--pagination__text" for="select-id-pagination-count">
-                Items per page:
-            </label>
-
-            <div class="bx--select bx--select--inline bx--select__item-count">
-                <select class="bx--select-input" id="select-id-pagination-count" aria-label="select number of items per page" tabindex="0" data-items-per-page>
-                <option class="bx--select-option" value="10" selected>10</option>
-                <option class="bx--select-option" value="20">20</option>
-                <option class="bx--select-option" value="30">30</option>
-                <option class="bx--select-option" value="40">40</option>
-                <option class="bx--select-option" value="50">50</option>
-                </select>
-                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
-            </div>
-            <span class="bx--pagination__text">
-                <span data-displayed-item-range>
-                1-10
-                </span> of
-                <span ata-total-items>
-                50
-                </span> items
-            </span>
-            </div>
-
-            <!-- Right Pagination -->
-            <div class="bx--pagination__right">
-            <div class="bx--select bx--select--inline bx--select__page-number">
-                <select class="bx--select-input" id="select-id-pagination-page" aria-label="select page number to view" tabindex="0" data-page-number-input>
-                <option class="bx--select-option" value="1" selected>1</option>
-                <option class="bx--select-option" value="2">2</option>
-                <option class="bx--select-option" value="3">3</option>
-                <option class="bx--select-option" value="4">4</option>
-                <option class="bx--select-option" value="5">5</option>
-                </select>
-                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
-            </div>
-            
-            <label id="select-id-pagination-page-label" class="bx--pagination__text" for="select-id-pagination-page">
-                of 5 pages
-            </label>
-            
-            <button class="bx--pagination__button bx--pagination__button--backward" tabindex="0" data-page-backward aria-label="Backward button">
-                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--pagination__nav-arrow" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M19 23l-8-7 8-7v14z"></path></svg>
-            </button>
-
-            <button class="bx--pagination__button bx--pagination__button--forward" tabindex="0" data-page-forward aria-label="Forward button">
-                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--pagination__nav-arrow" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 9l8 7-8 7V9z"></path></svg>
-            </button>
-            </div>
-        </div> <!-- Close Pagination -->
-
-
-
-
-
-
-
-
-
-        <!-- <md-table-toolbar>
-            <h1 class="md-title accent">Comments</h1>
-            <md-button class="md-raised md-accent btnAccent" :to="`/admin/comments/${assignment}/` + commentId + '/new'">Add Comment</md-button>
-        </md-table-toolbar>
-
-
-        <md-table class="background text" md-card v-if="comments !== null">
-            <md-table-row class="background subject"> -->
-                <!-- <md-table-head md-numeric>ID</md-table-head> -->
-                <!-- <md-table-head class="subject">Title</md-table-head>
-                <md-table-head class="subject">Description</md-table-head>
-                <md-table-head></md-table-head>
-            </md-table-row>
-            <md-table-row v-for="comment in comments" v-bind:key="comment.id" class="item"> -->
-                <!-- <md-table-cell md-numeric>{{comment.id}}</md-table-cell> -->
-                <!-- <md-table-cell class="background text">{{ comment.title }}</md-table-cell>
-                <md-table-cell class="background text">{{comment.description}}</md-table-cell>
-                <md-table-cell class="background text">
-                    <md-button :to="`/admin/comments/${assignment}/show/` + comment.id" class="md-accent">View Comment</md-button> -->
-                    <!-- <md-button :to="`/admin/comments/${assignment}/edit/` + comment.id">Edit</md-button> -->
-                <!-- </md-table-cell>
-            </md-table-row>
-        </md-table>
-        <p v-else>There are no Comments.</p> -->
+        
+    </div>
     </div>
 
 </template>
 <script>
-import Vue from "vue";
-import axios from 'axios';
-import 'carbon-components/css/carbon-components.css';
-import CarbonComponentsVue from '@carbon/vue/src/index';
-import { DataTable, Loading } from 'carbon-components';
+    import Vue from "vue";
+    import axios from 'axios';
+    import LoadingIndicator from './../progress/LoadingIndicator'
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import { mapGetters } from 'vuex'
+    import AddComment from './AddComment'
 
-Vue.use(CarbonComponentsVue);
+    Vue.use(CarbonComponentsVue);
 
     export default {
         props: ['id', 'isAssignment'],
         data() {
             return {
                 comments: null,
+                loadingMessages: true,
                 commentId: this.$route.params.id
                     ? this.$route.params.id
                     : this.id,
                 assignment: this.$route.params.isAssignment
                     ? (this.$route.params.isAssignment === 'true' ? true : false)
-                    : this.isAssignment
+                    : this.isAssignment,
+                error: null
             }
         },
         //When the component mounts, check if the comment is assignment or not
@@ -204,14 +135,377 @@ Vue.use(CarbonComponentsVue);
             : 'comments/task'
             
             axios.get(`/api/${url}/${this.commentId}`)
-            .then(response => (this.comments = response.data.comment))
+            .then(response => {
+              if(response.data.status !== "success") {
+                  console.log('error!')
+                  this.error = response.data.error
+              } else {
+                  this.comments = response.data.comment
+              }
+              this.loadingMessages = false
+              this.scrollToBottom()
+            })
         },
         methods: {
-            //
+            addComment(comment) {
+                this.comments.push(comment)
+                this.scrollToBottom()
+            },
+            scrollToBottom: function() {    	
+                var container = this.$el.querySelector("#msg-page");
+                container.scrollTop = container.scrollHeight;
+            }
         },
         components: {
-            DataTable,
-            Loading
+            AddComment,
+            LoadingIndicator
+        },
+        computed: {
+            ...mapGetters({
+                user: 'auth/user'
+            })
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .chat {
+        flex: 1;
+        padding-top: 40px;
+        width: 100%;
+    }
+    .empty-chat-holder {
+        width: 100%;
+        height: 250px;
+        margin-top: 70px;
+    }
+
+    .empty-chat {
+        position: relative;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .empty-chat h2 {
+        color: #1546dc;
+        padding: 0;
+        font-size: 2rem;
+        margin: 25px auto 15px;
+    }
+
+    .container {
+        margin: auto;
+        max-width: 800px;
+        width: calc(100% - 20px);
+        height: 588px;
+        letter-spacing: 0.5px;
+        background: #f8f9fb;
+        padding: 0 !important;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+        border-radius: 7px;
+        box-sizing: border-box;
+        border: 1px solid #BFCDD8;
+    }
+
+    .msg-header {
+        width: 100%;
+        height: 70px;
+        border-bottom: none;
+        display: inline-block;
+        background-color: #fff;
+        border-radius: 7px 7px 0 0;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .active {
+        width: 120px;
+        float: left;
+    }
+
+    .active h5 {
+        padding: 10px;
+        color: #444;
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .active h6 {
+        font-size: 10px;
+        line-height: 2px;
+        color: #fff;
+    }
+
+    .msg-page {
+        height: 516px;
+        overflow-y: auto;
+        padding-bottom: 50px;
+    }
+
+    .received-chats {
+        padding: 20px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .received-chats-img {
+        display: inline-block;
+        display: flex;
+        align-items: center;
+    }
+
+    .received-msg {
+        display: inline-block;
+        padding: 0;
+        vertical-align: top;
+    }
+
+    .received-msg-inbox {
+        width: 57%;
+    }
+
+    .received-msg-inbox p {
+        background: #ffffff none repeat scroll 0 0;
+        border-radius: 7px;
+        color: #646464;
+        font-size: 16px;
+        margin: 0;
+        padding: 12px;
+        position: relative;
+        width: 253px;
+        min-height: 61px;
+        left: 30px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .received-msg-inbox p span {
+        color: #6889fd;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .received-msg-inbox p:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-right-color: #ffffff;
+        border-left: 0;
+        margin-top: -10px;
+        margin-left: -10px;
+        transform: skew(0, 30deg);
+    }
+
+    #triangle-right {
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-left: 100px solid red;
+        border-bottom: 50px solid transparent;
+    }
+
+    .time {
+        color: #777;
+        display: block;
+        font-size: 12px;
+        margin: 8px 0 0;
+    }
+
+    .outgoing-chats {
+        overflow: hidden;
+        margin: 26px 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .outgoing-chats-msg p {
+        background: #1546dc none repeat scroll 0 0;
+        color: #fff;
+        font-size: 16px;
+        margin: 0;
+        color: #fff;
+        padding: 12px;
+        width: 253px;
+        min-height: 61px;
+        position: relative;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        line-height: 1.2;
+    }
+
+    .outgoing-chats-msg p::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-left-color: #1546dc;
+        border-right: 0;
+        margin-top: -10px;
+        margin-right: -10px;
+        transform: skew(0, -30deg);
+    }
+
+    .outgoing-chats-img {
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+        margin-left: 20px;
+    }
+
+    .msg-bottom {
+        position: relative;
+        height: 60px;
+        background-color: #007bff;
+        border-radius: 100px 100px 0 0;
+    }
+
+    .input-group {
+        margin-right: 20px;
+        border-top: 1px solid #DEE6EB;
+        width: 100% !important;
+        background-color: #fff;
+        height: 100%;
+        border-radius: 0 0 7px 7px
+    }
+
+    .input-group input {
+        height: 100%;
+        background: #fff;
+    }
+
+    .input-group ::placeholder {
+        color: #C0C0C0 !important;
+    }
+
+    .form-control {
+        border: none !important;
+        border-radius: 20px !important;
+    }
+
+    .input-group-text {
+        background: transparent !important;
+        border: none !important;
+    }
+
+    .input-group .fa {
+        color: #007bff;
+        float: right;
+    }
+
+    .bottom-icons {
+        float: left;
+        margin-top: 17px;
+        width: 30% !important;
+        margin-left: 22px;
+    }
+
+    .bottom-icons .fa {
+        color: #fff;
+        padding: 5px;
+    }
+
+    .form-control:focus {
+        border-color: none !important;
+        box-shadow: none !important;
+        border-radius: 20px;
+    }
+
+    .msg-bottom {
+        border-radius: 0px 0px 10px 10px;
+        position: absolute;
+        z-index: 10;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .message-form {
+        height: 100%;
+    }
+
+    .chat-page {
+        position: relative;
+    }
+    .sending-message-spinner {
+        margin-right: 20px;
+    }
+
+    .message-input {
+        padding: 6px 20px;
+    }
+
+    .empty-chat-sub-title {
+        text-align: center;
+        color: #555;
+        font-size: 18px;
+    }
+
+    .loading-messages-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 150px;
+    }
+
+    .loading-text {
+        color: #1546dc;
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .loading-messages-container .spinner svg {
+        stroke: #CCD7F0;
+    }
+
+    @media (max-width: 450px) {
+        .login-container {
+            padding: 40px;
+        }
+        .outgoing-chats-img {
+            display: none;
+        }
+        .received-chats-img {
+            display: none;
+        }
+        .received-msg-inbox p {
+            left: 0;
+            width: 100%;
+        }
+        .received-msg-inbox p:after {
+            display: none;
+        }
+        .received-msg-inbox {
+            width: 100%;
+        }
+        .received-msg {
+            width: 100%;
+        }
+        .outgoing-chats-msg {
+            width: 100%;
+        }
+        .outgoing-chats-msg p {
+            width: 100%;
+        }
+        .outgoing-chats-msg p::before {
+            display: none;
+        }
+        .welcome-message {
+            display: none;
+        }
+    }
+</style>

@@ -1,5 +1,6 @@
 <template>
-    <div class="bx--grid" style="padding: 60px 250px;">
+    <div>
+    <!-- <div class="bx--grid" style="padding: 60px 250px;"> -->
         <!-- Comment -->
         <br/>
         <p v-if="errors.length">
@@ -10,9 +11,9 @@
                 </li>
             </ul>
         </p>
-        <div class="bx--row">
+        <!-- <div class="bx--row">
             <div class="bx--col-lg-12">
-                <div class="bx--form-item bx--text-input-wrapper">
+                <div class="bx--form-item bx--text-input-wrapper"> -->
                     <label for="comment" class="bx--label">Comment</label>
                     <div class="bx--text-input__field-wrapper">
                         <textarea 
@@ -26,11 +27,11 @@
                             cols="50" 
                             placeholder="Comment"></textarea>
                     </div>
-                </div>
+                <!-- </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Percentage Done -->
+        <!-- Percentage Done
         <br/>
         <div class="bx--row">
             <div class="bx--col-lg-12">
@@ -49,13 +50,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Button -->
-        <br/>
-        <div class="bx--row">
+        <!-- <br/> -->
+        <!-- <div class="bx--row">
             <div class="bx--col-lg-12">
-                <div class="bx--form-item">
+                <div class="bx--form-item"> -->
                     <button 
                         class="bx--btn bx--btn--primary" 
                         type="submit"
@@ -63,9 +64,9 @@
                         :disabled="submitting">
                             Save
                     </button>
-                </div>
+                <!-- </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -109,6 +110,7 @@
                 </md-card-actions>
             </md-card>
         </form> -->
+    <!-- </div> -->
     </div>
 </template>
 <script>
@@ -127,7 +129,7 @@
             return {
                 comment: {
                     comment: '',
-                    progress: '',
+                    progress: 20,
                     user_id: null
                 },
                 errors: [],
@@ -171,11 +173,14 @@
 
                 axios.post(`/api/${url}/${this.$route.params.id}/new`, payload)
                 .then(response => {
-                    if(!response.data) {
+                    if(response.data.status !== "success") {
                         console.log("Error!", response)
-                        this.errors.push({id: 0, message: JSON.stringify(response.message)})
-                        this.submitting = false
-                    } else router.push({path: `/admin/comment/show/${response.data.comment.id}`})
+                        this.errors.push({id: 0, message: JSON.stringify(response.data.error)})
+                    } else {
+                        this.$emit('comment-added', response.data.comment[0])
+                        this.comment.comment = ""   
+                    }
+                    this.submitting = false
                 })
             }
         },
