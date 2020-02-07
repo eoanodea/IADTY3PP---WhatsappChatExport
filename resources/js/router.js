@@ -1,11 +1,16 @@
-/**
- * @Author: John Carlo M. Ramos
- * @Date:   2019-11-07T18:25:17+00:00
- * @Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
- * @Last modified by:   John Carlo M. Ramos
- * @Last modified time: 2019-11-07T18:35:04+00:00
+/*
+ * File: router.js
+ * Project: IADTY3PPClientMangementSystem
+ * Version: 1.0.0
+ * File Created: Thursday, 6th February 2020 6:22:47 pm
+ * Author: Eoan O'Dea - eoan@wspace.ie
+ * ---------------
+ * File Description:
+ * Last Modified: Friday, 7th February 2020 10:46:32 am
+ * Modified By: Eoan O'Dea - eoan@wspace.ie
+ * ---------------
+ * Copyright 2020 - WebSpace
  */
-
 
 
 import VueRouter from 'vue-router';
@@ -51,13 +56,21 @@ function beforeEnter(to, from, next) {
 }
 
 const routes = [
-    //Authentication
+
+    /**
+     * Authentication
+     */
     {
         path: '/',
         name: 'signin',
         component: Signin
     },    
-    //Main Pages
+
+    /**
+     * Main Pages
+     *  @Page Home
+     *  @Page About
+     */
     {
         path: '/admin/home',
         name: 'home',
@@ -69,7 +82,14 @@ const routes = [
         name: 'about',
         component: About
     },
-    //User Admin View
+
+    /**
+     * User CRUD Pages
+     *  @Page ListUsers
+     *  @Page User
+     *  @Page EditUser
+     *  @Page AddUser
+     */
     {
         path: '/admin/users',
         name: 'users',
@@ -94,7 +114,14 @@ const routes = [
         component: AddUser,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
-    //Service Admin view
+    
+    /**
+     * Service CRUD Pages
+     *  @Page ListServices
+     *  @Page Service
+     *  @Page EditService
+     *  @Page AddService
+     */
     {
         path: '/admin/services',
         name: 'services',
@@ -119,9 +146,16 @@ const routes = [
         component: AddService,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
-    //Task view
-    //:active parameter 
-    //- takes either true or false, if true will display active task
+
+    /**
+     * Task CRUD Pages
+     * - takes either true or false, if true will display active task
+     *  @Param active
+     *  @Page ListTasks
+     *  @Page Task
+     *  @Page EditTask
+     *  @Page AddTask
+     */
     {
         path: '/admin/tasks/:active/:id',
         name: 'tasks',
@@ -146,7 +180,16 @@ const routes = [
         component: AddTask,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
-    //Assignment Admin view
+    
+    /**
+     * Assignment CRUD Pages
+     * 
+     *  @Param active
+     *  @Page ListAssignments
+     *  @Page Assignment
+     *  @Page EditAssignment
+     *  @Page AddAssignment
+     */
     {
         path: '/admin/assignments',
         name: 'assignments',
@@ -171,15 +214,27 @@ const routes = [
         component: AddAssignmentStepper,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
-    //Checkout
-    //Param - Assignment ID
+
+    /**
+     * Checkout
+     *
+     *  @Param assignmentId
+     *  @Page Checkout
+     */
     {
         path: '/checkout/:id',
         name: 'assignments',
         component: Checkout,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
-    //Transaction
+
+    /**
+     * Transaction
+     * 
+     * @Param transactionID
+     * @Page ListTransaction
+     * @Page Transaction
+     */
     {
         path: '/transactions/:id',
         name: 'transactions',
@@ -192,9 +247,17 @@ const routes = [
         component: Transaction,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
-    //Comment
-    //:active parameter 
-    //- takes either true or false, if true will display active task
+
+    /**
+     * Comment CRUD Pages
+     * - takes either true or false, if true will display a comment of a assignment,
+     * - if not, displays a task
+     *  @Param isAssignment
+     *  @Page ListComments
+     *  @Page Comment
+     *  @Page EditComment
+     *  @Page AddComment
+     */
     {
         path: '/admin/comments/:isAssignment/:id',
         name: 'comments',
