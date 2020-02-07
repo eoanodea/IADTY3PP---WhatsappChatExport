@@ -83,16 +83,6 @@
 
                     <div class="msg-bottom">
                         <add-comment v-on:comment-added="addComment" v-bind:isAssignment="assignment"></add-comment>
-                        <!-- <form class="message-form" v-on:submit.prevent="sendGroupMessage">
-                            <div class="input-group">
-                                <input type="text" class="form-control message-input" placeholder="Type something" v-model="chatMessage" required>
-                                <spinner
-                                    v-if="sendingMessage"
-                                    class="sending-message-spinner"
-                                    :size="30"
-                                />
-                            </div>
-                        </form> -->
                     </div>
                 </div>
             </div>
@@ -124,7 +114,9 @@
                 assignment: this.$route.params.isAssignment
                     ? (this.$route.params.isAssignment === 'true' ? true : false)
                     : this.isAssignment,
-                error: null
+                error: null,
+                msgContainer: null,
+                scroll: 0
             }
         },
         //When the component mounts, check if the comment is assignment or not
@@ -143,18 +135,28 @@
                   this.comments = response.data.comment
               }
               this.loadingMessages = false
-              this.scrollToBottom()
+            }).catch(function(e) {
+                console.log('error!', e)
+                this.error = e
+            }).finally(() => {
+                this.msgContainer = this.$el.querySelector("#msg-page");
+                this.scrollToBottom()
             })
         },
         methods: {
             addComment(comment) {
-                this.comments.push(comment)
+                this.comments.push(comment);
                 this.scrollToBottom()
             },
-            scrollToBottom: function() {    	
-                var container = this.$el.querySelector("#msg-page");
-                container.scrollTop = container.scrollHeight;
+            scrollToBottom: function() {    
+                this.$nextTick(() => {
+                
+                    this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
+                })
             }
+        },
+        watch: {
+
         },
         components: {
             AddComment,

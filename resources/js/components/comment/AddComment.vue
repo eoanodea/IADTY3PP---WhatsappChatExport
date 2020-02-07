@@ -1,9 +1,19 @@
 <template>
     <div>
-    <!-- <div class="bx--grid" style="padding: 60px 250px;"> -->
         <!-- Comment -->
-        <br/>
-        <p v-if="errors.length">
+        <div class="bx--text-input__field-wrapper">
+            <textarea 
+                id="text-area-2" 
+                name="comment" 
+                type="text" 
+                autocomplete="comment" 
+                v-model="comment.comment"
+                class="bx--text-area"
+                rows="4" 
+                cols="50" 
+                placeholder="Comment"></textarea>
+        </div>
+        <p v-if="errors.length" class="bx--form-requirement">
             <b class="error">Please correct the following error(s):</b>
             <ul>
             <li v-for="error in errors" v-bind:key="error.id" class="error">
@@ -11,25 +21,7 @@
                 </li>
             </ul>
         </p>
-        <!-- <div class="bx--row">
-            <div class="bx--col-lg-12">
-                <div class="bx--form-item bx--text-input-wrapper"> -->
-                    <label for="comment" class="bx--label">Comment</label>
-                    <div class="bx--text-input__field-wrapper">
-                        <textarea 
-                            id="text-area-2" 
-                            name="comment" 
-                            type="text" 
-                            autocomplete="comment" 
-                            v-model="comment.comment"
-                            class="bx--text-area"
-                            rows="4" 
-                            cols="50" 
-                            placeholder="Comment"></textarea>
-                    </div>
-                <!-- </div>
-            </div>
-        </div> -->
+
 
         <!-- Percentage Done
         <br/>
@@ -53,64 +45,13 @@
         </div> -->
 
         <!-- Button -->
-        <!-- <br/> -->
-        <!-- <div class="bx--row">
-            <div class="bx--col-lg-12">
-                <div class="bx--form-item"> -->
-                    <button 
-                        class="bx--btn bx--btn--primary" 
-                        type="submit"
-                        v-on:click="validateComment"
-                        :disabled="submitting">
-                            Save
-                    </button>
-                <!-- </div>
-            </div>
-        </div> -->
-
-
-
-        <!-- <div class="md-layout">
-            <div class="md-layout-item">
-                <md-table-toolbar>
-                    <h1 class="md-title accent">Add Default Comment</h1>
-                </md-table-toolbar>
-            </div>
-        </div>
-        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateComment">
-            <md-card class="md-layout-item background">
-
-                <md-card-content>
-                    <p v-if="errors.length">
-                        <b class="error">Please correct the following error(s):</b>
-                        <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="error">
-                            {{ error.message }}
-                            </li>
-                        </ul>
-                    </p>
-                    <md-field>
-                        <label class="accent" for="title">Title</label>
-                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="comment.title" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="description">Description</label>
-                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="comment.description" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="progress">Percent Done</label>
-                        <span class="md-prefix">%</span>
-                        <md-input name="progress" type="number" class="form-control" placeholder="Percent Done" v-model="comment.progress" /> <br />
-                    </md-field>
-
-                </md-card-content>
-                <md-card-actions> -->
-                    <!-- <md-button class="md-secondary md-raised">Back</md-button> -->
-                    <!-- <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
-                </md-card-actions>
-            </md-card>
-        </form> -->
-    <!-- </div> -->
+        <button 
+            class="bx--btn bx--btn--primary" 
+            type="submit"
+            v-on:click="validateComment"
+            :disabled="submitting">
+                Save
+        </button>
     </div>
 </template>
 <script>
