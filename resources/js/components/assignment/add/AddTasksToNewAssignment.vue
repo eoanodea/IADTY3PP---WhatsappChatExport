@@ -47,9 +47,14 @@
     import Vue from 'vue'
     import axios from 'axios';
     import CreateNewTaskForAssignment from './CreateNewTaskForNewAssignment'
-    import {MdEmptyState} from 'vue-material/dist/components'
+    import 'carbon-components/css/carbon-components.css';
+    import CarbonComponentsVue from '@carbon/vue/src/index';
+    import Checkmark from '@carbon/icons-vue/lib';
 
-    Vue.use(MdEmptyState)
+    Vue.use(CarbonComponentsVue);
+    // import {MdEmptyState} from 'vue-material/dist/components'
+
+    // Vue.use(MdEmptyState)
 
     export default {
         //This component will only work 
@@ -109,7 +114,8 @@
             }
         },
         components: {
-            CreateNewTaskForAssignment
+            CreateNewTaskForAssignment,
+            Checkmark
         }
     }
 </script>
