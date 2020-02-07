@@ -86,8 +86,13 @@ const routes = [
     /**
      * User CRUD Pages
      *  @Page ListUsers
+     * 
      *  @Page User
+     *  @Param User ID
+     * 
      *  @Page EditUser
+     *  @Param User ID
+     * 
      *  @Page AddUser
      */
     {
@@ -117,9 +122,15 @@ const routes = [
     
     /**
      * Service CRUD Pages
+     * 
      *  @Page ListServices
+     * 
      *  @Page Service
+     *  @Param Service ID
+     * 
      *  @Page EditService
+     *  @Param Service ID
+     * 
      *  @Page AddService
      */
     {
@@ -150,7 +161,9 @@ const routes = [
     /**
      * Task CRUD Pages
      * - takes either true or false, if true will display active task
+     * 
      *  @Param active
+     * 
      *  @Page ListTasks
      *  @Page Task
      *  @Page EditTask
@@ -184,10 +197,14 @@ const routes = [
     /**
      * Assignment CRUD Pages
      * 
-     *  @Param active
      *  @Page ListAssignments
+     * 
      *  @Page Assignment
+     *  @Param ID
+     * 
      *  @Page EditAssignment
+     *  @Param ID
+     * 
      *  @Page AddAssignment
      */
     {
@@ -231,9 +248,11 @@ const routes = [
     /**
      * Transaction
      * 
-     * @Param transactionID
      * @Page ListTransaction
+     * @Param Assignment ID
+     * 
      * @Page Transaction
+     * @Param Transaction ID
      */
     {
         path: '/transactions/:id',
@@ -252,7 +271,10 @@ const routes = [
      * Comment CRUD Pages
      * - takes either true or false, if true will display a comment of a assignment,
      * - if not, displays a task
+     * 
      *  @Param isAssignment
+     *  @Param Assignment / Task ID
+     * 
      *  @Page ListComments
      *  @Page Comment
      *  @Page EditComment
