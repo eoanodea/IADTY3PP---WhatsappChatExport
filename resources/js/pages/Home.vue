@@ -39,7 +39,7 @@
   <!-- Progression Donut -->
   <div class="bx--row">
     <div class="bx--col-lg-6">
-      
+
     </div>
   </div>
 </div>
@@ -49,10 +49,12 @@
   import Vue from 'vue'
   import axios from 'axios'
   import { mapGetters } from 'vuex'
+
   import User from './../components/user/User'
   import Service from './../components/service/Service'
   import Assignment from './../components/assignment/Assignment'
   import ListTask from './../components/task/ListTask'
+  
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
   import { Modal, DataTable, Loading } from 'carbon-components';
@@ -65,27 +67,10 @@
       return {
         assignmentId: null,
         assignments: [],
-        
-        // msg: 'Welcome',
-
-        // user: {
-        // first_name: "",
-        // last_name: "",
-        // email: "",
-        // mobile_number: "",
-        // address: ""
-        // },
       };
     },
     mounted() {
       this.fetchAssignments()
-    //   axios.get(`/api/user/${this.$route.params.id}`).then(response => {
-    //     if (response.data.status !== "success") {
-    //       console.log("error ", response);
-    //     } else {
-    //       this.user = response.data.user;
-    //     }
-    //   });
     },
     methods: {
       fetchAssignments() {
@@ -107,6 +92,7 @@
       Service,
       Assignment,
       ListTask,
+      
       Notification,
       Modal,
       DataTable, 
