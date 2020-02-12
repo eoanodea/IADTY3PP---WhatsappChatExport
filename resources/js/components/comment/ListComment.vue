@@ -7,6 +7,9 @@
                     <div class="active">
                         <h5>Comments</h5>
                     </div>
+                    <div>
+                        <button class="bx--btn bx--btn--lg bx--btn--secondary" @click="closePanel">Close</button>
+                    </div>
                 </div>
 
                 <div class="chat-page">
@@ -139,6 +142,9 @@
                 
                     this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
                 })
+            },
+            closePanel() {
+                this.$emit('close')
             }
         },
         watch: {
@@ -160,11 +166,10 @@
     
     .chat {
         flex: 1;
-        max-height: 500px;
+        // max-height: 500px;
         width: 350px;
-        max-height: 500px;
-        margin-left: -60px;
-        margin-bottom: -35px;
+        // margin-left: -60px;
+        // margin-bottom: -35px;
         background-color: #f8f9fb;
     }
     .empty-chat-holder {
@@ -212,6 +217,7 @@
         border-radius: 7px 7px 0 0;
         padding: 0 20px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -421,7 +427,7 @@
         position: absolute;
         z-index: 10;
         left: 0;
-        bottom: 25px;
+        bottom: 0;
         width: 100%;
     }
 
