@@ -25,9 +25,12 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@carbon/charts": "^0.29.1",
+        "@carbon/charts-vue": "^0.29.1",
         "@carbon/grid": "^10.8.2",
         "@carbon/themes": "^10.9.2",
         "@carbon/vue": "^2.20.1",
+        "d3": "^5.15.0",
         "date-fns": "^2.8.1",
         "npm": "^6.13.7",
         "vue-material": "^1.0.0-beta-11",

@@ -35,6 +35,13 @@
       <ListTask v-bind:id="user.id" v-bind:isActive="false" />
     </div>
   </div>
+
+  <!-- Progression Donut -->
+  <div class="bx--row">
+    <div class="bx--col-lg-6">
+      
+    </div>
+  </div>
 </div>
 </template>
 
