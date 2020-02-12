@@ -36,10 +36,15 @@
     </div>
   </div>
 
-  <!-- Progression Donut -->
   <div class="bx--row">
+    <!-- Progression Donut -->
     <div class="bx--col-lg-6">
       <Chart />
+    </div>
+
+    <!-- Comments -->
+    <div class="bx--col-lg-6">
+      <ListComment v-bind:id="user.id" v-bind:isAssignment="true" />
     </div>
   </div>
 </div>
@@ -55,6 +60,7 @@
   import Assignment from './../components/assignment/Assignment'
   import ListTask from './../components/task/ListTask'
   import Chart from './../components/user/components/Chart'
+  import ListComment from './../components/comment/ListComment'
   
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -94,6 +100,7 @@
       Assignment,
       ListTask,
       Chart,
+      ListComment,
       
       Notification,
       Modal,
