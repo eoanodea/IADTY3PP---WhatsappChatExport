@@ -30,9 +30,9 @@
         </div>
 
         <!-- Dropdown to choose Project -->
-        <cv-dropdown :value="value" name="service" id="service" v-model="serviceId" class="cv-dropdown" placeholder="Select a Service">
-            <cv-dropdown-item v-for="service in services" v-bind:key="service.id" :value="service.id">
-                {{service.title}}
+        <cv-dropdown :value="value" name="assignment" id="assignment" v-model="assignmentId" class="cv-dropdown" placeholder="Select a Project">
+            <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id">
+                {{assignment.title}}
             </cv-dropdown-item>
         </cv-dropdown>
       </div>
@@ -47,6 +47,7 @@
   import { mapGetters } from 'vuex'
   import User from './../components/user/User'
   import Service from './../components/service/Service'
+  import Assignment from './../components/assignment/Assignment'
   import ListTask from './../components/task/ListTask'
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -58,8 +59,8 @@
   export default {
     data() {
       return {
-        serviceId: null,
-        services: []
+        assignmentId: null,
+        assignments: []
         // msg: 'Welcome',
 
         // user: {
@@ -72,7 +73,7 @@
       };
     },
     mounted() {
-      this.fetchServices()
+      this.fetchAssignments()
     //   axios.get(`/api/user/${this.$route.params.id}`).then(response => {
     //     if (response.data.status !== "success") {
     //       console.log("error ", response);
@@ -82,23 +83,24 @@
     //   });
     },
     methods: {
-      fetchServices() {
-      axios.get('/api/service/all')
+      fetchAssignments() {
+      axios.get('/api/assignment/all')
         .then(response => {
           if(!response.data) {
-            console.log('Error no services', response)
+            console.log('Error no projects', response)
           } else {
-            this.services = response.data
+            this.assignments = response.data
           }
         })
       },
       returnData() {
-        this.$emit('selected-service-client', this.serviceId, this.clientId)
+        this.$emit('selected-assignment', this.assignmentId)
       }
     },
     components: {
       User,
       Service,
+      Assignment,
       ListTask,
       Notification,
       Modal,
