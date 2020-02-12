@@ -29,13 +29,12 @@
           </div>
         </div>
 
-        <!-- Edit and Delete Button -->
-        <cv-link :to="'/admin/users/edit/' + user.id" style="text-decoration: none;">
-          <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-            Edit Client
-          </button>
-        </cv-link>
-        <DeleteUser style="text-decoration; none;" class="md-alignment-top-right" v-bind:id="user.id" />
+        <!-- Dropdown to choose Project -->
+        <cv-dropdown :value="value" name="service" id="service" v-model="serviceId" class="cv-dropdown" placeholder="Select a Service">
+            <cv-dropdown-item v-for="service in services" v-bind:key="service.id" :value="service.id">
+                {{service.title}}
+            </cv-dropdown-item>
+        </cv-dropdown>
       </div>
     </div>
   </div>
@@ -52,14 +51,17 @@
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
   import { Modal, DataTable, Loading } from 'carbon-components';
+  import { CvDropdown, CvDropdownItem, CvDropdownSkeleton } from '@carbon/vue/src'
 
   Vue.use(CarbonComponentsVue);
 
   export default {
     data() {
       return {
+        serviceId: null,
+        services: []
         // msg: 'Welcome',
-        
+
         // user: {
         // first_name: "",
         // last_name: "",
@@ -69,7 +71,8 @@
         // },
       };
     },
-    // mounted() {
+    mounted() {
+      this.fetchServices()
     //   axios.get(`/api/user/${this.$route.params.id}`).then(response => {
     //     if (response.data.status !== "success") {
     //       console.log("error ", response);
@@ -77,7 +80,22 @@
     //       this.user = response.data.user;
     //     }
     //   });
-    // },
+    },
+    methods: {
+      fetchServices() {
+      axios.get('/api/service/all')
+        .then(response => {
+          if(!response.data) {
+            console.log('Error no services', response)
+          } else {
+            this.services = response.data
+          }
+        })
+      },
+      returnData() {
+        this.$emit('selected-service-client', this.serviceId, this.clientId)
+      }
+    },
     components: {
       User,
       Service,
@@ -85,7 +103,10 @@
       Notification,
       Modal,
       DataTable, 
-      Loading
+      Loading,
+      CvDropdown, 
+      CvDropdownItem, 
+      CvDropdownSkeleton
     },
     computed: {
       ...mapGetters({
