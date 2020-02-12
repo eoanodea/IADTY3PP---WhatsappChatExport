@@ -1,11 +1,3 @@
-<!--
-@Author: John Carlo M. Ramos
-@Date:   2019-11-03T22:20:18+00:00
-@Email:  !!!!!---CTRL + ALT + C = Colour Picker---!!!!!
-@Last modified by:   John Carlo M. Ramos
-@Last modified time: 2019-11-08T08:54:53+00:00
--->
-
 <template>
 <div class="bx--grid" style="padding: 40px 0px;">
       <!-- Dashboard: <p v-if="user">{{msg}}, {{ user.first_name }}</p> -->
@@ -37,6 +29,11 @@
         </cv-dropdown>
       </div>
     </div>
+
+    <!-- Active Task Datatable -->
+    <div class="bx--col-lg-6">
+      <ListTask v-bind:id="user.id" v-bind:isActive="false" />
+    </div>
   </div>
 </div>
 </template>
@@ -60,7 +57,8 @@
     data() {
       return {
         assignmentId: null,
-        assignments: []
+        assignments: [],
+        
         // msg: 'Welcome',
 
         // user: {
