@@ -11,6 +11,10 @@ debug.log
 /vendor
 /public/css
 /public/js
+
+# echo & redis
+laravel-echo-server.json
+
 #passport
 .rnd
 storage/oauth-private.key
