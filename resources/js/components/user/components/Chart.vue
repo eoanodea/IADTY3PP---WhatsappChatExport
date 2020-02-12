@@ -12,29 +12,36 @@ export default {
         return {
             data: {
                 labels :[
-                    "2V2N 9KYPM version 1",
-                    "L22I P66EP L22I P66EP L22I P66EP",
-                    "JQAI 2M4L1",
-                    "J9DZ F37AP",
-                    "YEL48 Q6XK YEL48",
-                    "P66EP L22I L22I"
+                    "Task 1",
+                    "Task 2",
+                    "Task 3",
+                    "Task 4",
+                    "Task 5",
+                    "Task 6"
                 ],
                 datasets: [
                     {
                         label: "Dataset 1",
-                        data: [20000, 65000, 75000, 1200, 10000, 25000]
+                        data: [
+                            48, 
+                            20, 
+                            3, 
+                            10, 
+                            12, 
+                            7
+                        ]
                     }
                 ]
             },
             options: {
-                title: "Donut",
+                title: "Project Completion",
                 resizable: true,
                 donut: {
                     center: {
-                        label: "Browsers"
+                        label: "%"
                     }
                 },
-                height: "400px"
+                height: "700px"
             }
         };
     },
