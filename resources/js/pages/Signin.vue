@@ -57,7 +57,6 @@
             <button 
                 class="bx--btn bx--btn--primary" 
                 type="submit"
-                :tip-text="Submit"
                 :disabled="submitting" 
                 @click="validateSignin">
                     Submit

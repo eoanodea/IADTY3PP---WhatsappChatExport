@@ -1,30 +1,14 @@
 <template>
-    <div class="bx--grid">
-        <div class="bx--data-table-container" data-table>
-            <!-- Title -->
-            <div class="bx--data-table-header">
-                <h4 class="bx--data-table-header__title">Comments</h4>
-            </div>
-
-            <!-- Toolbar Contents -->
-            <section class="bx--table-toolbar">
-                <!-- Persistent Search -->
-                <div class="bx--toolbar-content">
-                    <cv-link :to="`/admin/comments/${assignment}/` + commentId + '/new'" style="text-decoration: none;">
-                        <button class="bx--btn bx--btn--lg bx--btn--primary">
-                            Add Comment 
-                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
-                        </button>
-                    </cv-link>
-                </div>
-            </section>
-
-                <!-- Chat app -->
+    <span>
+            <!-- Chat app -->
         <div class="chat">
             <div class="container">
                 <div class="msg-header">
                     <div class="active">
                         <h5>Comments</h5>
+                    </div>
+                    <div>
+                        <button class="bx--btn bx--btn--lg bx--btn--secondary" @click="closePanel">Close</button>
                     </div>
                 </div>
 
@@ -83,23 +67,16 @@
 
                     <div class="msg-bottom">
                         <add-comment v-on:comment-added="addComment" v-bind:isAssignment="assignment"></add-comment>
-                        <!-- <form class="message-form" v-on:submit.prevent="sendGroupMessage">
-                            <div class="input-group">
-                                <input type="text" class="form-control message-input" placeholder="Type something" v-model="chatMessage" required>
-                                <spinner
-                                    v-if="sendingMessage"
-                                    class="sending-message-spinner"
-                                    :size="30"
-                                />
-                            </div>
-                        </form> -->
                     </div>
                 </div>
             </div>
-        </div>
-        
-    </div>
-    </div>
+            </div>
+
+        <!-- <button class="bx--btn bx--btn--lg bx--btn--primary chat-btn" v-else @click="expanded = !expanded">
+            Add Comment
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
+        </button> -->
+    </span>
 
 </template>
 <script>
@@ -107,6 +84,7 @@
     import axios from 'axios';
     import LoadingIndicator from './../progress/LoadingIndicator'
     import CarbonComponentsVue from '@carbon/vue/src/index';
+    
     import { mapGetters } from 'vuex'
     import AddComment from './AddComment'
 
@@ -124,7 +102,10 @@
                 assignment: this.$route.params.isAssignment
                     ? (this.$route.params.isAssignment === 'true' ? true : false)
                     : this.isAssignment,
-                error: null
+                error: null,
+                msgContainer: null,
+                scroll: 0,
+                expanded: false
             }
         },
         //When the component mounts, check if the comment is assignment or not
@@ -143,18 +124,31 @@
                   this.comments = response.data.comment
               }
               this.loadingMessages = false
-              this.scrollToBottom()
+            }).catch(function(e) {
+                console.log('error!', e)
+                this.error = e
+            }).finally(() => {
+                this.msgContainer = this.$el.querySelector("#msg-page");
+                this.scrollToBottom()
             })
         },
         methods: {
             addComment(comment) {
-                this.comments.push(comment)
+                this.comments.push(comment);
                 this.scrollToBottom()
             },
-            scrollToBottom: function() {    	
-                var container = this.$el.querySelector("#msg-page");
-                container.scrollTop = container.scrollHeight;
+            scrollToBottom: function() {    
+                this.$nextTick(() => {
+                
+                    this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
+                })
+            },
+            closePanel() {
+                this.$emit('close')
             }
+        },
+        watch: {
+
         },
         components: {
             AddComment,
@@ -169,10 +163,14 @@
 </script>
 
 <style lang="scss" scoped>
+    
     .chat {
         flex: 1;
-        padding-top: 40px;
-        width: 100%;
+        // max-height: 500px;
+        width: 350px;
+        // margin-left: -60px;
+        // margin-bottom: -35px;
+        background-color: #f8f9fb;
     }
     .empty-chat-holder {
         width: 100%;
@@ -199,8 +197,7 @@
 
     .container {
         margin: auto;
-        max-width: 800px;
-        width: calc(100% - 20px);
+        width: 100%;
         height: 588px;
         letter-spacing: 0.5px;
         background: #f8f9fb;
@@ -220,6 +217,7 @@
         border-radius: 7px 7px 0 0;
         padding: 0 20px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -245,7 +243,7 @@
     .msg-page {
         height: 516px;
         overflow-y: auto;
-        padding-bottom: 50px;
+        padding-bottom: 100px;
     }
 
     .received-chats {
@@ -368,8 +366,8 @@
 
     .msg-bottom {
         position: relative;
-        height: 60px;
-        background-color: #007bff;
+        height: 40px;
+        background-color: #0e62fe;
         border-radius: 100px 100px 0 0;
     }
 
