@@ -14,7 +14,17 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import axios from 'axios'
   import { mapGetters } from 'vuex'
+  import User from './../components/user/User'
+  import Service from './../components/service/Service'
+  import ListTask from './../components/task/ListTask'
+  import 'carbon-components/css/carbon-components.css';
+  import CarbonComponentsVue from '@carbon/vue/src/index';
+  import { Modal, DataTable, Loading } from 'carbon-components';
+
+  Vue.use(CarbonComponentsVue);
 
   export default {
     data() {
@@ -23,7 +33,13 @@
       }
     },
     components: {
-      //
+      User,
+      Service,
+      ListTask,
+      Notification,
+      Modal,
+      DataTable, 
+      Loading
     },
     computed: {
       ...mapGetters({
