@@ -36,6 +36,38 @@
     </div>
   </div>
 
+  <!-- Send Message -->
+  <div class="bx--row">
+    <div class="bx--col-lg-6">
+      <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="compose_message" class="bx--label"></label>
+                <div class="bx--text-input__field-wrapper">
+                <textarea 
+                    id="text-area-2" 
+                    name="compose_message" 
+                    type="text" 
+                    class="bx--text-area" 
+                    placeholder="Send a message"></textarea>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Send Message Button -->
+      <div class="bx--row">
+        <div class="bx--col-lg-12">
+          <!-- <cv-link> -->
+            <button class="bx--btn bx--btn--lg bx--btn--primary">
+              Send
+            </button>
+          <!-- </cv-link> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="bx--row">
     <!-- Progression Donut -->
     <div class="bx--col-lg-6">
