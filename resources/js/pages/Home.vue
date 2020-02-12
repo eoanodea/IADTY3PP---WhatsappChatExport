@@ -39,7 +39,7 @@
   <!-- Progression Donut -->
   <div class="bx--row">
     <div class="bx--col-lg-6">
-
+      <Chart />
     </div>
   </div>
 </div>
@@ -54,6 +54,7 @@
   import Service from './../components/service/Service'
   import Assignment from './../components/assignment/Assignment'
   import ListTask from './../components/task/ListTask'
+  import Chart from './../components/user/components/Chart'
   
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -92,6 +93,7 @@
       Service,
       Assignment,
       ListTask,
+      Chart,
       
       Notification,
       Modal,

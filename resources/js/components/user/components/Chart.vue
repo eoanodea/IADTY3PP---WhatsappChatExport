@@ -5,6 +5,39 @@ import chartsVue from "@carbon/charts-vue";
 Vue.use(chartsVue);
 
 export default {
+    name: "Chart",
+    components: {},
     
-}
+    data() {
+        return {
+            data: {
+                labels :[
+                    "2V2N 9KYPM version 1",
+                    "L22I P66EP L22I P66EP L22I P66EP",
+                    "JQAI 2M4L1",
+                    "J9DZ F37AP",
+                    "YEL48 Q6XK YEL48",
+                    "P66EP L22I L22I"
+                ],
+                datasets: [
+                    {
+                        label: "Dataset 1",
+                        data: [20000, 65000, 75000, 1200, 10000, 25000]
+                    }
+                ]
+            },
+            options: {
+                title: "Donut",
+                resizable: true,
+                donut: {
+                    center: {
+                        label: "Browsers"
+                    }
+                },
+                height: "400px"
+            }
+        };
+    },
+    template: '<ccv-donut-chart :data="data" :options="options"></ccv-donut-chart>'
+};
 </script>
