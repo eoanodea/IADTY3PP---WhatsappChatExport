@@ -10,9 +10,19 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 import router from './router';
 import store from './store/index'
-// import 'vue-material/dist/vue-material.min.css'
+
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
+
+import Echo from "laravel-echo"
+window.io = require('socket.io-client');
+
+if (typeof io !== 'undefined') {
+      window.Echo = new Echo({    
+          broadcaster: 'socket.io',    
+          host: window.location.hostname + ':6001',  
+    });
+}
 
 require('./store/subscriber')
 

@@ -31,6 +31,6 @@ class MessagePushed
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PresenceChannel('user.' . $this->user->id);
     }
 }

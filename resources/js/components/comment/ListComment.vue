@@ -130,6 +130,8 @@
             }).finally(() => {
                 this.msgContainer = this.$el.querySelector("#msg-page");
                 this.scrollToBottom()
+
+                this.listenForBroadcast(this.user.id)
             })
         },
         methods: {
@@ -145,7 +147,26 @@
             },
             closePanel() {
                 this.$emit('close')
-            }
+            },
+            listenForBroadcast(id) {
+
+                console.log('starting!!', id)
+                Echo.join('survey.' + id)
+                .here((users) => {
+                    this.users_viewing = users;
+                    this.$forceUpdate();
+                })
+                .joining((user) => {
+                if (this.checkIfUserAlreadyViewingSurvey(user)) {
+                    this.users_viewing.push(user);
+                    this.$forceUpdate();
+                }
+                })
+                .leaving((user) => {
+                    this.removeViewingUser(user);
+                    this.$forceUpdate();
+                });
+            },
         },
         watch: {
 
