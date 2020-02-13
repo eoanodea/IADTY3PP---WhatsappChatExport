@@ -17,6 +17,10 @@ export default {
 
         user (state) {
             return state.user
+        },
+
+        token (state) {
+            return state.token ? `${state.token_type && state.token}` : false
         }
     },
 

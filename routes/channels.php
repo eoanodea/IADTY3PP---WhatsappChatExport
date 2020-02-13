@@ -16,7 +16,7 @@
 // });
 
 
-Broadcast::channel('App.User.{id}', function ($user) {
+Broadcast::channel('user.{id}', function ($user) {
     return [
         'id' => $user->id,
         'first_name' => $user->first_name

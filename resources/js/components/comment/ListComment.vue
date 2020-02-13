@@ -131,7 +131,7 @@
                 this.msgContainer = this.$el.querySelector("#msg-page");
                 this.scrollToBottom()
 
-                this.listenForBroadcast(this.user.id)
+                this.mountEcho()
             })
         },
         methods: {
@@ -148,10 +148,27 @@
             closePanel() {
                 this.$emit('close')
             },
+            mountEcho() {
+                // console.log('check for token!!', this.token)
+                // if (typeof io !== 'undefined' && this.token) {
+                //     console.log('authenticating!!', this.token)
+                //     window.Echo = new Echo({    
+                //         broadcaster: 'socket.io',    
+                //         host: window.location.hostname + ':6001',  
+                //         auth: {
+                //             headers:
+                //                 {
+                //                     Authorization: this.token
+                //                 }
+                //         }
+                //     });
+                    this.listenForBroadcast(this.user.id)
+                // }
+            },
             listenForBroadcast(id) {
 
                 console.log('starting!!', id)
-                Echo.join('survey.' + id)
+                Echo.join('user.' + id)
                 .here((users) => {
                     this.users_viewing = users;
                     this.$forceUpdate();
@@ -177,7 +194,8 @@
         },
         computed: {
             ...mapGetters({
-                user: 'auth/user'
+                user: 'auth/user',
+                token: 'auth/token',
             })
         }
     }
