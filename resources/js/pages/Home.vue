@@ -45,7 +45,7 @@
     <!-- Comments -->
     <div class="bx--row">
       <div class="bx--col-lg-6">
-        <ListComment v-bind:id="user.id" v-bind:isAssignment="true" />
+        <CommentTile v-bind:id="user.id" v-bind:isAssignment="true" />
       </div>
     </div>
 </div>
@@ -61,7 +61,7 @@
   import Assignment from './../components/assignment/Assignment'
   import ListTask from './../components/task/ListTask'
   import Chart from './../components/user/components/Chart'
-  import ListComment from './../components/comment/ListComment'
+  import CommentTile from './../components/comment/CommentTile'
   
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -101,7 +101,7 @@
       Assignment,
       ListTask,
       Chart,
-      ListComment,
+      CommentTile,
       
       Notification,
       Modal,
