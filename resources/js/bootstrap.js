@@ -1,5 +1,3 @@
-window._ = require('lodash');
-
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -7,10 +5,11 @@ window._ = require('lodash');
  */
 
 try {
+    window._ = require('lodash');
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
+    // require('bootstrap');
 } catch (e) {}
 
 /**
@@ -29,13 +28,29 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo';
+import Echo from "laravel-echo"
+window.io = require('socket.io-client');
 
-// window.Pusher = require('pusher-js');
+const token = {
+    access_token: localStorage.getItem('access_token'),
+    token_type: localStorage.getItem('token_type')
+}
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+if (typeof io !== 'undefined' && token.access_token !== null) {
+    window.Echo = new Echo({    
+        broadcaster: 'socket.io',    
+        host: window.location.hostname + ':6001',  
+        namespace: 'App.Events',
+        // key: process.env.MIX_PUSHER_APP_KEY,
+        // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+        // encrypted: true,
+        auth: {
+            headers:
+                {
+                    Authorization: `${token.token_typoe} ${token.access_token}`
+                }
+        }
+    });
+
+}
+

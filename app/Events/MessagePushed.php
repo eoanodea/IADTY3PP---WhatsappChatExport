@@ -7,21 +7,29 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Comment;
 
-class MessagePushed
+class MessagePushed implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+
+    /**
+     * @var comment
+     */
+    public $comment;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Comment $comment)
     {
-        //
+        $this->comment = $comment;
     }
 
     /**
@@ -31,6 +39,6 @@ class MessagePushed
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('user.' . $this->user->id);
+        return new Channel('assignment.'.$this->comment->assignment_id);
     }
 }

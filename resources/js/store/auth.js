@@ -29,9 +29,11 @@ export default {
             if(!token) {
                 state.token = null
                 state.token_type = null
+                window.axios.defaults.headers.common['Authorization'] = ''
             } else {
                 state.token = token.access_token
                 state.token_type = token.token_type
+                window.axios.defaults.headers.common['Authorization'] = `${token.token_type} ${token.access_token}`
             }
         },
         SET_USER (state, data) {
@@ -41,9 +43,17 @@ export default {
 
     actions: {
         async signIn({ dispatch }, credentials) {
-            let response = await axios.post('/api/auth/login', credentials)
+            try {
+                let response = await axios.post('/api/auth/login', credentials)
 
-            return dispatch('attempt', response.data)
+                
+                return dispatch('attempt', response.data)
+            } catch(error) {
+                console.log("error store", error)
+                return error
+            }
+            
+
         },
 
         async attempt ({ commit }, token) {

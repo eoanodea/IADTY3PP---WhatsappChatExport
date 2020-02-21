@@ -162,31 +162,39 @@
                 //                 }
                 //         }
                 //     });
-                    this.listenForBroadcast(this.user.id)
+                    this.listenForBroadcast()
                 // }
             },
-            listenForBroadcast(id) {
+            /**
+             * Connect to Laravel Echo 
+             * for live updates
+             */
+            listenForBroadcast() {
 
-                console.log('starting!!', id)
-                Echo.join('user.' + id)
-                .here((users) => {
-                    this.users_viewing = users;
-                    this.$forceUpdate();
-                })
-                .joining((user) => {
-                if (this.checkIfUserAlreadyViewingSurvey(user)) {
-                    this.users_viewing.push(user);
-                    this.$forceUpdate();
-                }
-                })
-                .leaving((user) => {
-                    this.removeViewingUser(user);
+                console.log('starting!!', Echo)
+                Echo.channel((this.assignment ? 'assignment.' : 'task.') + this.commentId)
+                // .here((users) => {
+                //     console.log("room joined?", users)
+                //     // this.users_viewing = users;
+                //     // this.$forceUpdate();
+                // })
+                // .joining((user) => {
+                //     console.log('joining!', user)
+                // // if (this.checkIfUserAlreadyViewingSurvey(user)) {
+                // //     this.users_viewing.push(user);
+                // //     this.$forceUpdate();
+                // // }
+                // })
+                // .leaving((user) => {
+                //     console.log('leaving', user)
+                //     // this.removeViewingUser(user);
+                //     // this.$forceUpdate();
+                // })
+                .listen("MessagePushed", (e) => {
+                    console.log('message pushed!', e)
                     this.$forceUpdate();
                 });
             },
-        },
-        watch: {
-
         },
         components: {
             AddComment,

@@ -70,18 +70,6 @@
 import Vue from 'vue'
 import { mapActions } from 'vuex'
 import 'carbon-components/css/carbon-components.css';
-// import CarbonComponentsVue from '@carbon/vue/src/index';
-// Vue.use(CarbonComponentsVue);
-// import { 
-//     CvForm,  
-//     CvButton,
-//     CvTextInput,
-//     CvButtonSet } from '@carbon/vue/src';
-
-// Vue.use(CvForm);
-// Vue.use(CvButton);
-// Vue.use(CvTextInput);
-// Vue.use(CvButtonSet);
 
   export default {
     data() {
@@ -98,14 +86,18 @@ import 'carbon-components/css/carbon-components.css';
         validateSignin(e) {
             e.preventDefault();
             const {user} = this;
+            let {submitting, errors} = this;
+
             if(user.email && user.password) {
-                this.submitting = true;
+                submitting = true;
                 this.signIn(this.user).then(() => {
                     this.$router.replace({
                         name: 'home'
-                    }).catch(() => {
-                        this.errors.push({message: "Login failed"})
-                        this.submitting = false
+                    }).catch(function(error) {
+                        console.log("error!", error)
+                        errors.push({authError: "Login failed"})
+                        submitting = false
+                        return
                     })
                 })
             }

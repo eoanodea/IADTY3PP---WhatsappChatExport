@@ -11,14 +11,11 @@
 |
 */
 
-// Broadcast::channel('App.User.{id}', function ($user, $id) {
-//     return (int) $user->id === (int) $id;
-// });
+use App\Broadcasting\CommentChannel;
 
+// Broadcast::channel('assignment.{id}', CommentChannel::class);
 
-Broadcast::channel('user.{id}', function ($user) {
-    return [
-        'id' => $user->id,
-        'first_name' => $user->first_name
-    ];
+Broadcast::channel('assignment.{id}', function($user, $id) {
+    
+    return true;
 });

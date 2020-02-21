@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Comment;
+use App\Events\MessagePushed;
 // use App\User;
 
 class CommentController extends Controller
@@ -74,11 +75,15 @@ class CommentController extends Controller
 
         $comment->save();
 
-        $commentWithUser = Comment::with('User')->where('id', $comment->id)->get();
+        $message = Comment::with('User')->where('id', $comment->id)->get();
+
+        broadcast(new MessagePushed($comment));
+
+        // return $message->fresh;
 
         return response()->json([
             'status' => 'success',
-            'comment' => $commentWithUser
+            'comment' => $message
         ], 200);
     }
 
