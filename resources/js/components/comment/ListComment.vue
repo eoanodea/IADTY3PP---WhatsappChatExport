@@ -108,8 +108,10 @@
                 expanded: false
             }
         },
-        //When the component mounts, check if the comment is assignment or not
-        //Modify the fetch URL with result and fetch comments
+        /**
+         * When the component mounts, check if the comment is assignment or not 
+         * Modify the fetch URL with result and fetch comments
+         */
         mounted () {
             const url = this.assignment
             ? 'comments/assignment'
@@ -131,7 +133,7 @@
                 this.msgContainer = this.$el.querySelector("#msg-page");
                 this.scrollToBottom()
 
-                this.mountEcho()
+                this.listenForBroadcast()
             })
         },
         methods: {
@@ -147,23 +149,6 @@
             },
             closePanel() {
                 this.$emit('close')
-            },
-            mountEcho() {
-                // console.log('check for token!!', this.token)
-                // if (typeof io !== 'undefined' && this.token) {
-                //     console.log('authenticating!!', this.token)
-                //     window.Echo = new Echo({    
-                //         broadcaster: 'socket.io',    
-                //         host: window.location.hostname + ':6001',  
-                //         auth: {
-                //             headers:
-                //                 {
-                //                     Authorization: this.token
-                //                 }
-                //         }
-                //     });
-                    this.listenForBroadcast()
-                // }
             },
             /**
              * Connect to Laravel Echo 
