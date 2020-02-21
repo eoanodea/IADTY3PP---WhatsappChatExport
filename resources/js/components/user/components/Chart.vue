@@ -41,7 +41,7 @@ export default {
                         label: "%"
                     }
                 },
-                height: "700px"
+                height: "550px"
             }
         };
     },

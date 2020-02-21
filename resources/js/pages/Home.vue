@@ -28,6 +28,11 @@
             </cv-dropdown-item>
         </cv-dropdown>
       </div>
+
+      <!-- Progression Donut -->
+      <div class="bx--row">
+          <Chart style="padding-left:100px;"/>
+      </div>
     </div>
 
     <!-- Active Task Datatable -->
@@ -36,17 +41,13 @@
     </div>
   </div>
 
-  <div class="bx--row">
-    <!-- Progression Donut -->
-    <div class="bx--col-lg-6">
-      <Chart />
-    </div>
-
+  
     <!-- Comments -->
-    <div class="bx--col-lg-6">
-      <ListComment v-bind:id="user.id" v-bind:isAssignment="true" />
+    <div class="bx--row">
+      <div class="bx--col-lg-6">
+        <ListComment v-bind:id="user.id" v-bind:isAssignment="true" />
+      </div>
     </div>
-  </div>
 </div>
 </template>
 
