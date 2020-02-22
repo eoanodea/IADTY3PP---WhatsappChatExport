@@ -1,5 +1,6 @@
 <template>
     <div class="bx--grid">
+        <div  v-if="!error"> 
         <div class="bx--data-table-container" data-table>
             <!-- Title -->
             <div class="bx--data-table-header">
@@ -137,14 +138,6 @@
             </div>
         </div> <!-- Close Pagination -->
 
-
-
-
-
-
-
-
-
         <!-- <md-table-toolbar>
             <h1 class="md-title accent">Default Tasks</h1>
             <md-button class="md-raised md-accent btnAccent" :to="`/admin/tasks/${active}/` + serviceId + '/new'">Add Default Task</md-button>
@@ -169,6 +162,10 @@
             </md-table-row>
         </md-table>
         <p v-else>There are no Default Tasks.</p> -->
+        </div>
+        <div v-else class="empty-state">
+            <p>{{error}}</p>
+        </div>
     </div>
 
 </template>
@@ -182,30 +179,56 @@ import { DataTable, Loading } from 'carbon-components';
 Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['id', 'isActive'],
+        props: ['parentId', 'isActive'],
         data() {
             return {
                 tasks: null,
-                serviceId: this.$route.params.id
-                    ? this.$route.params.id
-                    : this.id,
-                active: this.$route.params.active
-                    ? (this.$route.params.active === 'true' ? true : false)
-                    : this.isActive
+                serviceId: this.parentId
+                    ? this.parentId 
+                    : this.$route.params.id,
+                active: this.isActive
+                    ? this.isActive
+                    : (this.$route.params.active === 'true' ? true : false),
+                running: true,
+                error: null
             }
         },
         //When the component mounts, check if the task is active or default
         //Modify the fetch URL with result and fetch tasks
         mounted () {
-            const url = this.active === false
-            ? 'task'
-            : 'task/active'
-            
-            axios.get(`/api/${url}/by/${this.serviceId}`)
-            .then(response => (this.tasks = response.data.task))
+            if(this.serviceId) {
+                console.log('running!!', serviceId)
+                this.fetchTasks()
+            }
         },
         methods: {
-            //
+            fetchTasks() {    
+                if(this.serviceId) {
+                    const url = this.active === false
+                ? 'task'
+                : 'task/active'
+                
+                axios.get(`/api/${url}/by/${this.serviceId}`)
+                .then(response => {
+                    this.tasks = response.data.task
+                }).catch(error => {
+                    console.log('Error!', error)
+                    this.error = error.messag
+                })
+                    this.running = false
+                } else {
+                    this.running = false
+                }
+            }
+        },
+        watch: {
+            //Watch the serviceId Prop for changes, on change 
+            //fetch new data
+            parentId: function(newVal, oldVal) {
+                this.serviceId = newVal
+                console.log('running!', oldVal, newVal)
+                this.fetchTasks()
+            }
         },
         components: {
             DataTable,

@@ -1,5 +1,6 @@
 <script>
 import Vue from "vue";
+import axios from "axios";
 import "@carbon/charts/styles.css";
 import chartsVue from "@carbon/charts-vue";
 Vue.use(chartsVue);
@@ -10,25 +11,25 @@ export default {
     
     data() {
         return {
+            task: {
+                title: "",
+                percent_done: 0
+            },
+            active: this.$route.params.active 
+                ? this.$this.route.params.active === "true" 
+                ? true 
+                : false 
+                : this.isActive,
+            parentId: null,
             data: {
                 labels :[
-                    "Task 1",
-                    "Task 2",
-                    "Task 3",
-                    "Task 4",
-                    "Task 5",
-                    "Task 6"
+                    title
                 ],
                 datasets: [
                     {
                         label: "Dataset 1",
                         data: [
-                            48, 
-                            20, 
-                            3, 
-                            10, 
-                            12, 
-                            7
+                            percent_done
                         ]
                     }
                 ]
@@ -45,6 +46,31 @@ export default {
             }
         };
     },
-    template: '<ccv-donut-chart :data="data" :options="options"></ccv-donut-chart>'
+    mounted() {
+    },
+    methods: {
+        fetchTasks() {
+            console.log('fetching')
+            const url ="task/active"
+            console.log("going ", url);
+            axios.get(`/api/${url}/${this.$serviceId}`).then(response => {
+            if (response.data.status !== "success") {
+                console.log("error ", response);
+            } else {
+                this.task = response.data.task;
+            }
+            });
+        }
+    },
+    watch: {
+            //Watch the serviceId Prop for changes, on change 
+            //fetch new data
+            parentId: function(newVal, oldVal) {
+                this.serviceId = newVal
+                console.log('running!', oldVal, newVal)
+                this.fetchTasks()
+            }
+        },
+    template: '<ccv-donut-chart :data="data" :options="options">{{ task.percent_done }}</ccv-donut-chart>'
 };
 </script>

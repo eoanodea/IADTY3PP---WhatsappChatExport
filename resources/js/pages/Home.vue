@@ -20,34 +20,36 @@
             </div>
           </div>
         </div>
+        <div class="assignment-container" v-if="assignmentId">
+            <!-- Dropdown to choose Project -->
+          <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
+              <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id">
+                  {{assignment.title}}
+              </cv-dropdown-item>
+          </cv-dropdown>
 
-        <!-- Dropdown to choose Project -->
-        <cv-dropdown :value="value" name="assignment" id="assignment" v-model="assignmentId" class="cv-dropdown" placeholder="Select a Project">
-            <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id">
-                {{assignment.title}}
-            </cv-dropdown-item>
-        </cv-dropdown>
+            <!-- Progression Donut -->
+            <div class="bx--row">
+                <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
+            </div>
+          </div>
+
+          <!-- Active Task Datatable -->
+          <div class="bx--col-lg-6">
+            <ListTask v-bind:parentId="assignmentId" v-bind:isActive="true" />
+          </div>
+        </div>
+            <!-- Comments -->
+        <div class="bx--row">
+          <div class="bx--col-lg-6">
+            <CommentTile v-bind:id="assignmentId" v-bind:isActive="true" />
+          </div>
+        </div>
       </div>
-
-      <!-- Progression Donut -->
-      <div class="bx--row">
-          <Chart style="padding-left:100px;"/>
-      </div>
-    </div>
-
-    <!-- Active Task Datatable -->
-    <div class="bx--col-lg-6">
-      <ListTask v-bind:id="user.id" v-bind:isActive="false" />
-    </div>
   </div>
 
   
-    <!-- Comments -->
-    <div class="bx--row">
-      <div class="bx--col-lg-6">
-        <CommentTile v-bind:id="user.id" v-bind:isAssignment="true" />
-      </div>
-    </div>
+
 </div>
 </template>
 
@@ -74,7 +76,7 @@
     data() {
       return {
         assignmentId: null,
-        assignments: [],
+        assignments: null,
       };
     },
     mounted() {
@@ -88,6 +90,7 @@
             console.log('Error no projects', response)
           } else {
             this.assignments = response.data
+            this.assignmentId = response.data[0].id
           }
         })
       },
@@ -95,6 +98,12 @@
         this.$emit('selected-assignment', this.assignmentId)
       }
     },
+    // watch: {
+    //   assignmentId: function(newVal, oldVal) {
+    //     console.log('watchupdate', newVal, oldVal)
+        
+    //   }
+    // },
     components: {
       User,
       Service,

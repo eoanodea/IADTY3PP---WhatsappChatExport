@@ -34,7 +34,7 @@
         <!-- Default Tasks Table -->
         <br/>
         <div class="bx--col-lg-6">
-            <ListTask v-bind:id="service.id" v-bind:isActive="false" />
+            <ListTask v-bind:parentId="service.id" v-bind:isActive="false" />
         </div>
     </div>
 
