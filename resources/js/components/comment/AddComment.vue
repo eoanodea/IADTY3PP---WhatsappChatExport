@@ -9,20 +9,18 @@
                 autocomplete="comment" 
                 v-model="comment.comment"
                 class="bx--text-area comment-textarea"
-                rows="4" 
-                cols="50" 
                 placeholder="Comment"
                 v-on:keydown.enter="validateComment"
                 ></textarea>
+                <p v-if="errors.length" class="form-error bx--form-requirement">
+                    <b class="error">Please correct the following error(s):</b>
+                    <ul>
+                    <li v-for="error in errors" v-bind:key="error.id" class="error">
+                        {{ error.message }}
+                        </li>
+                    </ul>
+                </p>
         </div>
-        <p v-if="errors.length" class="bx--form-requirement">
-            <b class="error">Please correct the following error(s):</b>
-            <ul>
-            <li v-for="error in errors" v-bind:key="error.id" class="error">
-                {{ error.message }}
-                </li>
-            </ul>
-        </p>
 
 
         <!-- Percentage Done
@@ -51,7 +49,7 @@
             class="bx--btn bx--btn--primary" 
             type="submit"
             v-on:click="validateComment"
-            :disabled="submitting">
+            :disabled="submitting ? true : false">
                 Save
         </button>
     </div>
@@ -93,13 +91,13 @@
 
                 this.errors = [];
                 if(!comment.comment) {
-                     this.errors.push({id: 0, message: 'Comment required.'});
+                     this.errors.push({id: 0, message: 'Message is required.'});
                 }
                 if(!comment.progress) {
                      this.errors.push({id: 1, message: 'Percentage done is required.'});
                 }
                 if(!user) {
-                    this.errors.push({id: 2, message: 'There was a problem submitting your request. Please re-authenticate yourself.'});
+                    this.errors.push({id: 2, message: 'There was a problem submitting your request. Please sign out and login again.'});
                 }
             },
             submitComment: function() {
@@ -140,5 +138,10 @@
     }
     .comment-textarea {
         height: 3rem;
+    }
+    .form-error {
+        position: absolute;
+        top: -6vh;
+        transition: .2s ease;
     }
 </style>
