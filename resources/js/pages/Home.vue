@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        
+
       <!-- Active Task Datatable -->
       <ListTask v-bind:parentId="assignmentId" v-bind:isActive="true" />
 
@@ -39,7 +39,7 @@
 
       
         <br />
-        <div class="assignment-container" v-if="assignmentId">
+        <div class="assignment-container bx--col-lg-6" v-if="assignmentId">
          
 
             <!-- Progression Donut -->
@@ -140,3 +140,9 @@
     },
   }
 </script>
+
+<style scoped>
+  .assignment-container {
+    margin: 20px auto;
+  }
+</style>

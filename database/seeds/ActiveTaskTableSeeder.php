@@ -18,12 +18,17 @@ class ActiveTaskTableSeeder extends Seeder
         $assignments = Assignment::all();
 
         foreach($assignments as $assignment) {
-            $task = new ActiveTask;
-            $task->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
-            $task->description = $faker->sentence();
-            $task->percent_done = $faker->randomFloat(2, 0, 100);
-            $task->assignment_id = $assignment->id;
-            $task->save();
+            // $i = 0
+            // $j = 10
+            foreach($i = 0; $i < $j; $i++) {
+                $task = new ActiveTask;
+                $task->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+                $task->description = $faker->sentence();
+                $task->percent_done = $faker->randomFloat(2, 0, 100);
+                $task->assignment_id = $assignment->id;
+                $task->save();
+            }
+            
         }
     }
 }
