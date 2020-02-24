@@ -23,7 +23,7 @@
         <div class="assignment-container" v-if="assignmentId">
             <!-- Dropdown to choose Project -->
           <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
-              <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id">
+              <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()">
                   {{assignment.title}}
               </cv-dropdown-item>
           </cv-dropdown>

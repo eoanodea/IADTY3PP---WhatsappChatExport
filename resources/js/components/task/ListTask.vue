@@ -4,7 +4,7 @@
         <div class="bx--data-table-container" data-table>
             <!-- Title -->
             <div class="bx--data-table-header">
-                <h4 class="bx--data-table-header__title">Default Tasks</h4>
+                <h4 class="bx--data-table-header__title">Tasks</h4>
             </div>
 
             <!-- Toolbar Contents -->
@@ -13,7 +13,7 @@
                 <div class="bx--toolbar-content">
                     <cv-link :to="`/admin/tasks/${active}/` + serviceId + '/new'" style="text-decoration: none;">
                         <button class="bx--btn bx--btn--lg bx--btn--primary">
-                            Add Default Task 
+                            Add Task 
                             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
                         </button>
                     </cv-link>
@@ -138,30 +138,6 @@
             </div>
         </div> <!-- Close Pagination -->
 
-        <!-- <md-table-toolbar>
-            <h1 class="md-title accent">Default Tasks</h1>
-            <md-button class="md-raised md-accent btnAccent" :to="`/admin/tasks/${active}/` + serviceId + '/new'">Add Default Task</md-button>
-        </md-table-toolbar>
-
-
-        <md-table class="background text" md-card v-if="tasks !== null">
-            <md-table-row class="background subject"> -->
-                <!-- <md-table-head md-numeric>ID</md-table-head> -->
-                <!-- <md-table-head class="subject">Title</md-table-head>
-                <md-table-head class="subject">Description</md-table-head>
-                <md-table-head></md-table-head>
-            </md-table-row>
-            <md-table-row v-for="task in tasks" v-bind:key="task.id" class="item"> -->
-                <!-- <md-table-cell md-numeric>{{task.id}}</md-table-cell> -->
-                <!-- <md-table-cell class="background text">{{ task.title }}</md-table-cell>
-                <md-table-cell class="background text">{{task.description}}</md-table-cell>
-                <md-table-cell class="background text">
-                    <md-button :to="`/admin/tasks/${active}/show/` + task.id" class="md-accent">View Task</md-button> -->
-                    <!-- <md-button :to="`/admin/tasks/${active}/edit/` + task.id">Edit</md-button> -->
-                <!-- </md-table-cell>
-            </md-table-row>
-        </md-table>
-        <p v-else>There are no Default Tasks.</p> -->
         </div>
         <div v-else class="empty-state">
             <p>{{error}}</p>
@@ -197,7 +173,6 @@ Vue.use(CarbonComponentsVue);
         //Modify the fetch URL with result and fetch tasks
         mounted () {
             if(this.serviceId) {
-                console.log('running!!', serviceId)
                 this.fetchTasks()
             }
         },
