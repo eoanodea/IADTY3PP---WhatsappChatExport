@@ -1,7 +1,7 @@
 <template>
     <div class="chat-container">
         <template v-if="expanded">
-            <list-comment v-bind:id="id" v-bind:isAssignment="isAssignment" v-on:close="expand"/>
+            <list-comment v-bind:parentId="id" v-bind:isAssignment="isAssignment" v-on:close="expand"/>
         </template>
         <button @click="expand" v-else class="bx--btn bx--btn--lg bx--btn--primary">Chat</button>
     </div>

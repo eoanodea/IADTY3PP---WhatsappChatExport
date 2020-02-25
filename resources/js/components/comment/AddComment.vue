@@ -111,8 +111,9 @@
                 : 'comments/task'
 
                 const payload = this.comment
+                const id = this.id ? this.id : this.$route.params.id
 
-                axios.post(`/api/${url}/${this.$route.params.id}/new`, payload)
+                axios.post(`/api/${url}/${id}/new`, payload)
                 .then(response => {
                     if(response.data.status !== "success") {
                         console.log("Error!", response)

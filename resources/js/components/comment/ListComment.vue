@@ -66,16 +66,11 @@
                     </div>
 
                     <div class="msg-bottom">
-                        <add-comment v-on:comment-added="addComment" v-bind:isAssignment="assignment"></add-comment>
+                        <add-comment v-bind:id="commentId" v-on:comment-added="addComment" v-bind:isAssignment="assignment"></add-comment>
                     </div>
                 </div>
             </div>
-            </div>
-
-        <!-- <button class="bx--btn bx--btn--lg bx--btn--primary chat-btn" v-else @click="expanded = !expanded">
-            Add Comment
-            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
-        </button> -->
+        </div>
     </span>
 
 </template>
@@ -91,14 +86,14 @@
     Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['id', 'isAssignment'],
+        props: ['parentId', 'isAssignment'],
         data() {
             return {
                 comments: null,
                 loadingMessages: true,
                 commentId: this.$route.params.id
                     ? this.$route.params.id
-                    : this.id,
+                    : this.parentId,
                 assignment: this.$route.params.isAssignment
                     ? (this.$route.params.isAssignment === 'true' ? true : false)
                     : this.isAssignment,
@@ -113,30 +108,34 @@
          * Modify the fetch URL with result and fetch comments
          */
         mounted () {
-            const url = this.assignment
-            ? 'comments/assignment'
-            : 'comments/task'
-            
-            axios.get(`/api/${url}/${this.commentId}`)
-            .then(response => {
-              if(response.data.status !== "success") {
-                  console.log('error!')
-                  this.error = response.data.error
-              } else {
-                  this.comments = response.data.comment
-              }
-              this.loadingMessages = false
-            }).catch(function(e) {
-                console.log('error!', e)
-                this.error = e
-            }).finally(() => {
-                this.msgContainer = this.$el.querySelector("#msg-page");
-                this.scrollToBottom()
-
-                this.listenForBroadcast()
-            })
+            this.fetchComments()
         },
         methods: {
+            fetchComments() {
+                this.loadingMessages = true
+                const url = this.assignment
+                ? 'comments/assignment'
+                : 'comments/task'
+                
+                axios.get(`/api/${url}/${this.commentId}`)
+                .then(response => {
+                if(response.data.status !== "success") {
+                    console.log('error!')
+                    this.error = response.data.error
+                } else {
+                    this.comments = response.data.comment
+                }
+                this.loadingMessages = false
+                }).catch(function(e) {
+                    console.log('error!', e)
+                    this.error = e
+                }).finally(() => {
+                    this.msgContainer = this.$el.querySelector("#msg-page");
+                    this.scrollToBottom()
+
+                    this.listenForBroadcast()
+                })
+            },
             addComment(data) {
                 let newComment = data.comment
                 newComment.first_name = data.user.first_name
@@ -173,7 +172,16 @@
                 user: 'auth/user',
                 token: 'auth/token',
             })
-        }
+        },
+        watch: {
+            //Watch the serviceId Prop for changes, on change 
+            //fetch new data
+            parentId: function(newVal, oldVal) {
+                this.commentId = parseInt(newVal)
+                console.log('running!', oldVal, newVal)
+                this.fetchComments()
+            }
+        },
     }
 </script>
 

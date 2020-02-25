@@ -31,39 +31,27 @@
           </div>
         </div>
 
-
-      <!-- Active Task Datatable -->
-      <ListTask v-bind:parentId="assignmentId" v-bind:isActive="true" />
-
-      </div>
-
-      
-        <br />
-        <div class="assignment-container bx--col-lg-6" v-if="assignmentId">
-         
-
-            <!-- Progression Donut -->
-            <div>
-                <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
-            </div>
-          </div>
-
-         
-          <div>
-           
-          </div>
-
-            <!-- Comments -->
-        
-            <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
-        
+        <div class="assignment-container" v-if="assignmentId">
+          <!-- Progression Donut -->
+          <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
+        </div>
 
       </div>
+
+      <div class="bx--col-lg-6">
+        <!-- Active Task Datatable -->
+        <ListTask v-bind:parentId="assignmentId" v-bind:isActive="true" />
+      </div>
+  
+      <!-- Comments -->
+      <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
+        
+
+    </div>
   </div>
 
   
 
-<!-- </div> -->
 </template>
 
 <script>
@@ -111,12 +99,7 @@
         this.$emit('selected-assignment', this.assignmentId)
       }
     },
-    // watch: {
-    //   assignmentId: function(newVal, oldVal) {
-    //     console.log('watchupdate', newVal, oldVal)
-        
-    //   }
-    // },
+
     components: {
       User,
       Service,
