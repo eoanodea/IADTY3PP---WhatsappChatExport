@@ -118,7 +118,7 @@
                         console.log("Error!", response)
                         this.errors.push({id: 0, message: JSON.stringify(response.data.error)})
                     } else {
-                        this.$emit('comment-added', response.data.comment[0])
+                        this.$emit('comment-added', response.data)
                         this.comment.comment = ""   
                     }
                     this.submitting = false

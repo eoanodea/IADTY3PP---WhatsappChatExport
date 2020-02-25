@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Events\MessagePushed;
-// use App\User;
+use App\User;
 
 class CommentController extends Controller
 {
@@ -74,16 +74,15 @@ class CommentController extends Controller
         } else $comment->task_id = $id;
 
         $comment->save();
+        $user = User::findOrFail($comment->user_id);
 
-        $message = Comment::with('User')->where('id', $comment->id)->get();
+        broadcast(new MessagePushed($user, $comment))->toOthers();
 
-        broadcast(new MessagePushed($comment));
-
-        // return $message->fresh;
 
         return response()->json([
             'status' => 'success',
-            'comment' => $message
+            'comment' => $comment,
+            'user' => $user
         ], 200);
     }
 

@@ -55,7 +55,7 @@
 
             <!-- Comments -->
         
-            <CommentTile v-bind:id="assignmentId" v-bind:isActive="true" />
+            <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
         
 
       </div>
@@ -63,7 +63,7 @@
 
   
 
-</div>
+<!-- </div> -->
 </template>
 
 <script>

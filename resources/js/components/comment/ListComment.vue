@@ -42,13 +42,13 @@
 
                                 <div v-else>
                                     <div v-for="message in comments" v-bind:key="message.id">
-                                        <div class="received-chats" v-if="message.user.id !== user.id">
+                                        <div class="received-chats" v-if="message.user_id !== user.id">
                                             <div class="received-msg">
                                                 <div class="received-msg-inbox">
                                                     <cv-link :to="`/admin/comments/${assignment}/` + commentId + '/new'" style="text-decoration: none;">
                                                     
                                                     </cv-link>
-                                                    <p><cv-link :to="`/admin/users/show/${message.user.id}/`">{{ message.user.first_name }}</cv-link><br>{{ message.comment }}</p>
+                                                    <p><cv-link :to="`/admin/users/show/${message.user_id}/`">{{ message.first_name ? message.first_name : message.user.first_name }}</cv-link><br>{{ message.comment }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,8 +137,11 @@
             })
         },
         methods: {
-            addComment(comment) {
-                this.comments.push(comment);
+            addComment(data) {
+                let newComment = data.comment
+                newComment.first_name = data.user.first_name
+
+                this.comments.push(newComment);
                 this.scrollToBottom()
             },
             scrollToBottom: function() {    
@@ -155,29 +158,9 @@
              * for live updates
              */
             listenForBroadcast() {
-
-                console.log('starting!!', Echo)
                 Echo.channel((this.assignment ? 'assignment.' : 'task.') + this.commentId)
-                // .here((users) => {
-                //     console.log("room joined?", users)
-                //     // this.users_viewing = users;
-                //     // this.$forceUpdate();
-                // })
-                // .joining((user) => {
-                //     console.log('joining!', user)
-                // // if (this.checkIfUserAlreadyViewingSurvey(user)) {
-                // //     this.users_viewing.push(user);
-                // //     this.$forceUpdate();
-                // // }
-                // })
-                // .leaving((user) => {
-                //     console.log('leaving', user)
-                //     // this.removeViewingUser(user);
-                //     // this.$forceUpdate();
-                // })
                 .listen("MessagePushed", (e) => {
-                    console.log('message pushed!', e)
-                    this.$forceUpdate();
+                    this.addComment(e)
                 });
             },
         },
@@ -198,10 +181,7 @@
     
     .chat {
         flex: 1;
-        // max-height: 500px;
         width: 350px;
-        // margin-left: -60px;
-        // margin-bottom: -35px;
         background-color: #f8f9fb;
     }
     .empty-chat-holder {

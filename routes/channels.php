@@ -17,5 +17,5 @@ use App\Broadcasting\CommentChannel;
 
 Broadcast::channel('assignment.{id}', function($user, $id) {
     
-    return true;
+    return Auth::check();;
 });
