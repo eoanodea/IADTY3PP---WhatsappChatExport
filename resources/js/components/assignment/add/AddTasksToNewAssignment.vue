@@ -1,4 +1,14 @@
 <template>
+<div>
+    <ListTask />
+
+
+
+
+
+
+
+
     <div class="fluid-container">
         <div class="md-layout">
             <div class="md-layout-item">
@@ -42,6 +52,7 @@
         </div>
 
     </div>
+</div>
 </template>
 <script>
     import Vue from 'vue'
@@ -50,6 +61,8 @@
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import Checkmark from '@carbon/icons-vue/lib';
+    import ListTask from './../../task/ListTask'
+    import { DataTable, Loading } from 'carbon-components';
 
     Vue.use(CarbonComponentsVue);
     // import {MdEmptyState} from 'vue-material/dist/components'
@@ -115,7 +128,10 @@
         },
         components: {
             CreateNewTaskForAssignment,
-            Checkmark
+            Checkmark,
+            DataTable, 
+            Loading,
+            ListTask
         }
     }
 </script>
