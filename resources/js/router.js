@@ -240,7 +240,7 @@ const routes = [
      */
     {
         path: '/checkout/:id',
-        name: 'assignments',
+        name: 'checkout',
         component: Checkout,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
