@@ -1,12 +1,9 @@
 <template>
 <div class="bx--grid" style="margin: 80px 0px;">
-      <!-- Dashboard: <p v-if="user">{{msg}}, {{ user.first_name }}</p> -->
+  <!-- Dashboard: <p v-if="user">{{msg}}, {{ user.first_name }}</p> -->
   <div class="bx--row">
-
-
     <!-- Client Details (Notification Card)-->
     <div class="bx--col-lg-6">
-
       <!-- Dropdown to choose Project -->
       <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
           <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()">
@@ -30,39 +27,21 @@
             </div>
           </div>
         </div>
-
-
       <!-- Active Task Datatable -->
       <ListTask v-bind:parentId="assignmentId" v-bind:isActive="true" />
-
       </div>
 
-      
-        <br />
-        <div class="assignment-container bx--col-lg-6" v-if="assignmentId">
-         
-
-            <!-- Progression Donut -->
-            <div>
-                <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
-            </div>
-          </div>
-
-         
-          <div>
-           
-          </div>
-
-            <!-- Comments -->
-        
-            <CommentTile v-bind:id="assignmentId" v-bind:isActive="true" />
-        
-
+    <br />
+    <div class="assignment-container bx--col-lg-6" v-if="assignmentId">   
+      <!-- Progression Donut -->
+      <div>
+          <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
       </div>
+    </div>
+
+    <!-- Comments -->
+    <CommentTile v-bind:id="assignmentId" v-bind:isActive="true" />
   </div>
-
-  
-
 </div>
 </template>
 
