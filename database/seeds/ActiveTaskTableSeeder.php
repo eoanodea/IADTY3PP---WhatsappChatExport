@@ -18,9 +18,7 @@ class ActiveTaskTableSeeder extends Seeder
         $assignments = Assignment::all();
 
         foreach($assignments as $assignment) {
-            // $i = 0
-            // $j = 10
-            foreach($i = 0; $i < $j; $i++) {
+            for($i = 0; $i < 10; $i++) {
                 $task = new ActiveTask;
                 $task->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
                 $task->description = $faker->sentence();
