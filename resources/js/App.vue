@@ -35,11 +35,9 @@
         </cv-header-menu-item>
 
         <!-- Transactions -->
-        <cv-switcher-item>
-          <cv-switcher-item-link to="/admin/transactions" v-on:click="click">
-            Transactions
-          </cv-switcher-item-link>
-        </cv-switcher-item>
+        <cv-header-menu-item to="/admin/transactions" @click="click">
+          Transactions
+        </cv-header-menu-item>
 
         <!-- About -->
         <cv-header-menu-item to="/admin/about" @click="click">
