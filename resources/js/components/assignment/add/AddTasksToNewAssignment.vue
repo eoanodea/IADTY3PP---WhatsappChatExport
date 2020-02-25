@@ -1,6 +1,6 @@
 <template>
 <div>
-    <label for="tasks">Select Task/s</label>
+    <label for="tasks" class="bx--label">Select Task/s</label>
 
 
 

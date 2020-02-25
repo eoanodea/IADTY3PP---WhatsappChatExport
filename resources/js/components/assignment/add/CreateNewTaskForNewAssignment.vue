@@ -1,6 +1,178 @@
 <template>
-    <div>
-        <md-button class="md-icon-button" @click="showDialog = true">
+<div>
+    <!-- Modal Button -->
+    <button 
+        class="bx--btn bx--btn--lg bx--btn--primary" 
+        type="button" 
+        data-modal-target="#modal-ptxyfo5520i"
+        @click="showDialog = true">
+            Add Task
+    </button>
+
+    <!-- Modal -->
+    <cv-modal
+        kind="primary"
+        :visible="showDialog"
+        @modal-shown="showDialog = true"
+        @modal-hidden="showDialog = false"
+        @modal-hide-request="showDialog = false"
+    >
+
+        <!-- <template slot="title">
+            
+        </template> -->
+
+        <template slot="content">
+            <!-- Title -->
+            <div class="bx--row">
+                <div class="bx--col-lg-12">
+                    <div class="bx--form-item bx--text-input-wrapper">
+                        <label for="title" class="bx--label">Title</label>
+                        <div class="bx--text-input__field-wrapper">
+                            <input 
+                            id="text-input-3" 
+                            name="title" 
+                            type="text" 
+                            autocomplete="given-title" 
+                            v-model="task.title"
+                            class="bx--text-input" 
+                            placeholder="Title">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <br/>
+            <div class="bx--row">
+                <div class="bx--col-lg-12">
+                    <div class="bx--form-item bx--text-input-wrapper">
+                        <label for="description" class="bx--label">Description</label>
+                        <div class="bx--text-input__field-wrapper">
+                            <textarea 
+                                id="text-area-2" 
+                                name="description" 
+                                type="description" 
+                                autocomplete="description" 
+                                v-model="task.description"
+                                class="bx--text-area"
+                                rows="4" 
+                                cols="50" 
+                                placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Percentage Done -->
+            <br/>
+            <div class="bx--row">
+                <div class="bx--col-lg-12">
+                    <div class="bx--form-item bx--text-input-wrapper">
+                        <label for="percent_done" class="bx--label">Percentage Done</label>
+                        <div class="bx--text-input__field-wrapper">
+                            <input 
+                            id="text-input-3" 
+                            name="percent_done" 
+                            type="number" 
+                            autocomplete="given-percent_done" 
+                            v-model="task.percent_done"
+                            class="bx--text-input" 
+                            placeholder="Percentage Done">
+                            <span>%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Buttons -->
+        <template slot="secondary-button">Back</template>
+        <template slot="primary-button">Save</template>
+    </cv-modal>
+
+    <!-- Title -->
+    <!-- <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">Title</label>
+                <div class="bx--text-input__field-wrapper">
+                    <input 
+                    id="text-input-3" 
+                    name="title" 
+                    type="text" 
+                    autocomplete="given-title" 
+                    v-model="task.title"
+                    class="bx--text-input" 
+                    placeholder="Title">
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Description -->
+    <!-- <br/>
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="description" class="bx--label">Description</label>
+                <div class="bx--text-input__field-wrapper">
+                    <textarea 
+                        id="text-area-2" 
+                        name="description" 
+                        type="description" 
+                        autocomplete="description" 
+                        v-model="task.description"
+                        class="bx--text-area"
+                        rows="4" 
+                        cols="50" 
+                        placeholder="Description"></textarea>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Percentage Done -->
+    <!-- <br/>
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item bx--text-input-wrapper">
+                <label for="percent_done" class="bx--label">Percentage Done</label>
+                <div class="bx--text-input__field-wrapper">
+                    <input 
+                    id="text-input-3" 
+                    name="percent_done" 
+                    type="number" 
+                    autocomplete="given-percent_done" 
+                    v-model="task.percent_done"
+                    class="bx--text-input" 
+                    placeholder="Percentage Done">
+                    <span>%</span>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Button -->
+    <!-- <br/>
+    <div class="bx--row">
+        <div class="bx--col-lg-12">
+            <div class="bx--form-item">
+                <button 
+                    class="bx--btn bx--btn--primary" 
+                    type="submit"
+                    :disabled="submitting">
+                        Save
+                </button>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+
+        <!-- <md-button class="md-icon-button" @click="showDialog = true">
             <md-icon>add</md-icon>
         </md-button>
         <md-dialog :md-active.sync="showDialog">
@@ -33,10 +205,19 @@
                 <md-button class="md-primary md-raised" @click="showDialog = false">Back</md-button>
                 <md-button class="md-accent md-raised" @click="validateTask" :disabled="submitting">Save</md-button>
             </md-dialog-actions>
-        </md-dialog>
-    </div>
+        </md-dialog> -->
+</div>
 </template>
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+import 'carbon-components/css/carbon-components.css'
+import CarbonComponentsVue from '@carbon/vue/src/index'
+    import { Modal } from 'carbon-components';
+    import { CvModal } from '@carbon/vue/src';
+
+Vue.use(CarbonComponentsVue);
+
 export default {
     data() {
         return {
@@ -82,6 +263,10 @@ export default {
             this.task.percent_done = 0
             this.errors = []
         },
+    },
+    components: {
+        Modal,
+        CvModal
     }
     
 }
