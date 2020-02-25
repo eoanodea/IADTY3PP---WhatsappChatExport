@@ -1,34 +1,37 @@
+<template>
+    <ccv-donut-chart v-if="fetched" :data="data" :options="options"></ccv-donut-chart>   
+    <loading-indicator v-else />
+</template>
+
 <script>
 import Vue from "vue";
+import axios from "axios";
 import "@carbon/charts/styles.css";
 import chartsVue from "@carbon/charts-vue";
+import LoadingIndicator from './../../progress/LoadingIndicator'
 Vue.use(chartsVue);
 
 export default {
+    props: ['parentId'],
     name: "Chart",
-    components: {},
+    components: {
+        LoadingIndicator
+    },
     
     data() {
         return {
+            fetched: false,
+            serviceId: this.parentId,
             data: {
                 labels :[
-                    "Task 1",
-                    "Task 2",
-                    "Task 3",
-                    "Task 4",
-                    "Task 5",
-                    "Task 6"
+                    // ''
                 ],
                 datasets: [
                     {
-                        label: "Dataset 1",
+                        label: "",
                         data: [
-                            48, 
-                            20, 
-                            3, 
-                            10, 
-                            12, 
-                            7
+                            1
+                            // percent_done
                         ]
                     }
                 ]
@@ -41,10 +44,48 @@ export default {
                         label: "%"
                     }
                 },
-                height: "700px"
+                height: "550px"
             }
         };
     },
-    template: '<ccv-donut-chart :data="data" :options="options"></ccv-donut-chart>'
+    mounted() {
+         if(this.serviceId) {
+                this.fetchTasks()
+            }
+    },
+    methods: {
+        fetchTasks() {
+            this.fetched = false
+            const url ="task/active"
+
+            axios.get(`/api/${url}/by/${this.serviceId}`).then(response => {
+                if (response.data.status !== "success") {
+                    console.log("error ", response);
+                } else {
+                    const tasks = response.data.task;
+                    
+                    if(tasks.length > 0) {
+                        tasks.map(task => {
+                            this.data.datasets[0].data.push(task.percent_done)
+                            this.data.labels.push(task.title)
+                            this.fetched = true
+                        })
+                    } else console.log('no tasks')
+                }
+            });
+        }
+    },
+    watch: {
+            //Watch the serviceId Prop for changes, on change 
+            //fetch new data
+            parentId: function(newVal, oldVal) {
+                this.data.datasets[0].data = []
+                this.data.labels = []
+
+                this.serviceId = newVal
+                console.log('running!', oldVal, newVal)
+                this.fetchTasks()
+            }
+        },
 };
 </script>

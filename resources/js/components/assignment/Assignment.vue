@@ -37,7 +37,7 @@
         <!-- Default Tasks Table -->
         <br/>
         <div class="bx--col-lg-6">
-            <ListTask v-bind:id="assignment.id" v-bind:isActive="false" />
+            <ListTask v-bind:parentId="assignment.id" v-bind:isActive="true" />
         </div>
 
         <!-- Comments Section -->
@@ -91,7 +91,7 @@
     </div>
 
     <div>
-        <ListTask v-bind:id="assignment.id" v-bind:isActive="true" />
+        <ListTask v-bind:parentId="assignment.id" v-bind:isActive="true" />
     </div> -->
 </div>
 </template>

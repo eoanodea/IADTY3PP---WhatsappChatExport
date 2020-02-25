@@ -1,15 +1,25 @@
 <template>
-<div class="bx--grid" style="padding: 40px 0px;">
+<div class="bx--grid" style="margin: 80px 0px;">
       <!-- Dashboard: <p v-if="user">{{msg}}, {{ user.first_name }}</p> -->
   <div class="bx--row">
+
+
     <!-- Client Details (Notification Card)-->
     <div class="bx--col-lg-6">
+
+      <!-- Dropdown to choose Project -->
+      <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
+          <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()">
+              {{assignment.title}}
+          </cv-dropdown-item>
+      </cv-dropdown>
+
       <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
         <div class="bx--inline-notification__details">
           <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
           
           <!-- Client Details Contents -->
-          <div class="bx--row">
+          <!-- <div class="bx--row"> -->
             <div class="bx--inline-notification__text-wrapper">
               <div class="bx--col-lg-12">
                 <p class="bx--inline-notification__title">{{ user.first_name }} {{ user.last_name }}</p>
@@ -21,64 +31,38 @@
           </div>
         </div>
 
-        <!-- Dropdown to choose Project -->
-        <cv-dropdown :value="value" name="assignment" id="assignment" v-model="assignmentId" class="cv-dropdown" placeholder="Select a Project">
-            <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id">
-                {{assignment.title}}
-            </cv-dropdown-item>
-        </cv-dropdown>
+
+      <!-- Active Task Datatable -->
+      <ListTask v-bind:parentId="assignmentId" v-bind:isActive="true" />
+
       </div>
-    </div>
 
-    <!-- Active Task Datatable -->
-    <div class="bx--col-lg-6">
-      <ListTask v-bind:id="user.id" v-bind:isActive="false" />
-    </div>
-  </div>
+      
+        <br />
+        <div class="assignment-container bx--col-lg-6" v-if="assignmentId">
+         
 
-  <!-- Send Message -->
-  <div class="bx--row">
-    <div class="bx--col-lg-6">
-      <div class="bx--row">
-        <div class="bx--col-lg-12">
-            <div class="bx--form-item bx--text-input-wrapper">
-                <label for="compose_message" class="bx--label"></label>
-                <div class="bx--text-input__field-wrapper">
-                <textarea 
-                    id="text-area-2" 
-                    name="compose_message" 
-                    type="text" 
-                    class="bx--text-area" 
-                    placeholder="Send a message"></textarea>
-                </div>
+            <!-- Progression Donut -->
+            <div>
+                <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
             </div>
-        </div>
-      </div>
+          </div>
 
-      <!-- Send Message Button -->
-      <div class="bx--row">
-        <div class="bx--col-lg-12">
-          <!-- <cv-link> -->
-            <button class="bx--btn bx--btn--lg bx--btn--primary">
-              Send
-            </button>
-          <!-- </cv-link> -->
-        </div>
+         
+          <div>
+           
+          </div>
+
+            <!-- Comments -->
+        
+            <CommentTile v-bind:id="assignmentId" v-bind:isActive="true" />
+        
+
       </div>
-    </div>
   </div>
 
-  <div class="bx--row">
-    <!-- Progression Donut -->
-    <div class="bx--col-lg-6">
-      <Chart />
-    </div>
+  
 
-    <!-- Comments -->
-    <div class="bx--col-lg-6">
-      <ListComment v-bind:id="user.id" v-bind:isAssignment="true" />
-    </div>
-  </div>
 </div>
 </template>
 
@@ -92,7 +76,7 @@
   import Assignment from './../components/assignment/Assignment'
   import ListTask from './../components/task/ListTask'
   import Chart from './../components/user/components/Chart'
-  import ListComment from './../components/comment/ListComment'
+  import CommentTile from './../components/comment/CommentTile'
   
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -105,7 +89,7 @@
     data() {
       return {
         assignmentId: null,
-        assignments: [],
+        assignments: null,
       };
     },
     mounted() {
@@ -119,6 +103,7 @@
             console.log('Error no projects', response)
           } else {
             this.assignments = response.data
+            this.assignmentId = response.data[0].id
           }
         })
       },
@@ -126,13 +111,19 @@
         this.$emit('selected-assignment', this.assignmentId)
       }
     },
+    // watch: {
+    //   assignmentId: function(newVal, oldVal) {
+    //     console.log('watchupdate', newVal, oldVal)
+        
+    //   }
+    // },
     components: {
       User,
       Service,
       Assignment,
       ListTask,
       Chart,
-      ListComment,
+      CommentTile,
       
       Notification,
       Modal,
@@ -149,3 +140,9 @@
     },
   }
 </script>
+
+<style scoped>
+  .assignment-container {
+    margin: 20px auto;
+  }
+</style>
