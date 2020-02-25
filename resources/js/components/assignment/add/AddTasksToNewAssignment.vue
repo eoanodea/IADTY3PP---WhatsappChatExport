@@ -1,6 +1,11 @@
 <template>
 <div>
-    <label for="tasks" class="bx--label">Select Task/s</label>
+    <ListTask />
+
+
+
+
+
 
 
 
@@ -56,6 +61,8 @@
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import Checkmark from '@carbon/icons-vue/lib';
+    import ListTask from './../../task/ListTask'
+    import { DataTable, Loading } from 'carbon-components';
 
     Vue.use(CarbonComponentsVue);
     // import {MdEmptyState} from 'vue-material/dist/components'
@@ -121,7 +128,10 @@
         },
         components: {
             CreateNewTaskForAssignment,
-            Checkmark
+            Checkmark,
+            DataTable, 
+            Loading,
+            ListTask
         }
     }
 </script>
