@@ -265,7 +265,6 @@ export default {
             submitting = true
             this.$store.dispatch('user/addUser', this.newUser)
             .then(function(response) {
-                console.log('dispatch response id', response)
                 submitting = false
                 router.push({
                     path: `/admin/users/show/${response}`

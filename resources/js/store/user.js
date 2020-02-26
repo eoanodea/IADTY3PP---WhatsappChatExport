@@ -120,7 +120,7 @@ export default {
         async updateUser({commit}, id, user) {
             try {
                 console.log('loading user', id)
-                let response = await axios.put('/api/user/' + id) 
+                let response = await axios.put('/api/user/' + id, user) 
                 
                 commit('SET_USER', response.data.user)
             } catch(error) {
