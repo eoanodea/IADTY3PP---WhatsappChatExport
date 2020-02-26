@@ -75,7 +75,7 @@
     {{error}}
   </div>
   <div v-else>
-    <h1>stramge errpr</h1>
+    <h1>strange errpr</h1>
   </div>
 </template>
 

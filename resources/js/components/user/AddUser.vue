@@ -12,7 +12,7 @@
                         name="first_name" 
                         type="text" 
                         autocomplete="given-name" 
-                        v-model="user.first_name"
+                        v-model="newUser.first_name"
                         class="bx--text-input" 
                         placeholder="First Name">
                 </div>
@@ -29,7 +29,7 @@
                         name="last_name" 
                         type="text" 
                         autocomplete="given-name" 
-                        v-model="user.last_name"
+                        v-model="newUser.last_name"
                         class="bx--text-input" 
                         placeholder="Surname">
                 </div>
@@ -49,7 +49,7 @@
                     name="email" 
                     type="email" 
                     autocomplete="email"
-                    v-model="user.email" 
+                    v-model="newUser.email" 
                     class="bx--text-input" 
                     placeholder="Email">
                 </div>
@@ -69,7 +69,7 @@
                     name="mobile" 
                     type="mobile" 
                     autocomplete="mobile" 
-                    v-model="user.mobile_number"
+                    v-model="newUser.mobile_number"
                     class="bx--text-input" 
                     placeholder="Phone Number">
                 </div>
@@ -89,7 +89,7 @@
                     name="address" 
                     type="address" 
                     autocomplete="address" 
-                    v-model="user.address"
+                    v-model="newUser.address"
                     class="bx--text-area"
                     rows="4" 
                     cols="50" 
@@ -110,7 +110,7 @@
                     id="text-input-3" 
                     name="password" 
                     type="password" 
-                    v-model="user.password"
+                    v-model="newUser.password"
                     class="bx--text-input" 
                     placeholder="Password">
                 </div>
@@ -129,7 +129,7 @@
                     id="text-input-3" 
                     name="confirm_password" 
                     type="password" 
-                    v-model="user.confirm_password"
+                    v-model="newUser.confirm_password"
                     class="bx--text-input" 
                     placeholder="Confirm Password">
                 </div>
@@ -145,6 +145,7 @@
                 <button 
                     class="bx--btn bx--btn--primary" 
                     type="submit"
+                    @click="validateUser"
                     :disabled="submitting">
                         Save
                 </button>
@@ -154,6 +155,7 @@
 
     <!-- Error -->
     <br/>
+    <data-error v-if="error" v-bind:error="error" />
     <div class="bx--row">
         <p v-if="errors.length">
         <b class="bx--form-requirement">Please correct the following error(s):</b>
@@ -166,81 +168,20 @@
     </div>
 </div>
 
-<!-- <div class="fluid-container">
-    <div class="md-layout">
-      <div class="md-layout-item">
-        <md-table-toolbar>
-          <h1 class="md-title accent">Add Client</h1>
-        </md-table-toolbar>
-      </div>
-    </div>
 
-    <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateUser">
-        <md-card class="md-layout-item background">
-            <md-card-content>
-                <p v-if="errors.length">
-                    <b class="error">Please correct the following error(s):</b>
-                    <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="error">
-                            {{ error.message }}
-                        </li>
-                    </ul>
-                </p>
-                <md-field>
-                    <label class="accent" for="first_name">First Name</label>
-                    <md-input name="first_name" type="text" class="form-control" placeholder="First Name" autocomplete="given-name" v-model="user.first_name" />
-                </md-field>
-                <md-field>
-                    <label class="accent" for="last_name">Last Name</label>
-                    <md-input name="last_name" type="text" class="form-control" placeholder="Last Name" autocomplete="family-name" v-model="user.last_name" />
-                </md-field>
-                <md-field>
-                    <label class="accent" for="email">Email</label>
-                    <md-input name="email" type="email" class="form-control" placeholder="Email" autocomplete="email" v-model="user.email" /> <br />
-                </md-field>
-                <md-field>
-                    <label class="accent" for="mobile">Mobile Number</label>
-                    <md-input name="mobile" type="text" class="form-control" placeholder="Mobile Number" autocomplete="mobile" v-model="user.mobile_number" /> <br />
-                </md-field>
-                <md-field>
-                    <label class="accent" for="address">Address</label>
-                    <md-textarea name="address" type="text" class="form-control" placeholder="Address" autocomplete="address" v-model="user.address" /> <br />
-                </md-field> -->
-                <!-- <md-field>
-                    <label class="accent" for="password">Password</label>
-                    <md-input type="password" name="password" class="form-control" placeholder="Password" v-model="user.password" /> <br />
-                </md-field>
-                <md-field>
-                    <label class="accent" for="confirm_password">Confirm Password</label>
-                    <md-input type="password" name="confirm_password" class="form-control" placeholder="Password Confirmation" v-model="user.confirm_password" /> <br />
-                </md-field> -->
-            <!-- </md-card-content>
-            <md-card-actions>
-                <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
-            </md-card-actions>
-        </md-card>
-    </form>
-</div> -->
 </template>
 <script>
 import axios from 'axios';
 import Vue from 'vue';
 import router from './../../router'
-// import {
-//     MdButton,
-//     MdField,
-//     MdCard
-// } from 'vue-material/dist/components'
-
-// Vue.use(MdButton)
-// Vue.use(MdField)
-// Vue.use(MdCard)
+import DataError from './../table/DataError'
+import { mapGetters } from 'vuex';
 
 
 export default {
     data() {
         return {
-            user: {
+            newUser: {
                 first_name: null,
                 last_name: null,
                 email: null,
@@ -256,57 +197,63 @@ export default {
     methods: {
         validateUser: function() {
             const {
-                user
+                newUser
             } = this
             if (
-                user.first_name &&
-                user.last_name &&
-                user.email &&
-                user.mobile_number &&
-                user.address &&
-                user.password &&
-                user.password === user.confirm_password) {
+                newUser.first_name &&
+                newUser.last_name &&
+                newUser.email &&
+                newUser.mobile_number &&
+                newUser.address &&
+                newUser.password &&
+                newUser.password === newUser.confirm_password) {
                 this.submitUser()
             }
 
             this.errors = [];
-            if (!user.first_name) {
+            // Object.entries(newUser)[1].map((dat, i) => {
+            //     console.log('loop', dat, i)
+            //     if(!dat) this.errors.push({message:'1 yeehaw 4 u'}
+            //     )
+            // })
+
+            if (!newUser.first_name) {
                 this.errors.push({
                     id: 0,
                     message: 'First name required.'
                 });
             }
-            if (!user.last_name) {
+            if (!newUser.last_name) {
                 this.errors.push({
                     id: 1,
                     message: 'Last name required.'
                 });
             }
-            if (!user.email) {
+            if (!newUser.email) {
                 this.errors.push({
                     id: 2,
                     message: 'Email required.'
                 });
             }
-            if (!user.mobile_number) {
+            if (!newUser.mobile_number) {
                 this.errors.push({
                     id: 3,
                     message: 'Mobile required.'
                 });
             }
-            if (!user.address) {
+            if (!newUser.address) {
                 this.errors.push({
                     id: 4,
                     message: 'Address required.'
                 });
             }
-            if (!user.password) {
+            if (!newUser.password) {
                 this.errors.push({
                     id: 5,
                     message: 'Password required.'
                 });
             }
-            if (user.password !== user.confirm_password) {
+            if (newUser.password !== newUser.confirm_password) {
                 this.errors.push({
                     id: 6,
                     message: 'Password doesnt match.'
@@ -314,23 +261,30 @@ export default {
             }
         },
         submitUser: function() {
-            this.submitting = true
-            const payload = this.user
-            axios.post('/api/user/new', payload)
-                .then(response => {
-                    if (!response.data) {
-                        console.log("Error!", response)
-                        this.errors.push({
-                            id: 0,
-                            message: JSON.stringify(response.message)
-                        })
-                        this.submitting = false
-                    } else router.push({
-                        path: `/admin/users/show/${response.data.user.id}`
-                    })
+            let {submitting} = this
+            submitting = true
+            this.$store.dispatch('user/addUser', this.newUser)
+            .then(function(response) {
+                console.log('dispatch response id', response)
+                submitting = false
+                router.push({
+                    path: `/admin/users/show/${response}`
                 })
+            }).catch(function(error) {
+                console.log('error', error)
+                submitting = false
+            })
         }
 
+    },
+    components: {
+        DataError
+    },
+    computed: {
+        ...mapGetters({
+            error: 'user/error',
+            user: 'user/user'
+        })
     }
 }
 </script>

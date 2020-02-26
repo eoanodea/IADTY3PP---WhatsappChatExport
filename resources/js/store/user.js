@@ -53,6 +53,13 @@ export default {
     },
 
     actions: {
+        /**
+         * Makes an API request to the 
+         * server for a list of users
+         * 
+         * @param {commit} param0 
+         * @param {page} page 
+         */
         async loadUsers({commit}, page) {
             try {
                 let response = await axios.get('/api/user/all?page=' + page) 
@@ -65,6 +72,13 @@ export default {
                 commit('SET_ERROR', error) 
             }
         },
+        /**
+         * Makes an API request to the 
+         * server for a single user
+         * 
+         * @param {commit} param0 
+         * @param {page} page 
+         */
         async loadUser({commit}, id) {
             try {
                 console.log('loading user', id)
@@ -73,6 +87,63 @@ export default {
                 commit('SET_USER', response.data.user)
             } catch(error) {
                 console.log('Error getUser', error);
+                commit('SET_ERROR', error) 
+                
+            }
+        },
+        /**
+         * Create a new user
+         * 
+         * @param {commit} param0 
+         * @param {page} page 
+         */
+        async addUser({commit}, user) {
+            try {
+                
+                let response = await axios.post('/api/user/new', user) 
+                console.log('response user', response)
+                commit('SET_USER', response.data.user)
+                return response.data.user.id
+            } catch(error) {
+                console.log('Error getUser', error);
+                commit('SET_ERROR', error) 
+                
+            }
+        },
+        /**
+         * Makes an API request to the 
+         * server for a single user
+         * 
+         * @param {commit} param0 
+         * @param {page} page 
+         */
+        async updateUser({commit}, id, user) {
+            try {
+                console.log('loading user', id)
+                let response = await axios.put('/api/user/' + id) 
+                
+                commit('SET_USER', response.data.user)
+            } catch(error) {
+                console.log('Error getUser', error);
+                commit('SET_ERROR', error) 
+                
+            }
+        },
+        /**
+         * Delete a user 
+         * from the database
+         * 
+         * @param {commit} param0 
+         * @param {page} page 
+         */
+        async deleteUser({commit}, id) {
+            try {
+                console.log('loading user', id)
+                let response = await axios.put('/api/user/' + id) 
+                
+                commit('SET_USER', response.data.user)
+            } catch(error) {
+                console.log('Error getUser', null);
                 commit('SET_ERROR', error) 
                 
             }
