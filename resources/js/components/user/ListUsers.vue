@@ -13,28 +13,30 @@
 import Vue from "vue";
 import axios from "axios";
 import DynamicTable from './../table/DynamicTable'
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
-      users: null,
       fields: ['first_name', 'email'],
       showUrl: '/admin/users/show/',
       addUrl: '/admin/users/new',
       error: null
     };
   },
-  mounted() {
-    axios.get("/api/user/all")
-    .then(response => {
-      this.users = response.data
-    })
-    .catch(error => {
-      this.error = error
-    })
+  created() {
+    if(this.users.length < 1) {
+      this.$store.dispatch('user/loadUsers')
+    }
   },
   methods: {
     //
+  },
+  computed: {
+    ...mapGetters({
+      users: 'user/users',
+      pagination: 'user/pagination'
+    })
   },
   components: {
     DynamicTable

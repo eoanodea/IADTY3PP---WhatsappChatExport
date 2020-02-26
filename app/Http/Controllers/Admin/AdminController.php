@@ -22,7 +22,7 @@ class AdminController extends Controller
         //     $role->where('name', 'client')->first();  
         // })->get();
 
-        return User::all();
+        return User::paginate(10);
         
         // $users = User::with('roles')->get();
         

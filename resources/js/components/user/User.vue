@@ -1,5 +1,5 @@
 <template>
-  <div class="bx--grid" style="padding: 40px 0px;">
+  <div class="bx--grid" style="padding: 40px 0px;" v-if="user">
     <div class="bx--row">
       <!-- Client Details (Notification Card)-->
       <div class="bx--col-lg-6">
@@ -69,88 +69,13 @@
         <progressIndicator v-bind:id="user.id"/>
       </div>
     </div>
-
-    <!-- Client Profile -->
-    <!-- <div class="md-layout"> -->
-      <!-- <div class="md-layout-item"> -->
-        <!-- <md-table-toolbar> -->
-          <!-- <h1 class="md-title accent">Client Profile</h1> -->
-          <!-- <md-button class="btnWarning" :to="'/admin/users/edit/' + user.id">Edit Details</md-button> -->
-        <!-- </md-table-toolbar> -->
-      <!-- </div> -->
-    <!-- </div> -->
-
-    <!-- <md-card-header class="md-layout spacing">
-      <md-card-header class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-        <md-card class="background">
-          <md-avatar class="md-avatar-icon md-large md-elevation-5 md-accent"></md-avatar>
-          <md-card-header class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-            <md-card-header class="accent md-display-3">{{ user.first_name }} {{ user.last_name }}</md-card-header>
-            <md-card-header class="text md-display-1">{{ user.email }}</md-card-header>
-            <md-card-header class="subject md-headline">
-              {{ user.address }}
-              <br />
-              {{ user.mobile_number }}
-            </md-card-header>
-          </md-card-header>
-        </md-card>
-      </md-card-header>
-    </md-card-header> -->
-
-    <!-- Send Message -->
-    <!-- <div class="md-layout"> -->
-      <!-- <div class="md-layout-item"> -->
-        <!-- <md-table-toolbar> -->
-          <!-- <h1 class="md-title accent">Send Message</h1> -->
-        <!-- </md-table-toolbar> -->
-      <!-- </div>
-    </div> -->
-
-    <!-- <md-field>
-      <label class="accent" for="compose_message">Compose Message</label>
-      <md-input
-        name="Compose Message"
-        type="text"
-        class="form-control"
-        placeholder="Compose Message"
-        autocomplete="given-name"
-      />
-    </md-field>
-
-    <md-card-actions>
-      <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Send</md-button>
-    </md-card-actions> -->
-
-    <!-- Project Completion -->
-    <!-- <div class="md-layout"> -->
-      <!-- <div class="md-layout-item"> -->
-        <!-- <md-table-toolbar> -->
-          <!-- <h1 class="md-title accent">Project Completion</h1> -->
-        <!-- </md-table-tool  bar> -->
-      <!-- </div> -->
-    <!-- </div> -->
-
-    <!-- <div class="md-layout">
-      <md-card-actions class="progessSpinner">
-        <input type="range" v-model.number="amount" />
-        {{ amount }}%
-        <h1 class="progressSpinner spinnerColor">{{ amount }}%</h1>
-      </md-card-actions>
-      <md-progress-spinner
-        class="md-accent"
-        md-mode="determinate"
-        :md-value="amount"
-        :md-diameter="600"
-        :md-stroke="30"
-      ></md-progress-spinner>
-    </div> -->
-
-    <!-- <progressSpinner/> -->
-
-    <!-- Delete Client Button -->
-    <!-- <md-card-actions> -->
-      <!-- <DeleteUser class="md-alignment-top-right" v-bind:id="user.id" /> -->
-    <!-- </md-card-actions> -->
+  </div>
+  <div v-else-if="error">
+    <h2>Error!!</h2>
+    {{error}}
+  </div>
+  <div v-else>
+    <h1>stramge errpr</h1>
   </div>
 </template>
 
@@ -175,6 +100,7 @@ import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
+import { mapGetters } from 'vuex';
 // import { CvModal } from '@carbon/vue/src';
 
 Vue.use(CarbonComponentsVue);
@@ -192,24 +118,20 @@ Vue.use(CarbonComponentsVue);
 export default {
   data() {
     return {
-      user: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        mobile_number: "",
-        address: ""
-      },
+      userId: this.$route.params.id,
+      // user: 
+      // {
+      //   first_name: "",
+      //   last_name: "",
+      //   email: "",
+      //   mobile_number: "",
+      //   address: ""
+      // },
       amount: 70
     };
   },
-  mounted() {
-    axios.get(`/api/user/${this.$route.params.id}`).then(response => {
-      if (response.data.status !== "success") {
-        console.log("error ", response);
-      } else {
-        this.user = response.data.user;
-      }
-    });
+    created() {
+    this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
   },
   components: {
     DeleteUser,
@@ -218,6 +140,12 @@ export default {
     Modal,
     progressIndicator
     // CvModal
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user/user',
+      error: 'user/error'
+    })
   }
 };
 </script>

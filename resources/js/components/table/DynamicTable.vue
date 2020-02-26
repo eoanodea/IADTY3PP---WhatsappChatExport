@@ -19,44 +19,53 @@
             </div>
         </section>
 
-        <!-- Table -->
-        <table v-if="data !== null && data.length > 0" class="bx--data-table bx--data-table--sort">
-            <!-- Headings -->
-            <thead>
-                <tr>
-                    <!-- Name -->
-                    <th v-for="field in fields" v-bind:key="field">
-                        <button class="bx--table-sort" data-event="sort" title="Name">
-                        <span class="bx--table-header-label">{{field.replace('_', ' ')}}</span>
-                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path></svg>
-                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path></svg>
-                        </button>
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <!-- Body -->
-            <tbody>
-                <tr v-for="dat in data" v-bind:key="dat.id">
-                    <!-- Names -->
-                    <td v-for="field in fields" v-bind:key="field">
-                        {{dat[field]}}
-                    </td>
-
-                    <!-- View Profile Buttons -->
-                    <td>
-                        <cv-link :to="(showUrl + dat.id)" style="text-decoration: none;"> 
-                            <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
-                                View Profile
+        <!-- Table Wrapper -->
+        <div v-if="data !== null && data.length > 0">
+            <!-- Table -->
+            <table class="bx--data-table bx--data-table--sort">
+                <!-- Table Head -->
+                <thead>
+                    <tr>
+                        <!-- Name -->
+                        <th v-for="field in fields" v-bind:key="field">
+                            <button class="bx--table-sort" data-event="sort" title="Name">
+                            <span class="bx--table-header-label">{{field.replace('_', ' ')}}</span>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path></svg>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path></svg>
                             </button>
-                        </cv-link>
-                    </td>
-                
-                </tr>
-            </tbody>
-        </table>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
 
+                <!-- Table Body -->
+                <tbody>
+                    <tr v-for="dat in data" v-bind:key="dat.id">
+                        <!-- Names -->
+                        <td v-for="field in fields" v-bind:key="field">
+                            {{dat[field]}}
+                        </td>
+
+                        <!-- Show URL button -->
+                        <td>
+                            <cv-link :to="(showUrl + dat.id)" style="text-decoration: none;"> 
+                                <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
+                                    View Profile
+                                </button>
+                            </cv-link>
+                        </td>
+                    
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Close Table -->
+
+            <!-- Pagination -->
+            <pagination />
+            <!-- Close Pagination -->
+
+        </div>
+        <!-- Close Table Wrapper -->
         <!-- Loading -->
         <loading-indicator v-else-if="!error" />
 
@@ -70,6 +79,7 @@
     import Vue from 'vue'
     //Component Imports
     import DataError from './DataError'
+    import Pagination from './Pagination'
     import LoadingIndicator from './../progress/LoadingIndicator'
 
     //Carbon Imports
@@ -82,6 +92,7 @@
         props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error'],
         components: {
             DataError,
+            Pagination,
             LoadingIndicator,
             DataTable
         }
