@@ -26,12 +26,12 @@ export default {
   },
   mounted() {
     axios.get("/api/user/all")
-    .then(response => (
+    .then(response => {
       this.users = response.data
-      )
-    .catch(error => (
+    })
+    .catch(error => {
       this.error = error
-    )));
+    })
   },
   methods: {
     //
