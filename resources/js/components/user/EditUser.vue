@@ -142,14 +142,6 @@ export default {
     data() {
         return {
             updatedUser: null,
-            //     first_name: '',
-            //     last_name: '',
-            //     email: '',
-            //     mobile_number: '',
-            //     address: '',
-            //     password: '',
-            //     confirm_password: '',
-            // },
             errors: [],
             submitting: false
         }

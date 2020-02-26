@@ -18,10 +18,10 @@
         </div>
         <span class="bx--pagination__text">
             <span data-displayed-item-range>
-            1-10
+            {{pagination.from + " - " + pagination.from}}
             </span> of
             <span ata-total-items>
-            50
+            {{pagination.total}}
             </span> items
         </span>
         </div>
@@ -40,14 +40,25 @@
         </div>
         
         <label id="select-id-pagination-page-label" class="bx--pagination__text" for="select-id-pagination-page">
-            of 5 pages
+            {{pagination.current}} of {{pagination.last}} pages
         </label>
         
-        <button class="bx--pagination__button bx--pagination__button--backward" tabindex="0" data-page-backward aria-label="Backward button">
+        <button 
+            @click="prev"
+            :disabled="pagination.current <= 1" 
+            class="bx--pagination__button bx--pagination__button--backward" 
+            tabindex="0" 
+            data-page-backward aria-label="Backward button"
+        >
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--pagination__nav-arrow" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M19 23l-8-7 8-7v14z"></path></svg>
         </button>
 
-        <button class="bx--pagination__button bx--pagination__button--forward" tabindex="0" data-page-forward aria-label="Forward button">
+        <button 
+            @click="next" 
+            :disabled="pagination.current >= pagination.last" 
+            class="bx--pagination__button bx--pagination__button--forward" 
+            tabindex="0" 
+            data-page-forward aria-label="Forward button">
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--pagination__nav-arrow" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 9l8 7-8 7V9z"></path></svg>
         </button>
         </div>
@@ -55,7 +66,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
     export default {
-        
+        computed: {
+            ...mapGetters({
+                pagination: 'user/pagination'
+            })
+        },
+        methods: {
+            next() {
+                 this.$store.dispatch('user/loadUsers', this.pagination.current + 1)
+            },
+            prev() {
+                this.$store.dispatch('user/loadUsers', this.pagination.current - 1)
+            }
+        }
     }
 </script>

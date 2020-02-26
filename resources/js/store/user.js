@@ -43,6 +43,9 @@ export default {
             let pagination = {}
             pagination.current = data.current_page
             pagination.last = data.last_page
+            pagination.to = data.to
+            pagination.from = data.from
+            pagination.total = data.total
             state.pagination = pagination
         },
 
