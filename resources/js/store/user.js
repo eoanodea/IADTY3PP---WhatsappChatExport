@@ -139,9 +139,9 @@ export default {
         async deleteUser({commit}, id) {
             try {
                 console.log('loading user', id)
-                let response = await axios.put('/api/user/' + id) 
+                let response = await axios.delete('/api/user/' + id) 
                 
-                commit('SET_USER', response.data.user)
+                commit('SET_USER', null)
             } catch(error) {
                 console.log('Error getUser', null);
                 commit('SET_ERROR', error) 

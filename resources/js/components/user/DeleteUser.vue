@@ -126,11 +126,22 @@
         },
         methods: {
             actionPrimary() {
-                axios.delete(`/api/user/${this.id}`)
-                .then(response => {
-                    if(!response.data) console.log("Error: ", response)
-                    else router.push({name: 'users' })
+                let {submitting, showDialog} = this
+                submitting = true
+                this.$store.dispatch('user/deleteUser', this.id)
+                .then(function(response) {
+                    showDialog = false
+                    submitting = false
+                    router.push({
+                        path: `/admin/users`
+                    })
+                }).catch(function(error) {
+                    console.log('error', error)
+                    submitting = false
                 })
+            },
+            actionSecondary() {
+                this.showDialog = false
             }
             
         },
@@ -141,6 +152,9 @@
     }
 </script>
 <style>
+    .bx--body--with-modal-open {
+        overflow: auto;
+    }
     /* .backBtn {
       color: #fff !important;
       background-color: #24b6f7 !important;

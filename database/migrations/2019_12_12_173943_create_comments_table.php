@@ -23,7 +23,7 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('assignment_id')->references('id')->on('assignments')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('task_id')->references('id')->on('active_tasks')->onUpdate('cascade')->onDelete('cascade');
         });
     }
