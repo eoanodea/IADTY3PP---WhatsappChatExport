@@ -13,17 +13,12 @@
 import Vue from "vue";
 import axios from "axios";
 import DynamicTable from './../table/DynamicTable'
-// import 'carbon-components/css/carbon-components.css';
-// import CarbonComponentsVue from '@carbon/vue/src/index';
-// import { DataTable, Loading } from 'carbon-components';
-
-// Vue.use(CarbonComponentsVue);
 
 export default {
   data() {
     return {
       users: null,
-      fields: ['first_name', 'last_name', 'email'],
+      fields: ['first_name', 'email'],
       showUrl: '/admin/users/show/',
       addUrl: '/admin/users/new',
       error: null
@@ -42,8 +37,7 @@ export default {
     //
   },
   components: {
-    DynamicTable,
-    // Loading
+    DynamicTable
   }
 };
 </script>

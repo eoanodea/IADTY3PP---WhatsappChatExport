@@ -2,7 +2,7 @@
     <div class="bx--data-table-container" data-table>
         <!-- Title -->
         <div class="bx--data-table-header">
-            <h4 class="bx--data-table-header__title">hello{{title ? title : 'Table'}}</h4>
+            <h2 class="bx--data-table-header__title">{{title ? title : 'Table'}}</h2>
         </div>
 
         <!-- Toolbar -->
@@ -10,8 +10,8 @@
             <!-- Persistent Search -->
             <div class="bx--toolbar-content">
                 <!-- Add Client Button -->
-                <cv-link to="/admin/users/new" style="text-decoration: none;"> 
-                <button href="/admin/users/new" class="bx--btn bx--btn--lg bx--btn--primary">
+                <cv-link :to="addUrl" style="text-decoration: none;"> 
+                <button class="bx--btn bx--btn--lg bx--btn--primary">
                     Add Client 
                     <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
                 </button>
@@ -32,7 +32,7 @@
                         <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path></svg>
                         </button>
                     </th>
-
+                    <th></th>
                 </tr>
             </thead>
 
@@ -46,7 +46,7 @@
 
                     <!-- View Profile Buttons -->
                     <td>
-                        <cv-link :to="actionUrl + dat.id" style="text-decoration: none;"> 
+                        <cv-link :to="(showUrl + dat.id)" style="text-decoration: none;"> 
                             <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
                                 View Profile
                             </button>
@@ -87,4 +87,10 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    table th span, h2 {
+        text-transform: capitalize;
+    }
+</style>
 

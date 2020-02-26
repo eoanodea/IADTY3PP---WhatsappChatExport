@@ -127,9 +127,9 @@
       </template>
     </cv-header>
     
-    <!-- <div class="bx--row"> -->
+    <div class="router-container">
       <router-view></router-view>
-    <!-- </div> -->
+    </div>
   </div>
 </div>
 </template>
@@ -221,3 +221,9 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  .router-container {
+    margin: 80px 0;
+  }
+</style>
