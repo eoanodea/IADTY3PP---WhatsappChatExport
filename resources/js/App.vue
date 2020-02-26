@@ -13,8 +13,10 @@
       </cv-header-name>
       
 
-      <!-- Dashboard -->
+      <!-- Top Navigation bar -->
       <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" v-if="authenticated">
+        
+        <!-- Dashboard -->
         <cv-header-menu-item to="/admin/home">
           Dashboard
         </cv-header-menu-item>
@@ -58,7 +60,7 @@
         <cv-header-global-action
           aria-label="App switcher"
           aria-controls="switcher-panel"
-          @click="actionAppSwitcher">
+          @click="click">
           <AppSwitcher20 />
         </cv-header-global-action>
       </template>
@@ -194,10 +196,6 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
           authenticated: 'auth/authenticated',
           user: 'auth/user'
       }),
-      areRightPanels() {
-        return true;
-        // return settings.group.rightPanels.length > 0;
-      },
     },
     methods: {
       click: function() {
@@ -216,12 +214,10 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
         })
       },
       actionAppSwitcher() {
+        console.log('app switcher!')
         // this.doActionSwitcher();
-        this.menuVisible = true;
-      },
-    },
-    mounted() {
-      // this.doActionSwitcher = () => ;
+        this.menuVisible = !this.menuVisible;
+      }
     }
   }
 </script>

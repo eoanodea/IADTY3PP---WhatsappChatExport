@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Please wait while we load up your default tasks.</p>
+        <p>Please wait while we load up your {{data ? data : 'data'}}.</p>
         <div data-loading class="bx--loading loading">
             <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
                 <title>Loading</title>
@@ -13,7 +13,7 @@
 <script>
     import {Loading} from 'carbon-components'
     export default {
-        //
+        props: ['data']
     }
 </script>
 <style lang="scss" scoped>
