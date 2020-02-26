@@ -36,9 +36,9 @@
     }
 
   };
-  let stripe = Stripe(process.env.MIX_STRIPE_PUBLISHABLE),
-    elements = stripe.elements(),
-    card = undefined;
+  // let stripe = Stripe(process.env.MIX_STRIPE_PUBLISHABLE),
+  //   elements = stripe.elements(),
+  //   card = undefined;
 
   export default {
     props: ['payload', 'user'],
@@ -53,38 +53,38 @@
     },
     methods: {
       purchase() {        
-        stripe.handleCardSetup(
-          this.intent.client_secret, card, {
-            payment_method_data: {
-              billing_details: { name: `${this.user.first_name} ${this.user.last_name}` }
-            }
-          }
-          ).then(result => {
-            console.log(result)
-          if(result.error) {
-            this.error = result.error.message
-            return
-          }
-          else if(result.setupIntent.status !== "succeeded") {
-            console.log('error!', result)
+        // stripe.handleCardSetup(
+        //   this.intent.client_secret, card, {
+        //     payment_method_data: {
+        //       billing_details: { name: `${this.user.first_name} ${this.user.last_name}` }
+        //     }
+        //   }
+        //   ).then(result => {
+        //     console.log(result)
+        //   if(result.error) {
+        //     this.error = result.error.message
+        //     return
+        //   }
+        //   else if(result.setupIntent.status !== "succeeded") {
+        //     console.log('error!', result)
 
-            return
-          }
-          this.error = null
-          this.payload.token = result.setupIntent.payment_method
-          axios.post(`/api/transactions/new`, this.payload)
-            .then(response => {
-              if(response.data.status !== 'success') {
-                console.log('error!', response.data.error)
-                this.error = result.error.message
-                return
-              }
-              console.log('success!', response.data.transaction.id)
-              this.$router.push({
-                path: `/transaction/${response.data.transaction.id}`
-              })
-            })
-        })
+        //     return
+        //   }
+        //   this.error = null
+        //   this.payload.token = result.setupIntent.payment_method
+        //   axios.post(`/api/transactions/new`, this.payload)
+        //     .then(response => {
+        //       if(response.data.status !== 'success') {
+        //         console.log('error!', response.data.error)
+        //         this.error = result.error.message
+        //         return
+        //       }
+        //       console.log('success!', response.data.transaction.id)
+        //       this.$router.push({
+        //         path: `/transaction/${response.data.transaction.id}`
+        //       })
+        //     })
+        // })
       }
     },
     mounted() {

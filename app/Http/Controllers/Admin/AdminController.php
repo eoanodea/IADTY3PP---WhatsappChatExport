@@ -12,18 +12,30 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin');
+        // $this->middleware('auth');
+        // $this->middleware('role:admin');
     }
 
     public function index() {
-        $role_client = Role::where('name', 'client')->first();
-        $clients = array();
+        // $users = User::whereHas('roles', function($role) {
+            
+        //     $role->where('name', 'client')->first();  
+        // })->get();
 
-        foreach($role_client->users as $user) {
-            array_push($clients, $user);   
-        }
-        return $clients;
+        return User::all();
+        
+        // $users = User::with('roles')->get();
+        
+        // ->where('name', 'client')->paginate(2);
+        // $role_client = Role::where('name', 'client')->first();
+        // $clients = User::find()-;
+
+        
+
+        // foreach($role_client->users as $user) {
+        //     array_push($clients, $user);   
+        // }
+        return $users;
     }
 
     /**
