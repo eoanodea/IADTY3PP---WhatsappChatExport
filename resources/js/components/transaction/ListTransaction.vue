@@ -58,7 +58,7 @@
 
             <!-- Amount -->
             <td>
-                {{ transaction.amount }}
+                €{{ transaction.amount }}
             </td>
 
             <!-- View Profile Buttons -->
