@@ -63,9 +63,25 @@ export default {
          * @param {commit} param0 
          * @param {page} page 
          */
-        async loadUsers({commit}, page) {
+        async loadUsers({commit}, param) {
+            console.log('loading users!', param)
+            let dataLimit = 5, currPage = 1
+            if(param) {
+                param.length >= 0
+                ? (
+                    param.map((dat, i) => i === 0 ? currPage = dat : dataLimit = dat)
+                )
+                : currPage = param
+            }
+            // const dataLimit = !limit
+            // ? 5
+            // : limit
+            // const currPage = !page
+            // ? 1
+            // : page
+            
             try {
-                let response = await axios.get('/api/user/all?page=' + page) 
+                let response = await axios.get('/api/user/all/' + dataLimit + '?page=' + currPage) 
 
                 commit('SET_USERS', response.data.data)
                 commit('SET_PAGINATE', response.data) 

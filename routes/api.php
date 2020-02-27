@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user/all', 'Admin\AdminController@index');
+Route::get('/user/all/{limit}', 'Admin\AdminController@index');
 Route::post('/user/new', 'Admin\AdminController@store');
 Route::put('/user/{id}', 'Admin\AdminController@update');
 Route::delete('/user/{id}', 'Admin\AdminController@destroy');

@@ -16,13 +16,19 @@ class AdminController extends Controller
         // $this->middleware('role:admin');
     }
 
-    public function index() {
+    /**
+     * Get all users with pagination
+     * 
+     * @param int limit
+     */
+    public function index(int $limit) {
+        if(!$limit) {
+            return User::paginate(5);    
+        } else return User::paginate($limit);
         // $users = User::whereHas('roles', function($role) {
             
         //     $role->where('name', 'client')->first();  
         // })->get();
-
-        return User::paginate(10);
         
         // $users = User::with('roles')->get();
         
@@ -35,7 +41,7 @@ class AdminController extends Controller
         // foreach($role_client->users as $user) {
         //     array_push($clients, $user);   
         // }
-        return $users;
+        // return $users;
     }
 
     /**

@@ -7,12 +7,11 @@
         </label>
 
         <div class="bx--select bx--select--inline bx--select__item-count">
-            <select class="bx--select-input" id="select-id-pagination-count" aria-label="select number of items per page" tabindex="0" data-items-per-page>
-                <option class="bx--select-option" value="10" selected>10</option>
+            <select class="bx--select-input" id="select-id-pagination-count" aria-label="select number of items per page" tabindex="0" data-items-per-page @change="selectLimit">
+                <option class="bx--select-option" value="5" selected>5</option>
+                <option class="bx--select-option" value="10">10</option>
+                <option class="bx--select-option" value="15">15</option>
                 <option class="bx--select-option" value="20">20</option>
-                <option class="bx--select-option" value="30">30</option>
-                <option class="bx--select-option" value="40">40</option>
-                <option class="bx--select-option" value="50">50</option>
             </select>
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
         </div>
@@ -28,16 +27,16 @@
 
         <!-- Right Pagination -->
         <div class="bx--pagination__right">
-        <div class="bx--select bx--select--inline bx--select__page-number">
-            <select class="bx--select-input" id="select-id-pagination-page" aria-label="select page number to view" tabindex="0" data-page-number-input>
-                <option class="bx--select-option" value="1" selected>1</option>
-                <option class="bx--select-option" value="2">2</option>
-                <option class="bx--select-option" value="3">3</option>
-                <option class="bx--select-option" value="4">4</option>
-                <option class="bx--select-option" value="5">5</option>
-            </select>
-            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
-        </div>
+            <!-- <div class="bx--select bx--select--inline bx--select__page-number">
+                <select class="bx--select-input" id="select-id-pagination-page" aria-label="select page number to view" tabindex="0" data-page-number-input>
+                    <option class="bx--select-option" value="1" selected>1</option>
+                    <option class="bx--select-option" value="2">2</option>
+                    <option class="bx--select-option" value="3">3</option>
+                    <option class="bx--select-option" value="4">4</option>
+                    <option class="bx--select-option" value="5">5</option>
+                </select>
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
+            </div> -->
         
         <label id="select-id-pagination-page-label" class="bx--pagination__text" for="select-id-pagination-page">
             {{pagination.current}} of {{pagination.last}} pages
@@ -79,6 +78,14 @@ import { mapGetters } from 'vuex'
             },
             prev() {
                 this.$store.dispatch('user/loadUsers', this.pagination.current - 1)
+            },
+            selectLimit(e) {
+                console.log('selectLimit!', e.target.value)
+
+                this.$store.dispatch('user/loadUsers', [
+                    this.pagination.current, 
+                    e.target.value
+                ])
             }
         }
     }
