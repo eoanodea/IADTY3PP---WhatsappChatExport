@@ -41,10 +41,10 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
-    import DeleteService from './DeleteService'
-    import ListTask from './../task/ListTask'
+    import Vue from 'vue';
+    import axios from 'axios';
+    import DeleteService from './DeleteService';
+    import ListTask from './../task/ListTask';
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
