@@ -37,7 +37,7 @@
         </cv-header-menu-item>
 
         <!-- Transactions -->
-        <cv-header-menu-item to="/transactions/:id" @click="click">
+        <cv-header-menu-item to="/admin/transactions/" @click="click">
           Transactions
         </cv-header-menu-item>
 
