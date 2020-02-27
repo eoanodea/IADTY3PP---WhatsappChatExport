@@ -72,31 +72,6 @@
     import CommentTile from './../comment/CommentTile'
 
     Vue.use(CarbonComponentsVue);
-//     import {
-//     MdButton,
-//     MdProgress,
-//     MdAvatar,
-//     MdCard,
-//     MdContent,
-//     MdElevation,
-//     MdIcon,
-//     MdImage,
-//     MdLayout,
-//     MdRipple,
-//     MdToolbar
-// } from "vue-material/dist/components";
-
-    // Vue.use(MdButton);
-    // Vue.use(MdProgress);
-    // Vue.use(MdAvatar);
-    // Vue.use(MdCard);
-    // Vue.use(MdContent);
-    // Vue.use(MdElevation);
-    // Vue.use(MdIcon);
-    // Vue.use(MdImage);
-    // Vue.use(MdLayout);
-    // Vue.use(MdRipple);
-    // Vue.use(MdToolbar);
 
     export default {
         data() {
