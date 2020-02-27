@@ -59,6 +59,7 @@ Route::post('/comments/{isAssignmnt}/{id}/new', 'Comment\CommentController@store
 Route::put('/comments/{id}', 'Comment\CommentController@update');
 Route::delete('/comments/{id}', 'Comment\CommentController@destroy');
 
+Route::get('/transactions/', 'Transaction\TransactionController@index');
 Route::get('/transactions/by/{assignment}', 'Transaction\TransactionController@indexByAssignment');
 Route::get('/transactions/{id}', 'Transaction\TransactionController@show');
 Route::post('/transactions/new', 'Transaction\TransactionController@store');

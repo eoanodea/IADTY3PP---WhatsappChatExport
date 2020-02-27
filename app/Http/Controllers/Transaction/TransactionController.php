@@ -11,6 +11,20 @@ use App\Assignment;
 class TransactionController extends Controller
 {
     /**
+     * List all transactions from the DB
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $transactions = Transaction::get();
+
+        return response()->json([
+            'status'=> 'success',
+            'transactions' => $transactions->toArray()
+        ], 200);
+    }
+    /**
      * Display a listing of the resource by assignment.
      *
      * @param  int  $assignmentId

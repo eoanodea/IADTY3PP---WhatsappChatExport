@@ -162,7 +162,11 @@
         //When the component mounts, check if the Transaction is active or default
         //Modify the fetch URL with result and fetch Transactions
         mounted () {
-            axios.get(`/api/transactions/by/${this.assignmentId}`)
+            let url = ''
+            if(this.assignmentId) {
+                url.push('/by/' + this.assignmentId)
+            }
+            axios.get(`/api/transactions${url}`)
             .then(response => (this.transactions = response.data.transactions))
         },
         methods: {
