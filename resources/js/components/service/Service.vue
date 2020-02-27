@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid" style="padding: 40px 0px;">
+<div class="bx--grid" style="padding: 40px 0px;" v-if="service">
     <div class="bx--row">
         <div class="bx--col-lg-6">
             <!-- Service Details (Notification Card) -->
