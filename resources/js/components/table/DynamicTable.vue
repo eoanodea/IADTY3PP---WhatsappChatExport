@@ -61,7 +61,7 @@
             <!-- Close Table -->
 
             <!-- Pagination -->
-            <pagination />
+            <pagination v-if="collection" v-bind:collection="collection" />
             <!-- Close Pagination -->
 
         </div>
@@ -89,7 +89,7 @@
     Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error'],
+        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error', 'collection'],
         components: {
             DataError,
             Pagination,

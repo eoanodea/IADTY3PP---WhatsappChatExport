@@ -64,7 +64,6 @@ export default {
          * @param {page} page 
          */
         async loadUsers({commit}, param) {
-            console.log('loading users!', param)
             let dataLimit = 5, currPage = 1
             if(param) {
                 param.length >= 0
@@ -73,12 +72,6 @@ export default {
                 )
                 : currPage = param
             }
-            // const dataLimit = !limit
-            // ? 5
-            // : limit
-            // const currPage = !page
-            // ? 1
-            // : page
             
             try {
                 let response = await axios.get('/api/user/all/' + dataLimit + '?page=' + currPage) 

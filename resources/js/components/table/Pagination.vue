@@ -65,27 +65,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
     export default {
+        props: ['collection'],
+        data() {
+            return {
+                prefix: 'user'
+            }
+        },
         computed: {
-            ...mapGetters({
-                pagination: 'user/pagination'
-            })
+            ...mapState({
+                pagination(state, getters) {
+                    return getters[`${this.collection}/pagination`]
+                }
+            }),
         },
         methods: {
             next() {
-                 this.$store.dispatch('user/loadUsers', this.pagination.current + 1)
+                 this.$store.dispatch(this.collection + '/loadUsers', this.pagination.current + 1)
             },
             prev() {
-                this.$store.dispatch('user/loadUsers', this.pagination.current - 1)
+                this.$store.dispatch(this.collection + '/loadUsers', this.pagination.current - 1)
             },
             selectLimit(e) {
-                console.log('selectLimit!', e.target.value)
-
-                this.$store.dispatch('user/loadUsers', [
+                this.$store.dispatch(this.collection + '/loadUsers', [
                     this.pagination.current, 
                     e.target.value
                 ])
+            }
+        },
+        watch: {
+            collection: function(newVal, oldVal) {
+                this.prefix = collection
             }
         }
     }

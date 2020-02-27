@@ -248,15 +248,23 @@ const routes = [
     /**
      * Transaction
      * 
-     * @Page ListTransaction
+     * @Page ListTransactions
+     * 
+     * @Page ListTransaction By Assignment
      * @Param Assignment ID
      * 
      * @Page Transaction
      * @Param Transaction ID
      */
     {
-        path: '/transactions/:id',
+        path: '/admin/transactions',
         name: 'transactions',
+        component: ListTransaction,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    {
+        path: '/transactions/by/:id',
+        name: 'transactionsByAssignment',
         component: ListTransaction,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
