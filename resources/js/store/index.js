@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './auth'
 import user from './user'
+import service from './service'
+
 
 
 Vue.use(Vuex)
@@ -21,6 +23,7 @@ state: {
 
     modules: {
         auth,
-        user
+        user,
+        service
     }
 })

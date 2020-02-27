@@ -4,19 +4,19 @@ export default {
     namespaced: true,
 
     state: {
-        users: [],
-        user: {},
+        services: [],
+        service: {},
         pagination: {},
         error: null
     },
 
     getters: {
-        users(state) {
-            return state.users
+        services(state) {
+            return state.services
         },
 
-        user(state) {
-            return state.user
+        service(state) {
+            return state.service
         },
 
         pagination(state) {
@@ -29,14 +29,14 @@ export default {
     },
 
     mutations: {
-        SET_USERS(state, users) {
+        SET_SERVICES(state, services) {
             state.error = null
-            state.users = users
+            state.services = services
         },
 
-        SET_USER(state, user) {
+        SET_SERVICE(state, service) {
             state.error = null
-            state.user = user
+            state.service = service
         },
 
         SET_PAGINATE(state, data) {
@@ -58,12 +58,12 @@ export default {
     actions: {
         /**
          * Makes an API request to the 
-         * server for a list of users
+         * server for a list of services
          * 
          * @param {commit} param0 
          * @param {page} page 
          */
-        async loadUsers({commit}, param) {
+        async loadServices({commit}, param) {
             let dataLimit = 5, currPage = 1
             if(param) {
                 param.length >= 0
@@ -74,92 +74,88 @@ export default {
             }
             
             try {
-                let response = await axios.get('/api/user/all/' + dataLimit + '?page=' + currPage) 
+                let response = await axios.get('/api/service/all/' + dataLimit + '?page=' + currPage) 
 
-                commit('SET_USERS', response.data.data)
+                commit('SET_SERVICES', response.data.data)
                 commit('SET_PAGINATE', response.data) 
 
             } catch (error) {
-                console.log('Error loadUsers!', error)
+                console.log('Error loadServices!', error)
                 commit('SET_ERROR', error) 
             }
         },
         /**
          * Makes an API request to the 
-         * server for a single user
+         * server for a single service
          * 
          * @param {commit} param0 
          * @param {page} page 
          */
-        async loadUser({commit}, id) {
-            if(id) {
-                try {
-                    console.log('loading user', id)
-                    let response = await axios.get('/api/user/' + id) 
-                    
-                    commit('SET_USER', response.data.user)
-                } catch(error) {
-                    console.log('Error getUser', error);
-                    commit('SET_ERROR', error) 
-                    
-                }
-            } else {commit('SET_USER', null)}
+        async loadService({commit}, id) {
+            try {
+                console.log('loading service', id)
+                let response = await axios.get('/api/service/' + id) 
+                
+                commit('SET_SERVICE', response.data.service)
+            } catch(error) {
+                console.log('Error getService', error);
+                commit('SET_ERROR', error) 
+                
+            }
         },
         /**
-         * Create a new user
+         * Create a new service
          * 
          * @param {commit} param0 
          * @param {page} page 
          */
-        async addUser({commit}, user) {
+        async addService({commit}, service) {
             try {
                 
-                let response = await axios.post('/api/user/new', user) 
-                console.log('response user', response)
-                commit('SET_USER', response.data.user)
-                return response.data.user.id
+                let response = await axios.post('/api/service/new', service) 
+                console.log('response service', response)
+                commit('SET_SERVICE', response.data.service)
+                return response.data.service.id
             } catch(error) {
-                console.log('Error getUser', error);
+                console.log('Error getService', error);
                 commit('SET_ERROR', error) 
                 
             }
         },
         /**
          * Makes an API request to the 
-         * server for a single user
+         * server for a single service
          * 
          * @param {commit} param0 
          * @param {page} page 
          */
-        async updateUser({commit}, param) {
-
+        async updateService({commit}, id, service) {
             try {
-                console.log('loading user', param)
-                let response = await axios.put('/api/user/' + param[0], param[1]) 
+                console.log('loading service', id)
+                let response = await axios.put('/api/service/' + id, service) 
                 
-                commit('SET_USER', response.data.user)
-                return response.data.user.id
+                commit('SET_SERVICE', response.data.service)
             } catch(error) {
-                console.log('Error getUser', error);
+                console.log('Error getService', error);
                 commit('SET_ERROR', error) 
                 
             }
         },
         /**
-         * Delete a user 
+         * Delete a service 
          * from the database
          * 
          * @param {commit} param0 
          * @param {page} page 
          */
-        async deleteUser({commit}, id) {
+        async deleteService({commit}, id) {
             try {
-                console.log('loading user', id)
-                let response = await axios.delete('/api/user/' + id) 
+                console.log('loading service', id)
+                let response = await axios.delete('/api/service/' + id) 
                 
-                commit('SET_USER', null)
+                commit('SET_SERVICE', null)
             } catch(error) {
-                console.log('Error getUser', null);
+                console.log('Error getService', null);
                 commit('SET_ERROR', error) 
                 
             }

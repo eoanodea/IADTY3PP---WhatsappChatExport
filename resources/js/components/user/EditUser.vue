@@ -141,7 +141,15 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            updatedUser: null,
+            updatedUser: {
+                first_name: null,
+                last_name: null,
+                email: null,
+                mobile_number: null,
+                address: null,
+                password: null,
+                confirm_password: null,
+            },
             errors: [],
             submitting: false
         }
@@ -155,7 +163,8 @@ export default {
        submitUser: function() {
             let {submitting} = this
             submitting = true
-            this.$store.dispatch('user/updateUser', parseInt(this.$route.params.id), this.newUser)
+            console.log('submitting', this.updatedUser)
+            this.$store.dispatch('user/updateUser', [parseInt(this.$route.params.id), this.updatedUser])
             .then(function(response) {
                 submitting = false
                 router.push({

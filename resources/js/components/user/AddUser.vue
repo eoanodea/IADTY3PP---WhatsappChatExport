@@ -265,6 +265,7 @@ export default {
             submitting = true
             this.$store.dispatch('user/addUser', this.newUser)
             .then(function(response) {
+                console.log('submit respons', response)
                 submitting = false
                 router.push({
                     path: `/admin/users/show/${response}`
@@ -287,3 +288,9 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+    .bx--form-requirement {
+        margin: 1.2rem 0;
+    }
+
+</style>
