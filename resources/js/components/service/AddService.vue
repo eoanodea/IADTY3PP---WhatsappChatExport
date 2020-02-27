@@ -11,7 +11,7 @@
                         name="title" 
                         type="text" 
                         autocomplete="given-title" 
-                        v-model="service.title"
+                        v-model="newService.title"
                         class="bx--text-input" 
                         placeholder="Title">
                     </div>
@@ -31,7 +31,7 @@
                             name="description" 
                             type="description" 
                             autocomplete="description" 
-                            v-model="service.description"
+                            v-model="newService.description"
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
@@ -54,7 +54,7 @@
                         name="standard_price" 
                         type="number" 
                         autocomplete="given-standard_price" 
-                        v-model="service.standard_price"
+                        v-model="newService.standard_price"
                         class="bx--text-input" 
                         placeholder="€Standard Price">
                     </div>
@@ -69,7 +69,7 @@
                 <label for="recurring_payment" class="bx--label">Recurring Payment</label>
                 <cv-checkbox
                     name="recurring_payment" 
-                    v-model="service.recurring_payment"
+                    v-model="newService.recurring_payment"
                     :disabled="disabled">
                 </cv-checkbox>
             </div>
@@ -82,7 +82,7 @@
                 <label for="is_public" class="bx--label">Public Service</label>
                 <cv-checkbox
                     name="is_public" 
-                    v-model="service.is_public"
+                    v-model="newService.is_public"
                     :disabled="disabled">
                 </cv-checkbox>
             </div>
