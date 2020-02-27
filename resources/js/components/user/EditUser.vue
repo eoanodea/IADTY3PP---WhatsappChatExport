@@ -157,7 +157,7 @@ export default {
             submitting: false
         }
     },
-    mounted() {
+    created() {
         this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
 
         this.updatedUser = this.user

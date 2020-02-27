@@ -1,5 +1,6 @@
 <template>
-<div class="bx--grid" style="padding: 60px 250px;">
+<loading-indicator v-if="submitting"/>
+<div class="bx--grid" style="padding: 60px 250px;" v-else>
     <!-- Name -->
     <div class="bx--row">
         <!-- First Name -->
@@ -138,6 +139,7 @@
     </div>
 
     <!-- Button -->
+    <data-error v-if="error" v-bind:error="error" />
     <br/>
     <div class="bx--row">
         <div class="bx--col-lg-12">
@@ -176,6 +178,7 @@ import Vue from 'vue';
 import router from './../../router'
 import DataError from './../table/DataError'
 import { mapGetters } from 'vuex';
+import LoadingIndicator from './../progress/LoadingIndicator'
 
 
 export default {
@@ -267,9 +270,11 @@ export default {
             .then(function(response) {
                 console.log('submit respons', response)
                 submitting = false
-                router.push({
-                    path: `/admin/users/show/${response}`
-                })
+                if(response) {
+                    router.push({
+                        path: `/admin/users/show/${response}`
+                    })
+                }
             }).catch(function(error) {
                 console.log('error', error)
                 submitting = false
@@ -278,17 +283,17 @@ export default {
 
     },
     components: {
-        DataError
+        DataError,
+        LoadingIndicator,
     },
     computed: {
         ...mapGetters({
             error: 'user/error',
-            user: 'user/user'
         })
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
     .bx--form-requirement {
         margin: 1.2rem 0;
     }

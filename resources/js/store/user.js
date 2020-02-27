@@ -7,7 +7,7 @@ export default {
         users: [],
         user: {},
         pagination: {},
-        loading: true,
+        loading: false,
         error: null
     },
 
@@ -40,6 +40,10 @@ export default {
 
         SET_USER(state, user) {
             state.user = user
+        },
+
+        REMOVE_USER(state, id) {
+            state.users = state.users.filter(dat => dat.id !== id)
         },
 
         SET_PAGINATE(state, data) {
@@ -177,7 +181,9 @@ export default {
             try {
                 console.log('loading user', id)
                 let response = await axios.delete('/api/user/' + id) 
-                
+                if(response.status === 'success') {
+                    commit('REMOVE_USER', id)
+                }
                 commit('SET_USER', null)
                 commit('SET_LOADING', false)
             } catch(error) {

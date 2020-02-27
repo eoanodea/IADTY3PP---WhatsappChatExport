@@ -5,6 +5,7 @@
     v-bind:fields="fields" 
     v-bind:showUrl="showUrl" 
     v-bind:addUrl="addUrl" 
+    v-bind:loading="loading"
     v-bind:error="error"
     v-bind:collection="'service'"
   />
@@ -22,7 +23,6 @@ export default {
       fields: ['title', 'standard_price'],
       showUrl: '/admin/services/show/',
       addUrl: '/admin/services/new',
-      error: null
     };
   },
   created() {
@@ -36,7 +36,9 @@ export default {
   computed: {
     ...mapGetters({
       services: 'service/services',
-      pagination: 'service/pagination'
+      pagination: 'service/pagination',
+      loading: 'service/loading',
+      error: 'service/error'
     })
   },
   components: {

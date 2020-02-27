@@ -78,7 +78,6 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import progressSpinner from "./components/progressSpinner";
 import progressIndicator from "./components/progressIndicator";
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -103,7 +102,6 @@ export default {
   },
   components: {
     DeleteUser,
-    progressSpinner,
     Notification,
     Modal,
     progressIndicator,

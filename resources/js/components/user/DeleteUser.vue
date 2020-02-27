@@ -43,6 +43,7 @@
         data() {
             return {
                 showDialog: false,
+                submitting: false
             }
         },
         methods: {
