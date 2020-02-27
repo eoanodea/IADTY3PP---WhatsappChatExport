@@ -10,6 +10,7 @@
         <p v-else-if="error">{{error}}</p>
     </div>
 </template>
+
 <script>
     import axios from 'axios'
 
