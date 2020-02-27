@@ -13,6 +13,8 @@
                             <div class="bx--col-lg-12">
                                 <p class="bx--inline-notification__title">I.D: {{ transaction.id }}</p>
                                 <p class="bx--inline-notification__title">Project {{ assignment.title }}</p>
+                                <p class="bx--inline-notification__title">Transaction created at {{ transaction.created_at }}</p>
+                                <p class="bx--inline-notification__title">Amount €{{ transaction.amount }}</p>
                             </div>
                         </div>
                     </div>
