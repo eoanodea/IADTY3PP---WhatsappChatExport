@@ -1,20 +1,31 @@
 <template>
     <div class="error-container">
-        <h2>Error</h2>
+        <h2>Something went wrong</h2>
         <p>{{error}}</p>
+        <br />
+        <button class="bx--btn bx--btn--lg bx--btn--primary" @click="retry">
+                Retry
+        </button>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['error']   
+        props: ['error', 'collection'],
+        methods: {
+            retry() {
+                if(this.$route.params.id) {
+                    this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
+                } else this.$store.dispatch(this.collection + '/loadUsers')
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     .error-container {
         width: 80%;
-        margin: 20px auto;
+        margin: 80px auto;
         text-align: center;
     }
 </style>

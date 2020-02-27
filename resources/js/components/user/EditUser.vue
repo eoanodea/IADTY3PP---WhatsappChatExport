@@ -1,5 +1,6 @@
 <template>
-<div class="bx--grid" style="padding: 60px 250px;" v-if="updatedUser">
+<loading-indicator v-if="loading"/>
+<div class="bx--grid" style="padding: 60px 250px;" v-else-if="updatedUser">
     <!-- Name -->
     <div class="bx--row">
         <!-- First Name -->
@@ -128,14 +129,16 @@
             </ul>
         </p>
     </div>
-`
 </div>
+<data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
 <script>
 import axios from 'axios';
 import Vue from 'vue';
 import router from './../../router'
 import { mapGetters } from 'vuex';
+import LoadingIndicator from './../progress/LoadingIndicator'
+import DataError from './../table/DataError'
 
 
 export default {
@@ -159,16 +162,21 @@ export default {
 
         this.updatedUser = this.user
     },
+    components: {
+        LoadingIndicator,
+        DataError
+    },
     methods: {
        submitUser: function() {
             let {submitting} = this
+            const id = this.$route.params.id
             submitting = true
             console.log('submitting', this.updatedUser)
-            this.$store.dispatch('user/updateUser', [parseInt(this.$route.params.id), this.updatedUser])
+            this.$store.dispatch('user/updateUser', [parseInt(id), this.updatedUser])
             .then(function(response) {
                 submitting = false
                 router.push({
-                    path: `/admin/users/show/${response}`
+                    path: `/admin/users/show/${id}`
                 })
             }).catch(function(error) {
                 console.log('error', error)
@@ -183,7 +191,9 @@ export default {
     },
     computed: {
         ...mapGetters({
-            user: 'user/user'
+            user: 'user/user',
+            loading: 'user/loading',
+            error: 'user/error'
         })
     }
 }

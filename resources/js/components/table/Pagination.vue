@@ -82,13 +82,14 @@ import { mapGetters, mapState } from 'vuex'
         },
         methods: {
             next() {
-                 this.$store.dispatch(this.collection + '/loadUsers', this.pagination.current + 1)
+                upper = collection.charAt(0).toUpperCase() + collection.substring(1) + 's'
+                 this.$store.dispatch(this.collection + '/load' + upper, this.pagination.current + 1)
             },
             prev() {
-                this.$store.dispatch(this.collection + '/loadUsers', this.pagination.current - 1)
+                this.$store.dispatch(this.collection + '/load' + upper, this.pagination.current - 1)
             },
             selectLimit(e) {
-                this.$store.dispatch(this.collection + '/loadUsers', [
+                this.$store.dispatch(this.collection + '/load' + upper, [
                     this.pagination.current, 
                     e.target.value
                 ])

@@ -5,6 +5,7 @@
     v-bind:fields="fields" 
     v-bind:showUrl="showUrl" 
     v-bind:addUrl="addUrl" 
+    v-bind:loading="loading"
     v-bind:error="error"
     v-bind:collection="'user'"
   />
@@ -22,7 +23,6 @@ export default {
       fields: ['first_name', 'email'],
       showUrl: '/admin/users/show/',
       addUrl: '/admin/users/new',
-      error: null
     };
   },
   created() {
@@ -36,7 +36,9 @@ export default {
   computed: {
     ...mapGetters({
       users: 'user/users',
-      pagination: 'user/pagination'
+      pagination: 'user/pagination',
+      loading: 'user/loading',
+      error: 'user/error'
     })
   },
   components: {

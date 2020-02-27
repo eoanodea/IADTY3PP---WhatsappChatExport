@@ -1,5 +1,6 @@
 <template>
-    <div class="bx--data-table-container" data-table>
+    <loading-indicator v-if="loading"/>
+    <div class="bx--data-table-container" data-table v-else-if="data">
         <!-- Title -->
         <div class="bx--data-table-header">
             <h2 class="bx--data-table-header__title">{{title ? title : 'Table'}}</h2>
@@ -12,7 +13,7 @@
                 <!-- Add Client Button -->
                 <cv-link :to="addUrl" style="text-decoration: none;"> 
                 <button class="bx--btn bx--btn--lg bx--btn--primary">
-                    Add Client 
+                    Add {{title}} 
                     <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
                 </button>
                 </cv-link>
@@ -66,11 +67,9 @@
 
         </div>
         <!-- Close Table Wrapper -->
-        <!-- Loading -->
-        <loading-indicator v-else-if="!error" />
 
         <!-- Error -->
-        <data-error v-else v-bind:error="error" />
+        <data-error v-else v-bind:error="error" v-bind:collection="collection"/>
         
     </div>    
 </template>
@@ -78,9 +77,9 @@
 <script>
     import Vue from 'vue'
     //Component Imports
+    import LoadingIndicator from './../progress/LoadingIndicator'
     import DataError from './DataError'
     import Pagination from './Pagination'
-    import LoadingIndicator from './../progress/LoadingIndicator'
 
     //Carbon Imports
     import CarbonComponentsVue from '@carbon/vue/src/index';
@@ -89,7 +88,7 @@
     Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error', 'collection'],
+        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error', 'collection', 'loading'],
         components: {
             DataError,
             Pagination,

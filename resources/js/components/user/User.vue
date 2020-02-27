@@ -1,5 +1,6 @@
 <template>
-  <div class="bx--grid" style="padding: 40px 0px;" v-if="user">
+  <loading-indicator v-if="loading"/>
+  <div class="bx--grid" style="padding: 40px 0px;" v-else-if="user">
     <div class="bx--row">
       <!-- Client Details (Notification Card)-->
       <div class="bx--col-lg-6">
@@ -70,13 +71,7 @@
       </div>
     </div>
   </div>
-  <div v-else-if="error">
-    <h2>Error!!</h2>
-    {{error}}
-  </div>
-  <div v-else>
-    <h1>Something went wrong</h1>
-  </div>
+  <data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
 
 <script>
@@ -87,9 +82,11 @@ import progressSpinner from "./components/progressSpinner";
 import progressIndicator from "./components/progressIndicator";
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
+import LoadingIndicator from './../progress/LoadingIndicator'
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
+import DataError from './../table/DataError'
 // import { CvModal } from '@carbon/vue/src';
 
 Vue.use(CarbonComponentsVue);
@@ -109,12 +106,15 @@ export default {
     progressSpinner,
     Notification,
     Modal,
-    progressIndicator
+    progressIndicator,
+    LoadingIndicator,
+    DataError
     // CvModal
   },
   computed: {
     ...mapGetters({
       user: 'user/user',
+      loading: 'user/loading',
       error: 'user/error'
     })
   }
