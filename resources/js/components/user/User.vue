@@ -61,21 +61,27 @@
       </div>
     </div>
 
+    <!-- Progression Chart -->
+    <Chart />
+
+
+
+
     <!-- Progression Indicator -->
-    <br/>
+    <!-- <br/>
     <label for="compose_message" class="bx--label">Project Completion with {{ user.first_name }} {{ user.last_name }}</label>
     <div class="bx--row">
       <div class="bx--col-lg-12">
         <progressIndicator v-bind:id="user.id"/>
       </div>
     </div>
-  </div>
-  <div v-else-if="error">
+  </div> -->
+  <!-- <div v-else-if="error">
     <h2>Error!!</h2>
     {{error}}
   </div>
   <div v-else>
-    <h1>strange errpr</h1>
+    <h1>strange error</h1> -->
   </div>
 </template>
 
@@ -83,50 +89,19 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import progressSpinner from "./components/progressSpinner";
-import progressIndicator from "./components/progressIndicator";
-// import {
-//   MdButton,
-//   MdAvatar,
-//   MdCard,
-//   MdContent,
-//   MdElevation,
-//   MdIcon,
-//   MdImage,
-//   MdLayout,
-//   MdToolbar
-// } from "vue-material/dist/components";
+import Chart from './components/Chart';
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
-// import { CvModal } from '@carbon/vue/src';
 
 Vue.use(CarbonComponentsVue);
-
-// Vue.use(MdButton);
-// Vue.use(MdAvatar);
-// Vue.use(MdCard);
-// Vue.use(MdContent);
-// Vue.use(MdElevation);
-// Vue.use(MdIcon);
-// Vue.use(MdImage);
-// Vue.use(MdLayout);
-// Vue.use(MdToolbar);
 
 export default {
   data() {
     return {
       userId: this.$route.params.id,
-      // user: 
-      // {
-      //   first_name: "",
-      //   last_name: "",
-      //   email: "",
-      //   mobile_number: "",
-      //   address: ""
-      // },
       amount: 70
     };
   },
@@ -135,11 +110,9 @@ export default {
   },
   components: {
     DeleteUser,
-    progressSpinner,
+    Chart,
     Notification,
-    Modal,
-    progressIndicator
-    // CvModal
+    Modal
   },
   computed: {
     ...mapGetters({
@@ -149,39 +122,3 @@ export default {
   }
 };
 </script>
-
-<style>
-/* .background {
-  background-color: #003153 !important;
-  font-size: 18px !important;
-  padding: 10px;
-}
-
-.text {
-  color: #fff !important;
-} */
-
-/* .md-progress-spinner {
-  /* top: 50%;
-  left: 50%; */
-  /* display: block; */
-  /* position: relative; */
-  /* width: 100%; */
-  /* height: auto; */
-  /* margin-left: -375px; */
-/* } */
-
-/* .progressSpinner {
-  /* top: 50%; */
-  /* left: 145%; */
-  /* display: block; */
-  /* position: relative; */
-  /* width: 100%; */
-  /* height: auto; */
-  /* margin-left: -375px; */
-/* }  */
-
-/* .spinnerColor {
-  color: #24b6f7 !important;
-} */ 
-</style>
