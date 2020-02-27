@@ -5,7 +5,8 @@
     v-bind:fields="fields" 
     v-bind:showUrl="showUrl" 
     v-bind:addUrl="addUrl" 
-    v-bind:error="error" 
+    v-bind:error="error"
+    v-bind:collection="'user'"
   />
 </template>
 
