@@ -11,12 +11,14 @@ use App\ActiveTask;
 class AssignmentController extends Controller
 {
     /**
+     * Get all assignments with pagination
+     * Limits the amount to be returned
      * 
-     * 
+     * @param int limit
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return Assignment::all();
+    public function index(int $limit = 5) {
+        return Assignment::paginate($limit);;
     }
 
     /**

@@ -14,14 +14,14 @@ class ActiveTaskController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($assignment) {
-        $assignments = Assignment::findOrFail($assignment);
-        $tasks = $assignments->task;
-
-        return response()->json([
-            'status' => 'success',
-            'task' => $tasks
-        ]);
+    /**
+     * Get all active tasks with pagination
+     * Limits the amount to be returned
+     * 
+     * @param int limit
+     */
+    public function index($assignment, $limit = 5) {
+        return ActiveTask::where('assignment_id', $assignment)->paginate($limit);
     }
 
     public function show($id) {

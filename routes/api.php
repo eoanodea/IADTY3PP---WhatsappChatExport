@@ -14,39 +14,33 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user/all/{limit}', 'Admin\AdminController@index');
+Route::get('/user/all/{limit?}', 'Admin\AdminController@index');
 Route::post('/user/new', 'Admin\AdminController@store');
 Route::put('/user/{id}', 'Admin\AdminController@update');
 Route::delete('/user/{id}', 'Admin\AdminController@destroy');
 
 Route::get('/user/{id}', 'User\UserController@show');
 
-Route::get('/service/all', 'Service\HomeController@index');
+Route::get('/service/all/{limit?}', 'Service\HomeController@index');
 Route::post('/service/new', 'Service\HomeController@store');
 Route::get('/service/{id}', 'Service\HomeController@show');
 Route::put('/service/{id}', 'Service\HomeController@update');
 Route::delete('/service/{id}', 'Service\HomeController@destroy');
 
-Route::get('/task/by/{service}', 'Task\HomeController@index');
-Route::post('/task/{service}/new', 'Task\HomeController@store');
-Route::get('/task/{id}', 'Task\HomeController@show');
-Route::put('/task/{id}', 'Task\HomeController@update');
-Route::delete('/task/{id}', 'Task\HomeController@destroy');
-
-Route::get('/task/by/{service}', 'Task\DefaultTaskController@index');
+Route::get('/task/by/{service}/{limit?}', 'Task\DefaultTaskController@index');
 Route::post('/task/{service}/new', 'Task\DefaultTaskController@store');
 Route::get('/task/{id}', 'Task\DefaultTaskController@show');
 Route::put('/task/{id}', 'Task\DefaultTaskController@update');
 Route::delete('/task/{id}', 'Task\DefaultTaskController@destroy');
 
-Route::get('/assignment/all', 'Assignment\AssignmentController@index');
+Route::get('/assignment/all/{limit?}', 'Assignment\AssignmentController@index');
 Route::get('/assignment/by/{client}', 'Assignment\AssignmentController@indexByClient');
 Route::post('/assignment/{serviceId}/{clientId}', 'Assignment\AssignmentController@store');
 Route::get('/assignment/{id}', 'Assignment\AssignmentController@show');
 Route::put('/assignment/{id}', 'Assignment\AssignmentController@update');
 Route::delete('/assignment/{id}', 'Assignment\AssignmentController@destroy');
 
-Route::get('/task/active/by/{assignment}', 'Task\ActiveTaskController@index');
+Route::get('/task/active/by/{assignment}/{limit?}', 'Task\ActiveTaskController@index');
 Route::post('/task/active/{assignment}/new', 'Task\ActiveTaskController@store');
 Route::get('/task/active/{id}', 'Task\ActiveTaskController@show');
 Route::put('/task/active/{id}', 'Task\ActiveTaskController@update');
@@ -59,7 +53,7 @@ Route::post('/comments/{isAssignmnt}/{id}/new', 'Comment\CommentController@store
 Route::put('/comments/{id}', 'Comment\CommentController@update');
 Route::delete('/comments/{id}', 'Comment\CommentController@destroy');
 
-Route::get('/transactions', 'Transaction\TransactionController@index');
+Route::get('/transactions/{limit?}', 'Transaction\TransactionController@index');
 Route::get('/transactions/by/{assignment}', 'Transaction\TransactionController@indexByAssignment');
 Route::get('/transactions/{id}', 'Transaction\TransactionController@show');
 Route::post('/transactions/new', 'Transaction\TransactionController@store');

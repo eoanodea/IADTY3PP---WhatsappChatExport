@@ -12,11 +12,13 @@ class TransactionController extends Controller
 {
     /**
      * List all transactions from the DB
+     * Limits the amount to be returned
      *
-     * @return \Illuminate\Http\Response
+     * @param int limit
      */
-    public function index()
+    public function index(int $limit = 5)
     {
+        return Transaction::paginate($limit);
         $transactions = Transaction::get();
 
         return response()->json([

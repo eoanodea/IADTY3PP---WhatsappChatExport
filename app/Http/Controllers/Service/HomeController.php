@@ -23,8 +23,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }  
 
-    public function index() {
-      return Service::all();
+    /**
+     * Get all services with pagination
+     * Limits the amount to be returned
+     * 
+     * @param int limit
+     */
+    public function index(int $limit = 5) {
+      return Service::paginate($limit);
     }
 
     public function show($id) {

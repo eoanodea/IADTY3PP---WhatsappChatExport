@@ -13,15 +13,14 @@ class DefaultTaskController extends Controller
     {
         $this->middleware('auth');
     }
-    
-    public function index($service) {
-        $services = Service::findOrFail($service);
-        $tasks = $services->task;
-
-        return response()->json([
-            'status' => 'success',
-            'task' => $tasks
-        ]);
+    /**
+     * Get all default tasks with pagination
+     * Limits the amount to be returned
+     * 
+     * @param int limit
+     */
+    public function index($service, $limit = 5) {
+        return DefaultTask::where('service_id', $service)->paginate($limit);
     }
 
     public function show($id) {

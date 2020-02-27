@@ -18,30 +18,12 @@ class AdminController extends Controller
 
     /**
      * Get all users with pagination
+     * Limits the amount to be returned
      * 
      * @param int limit
      */
-    public function index(int $limit) {
-        if(!$limit) {
-            return User::paginate(5);    
-        } else return User::paginate($limit);
-        // $users = User::whereHas('roles', function($role) {
-            
-        //     $role->where('name', 'client')->first();  
-        // })->get();
-        
-        // $users = User::with('roles')->get();
-        
-        // ->where('name', 'client')->paginate(2);
-        // $role_client = Role::where('name', 'client')->first();
-        // $clients = User::find()-;
-
-        
-
-        // foreach($role_client->users as $user) {
-        //     array_push($clients, $user);   
-        // }
-        // return $users;
+    public function index(int $limit = 5) {
+        return User::paginate($limit);
     }
 
     /**
