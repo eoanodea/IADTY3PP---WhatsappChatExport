@@ -23,6 +23,13 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- View Transaction Button -->
+                <cv-link :to="'/transaction/' + assignment.id" style="text-decoration: none;">
+                    <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--ghost">
+                        View Transaction
+                    </button>
+                </cv-link>
 
                 <!-- Edit Button -->
                 <cv-link :to="'/admin/assignments/edit/' + assignment.id" style="text-decoration: none;">
@@ -30,6 +37,8 @@
                         Edit Project
                     </button>
                 </cv-link>
+
+                <!-- Delete Modal -->
                 <DeleteAssignment v-bind:id="assignment.id"/>
             </div>
         </div>
