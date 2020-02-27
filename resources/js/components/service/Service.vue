@@ -49,6 +49,7 @@
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
     import { Modal, DataTable, Loading } from 'carbon-components';
+    import { mapGetters } from 'vuex';
 
     Vue.use(CarbonComponentsVue);
 
@@ -64,14 +65,17 @@
                 }
             }
         },
-        mounted () {
-            axios.get(`/api/service/${this.$route.params.id}`)
-            .then(response => {
-                if(response.data.status !== "success") {
-                    console.log("error ", response)
-                } else this.service = response.data.service
-            })
+        created() {
+            this.$store.dispatch('service/loadService', parseInt(this.$route.params.id))
         },
+        // mounted () {
+        //     axios.get(`/api/service/${this.$route.params.id}`)
+        //     .then(response => {
+        //         if(response.data.status !== "success") {
+        //             console.log("error ", response)
+        //         } else this.service = response.data.service
+        //     })
+        // },
         components: {
             DeleteService,
             ListTask,
@@ -79,6 +83,12 @@
             Modal,
             DataTable, 
             Loading
+        },
+        computed: {
+            ...mapGetters({
+            service: 'service/service',
+            error: 'service/error'
+            })
         }
     }
 </script>

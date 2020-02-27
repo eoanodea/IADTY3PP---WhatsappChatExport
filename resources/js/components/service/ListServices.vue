@@ -1,12 +1,12 @@
 <template>
-    <dyanmic-table
+    <dynamic-table
         v-bind:title="'services'" 
-    v-bind:data="services" 
-    v-bind:fields="fields" 
-    v-bind:showUrl="showUrl" 
-    v-bind:addUrl="addUrl" 
-    v-bind:error="error"
-    v-bind:collection="'service'"
+        v-bind:data="services" 
+        v-bind:fields="fields" 
+        v-bind:showUrl="showUrl" 
+        v-bind:addUrl="addUrl" 
+        v-bind:error="error"
+        v-bind:collection="'service'"
     />
 <!-- <div class="bx--grid" style="padding: 60px 250px;"> -->
     <!-- <div class="bx--data-table-container" data-table> -->
