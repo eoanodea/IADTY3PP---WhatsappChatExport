@@ -66,25 +66,17 @@
   export default {
     data() {
       return {
-        assignmentId: null,
-        assignments: null,
+        assignmentId: 1,
+    
       };
     },
-    mounted() {
-      this.fetchAssignments()
+    
+    created() {
+      if(this.assignments.length < 1) {
+        this.$store.dispatch('assignment/loadAssignments')
+      }
     },
     methods: {
-      fetchAssignments() {
-      axios.get('/api/assignment/all')
-        .then(response => {
-          if(!response.data) {
-            console.log('Error no projects', response)
-          } else {
-            this.assignments = response.data
-            this.assignmentId = response.data[0].id
-          }
-        })
-      },
       returnData() {
         this.$emit('selected-assignment', this.assignmentId)
       }
@@ -108,6 +100,7 @@
     },
     computed: {
       ...mapGetters({
+        assignments: 'assignment/assignments',
         user: 'auth/user'
       })
     },
