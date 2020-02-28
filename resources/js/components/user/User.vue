@@ -62,6 +62,12 @@
       </div>
     </div>
 
+    <!-- Progression Chart -->
+    <Chart />
+
+
+
+
     <!-- Progression Indicator -->
     <br/>
     <label for="compose_message" class="bx--label">Project Completion with {{ user.first_name }} {{ user.last_name }}</label>
@@ -118,39 +124,3 @@ export default {
   }
 };
 </script>
-
-<style>
-/* .background {
-  background-color: #003153 !important;
-  font-size: 18px !important;
-  padding: 10px;
-}
-
-.text {
-  color: #fff !important;
-} */
-
-/* .md-progress-spinner {
-  /* top: 50%;
-  left: 50%; */
-  /* display: block; */
-  /* position: relative; */
-  /* width: 100%; */
-  /* height: auto; */
-  /* margin-left: -375px; */
-/* } */
-
-/* .progressSpinner {
-  /* top: 50%; */
-  /* left: 145%; */
-  /* display: block; */
-  /* position: relative; */
-  /* width: 100%; */
-  /* height: auto; */
-  /* margin-left: -375px; */
-/* }  */
-
-/* .spinnerColor {
-  color: #24b6f7 !important;
-} */ 
-</style>

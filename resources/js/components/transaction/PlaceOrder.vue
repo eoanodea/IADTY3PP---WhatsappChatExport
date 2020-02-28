@@ -1,4 +1,4 @@
-git<template>
+<template>
   <span>
     <div class="cardContainer" v-if="payload">
       <div ref="card" class="cardElement">
