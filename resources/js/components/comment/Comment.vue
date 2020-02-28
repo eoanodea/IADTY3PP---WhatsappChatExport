@@ -39,52 +39,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-    <!-- Comment Details -->
-    <!-- <div class="md-layout">
-      <div class="md-layout-item">
-        <md-table-toolbar>
-          <h1 class="md-title accent">Comment Details</h1>
-          <md-button
-            class="btnWarning"
-            :to="`/admin/comments/${isAssignment}/edit/` + comment.id"
-          >Edit Comment</md-button>
-        </md-table-toolbar>
-      </div>
-    </div>
-
-    <div class="md-layout spacing">
-      <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-        <md-card md-with-hover class="md-elevation-10 background">
-          <md-ripple>
-            <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
-              <md-card-header class="accent md-display-3">{{ comment.title }}</md-card-header>
-              <md-card-header class="text md-display-1">{{ comment.description }}</md-card-header>
-              <md-card-header class="subject md-headline">
-                Percentage Done: {{comment.percent_done}}%
-                <br />
-                Comment ID:
-                {{ this.$route.params.id }}
-                <div v-if="this.$route.params.isAssignment !== 'false'">
-                  <p>isAssignment</p>
-                </div>
-                <p v-else>not isAssignment</p>
-              </md-card-header>
-            </div>
-          </md-ripple>
-        </md-card>
-      </div>
-    </div> -->
-    
-    <!-- Delete Comment Button -->
-    <!-- <md-card-actions>
-        <DeleteComment v-bind:id="comment.id" v-bind:isActive="isAssignment" /> -->
-        <!-- <md-button :to="`/admin/comments/${isAssignment}/${parentId}`" class="btnAccent">Back</md-button> -->
-    <!-- </md-card-actions> -->
 </div>
 </template>
 
@@ -93,34 +47,9 @@ import Vue from "vue";
 import axios from "axios";
 import DeleteComment from "./DeleteComment";
 import 'carbon-components/css/carbon-components.css';
-    import CarbonComponentsVue from '@carbon/vue/src/index';
-    import { Notification } from 'carbon-components';
-    import { Modal } from 'carbon-components';
-// import {
-//   MdButton,
-//   MdProgress,
-//   MdAvatar,
-//   MdCard,
-//   MdContent,
-//   MdElevation,
-//   MdIcon,
-//   MdImage,
-//   MdLayout,
-//   MdRipple,
-//   MdToolbar
-// } from "vue-material/dist/components";
-
-// Vue.use(MdButton);
-// Vue.use(MdProgress);
-// Vue.use(MdAvatar);
-// Vue.use(MdCard);
-// Vue.use(MdContent);
-// Vue.use(MdElevation);
-// Vue.use(MdIcon);
-// Vue.use(MdImage);
-// Vue.use(MdLayout);
-// Vue.use(MdRipple);
-// Vue.use(MdToolbar);
+import CarbonComponentsVue from '@carbon/vue/src/index';
+import { Notification } from 'carbon-components';
+import { Modal } from 'carbon-components';
 
 export default {
   data() {

@@ -76,62 +76,15 @@
                 </div>
             </div>
         </div>
-
-
-
-        <!-- <div class="md-layout">
-            <div class="md-layout-item">
-                <md-table-toolbar>
-                    <h1 class="md-title accent">Edit Default Comment</h1>
-                </md-table-toolbar>
-            </div>
-        </div>
-
-        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitComment">
-            <md-card class="md-layout-item background">
-                <md-card-content>
-                <p v-if="errors.length">
-                        <b class="error">Please correct the following error(s):</b>
-                        <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="error">
-                            {{ error.message }}
-                            </li>
-                        </ul>
-                    </p>
-                     <md-field>
-                        <label class="accent" for="title">Title</label>
-                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="comment.title" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="description">Description</label>
-                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="comment.description" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="percent_done">Percent Done</label>
-                        <span class="md-prefix">%</span>
-                        <md-input name="percent_done" type="number" class="form-control" placeholder="Percent Done" v-model="comment.percent_done" /> <br />
-                    </md-field>
- 
-                </md-card-content>
-                <md-card-actions>
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
-                </md-card-actions>
-            </md-card>
-        </form> -->
     </div>
 </template>
+
 <script>
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
-    // import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
-
-    // Vue.use(MdButton)
-    // Vue.use(MdField)
-    // Vue.use(MdCard)
-    // Vue.use(MdCheckbox)
     
     Vue.use(CarbonComponentsVue);
 
@@ -183,7 +136,6 @@
                     } else router.push({path: `/admin/comments/${this.active}/show/${response.data.comment.id}`})
                 })
             }
-
         }
     }
 </script>
