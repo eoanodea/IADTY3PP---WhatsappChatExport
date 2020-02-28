@@ -57,7 +57,7 @@ export default {
     actions: {
         /**
          * Makes an API request to the 
-         * server for a list of users
+         * server for a list of services
          * 
          * @param {commit} param0 
          * @param {page} page 
@@ -96,7 +96,7 @@ export default {
 
         /**
          * Makes an API request to the 
-         * server for a single user
+         * server for a single service
          * 
          * @param {commit} param0 
          * @param {page} page 
@@ -112,7 +112,7 @@ export default {
         },
         
         /**
-         * Create a new user
+         * Create a new service
          * 
          * @param {commit} param0 
          * @param {page} page 
@@ -130,12 +130,12 @@ export default {
 
         /**
          * Makes an API request to the 
-         * server for a single user
+         * server for a single service
          * 
          * @param {commit} param0 
          * @param {page} page 
          */
-        async updateService({commit}, id, user) {
+        async updateService({commit}, id, service) {
             try {
                 let response = await axios.put('/api/service/' + id, service)
 
@@ -146,7 +146,7 @@ export default {
         },
 
         /**
-         * Delete a user 
+         * Delete a service 
          * from the database
          * 
          * @param {commit} param0 
