@@ -18,7 +18,7 @@ class DefaultTaskTableSeeder extends Seeder
         $services = Service::where('default', false)->get();
 
         foreach($services as $service) {
-            for($i = 0; $i < 5; $i++) {
+            for($i = 0; $i < 10; $i++) {
                 $task = new DefaultTask();
                 $task->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
                 $task->description = $faker->sentence();

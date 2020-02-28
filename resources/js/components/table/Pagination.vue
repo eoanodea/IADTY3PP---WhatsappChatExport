@@ -6,12 +6,20 @@
             Items per page:
         </label>
 
-        <div class="bx--select bx--select--inline bx--select__item-count">
-            <select class="bx--select-input" id="select-id-pagination-count" aria-label="select number of items per page" tabindex="0" data-items-per-page @change="selectLimit">
-                <option class="bx--select-option" value="5" selected>5</option>
-                <option class="bx--select-option" value="10">10</option>
-                <option class="bx--select-option" value="15">15</option>
-                <option class="bx--select-option" value="20">20</option>
+        <div class="bx--select bx--select--inline bx--select__item-count" v-if="limits">
+            <select 
+                class="bx--select-input" 
+                id="select-id-pagination-count" 
+                aria-label="select number of items per page" 
+                tabindex="0" 
+                data-items-per-page 
+                @change="selectLimit"
+                v-model="pagination.selectedLimit"
+            >
+                <!-- <span > -->
+                    <option v-for="limit in limits" v-bind:key="limit" class="bx--select-option">{{limit}}</option>
+                    <!-- <option v-else class="bx--select-option" :value="limit">{{limit}}</option> -->
+                <!-- </span> -->
             </select>
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
         </div>
@@ -70,7 +78,9 @@ import { mapGetters, mapState } from 'vuex'
         props: ['collection'],
         data() {
             return {
-                prefix: 'user'
+                limits: [5, 10, 15, 20],
+                prefix: this.collection,
+                upper: this.collection.charAt(0).toUpperCase() + this.collection.substring(1) + 's'
             }
         },
         computed: {
@@ -82,17 +92,34 @@ import { mapGetters, mapState } from 'vuex'
         },
         methods: {
             next() {
-                upper = collection.charAt(0).toUpperCase() + collection.substring(1) + 's'
-                 this.$store.dispatch(this.collection + '/load' + upper, this.pagination.current + 1)
+                
+                console.log(this.upper, this.collection, 'upp')
+                 this.$store.dispatch(this.collection + '/load' + this.upper, this.pagination.current + 1)
             },
             prev() {
-                this.$store.dispatch(this.collection + '/load' + upper, this.pagination.current - 1)
+                
+                this.$store.dispatch(this.collection + '/load' + this.upper, this.pagination.current - 1)
             },
             selectLimit(e) {
-                this.$store.dispatch(this.collection + '/load' + upper, [
-                    this.pagination.current, 
-                    e.target.value
-                ])
+                const params = this.initParams(e)
+
+                this.$store.dispatch(this.collection + '/load' + this.upper, params)
+            },
+            initParams(e) {
+                let params = [
+                    this.pagination.current
+                ]
+
+                if(e) {
+                    this.selected = parseInt(e.target.value) 
+                    params.unshift(this.selected)
+                }
+
+                if(this.$route.params.id) {
+                    params.unshift(false)
+                    params.unshift(parseInt(this.$route.params.id))
+                } 
+                return params
             }
         },
         watch: {

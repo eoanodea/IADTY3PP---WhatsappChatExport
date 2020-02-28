@@ -14,9 +14,10 @@
         props: ['error', 'collection'],
         methods: {
             retry() {
+                const upper = this.collection.charAt(0).toUpperCase() + this.collection.substring(1) + 's'
                 if(this.$route.params.id) {
-                    this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
-                } else this.$store.dispatch(this.collection + '/loadUsers')
+                    this.$store.dispatch(this.collection + '/load' + upper, parseInt(this.$route.params.id))
+                } else this.$store.dispatch(this.collection + '/load' + upper)
             }
         }
     }
