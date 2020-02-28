@@ -1,5 +1,6 @@
 <template>
-    <div class="bx--grid" style="padding: 60px 250px;">
+    <loading-indicator v-if="loading"/>
+    <div class="bx--grid" style="padding: 60px 250px;" v-else-if="updatedTask">
         <!-- Title -->
         <div class="bx--row">
             <div class="bx--col-lg-12">
@@ -11,7 +12,7 @@
                         name="title" 
                         type="text" 
                         autocomplete="given-title" 
-                        v-model="task.title"
+                        v-model="updatedTask.title"
                         class="bx--text-input" 
                         placeholder="Title">
                     </div>
@@ -31,7 +32,7 @@
                             name="description" 
                             type="description" 
                             autocomplete="description" 
-                            v-model="task.description"
+                            v-model="updatedTask.description"
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
@@ -53,7 +54,7 @@
                         name="percent_done" 
                         type="number" 
                         autocomplete="given-percent_done" 
-                        v-model="task.percent_done"
+                        v-model="updatedTask.percent_done"
                         class="bx--text-input" 
                         placeholder="Percentage Done">
                         <span>%</span>
@@ -70,55 +71,15 @@
                     <button 
                         class="bx--btn bx--btn--primary" 
                         type="submit"
+                        @click="submitTask"
                         :disabled="submitting">
                             Save
                     </button>
                 </div>
             </div>
         </div>
-
-
-
-        <!-- <div class="md-layout">
-            <div class="md-layout-item">
-                <md-table-toolbar>
-                    <h1 class="md-title accent">Edit Default Task</h1>
-                </md-table-toolbar>
-            </div>
-        </div>
-
-        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitTask">
-            <md-card class="md-layout-item background">
-                <md-card-content>
-                <p v-if="errors.length">
-                        <b class="error">Please correct the following error(s):</b>
-                        <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="error">
-                            {{ error.message }}
-                            </li>
-                        </ul>
-                    </p>
-                     <md-field>
-                        <label class="accent" for="title">Title</label>
-                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="task.title" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="description">Description</label>
-                        <md-input name="description" type="text" class="form-control" placeholder="Description" v-model="task.description" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="percent_done">Percent Done</label>
-                        <span class="md-prefix">%</span>
-                        <md-input name="percent_done" type="number" class="form-control" placeholder="Percent Done" v-model="task.percent_done" /> <br />
-                    </md-field>
- 
-                </md-card-content>
-                <md-card-actions>
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
-                </md-card-actions>
-            </md-card>
-        </form> -->
     </div>
+    <data-error v-else v-bind:error="error" v-bind:collection="'task'" />
 </template>
 <script>
     import axios from 'axios';
@@ -126,12 +87,9 @@
     import router from './../../router'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
-    // import {MdButton, MdField, MdCard, MdCheckbox} from 'vue-material/dist/components'
-
-    // Vue.use(MdButton)
-    // Vue.use(MdField)
-    // Vue.use(MdCard)
-    // Vue.use(MdCheckbox)
+    import { mapGetters } from 'vuex';
+    import LoadingIndicator from './../progress/LoadingIndicator'
+    import DataError from './../table/DataError'
     
     Vue.use(CarbonComponentsVue);
 
@@ -139,7 +97,7 @@
         props: ['id', 'isActive'],
         data() {
             return {
-                task: {
+                updatedTask: {
                     title: '',
                     description: '',
                     percent_done: ''
@@ -151,39 +109,45 @@
                     : this.isActive
             }
         },
-        mounted() {
-            const url = this.active === false
-                ? 'task'
-                : 'task/active'
-            axios.get(`/api/${url}/${this.$route.params.id}`)
-            .then(response => {
-                if(!response.data) {
-                    console.log("Error getting task", response)
-                } else {
-                    let taskObj = response.data.task
-                    taskObj.recurring_payment == 1 ? taskObj.recurring_payment = true : taskObj.recurring_payment = false
-                    taskObj.is_public == 1 ? taskObj.is_public = true : taskObj.is_public = false
-                    this.task = taskObj
-                }
-            })
+        created() {
+            this.$store.dispatch('task/loadTask', parseInt(this.$route.params.id))
+
+            this.updatedTask = this.task
+            console.log('running', this.task, this.updatedTask)
         },
         methods: {
             submitTask: function() {
-                this.submitting = true
-                const url = this.active === false
-                    ? 'task'
-                    : 'task/active'
-                const payload = this.task
-               axios.put(`/api/${url}/${this.task.id}`, payload)
-                .then(response => {
-                    if(!response.data) {
-                        console.log("Error!", response)
-                        this.errors.push({id: 0, message: JSON.stringify(response.message)})
-                        this.submitting = false
-                    } else router.push({path: `/admin/tasks/${this.active}/show/${response.data.task.id}`})
+                let {submitting, active} = this
+                const id = this.$route.params.id
+                submitting = true
+                console.log('submitting', this.updatedTask)
+                this.$store.dispatch('task/updateTask', [parseInt(id), this.updatedTask])
+                .then(function(response) {
+                    submitting = false
+                    router.push({
+                        path: `/admin/tasks/${active}/show/${id}`
+                    })
+                }).catch(function(error) {
+                    console.log('error', error)
+                    submitting = false
                 })
             }
-
-        }
+        },
+        watch: {
+            task: function(newVal, oldVal) {
+                this.updatedTask = newVal
+            }
+        },
+        computed: {
+            ...mapGetters({
+                task: 'task/task',
+                loading: 'task/loading',
+                error: 'task/error'
+            })
+        },
+        components: {
+            LoadingIndicator,
+            DataError
+        },
     }
 </script>

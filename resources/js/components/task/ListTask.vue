@@ -7,6 +7,7 @@
     v-bind:addUrl="addUrl" 
     v-bind:loading="loading"
     v-bind:error="error"
+    v-bind:active="isActive"
     v-bind:collection="'task'"
   />
 
@@ -35,8 +36,8 @@ import { mapGetters } from 'vuex';
                     : (this.$route.params.active === 'true' ? true : false),
                 running: true,
                 fields: ['title', 'description'],
-                showUrl: `/admin/tasks${this.isActive ? '/active' : ''}/show/`,
-                addUrl: `/admin/tasks${this.isActive ? '/active' : ''}/new`,
+                showUrl: `/admin/tasks${this.isActive ? '/true' : '/false'}/show/`,
+                addUrl: `/admin/tasks${this.isActive ? '/true' : '/false'}/${this.parentId}/new`,
             }
         },
         created() {
@@ -45,24 +46,7 @@ import { mapGetters } from 'vuex';
             }
         },
         methods: {
-            // fetchTasks() {    
-            //     if(this.taskId) {
-            //         const url = this.active === false
-            //     ? 'task'
-            //     : 'task/active'
-                
-            //     axios.get(`/api/${url}/by/${this.taskId}`)
-            //     .then(response => {
-            //         this.tasks = response.data.task
-            //     }).catch(error => {
-            //         console.log('Error!', error)
-            //         this.error = error.messag
-            //     })
-            //         this.running = false
-            //     } else {
-            //         this.running = false
-            //     }
-            // }
+            //
         },
         watch: {
             //Watch the taskId Prop for changes, on change 

@@ -51,7 +51,7 @@
                         <td>
                             <cv-link :to="(showUrl + dat.id)" style="text-decoration: none;"> 
                                 <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
-                                    View Profile
+                                    View {{collection}}
                                 </button>
                             </cv-link>
                         </td>
@@ -62,7 +62,7 @@
             <!-- Close Table -->
 
             <!-- Pagination -->
-            <pagination v-if="collection" v-bind:collection="collection" />
+            <pagination v-if="collection" v-bind:collection="collection" v-bind:active="isActive" />
             <!-- Close Pagination -->
 
         </div>
@@ -88,7 +88,7 @@
     Vue.use(CarbonComponentsVue);
 
     export default {
-        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error', 'collection', 'loading'],
+        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error', 'collection', 'loading', 'isActive'],
         components: {
             DataError,
             Pagination,

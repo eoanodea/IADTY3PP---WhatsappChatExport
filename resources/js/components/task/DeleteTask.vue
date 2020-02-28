@@ -39,16 +39,12 @@
 </template>
 <script>
     import Vue from 'vue'
-    // import {MdDialog, MdButton} from 'vue-material/dist/components'
     import axios from 'axios'
     import router from './../../router'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Modal } from 'carbon-components';
     import { CvModal } from '@carbon/vue/src';
-
-    // Vue.use(MdDialog)
-    // Vue.use(MdButton)
 
     export default {
         props: ['id', 'isActive'],
@@ -61,15 +57,23 @@
             }
         },
         methods: {
-            actionPrimary: function() {
-                const url = this.active === false
-                    ? 'task'
-                    : 'task/active'
-                axios.delete(`/api/${url}/${this.id}`)
-                .then(response => {
-                    if(!response.data) console.log("Error: ", response)
-                    else router.push({path: `/admin/tasks/${this.active}/${response.data.parentId}` })
+            actionPrimary() {
+                let {submitting, showDialog, isActive, id} = this
+                submitting = true
+                this.$store.dispatch('task/deleteTask', [id, isActive])
+                .then(function(response) {
+                    showDialog = false
+                    submitting = false
+                    router.push({
+                        path: `/admin/tasks/${isActive}`
+                    })
+                }).catch(function(error) {
+                    console.log('error', error)
+                    submitting = false
                 })
+            },
+            actionSecondary() {
+                this.showDialog = false
             }
         },
         components: {

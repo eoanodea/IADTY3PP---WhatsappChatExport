@@ -48,6 +48,7 @@ export default {
 
         SET_PAGINATE(state, data) {
             let pagination = {}
+            pagination.selectedLimit = (data.to - data.from + 1)
             pagination.current = data.current_page
             pagination.last = data.last_page
             pagination.to = data.to
@@ -78,17 +79,19 @@ export default {
          */
         async loadUsers({commit}, param) {
             commit('SET_LOADING', true)
-            let dataLimit = 5, currPage = 1
+
+            let paramsArr = [5, 1]
+
             if(param) {
                 param.length >= 0
                 ? (
-                    param.map((dat, i) => i === 0 ? currPage = dat : dataLimit = dat)
+                    param.map((dat, i) => paramsArr[i] = dat)
                 )
-                : currPage = param
+                : paramsArr[0] = param
             }
             
             try {
-                let response = await axios.get('/api/user/all/' + dataLimit + '?page=' + currPage) 
+                let response = await axios.get('/api/user/all/' + paramsArr[0] + '?page=' + paramsArr[1]) 
 
                 commit('SET_USERS', response.data.data)
                 commit('SET_PAGINATE', response.data) 

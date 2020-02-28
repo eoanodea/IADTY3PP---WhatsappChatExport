@@ -16,10 +16,7 @@
                 @change="selectLimit"
                 v-model="pagination.selectedLimit"
             >
-                <!-- <span > -->
-                    <option v-for="limit in limits" v-bind:key="limit" class="bx--select-option">{{limit}}</option>
-                    <!-- <option v-else class="bx--select-option" :value="limit">{{limit}}</option> -->
-                <!-- </span> -->
+                <option v-for="limit in limits" v-bind:key="limit" class="bx--select-option">{{limit}}</option>    
             </select>
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--select__arrow" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path></svg>
         </div>
@@ -75,7 +72,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
     export default {
-        props: ['collection'],
+        props: ['collection', 'active'],
         data() {
             return {
                 limits: [5, 10, 15, 20],
@@ -92,33 +89,39 @@ import { mapGetters, mapState } from 'vuex'
         },
         methods: {
             next() {
-                
+                const params = this.initParams(null, (+1))
                 console.log(this.upper, this.collection, 'upp')
-                 this.$store.dispatch(this.collection + '/load' + this.upper, this.pagination.current + 1)
+                 this.$store.dispatch(this.collection + '/load' + this.upper, params)
             },
+            
             prev() {
-                
-                this.$store.dispatch(this.collection + '/load' + this.upper, this.pagination.current - 1)
+                const params = this.initParams(null, (-1))
+                this.$store.dispatch(this.collection + '/load' + this.upper, params)
             },
+            
             selectLimit(e) {
                 const params = this.initParams(e)
 
                 this.$store.dispatch(this.collection + '/load' + this.upper, params)
             },
-            initParams(e) {
+
+            initParams(e, sum) {
                 let params = [
-                    this.pagination.current
+                    sum 
+                    ? this.pagination.current + sum
+                    : this.pagination.current
                 ]
 
                 if(e) {
                     this.selected = parseInt(e.target.value) 
                     params.unshift(this.selected)
-                }
+                } else params.unshift(this.pagination.selectedLimit)
 
                 if(this.$route.params.id) {
-                    params.unshift(false)
+                    params.unshift(this.active)
                     params.unshift(parseInt(this.$route.params.id))
                 } 
+
                 return params
             }
         },

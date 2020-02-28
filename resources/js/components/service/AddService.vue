@@ -205,16 +205,6 @@
                     console.log('error', error)
                     submitting = false
                 })
-                // this.submitting = true
-                // const payload = this.service
-                // axios.post('/api/service/new', payload)
-                // .then(response => {
-                //     if(!response.data) {
-                //         console.log("Error!", response)
-                //         this.errors.push({id: 0, message: JSON.stringify(response.message)})
-                //         this.submitting = false
-                //     } else router.push({path: `/admin/services/show/${response.data.service.id}`})
-                // })
             }
         },
         components: {

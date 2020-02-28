@@ -74,25 +74,20 @@ export default {
          * Makes an API request to the 
          * server for a list of tasks
          * 
-         * @param {commit} param0 
-         * @param {page} page 
+         * @param {commit} commit 
+         * @param {param} param 
          */
         async loadTasks({commit}, param) {
-            commit('SET_LOADING', true)
-
-            // let parentId, isActive = false, dataLimit = 5, currPage = 1
-        
+            commit('SET_LOADING', true)        
             let paramsArr = [0, false, 5, 1]
 
-            console.log('loading task', param)
             if(param) {
                 param.length >= 0
-                && (
+                ? (
                     param.map((dat, i) => paramsArr[i] = dat)
                 )
+                : paramsArr[0] = param
             }
-
-            console.log('running!', paramsArr)
             
             try {
                 let response = await axios.get(`/api/task/${paramsArr[1] ? '/active/' : ''}by/${paramsArr[0]}/` + paramsArr[2] + '?page=' + paramsArr[3]) 
@@ -138,11 +133,11 @@ export default {
          * @param {commit} param0 
          * @param {page} page 
          */
-        async addTask({commit}, task) {
+        async addTask({commit}, params) {
             commit('SET_LOADING', true)
             try {
                 
-                let response = await axios.post('/api/task/new', task) 
+                let response = await axios.post(`/api/task/${params[1] ? 'active/' : ''}${params[2]}/new`, params[0]) 
                 commit('SET_TASK', response.data.task)
                 commit('SET_LOADING', false)
                 return response.data.task.id
@@ -180,10 +175,10 @@ export default {
          * @param {commit} param
          * @param {page} page 
          */
-        async deleteTask({commit}, id) {
+        async deleteTask({commit}, params) {
             commit('SET_LOADING', true)
             try {
-                let response = await axios.delete('/api/task/' + id) 
+                let response = await axios.delete(`/api/task/${params[0]}`) 
                 if(response.status === 'success') {
                     console.log('response good!')
                     this.loadTasks({commit})

@@ -1,6 +1,6 @@
 <template>
     <loading-indicator v-if="loading"/>
-    <div class="bx--grid" style="padding: 40px 0px;" v-else-if="service">
+    <div class="bx--grid" style="padding: 40px 0px;" v-else-if="service && service.id">
         <div class="bx--row">
             <div class="bx--col-lg-6">
                 <!-- Service Details (Notification Card) -->

@@ -1,6 +1,6 @@
 <template>
   <loading-indicator v-if="loading"/>
-  <div class="bx--grid" style="padding: 40px 0px;" v-else-if="user">
+  <div class="bx--grid" style="padding: 40px 0px;" v-else-if="user && user.id">
     <div class="bx--row">
       <!-- Client Details (Notification Card)-->
       <div class="bx--col-lg-6">
