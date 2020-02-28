@@ -1,5 +1,6 @@
 <template>
-<div class="bx--grid" style="padding: 40px 0px;" v-if="transaction">
+<loading-indicator v-if="loading"/>
+<div class="bx--grid" style="padding: 40px 0px;" v-else-if="transaction && transaction.id">
     <div class="bx--row">
         <!-- Trans Details (Notfication Card) -->
         <div class="bx--col-lg-12">
@@ -31,8 +32,8 @@
             </div>
         </div>
     </div>
-        <!-- <p v-else="error">{{error}}</!--> 
 </div>
+<data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
 
 <script>
@@ -43,22 +44,29 @@ import CarbonComponentsVue from '@carbon/vue/src/index';
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
+import LoadingIndicator from './../progress/LoadingIndicator'
+import DataError from './../table/DataError'
 
 Vue.use(CarbonComponentsVue);
 
     export default {
         data() {
             return {
-                error: null,
-                transaction: null,
-                assignment: {
-                    title: ''
-                }
+                //
             }
         },
-        mounted() {
-            this.fetchTransaction(),
-            this.fetchAssignment()
+        created() {
+            const {$store} = this
+            $store.dispatch('transaction/loadTransaction', parseInt(this.$route.params.id))
+            
+        },
+        computed: {
+            ...mapGetters({
+                transaction: 'transaction/transaction',
+                assignment: 'assignment/assignment',
+                loading: 'transaction/loading',
+                error: 'transaction/error'
+            })
         },
         methods: {
             fetchTransaction() {
@@ -71,18 +79,12 @@ Vue.use(CarbonComponentsVue);
                     }
                 })
             },
-            fetchAssignment() {
-                axios.get(`/api/assignment/${this.$route.params.id}`)
-                .then(response => {
-                    if(response.data.status !== "success") {
-                        console.log("error ", response)
-                    } else this.assignment = response.data.assignment
-                })
-            }
         },
         components: {
             Notification,
-            Modal
+            Modal,
+            LoadingIndicator,
+            DataError,
         },   
     }
 </script>

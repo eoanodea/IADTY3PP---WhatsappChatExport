@@ -5,7 +5,7 @@ import user from './user'
 import service from './service'
 import assignment from './assignment'
 import task from './task'
-
+import transaction from './transaction'
 
 Vue.use(Vuex)
 
@@ -27,6 +27,7 @@ state: {
         user,
         service,
         assignment,
-        task
+        task,
+        transaction
     }
 })
