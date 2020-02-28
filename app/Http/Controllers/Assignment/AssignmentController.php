@@ -107,6 +107,7 @@ class AssignmentController extends Controller
     public function update(Request $request, $id) {
         
         $request->validate([
+            'title' => 'required|string',
             'total_price' => 'required|numeric|min:0',
             'deposit' => 'required|min:0|max:100',
             'discount' => 'required|min:0|max:100',
@@ -118,6 +119,7 @@ class AssignmentController extends Controller
 
         $assignment = Assignment::findOrFail($id);
 
+        $assignment->title = $request->input('title');
         $assignment->total_price = $request->input('total_price');
         $assignment->deposit = $request->input('deposit');
         $assignment->discount = $request->input('discount');

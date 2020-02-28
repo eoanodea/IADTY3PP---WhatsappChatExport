@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './auth'
 import user from './user'
 import service from './service'
+import assignment from './assignment'
 import task from './task'
 
 
@@ -25,6 +26,7 @@ state: {
         auth,
         user,
         service,
+        assignment,
         task
     }
 })

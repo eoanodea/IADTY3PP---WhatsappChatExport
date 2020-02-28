@@ -126,23 +126,7 @@
                     this.errors.push({id: 2, message: 'Percentage done is required.'});
                 }
             },
-            // submitTask: function() {
-            //     this.submitting = true
 
-            //     const url = this.active === false
-            //     ? 'task'
-            //     : 'task/active'
-            //     const payload = this.task
-
-            //     axios.post(`/api/${url}/${this.$route.params.id}/new`, payload)
-            //     .then(response => {
-            //         if(!response.data) {
-            //             console.log("Error!", response)
-            //             this.errors.push({id: 0, message: JSON.stringify(response.message)})
-            //             this.submitting = false
-            //         } else router.push({path: `/admin/tasks/${this.active}/show/${response.data.task.id}`})
-            //     })
-            // }
             submitTask: function() {
                 let {submitting, active} = this
                 const id = this.$route.params.id

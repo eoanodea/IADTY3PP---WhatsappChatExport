@@ -1,5 +1,6 @@
 <template>
-<div class="bx--grid" style="padding: 40px 0px;">
+<loading-indicator v-if="loading"/>
+<div class="bx--grid" style="padding: 40px 0px;" v-else-if="assignment && assignment.id">
     <div class="bx--row">
         <div class="bx--col-lg-6">
             <!-- Project Detailes (Notification) -->
@@ -12,7 +13,6 @@
                         <div class="bx--inline-notification__text-wrapper">
                             <div class="bx--col-lg-12">
                                 <p class="bx--inline-notification__title">Project: {{ assignment.title }}</p>
-                                <p class="bx--inline-notification__title">Service: {{ service.title }}</p>
                                 <p class="bx--inline-notification__title">Deposit: {{ assignment.deposit }}%</p>
                                 <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
                                 <p class="bx--inline-notification__title">Total Price: €{{ assignment.total_price }}</p>
@@ -69,58 +69,48 @@
         </div>
     </div>
 </div>
+<data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
 
 <script>
     import Vue from 'vue'
     import axios from 'axios'
     import DeleteAssignment from './DeleteAssignment'
-    import ListServices from './../service/ListServices'
     import ListTransaction from './../transaction/ListTransaction'
     import ListTask from './../task/ListTask'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
-    import { Modal, DataTable, Loading } from 'carbon-components';
     import CommentTile from './../comment/CommentTile'
+    import { mapGetters } from 'vuex'
+    import LoadingIndicator from './../progress/LoadingIndicator'
+    import DataError from './../table/DataError'
 
     Vue.use(CarbonComponentsVue);
 
     export default {
         data() {
             return {
-                assignment: {
-                    title: '',
-                    total_price: 0.00,
-                    deposit: 0.00,
-                    date_of_completeion: null,
-                    deadline: null,
-                    completed: false,
-                },
-                service: {
-                    title: ''
-                }
+                //
             }
         },
-        mounted () {
-            axios.get(`/api/assignment/${this.$route.params.id}`)
-            .then(response => {
-                if(response.data.status !== "success") {
-                    console.log("error ", response)
-                } else this.assignment = response.data.assignment
-            }),
-            axios.get(`/api/service/${this.$route.params.id}`)
-            .then(response => {
-                if(response.data.status !== "success") {
-                    console.log("error ", response)
-                } else this.service = response.data.service
+        created() {
+            this.$store.dispatch('assignment/loadAssignment', parseInt(this.$route.params.id))
+        },
+        computed: {
+            ...mapGetters({
+                assignment: 'assignment/assignment',
+                loading: 'assignment/loading',
+                error: 'assignment/error'
             })
         },
         components: {
             DeleteAssignment,
             ListTask,
             ListTransaction,
-            CommentTile
+            CommentTile,
+            LoadingIndicator,
+            DataError,
         },
         methods: {
             paymentDue() {

@@ -1,5 +1,6 @@
 <template>
-<div class="bx--grid" style="padding: 60px 250px;">
+<loading-indicator v-if="loading"/>
+<div class="bx--grid" style="padding: 60px 250px;" v-else-if="updatedAssignment">
     <!-- Project -->
     <div class="bx--row">
         <div class="bx--col-lg-12">
@@ -12,7 +13,7 @@
                     name="title" 
                     type="text" 
                     autocomplete="given-title" 
-                    v-model="assignment.title"
+                    v-model="updatedAssignment.title"
                     class="bx--text-input" 
                     placeholder="Project">
                 </div>
@@ -33,7 +34,7 @@
                     name="deposit" 
                     type="number" 
                     autocomplete="given-deposit" 
-                    v-model="assignment.deposit"
+                    v-model="updatedAssignment.deposit"
                     class="bx--text-input" 
                     placeholder="Deposit %">
                     <span>%</span>
@@ -51,7 +52,7 @@
                     name="discount" 
                     type="number" 
                     autocomplete="given-discount" 
-                    v-model="assignment.discount"
+                    v-model="updatedAssignment.discount"
                     class="bx--text-input" 
                     placeholder="Discount">
                     <span>%</span>
@@ -73,7 +74,7 @@
                     name="total_price" 
                     type="number" 
                     autocomplete="given-total_price" 
-                    v-model="assignment.total_price"
+                    v-model="updatedAssignment.total_price"
                     class="bx--text-input" 
                     placeholder="Total Price">
                 </div>
@@ -92,7 +93,7 @@
                     kind="single"
                     :cal-options="calOptions"
                     autocomplete="given-deadline"
-                    v-model="assignment.deadline"
+                    v-model="updatedAssignment.deadline"
                     placeholder="Day/Month/Year">
 
                 </cv-date-picker>
@@ -107,7 +108,7 @@
                     kind="single"
                     :cal-options="calOptions"
                     autocomplete="given-date_of_completion"
-                    v-model="assignment.date_of_completion"
+                    v-model="updatedAssignment.date_of_completion"
                     placeholder="Day/Month/Year">
 
                 </cv-date-picker>
@@ -122,8 +123,8 @@
             <label for="completed" class="bx--label">Project Completed</label>
             <cv-checkbox
                 name="completed" 
-                v-model="assignment.completed"
-                :disabled="disabled">
+                v-model="updatedAssignment.completed"
+                >
             </cv-checkbox>
         </div>
     </div>
@@ -136,6 +137,7 @@
                 <button 
                     class="bx--btn bx--btn--primary" 
                     type="submit"
+                    @click="submitAssignment"
                     :disabled="submitting">
                         Save
                 </button>
@@ -156,6 +158,7 @@
         </p>
     </div>
 </div>
+<data-error v-else v-bind:error="error" v-bind:collection="'assignment'" />
 </template>
 
 <script>
@@ -166,6 +169,9 @@
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { CvCheckbox, CvDatePicker } from '@carbon/vue/src'
+    import { mapGetters } from 'vuex';
+    import LoadingIndicator from './../progress/LoadingIndicator'
+    import DataError from './../table/DataError'
 
     Vue.use(CarbonComponentsVue);
 
@@ -175,7 +181,7 @@
             let now = new Date();
 
             return {
-                assignment: {
+                updatedAssignment: {
                     title: '',
                     total_price: 0.00,
                     deposit: 0.00,
@@ -191,36 +197,59 @@
                 // "dateLabel": "Deadline"
             }
         },
-        mounted() {
-            axios.get(`/api/assignment/${this.$route.params.id}`)
-            .then(response => {
-                if(!response.data) {
-                    console.log("Error getting assignment", response)
-                } else {
-                    let assignmentObj = response.data.assignment
-                    assignmentObj.recurring_payment == 1 ? assignmentObj.recurring_payment = true : assignmentObj.recurring_payment = false
-                    assignmentObj.is_public == 1 ? assignmentObj.is_public = true : assignmentObj.is_public = false
-                    this.assignment = assignmentObj
-                }
-            })
+        created() {
+            this.$store.dispatch('assignment/loadAssignment', parseInt(this.$route.params.id))
+
+            this.updatedAssignment = this.assignment
+            console.log('running', this.assignment, this.updatedAssignment)
         },
         methods: {
+            // submitAssignment: function() {
+            //     this.submitting = true
+            //     const payload = this.assignment
+            //    axios.put(`/api/assignment/${this.updatedAssignment.id}`, payload)
+            //     .then(response => {
+            //         if(!response.data) {
+            //             console.log("Error!", response)
+            //             this.errors.push({id: 0, message: JSON.stringify(response.message)})
+            //             this.submitting = false
+            //         } else router.push({path: `/admin/assignments/show/${response.data.updatedAssignment.id}`})
+            //     })
+            // }
             submitAssignment: function() {
-                this.submitting = true
-                const payload = this.assignment
-               axios.put(`/api/assignment/${this.assignment.id}`, payload)
-                .then(response => {
-                    if(!response.data) {
-                        console.log("Error!", response)
-                        this.errors.push({id: 0, message: JSON.stringify(response.message)})
-                        this.submitting = false
-                    } else router.push({path: `/admin/assignments/show/${response.data.assignment.id}`})
+                let {submitting} = this
+                const id = this.$route.params.id
+                submitting = true
+                console.log('submitting', this.updatedAssignment)
+                this.$store.dispatch('assignment/updateAssignment', [parseInt(id), this.updatedAssignment])
+                .then(function(response) {
+                    submitting = false
+                    router.push({
+                        path: `/admin/assignments/show/${id}`
+                    })
+                }).catch(function(error) {
+                    console.log('error', error)
+                    submitting = false
                 })
             }
         },
+        watch: {
+            assignment: function(newVal, oldVal) {
+                this.updatedAssignment = newVal
+            }
+        },
+        computed: {
+            ...mapGetters({
+                assignment: 'assignment/assignment',
+                loading: 'assignment/loading',
+                error: 'assignment/error'
+            })
+        },
         components: {
             CvCheckbox,
-            CvDatePicker
+            CvDatePicker,
+            LoadingIndicator,
+            DataError
         }
     }
 </script>
