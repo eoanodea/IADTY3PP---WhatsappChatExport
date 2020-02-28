@@ -72,8 +72,6 @@
                         </tbody>
                     </table>
 
-
-
                     <!-- Pagination -->
                     <div class="bx--pagination" data-pagination> <!-- Open Pagination -->
                         <!-- Left Pagination -->
@@ -130,7 +128,6 @@
                     </div>
                     <!-- Close Pagination -->
 
-
                 </div>
             </div>
             <!-- Loading -->
@@ -150,9 +147,8 @@
             <p>{{error}}</p>
         </div>
     </div>
-
-
 </template>
+
 <script>
 import Vue from "vue";
 import axios from 'axios';
