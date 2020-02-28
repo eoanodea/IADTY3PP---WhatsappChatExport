@@ -81,6 +81,7 @@
     </div>
     <data-error v-else v-bind:error="error" v-bind:collection="'task'" />
 </template>
+
 <script>
     import axios from 'axios';
     import Vue from 'vue';

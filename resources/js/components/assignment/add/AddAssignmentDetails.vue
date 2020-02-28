@@ -108,60 +108,9 @@
             </button>
         </cv-link>
     </form>
-
-
-
-        <!-- <div class="md-layout">
-            <div class="md-layout-item">
-                <md-table-toolbar>
-                    <h1 class="md-title accent">Add a Project</h1>
-                </md-table-toolbar>
-            </div>
-        </div>
-
-        <form novalidate class="md-layout" method="POST" @submit.stop.prevent="validateAssignment">
-            <md-card class="md-layout-item background">
-                <md-card-content>
-                    <p v-if="errors.length">
-                        <b class="error">Please correct the following error(s):</b>
-                        <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="error">
-                            {{ error.message }}
-                            </li>
-                        </ul>
-                    </p>
-
-                    <md-field>
-                        <label class="accent" for="title">Title</label>
-                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
-                    </md-field>
-                    <md-field>
-                        <span class="md-prefix">€</span>
-                        <label class="accent" for="price">Price</label>
-                        <md-input name="price" type="number" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="discount">Discount</label>
-                        <md-input name="discount" type="number" min="0" max="100" class="form-control" placeholder="Discount" v-model="assignment.discount" /> <br />
-                        <span class="md-suffix">%</span> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="deposit">Deposit</label>
-                        <md-input name="deposit" type="number" min="0" max="100" class="form-control" placeholder="Deposit" v-model="assignment.deposit" />
-                        <span class="md-suffix">%</span> <br />
-                    </md-field>
-                    <md-checkbox name="recurring_payment" v-model="assignment.recurring_payment">Recuring Payment</md-checkbox> <br />
-                    <md-datepicker name="deadline" class="md-field-clear" placeholder="Deadline" v-model="assignment.deadline">
-                        <label class="accent" for="deadline">Deadline</label>
-                    </md-datepicker> <br />
-                </md-card-content>
-                <md-card-actions>
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised btnAccent">Save</md-button>
-                </md-card-actions>
-            </md-card>
-        </form> -->
 </div>
 </template>
+
 <script>
     import Vue from 'vue';
     import format from 'date-fns/format'

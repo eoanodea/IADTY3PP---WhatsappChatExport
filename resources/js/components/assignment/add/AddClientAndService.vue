@@ -24,22 +24,6 @@
             Save
         </button>
     </cv-link>
-
-
-
-        <!-- <md-field>
-            <label class="accent" for="service">Select a Service</label>
-            <md-select name="service" id="service" palceholder="Select a Service" v-model="serviceId">
-                <md-option v-for="service in services" v-bind:key="service.id" :value="service.id">{{service.title}}</md-option>
-            </md-select>
-        </md-field>
-        <md-field>
-            <label class="accent" for="client">Select a Client</label>
-            <md-select name="client" id="client" palceholder="Select a Client" v-model="clientId"> 
-                <md-option v-for="client in clients" v-bind:key="client.id" :value="client.id">{{client.first_name + ' ' + client.last_name}}</md-option>
-            </md-select>
-        </md-field> -->
-        <!-- <md-button :disabled="!serviceId || !clientId" class="md-accent md-raised" @click="returnData">Save</md-button> -->
 </div>
 </template>
 
@@ -57,9 +41,6 @@
         CvDropdownSkeleton } from '@carbon/vue/src'
 
     Vue.use(CarbonComponentsVue);
-    // import {MdMenu} from 'vue-material/dist/components'
-
-    // Vue.use(MdMenu);
 
     export default {
         data() {

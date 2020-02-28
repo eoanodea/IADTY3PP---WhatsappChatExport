@@ -72,14 +72,3 @@
         }
     }
 </script>
-<style>
-    /* .backBtn {
-      color: #fff !important;
-      background-color: #24b6f7 !important;
-    }
-
-    .delBtn {
-      color: #fff !important;
-      background-color: #ee4444 !important;
-    } */
-</style>

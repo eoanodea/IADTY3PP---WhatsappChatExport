@@ -169,9 +169,8 @@
         </p>
     </div>
 </div>
-
-
 </template>
+
 <script>
 import axios from 'axios';
 import Vue from 'vue';
@@ -179,7 +178,6 @@ import router from './../../router'
 import DataError from './../table/DataError'
 import { mapGetters } from 'vuex';
 import LoadingIndicator from './../progress/LoadingIndicator'
-
 
 export default {
     data() {
@@ -293,6 +291,7 @@ export default {
     }
 }
 </script>
+
 <style lang="scss">
     .bx--form-requirement {
         margin: 1.2rem 0;

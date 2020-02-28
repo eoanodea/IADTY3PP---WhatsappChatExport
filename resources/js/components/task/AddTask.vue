@@ -79,6 +79,7 @@
         </div>
     </div>
 </template>
+
 <script>
     import axios from 'axios';
     import Vue from 'vue';
@@ -116,13 +117,13 @@
 
                 this.errors = [];
                 if(!task.title) {
-                     this.errors.push({id: 0, message: 'Title required.'});
+                    this.errors.push({id: 0, message: 'Title required.'});
                 }
                 if(!task.description) {
-                     this.errors.push({id: 1, message: 'Description required.'});
+                    this.errors.push({id: 1, message: 'Description required.'});
                 }
                 if(!task.percent_done) {
-                     this.errors.push({id: 2, message: 'Percentage done is required.'});
+                    this.errors.push({id: 2, message: 'Percentage done is required.'});
                 }
             },
             // submitTask: function() {
