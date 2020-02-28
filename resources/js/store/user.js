@@ -110,7 +110,6 @@ export default {
             commit('SET_LOADING', true)
             if(id) {
                 try {
-                    console.log('loading user', id)
                     let response = await axios.get('/api/user/' + id) 
                     
                     commit('SET_USER', response.data.user)
@@ -137,7 +136,7 @@ export default {
             try {
                 
                 let response = await axios.post('/api/user/new', user) 
-                console.log('response user', response)
+
                 commit('SET_USER', response.data.user)
                 commit('SET_LOADING', false)
                 return response.data.user.id
@@ -157,7 +156,6 @@ export default {
         async updateUser({commit}, param) {
             commit('SET_LOADING', true)
             try {
-                console.log('loading user', param)
                 let response = await axios.put('/api/user/' + param[0], param[1]) 
                 
                 commit('SET_USER', response.data.user)
@@ -179,7 +177,6 @@ export default {
         async deleteUser({commit}, id) {
             commit('SET_LOADING', true)
             try {
-                console.log('loading user', id)
                 let response = await axios.delete('/api/user/' + id) 
                 if(response.status === 'success') {
                     commit('REMOVE_USER', id)

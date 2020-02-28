@@ -57,7 +57,6 @@ export default {
         },
 
         SET_LOADING(state, loading) {
-            console.log('set loading', loading)
             if(loading == true) this.error = null
             state.loading = loading
         },
@@ -111,7 +110,6 @@ export default {
             commit('SET_LOADING', true)
             if(id) {
                 try {
-                    console.log('loading service', id)
                     let response = await axios.get('/api/service/' + id) 
                     
                     commit('SET_SERVICE', response.data.service)
@@ -138,7 +136,6 @@ export default {
             try {
                 
                 let response = await axios.post('/api/service/new', service) 
-                console.log('response service', response)
                 commit('SET_SERVICE', response.data.service)
                 commit('SET_LOADING', false)
                 return response.data.service.id
@@ -158,7 +155,6 @@ export default {
         async updateService({commit}, param) {
             commit('SET_LOADING', true)
             try {
-                console.log('loading service', param)
                 let response = await axios.put('/api/service/' + param[0], param[1]) 
                 
                 commit('SET_SERVICE', response.data.service)
@@ -174,13 +170,12 @@ export default {
          * Delete a service 
          * from the database
          * 
-         * @param {commit} param0 
+         * @param {commit} param
          * @param {page} page 
          */
         async deleteService({commit}, id) {
             commit('SET_LOADING', true)
             try {
-                console.log('loading service', id)
                 let response = await axios.delete('/api/service/' + id) 
                 if(response.status === 'success') {
                     console.log('response good!')
