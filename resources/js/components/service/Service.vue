@@ -43,10 +43,10 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
-    import DeleteService from './DeleteService'
-    import ListTask from './../task/ListTask'
+    import Vue from 'vue';
+    import axios from 'axios';
+    import DeleteService from './DeleteService';
+    import ListTask from './../task/ListTask';
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
@@ -73,6 +73,14 @@
                 error: 'service/error'
             })
         },
+        // mounted () {
+        //     axios.get(`/api/service/${this.$route.params.id}`)
+        //     .then(response => {
+        //         if(response.data.status !== "success") {
+        //             console.log("error ", response)
+        //         } else this.service = response.data.service
+        //     })
+        // },
         components: {
             DeleteService,
             ListTask,

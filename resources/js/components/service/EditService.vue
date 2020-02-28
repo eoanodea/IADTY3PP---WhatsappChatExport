@@ -117,10 +117,10 @@
             </ul>
         </p>
     </div>
-
 </div>
 <data-error v-else v-bind:error="error" v-bind:collection="'service'" />
 </template>
+
 <script>
     import axios from 'axios';
     import Vue from 'vue';

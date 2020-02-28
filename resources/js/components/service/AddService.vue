@@ -12,7 +12,7 @@
                         name="title" 
                         type="text" 
                         autocomplete="given-title" 
-                        v-model="service.title"
+                        v-model="newService.title"
                         class="bx--text-input" 
                         placeholder="Title">
                     </div>
@@ -32,7 +32,7 @@
                             name="description" 
                             type="description" 
                             autocomplete="description" 
-                            v-model="service.description"
+                            v-model="newService.description"
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
@@ -55,7 +55,7 @@
                         name="standard_price" 
                         type="number" 
                         autocomplete="given-standard_price" 
-                        v-model="service.standard_price"
+                        v-model="newService.standard_price"
                         class="bx--text-input" 
                         placeholder="€Standard Price">
                     </div>
@@ -120,14 +120,15 @@
         </div>
     </div>
 </template>
+
 <script>
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
+    import DataError from './../table/DataError'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { CvCheckbox } from '@carbon/vue/src'
-    import DataError from './../table/DataError'
     import { mapGetters } from 'vuex';
     import LoadingIndicator from './../progress/LoadingIndicator'
 
@@ -137,7 +138,7 @@
     export default {
         data() {
             return {
-                service: {
+                newService: {
                     title: '',
                     description: '',
                     recurring_payment: false,
@@ -150,31 +151,42 @@
         },
         methods: {
             validateService: function() {
-                const {service} = this
+                const {newService} = this
                 if(
-                    service.title
-                    && service.description
-                    && service.recurring_payment
-                    && service.standard_price
-                    && service.is_public) {
+                    newService.title &&
+                    newService.description &&
+                    newService.recurring_payment &&
+                    newService.standard_price &&
+                    newService.is_public) {
                     this.submitService()
                 }
 
                 this.errors = [];
-                if(!service.title) {
-                     this.errors.push({id: 0, message: 'Title required.'});
+                if(!newService.title) {
+                    this.errors.push({
+                        id: 0, 
+                        message: 'Title required.'
+                        });
                 }
-                if(!service.description) {
-                     this.errors.push({id: 1, message: 'Description required.'});
+                if(!newService.description) {
+                    this.errors.push({
+                        id: 1, message: 'Description required.'
+                        });
                 }
-                if(!service.recurring_payment) {
-                     this.errors.push({id: 2, message: 'Input required.'});
+                if(!newService.recurring_payment) {
+                    this.errors.push({
+                        id: 2, message: 'Input required.'
+                        });
                 }
-                if(!service.standard_price) {
-                     this.errors.push({id: 3, message: 'Standard Price required.'});
+                if(!newService.standard_price) {
+                    this.errors.push({
+                        id: 3, message: 'Standard Price required.'
+                        });
                 }
-                if(!service.is_public) {
-                     this.errors.push({id: 4, message: 'Input required.'});
+                if(!newService.is_public) {
+                    this.errors.push({
+                        id: 4, message: 'Input required.'
+                        });
                 }
             },
             submitService: function() {
@@ -193,6 +205,16 @@
                     console.log('error', error)
                     submitting = false
                 })
+                // this.submitting = true
+                // const payload = this.service
+                // axios.post('/api/service/new', payload)
+                // .then(response => {
+                //     if(!response.data) {
+                //         console.log("Error!", response)
+                //         this.errors.push({id: 0, message: JSON.stringify(response.message)})
+                //         this.submitting = false
+                //     } else router.push({path: `/admin/services/show/${response.data.service.id}`})
+                // })
             }
         },
         components: {
