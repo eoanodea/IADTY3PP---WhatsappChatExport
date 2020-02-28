@@ -77,13 +77,4 @@
     .bx--body--with-modal-open {
         overflow: auto;
     }
-    /* .backBtn {
-      color: #fff !important;
-      background-color: #24b6f7 !important;
-    }
-
-    .delBtn {
-      color: #fff !important;
-      background-color: #ee4444 !important;
-    } */
 </style>

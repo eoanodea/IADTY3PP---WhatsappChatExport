@@ -65,9 +65,6 @@
     <!-- Progression Chart -->
     <Chart />
 
-
-
-
     <!-- Progression Indicator -->
     <br/>
     <label for="compose_message" class="bx--label">Project Completion with {{ user.first_name }} {{ user.last_name }}</label>
