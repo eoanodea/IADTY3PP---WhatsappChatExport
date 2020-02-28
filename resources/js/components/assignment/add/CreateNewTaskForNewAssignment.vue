@@ -208,13 +208,14 @@
         </md-dialog> -->
 </div>
 </template>
+
 <script>
 import Vue from 'vue'
 import axios from 'axios'
 import 'carbon-components/css/carbon-components.css'
 import CarbonComponentsVue from '@carbon/vue/src/index'
-    import { Modal } from 'carbon-components';
-    import { CvModal } from '@carbon/vue/src';
+import { Modal } from 'carbon-components';
+import { CvModal } from '@carbon/vue/src';
 
 Vue.use(CarbonComponentsVue);
 

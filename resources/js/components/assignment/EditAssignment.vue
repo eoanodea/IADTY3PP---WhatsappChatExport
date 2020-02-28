@@ -155,54 +155,6 @@
             </ul>
         </p>
     </div>
-
-
-        <!-- <div class="md-layout">
-            <div class="md-layout-item">
-                <md-table-toolbar>
-                    <h1 class="md-title accent">Edit Project Details</h1>
-                </md-table-toolbar>
-            </div>
-        </div>
-
-        <form novalidate class="md-layout" method="PUT" @submit.stop.prevent="submitAssignment">
-            <md-card class="md-layout-item background">
-
-                <md-card-content>
-                <p v-if="errors.length">
-                        <b class="error">Please correct the following error(s):</b>
-                        <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="error">
-                            {{ error.message }}
-                            </li>
-                        </ul>
-                    </p>
-                     <md-field>
-                        <label class="accent" for="title">Title</label>
-                        <md-input name="title" type="text" class="form-control" placeholder="Title" v-model="assignment.title" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="price">Price</label>
-                        <md-input name="price" type="number" class="form-control" placeholder="Price" v-model="assignment.total_price" /> <br />
-                    </md-field>
-                    <md-field>
-                        <label class="accent" for="deposit">Deposit</label>
-                        <md-input name="deposit" type="numer" class="form-control" placeholder="Price" v-model="assignment.deposit" /> <br />
-                    </md-field>
-                    <md-datepicker name="deadline" class="md-field-clear accent" placeholder="Deadline" v-model="assignment.deadline">
-                        <label class="accent" for="deadline">Deadline</label>
-                    </md-datepicker> <br />
-                    <md-datepicker name="date_of_completeion" class="md-field-clear accent" placeholder="Deadline" v-model="assignment.date_of_completeion">
-                        <label class="accent" for="date_of_completeion">Date of completeion</label>    
-                    </md-datepicker> <br />
-                    <md-checkbox name="completed" v-model="assignment.completed">Completed</md-checkbox> <br />
-                    
-                </md-card-content>
-                <md-card-actions>
-                    <md-button type="submit" :disabled="submitting" class="md-primary md-raised">Save</md-button>
-                </md-card-actions>
-            </md-card>
-        </form> -->
 </div>
 </template>
 
@@ -210,16 +162,12 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    // import {MdDatepicker} from 'vue-material/dist/components'
     import format from 'date-fns/format'
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { CvCheckbox, CvDatePicker } from '@carbon/vue/src'
 
     Vue.use(CarbonComponentsVue);
-
-    // Vue.use(MdDatepicker)
-    
 
     export default {
         data() {

@@ -38,20 +38,6 @@
             <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
         </cv-content-switcher-content>
     </section>
-
-
-
-        <!-- <md-steppers :md-active-step.sync="active" md-linear>
-            <md-step id="first" md-label="Client & Service" md-description="Choose a Client and Service for your new Project." :md-done.sync="first">
-                <AddClientAndService v-on:selected-service-client="handleServiceAndClientId"/>
-            </md-step>
-            <md-step id="second" md-label="Project Details" md-description="Enter details on the Project." :md-done.sync="second" :md-error="secondStepError">
-                <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
-            </md-step>
-            <md-step id="third" md-label="Add Tasks" md-description="Add Tasks to the new Project" :md-done.sync="third">
-                <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
-            </md-step>
-        </md-steppers> -->
 </div>
 </template>
 
@@ -59,18 +45,15 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../../router'
-    // import {MdSteppers} from 'vue-material/dist/components'
     import AddClientAndService from './AddClientAndService.vue';
     import AddAssignmentDetails from './AddAssignmentDetails'
     import AddTasksToNewAssignment from './AddTasksToNewAssignment';
     import 'carbon-components/css/carbon-components.css';
     import CarbonComponentsVue from '@carbon/vue/src/index';
-    // import { ProgressIndicator } from 'carbon-components';
     import { CvContentSwitcher, CvContentSwitcherButton, CvContentSwitcherContent } from '@carbon/vue/src'
     import AddFilled16 from '@carbon/icons-vue/es/add--filled/16';
 
     Vue.use(CarbonComponentsVue);
-    // Vue.use(MdSteppers)
 
     export default {
         data() {
@@ -134,9 +117,6 @@
             CvContentSwitcherButton, 
             CvContentSwitcherContent,
             AddFilled16
-            // ProgressIndicator,
-            // CvProgress, 
-            // CvProgressStep
         },
         computed: {
             isSelected() {
