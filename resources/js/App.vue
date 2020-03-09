@@ -128,7 +128,7 @@
     </cv-header>
     
     <div class="router-container">
-      <transition name="slide">
+      <transition :name="transitionName">
         <router-view></router-view>
       </transition>
     </div>
@@ -166,10 +166,13 @@
 } from '@carbon/vue/src';
 import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
 
+const DEFAULT_TRANSITION = 'fade';
+
   export default {
     data() {
       return {
         menuVisible: true,
+        transitionName: DEFAULT_TRANSITION,
       }
     },
     components: {
@@ -201,7 +204,6 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
     },
     methods: {
       click: function() {
-        console.log('menu click!!')
         this.menuVisible = !this.menuVisible
       },
       ...mapActions({
@@ -215,10 +217,19 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
           })
         })
       },
-      actionAppSwitcher() {
-        console.log('app switcher!')
-        // this.doActionSwitcher();
-        this.menuVisible = !this.menuVisible;
+    },
+    watch: {
+      '$route' (to, from, options) {
+        const routes = this.$router.options.routes
+        console.log(to, from, routes)
+        let toIndex
+        let fromIndex
+        routes.map((dat, i) => {
+          if(dat.name === to.name) toIndex = i
+          if(dat.name === from.name) fromIndex = i
+        })
+
+        this.transitionName = toIndex < fromIndex ? 'slide-right' : 'slide-left'
       }
     }
   }
@@ -227,5 +238,25 @@ import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
 <style lang="scss" scoped>
   .router-container {
     margin: 80px 0;
+  }
+  .slide-left-enter-active,
+  .slide-left-leave-active,
+  .slide-right-enter-active,
+  .slide-right-leave-active {
+    transition-duration: 0.5s;
+    transition-property: height, opacity, transform;
+    transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+    overflow: hidden;
+  }
+  .slide-left-enter,
+  .slide-right-leave-active {
+    opacity: 0;
+    transform: translate(5em, 0);
+  }
+
+  .slide-left-leave-active,
+  .slide-right-enter {
+    opacity: 0;
+    transform: translate(-5em, 0);
   }
 </style>
