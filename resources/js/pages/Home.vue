@@ -6,8 +6,8 @@
     <div class="bx--col-lg-6">
       <!-- Dropdown to choose Project -->
       <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
-          <cv-dropdown-item v-for="assignment in assignments" v-bind:key="assignment.id" :value="assignment.id">
-              {{assignment.title}}
+          <cv-dropdown-item v-for="(assignment, index) in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()" :selected="index === 0">
+              {{index}}: {{assignment.title}}
           </cv-dropdown-item>
       </cv-dropdown>
 
@@ -58,7 +58,6 @@
   
   import 'carbon-components/css/carbon-components.css';
   import CarbonComponentsVue from '@carbon/vue/src/index';
-  import { Modal, DataTable, Loading } from 'carbon-components';
   import { CvDropdown, CvDropdownItem, CvDropdownSkeleton } from '@carbon/vue/src'
 
   Vue.use(CarbonComponentsVue);
@@ -66,7 +65,7 @@
   export default {
     data() {
       return {
-        assignmentId: 1,
+        assignmentId: "1",
     
       };
     },
@@ -89,11 +88,7 @@
       ListTask,
       Chart,
       CommentTile,
-      
       Notification,
-      Modal,
-      DataTable, 
-      Loading,
       CvDropdown, 
       CvDropdownItem, 
       CvDropdownSkeleton

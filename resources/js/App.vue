@@ -128,7 +128,9 @@
     </cv-header>
     
     <div class="router-container">
-      <router-view></router-view>
+      <transition name="slide">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </div>
