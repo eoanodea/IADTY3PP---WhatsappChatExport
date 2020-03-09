@@ -218,12 +218,18 @@ const DEFAULT_TRANSITION = 'fade';
         })
       },
     },
+    /**
+     * Watch Router for changes
+     * On Update, check if to route index
+     * if greater than from route index
+     * if so, slide left, else slide right
+     */
     watch: {
       '$route' (to, from, options) {
         const routes = this.$router.options.routes
-        console.log(to, from, routes)
         let toIndex
         let fromIndex
+
         routes.map((dat, i) => {
           if(dat.name === to.name) toIndex = i
           if(dat.name === from.name) fromIndex = i
