@@ -32,8 +32,8 @@ export default {
                         label: "",
                         data: [
                             1
-                            // percent_done
-                        ]
+                        ] // percent_done
+                        
                     }
                 ]
             },
@@ -57,10 +57,22 @@ export default {
     created() {
            if(this.serviceId && this.tasks.length < 1) {
                this.$store.dispatch('task/loadTasks', [this.serviceId, true])
-               .then(this.structureTasks())
+               .then(() => this.structureTasks())
            }
     },
     methods: {
+
+        structureTasks() {
+                const {tasks} = this
+                if(tasks.length > 0) {
+                        tasks.map(task => {
+                            this.data.datasets[0].data.push(task.percent_done)
+                            this.data.labels.push(task.title)
+                            this.fetched = true
+                        })
+                    } else console.log('no tasks')
+            }
+            
         // fetchTasks() {
         //     this.fetched = false
         //     const url ="task/active"
@@ -79,17 +91,7 @@ export default {
             ...mapGetters({
                 tasks: 'task/tasks',
                 loading: 'task/loading'
-            }),
-            structureTasks() {
-                const {tasks} = this
-                if(tasks.length > 0) {
-                        tasks.map(task => {
-                            this.data.datasets[0].data.push(task.percent_done)
-                            this.data.labels.push(task.title)
-                            this.fetched = true
-                        })
-                    } else console.log('no tasks')
-            }
+            })
     },
     watch: {
             //Watch the serviceId Prop for changes, on change 
@@ -101,6 +103,7 @@ export default {
                 this.serviceId = newVal
                 console.log('running!', oldVal, newVal)
                 this.$store.dispatch('task/loadTasks', [this.serviceId, true])
+                .then(() => this.structureTasks())
             }
         },
 };
