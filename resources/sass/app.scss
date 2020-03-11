@@ -6,12 +6,12 @@
 @import '@carbon/themes/scss/themes';
 $carbon--theme: $carbon--theme--g90;
 @include carbon--theme();
-@import 'carbon-components/scss/globals/scss/styles.scss';
+// @import 'carbon-components/scss/globals/scss/styles.scss';
 // Variables
 @import 'variables';
 
 // Theme Grid:
-@import '@carbon/grid/scss/grid';
+// @import '@carbon/grid/scss/grid';
 
 // Theme Colors
 @import 'colors';

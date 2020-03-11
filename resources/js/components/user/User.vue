@@ -4,58 +4,43 @@
   <div class="bx--row">
     
     <!-- Client Details (Notification Card)-->
-    <div class="bx--col-lg-6">
-      
-      <div 
-        data-notification 
-        class="bx--inline-notification bx--inline-notification--info" 
-        role="alert"
-        >
-        <div class="bx--inline-notification__details">
-          <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg> 
-        
-          <!-- Client Details Contents -->
-          <div class="bx--inline-notification__text-wrapper">
-            <div class="bx--col-lg-12">
-              <p class="bx--inline-notification__title">{{ user.first_name }} {{ user.last_name }}</p>
-              <p class="bx--inline-notification__subtitle">{{ user.email }}</p>
-              <p class="bx--inline-notification__subtitle">{{ user.mobile_number }}</p>
-              <p class="bx--inline-notification__subtitle">{{ user.address }}</p>
-            </div>
-          </div>
-        </div>
+    <div class="bx--col-lg-6" style="padding-top: 140px;">
 
+      <p class="bx--inline-notification__title" style="font-size: 58px;">{{ user.first_name }} {{ user.last_name }}</p><br/><br/><br/>
+      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size: 38px;">{{ user.email }}</p><br/><br/>
+      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size: 38px;">{{ user.mobile_number }}</p><br/><br/>
+      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size: 38px;">{{ user.address }}</p><br/><br/>
+      
+      <div class="bx--row">
         <!-- Edit Button -->
-        <cv-link :to="'/admin/users/edit/' + user.id" style="text-decoration: none;">
-          <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-            Edit Client
-          </button>
-        </cv-link>
+        <div class="bx--col">
+          <cv-link :to="'/admin/users/edit/' + user.id" style="text-decoration: none;">
+            <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+              Edit Client
+            </button>
+          </cv-link>
+        </div>
 
         <!-- Delete Modal Button -->        
-        <DeleteUser style="text-decoration; none;" class="md-alignment-top-right" v-bind:id="user.id" />
-        </div>        
-      </div>
-
-      <!-- Chart -->
-      <div class="bx--col-lg-6">
-        <div class="assignment-container" v-if="assignmentId">
-          <label 
-            for="compose_message" 
-            class="bx--label"
-            >Project Completion with {{ user.first_name }} {{ user.last_name }}
-          </label>
-
-          <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
+        <div class="bx--col">
+          <DeleteUser style="text-decoration; none;" class="md-alignment-top-right" v-bind:id="user.id" />
         </div>
-      </div> <!-- Close Chart COLUMN -->
+      </div>    
+      
+    </div> <!-- Close Client Details COLUMN -->
+
+    <!-- Chart -->
+    <div class="bx--col-lg-6">
+      <div class="assignment-container" v-if="assignmentId">
+        <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
+      </div>
+    </div> <!-- Close Chart COLUMN -->
     
-    </div> <!-- Close Client Details Card COLUMN-->
 
-  <!-- Comments -->
-  <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
+    <!-- Comments -->
+    <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
 
-  </div> <!-- Close Main ROW -->
+  </div> <!-- Close ROW 1-->
 
 </div> <!-- Close GRID -->
 
