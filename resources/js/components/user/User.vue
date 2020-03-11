@@ -63,17 +63,17 @@
     </div>
 
     <!-- Progression Chart -->
-    <Chart />
+    <div class="assignment-container" v-if="assignmentId">
+      <!-- Progression Donut -->
+      <label 
+        for="compose_message" 
+        class="bx--label"
+        >Project Completion with {{ user.first_name }} {{ user.last_name }}
+      </label>
 
-    <!-- Progression Indicator -->
-    <br/>
-    <label for="compose_message" class="bx--label">Project Completion with {{ user.first_name }} {{ user.last_name }}</label>
-    <div class="bx--row">
-      <div class="bx--col-lg-12">
-        <progressIndicator />
-      </div>
+      <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
     </div>
-  </div>
+  </div> 
   <data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
 
@@ -81,7 +81,8 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import progressIndicator from "./components/progressIndicator";
+import Chart from './components/Chart'
+import Assignment from '../assignment/Assignment'
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import LoadingIndicator from './../progress/LoadingIndicator'
@@ -89,7 +90,6 @@ import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
 import DataError from './../table/DataError'
-// import { CvModal } from '@carbon/vue/src';
 
 Vue.use(CarbonComponentsVue);
 
@@ -97,26 +97,36 @@ export default {
   data() {
     return {
       userId: this.$route.params.id,
-      amount: 70
+      assignmentId: "1"
     };
   },
     created() {
     this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
+
+    if(this.assignments.length < 1) {
+      this.$store.dispatch('assignment/loadAssignments')
+    }
+  },
+  methods: {
+    returnData() {
+      this.$emit('selected-assignment', this.assignmentId)
+    }
   },
   components: {
     DeleteUser,
     Notification,
     Modal,
-    progressIndicator,
+    Chart,
+    Assignment,
     LoadingIndicator,
     DataError
-    // CvModal
   },
   computed: {
     ...mapGetters({
       user: 'user/user',
       loading: 'user/loading',
-      error: 'user/error'
+      error: 'user/error',
+      assignments: 'assignment/assignments'
     })
   }
 };
