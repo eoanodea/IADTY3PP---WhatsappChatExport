@@ -1,6 +1,6 @@
 <template>
   <loading-indicator v-if="loading"/>
-  <div class="bx--grid" style="padding: 40px 0px;" v-else-if="user && user.id">
+  <div class="bx--grid" v-else-if="user && user.id">
     <div class="bx--row">
       <!-- Client Details (Notification Card)-->
       <div class="bx--col-lg-6">
@@ -73,6 +73,9 @@
 
       <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
     </div>
+
+    <!-- Comments -->
+    <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
   </div> 
   <data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
@@ -81,8 +84,9 @@
 import Vue from "vue";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
-import Chart from './components/Chart'
 import Assignment from '../assignment/Assignment'
+import Chart from './components/Chart'
+import CommentTile from '../comment/CommentTile'
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import LoadingIndicator from './../progress/LoadingIndicator'
@@ -116,8 +120,9 @@ export default {
     DeleteUser,
     Notification,
     Modal,
-    Chart,
     Assignment,
+    Chart,
+    CommentTile,
     LoadingIndicator,
     DataError
   },
