@@ -138,9 +138,9 @@
 <script>
   import { mapGetters } from 'vuex'
   import Vue from 'vue';
-  import 'carbon-components/css/carbon-components.css';
-  import CarbonComponentsVue from '@carbon/vue/src/index';
-  Vue.use(CarbonComponentsVue);
+  // import 'carbon-components/css/carbon-components.css';
+  // import CarbonComponentsVue from '@carbon/vue/src/index';
+  // Vue.use(CarbonComponentsVue);
   import NavBar from './components/NavBar.vue'
   import { mapActions } from 'vuex'
 

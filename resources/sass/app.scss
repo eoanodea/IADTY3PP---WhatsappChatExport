@@ -2,20 +2,16 @@
 // @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 //Apply the theme
-// @import "~vue-material/dist/theme/all";
 // @import 'carbon/themes';
 @import '@carbon/themes/scss/themes';
 $carbon--theme: $carbon--theme--g90;
 @include carbon--theme();
-
+@import 'carbon-components/scss/globals/scss/styles.scss';
 // Variables
 @import 'variables';
 
 // Theme Grid:
 @import '@carbon/grid/scss/grid';
-
-//Import Theme Engine
-// @import "~vue-material/dist/theme/engine";
 
 // Theme Colors
 @import 'colors';
@@ -25,16 +21,6 @@ $carbon--theme: $carbon--theme--g90;
 
 // Theme Fonts:
 @import 'fonts';
-
-// Theme Template
-// @import  'templates/import';
-
-//Register theme with primary and accent colours
-// @include md-register-theme("default", (
-//   primary: $primary,
-//   accent: $accent,
-//   theme: dark // This can be dark or light
-// ));
 
 // Theme Overrides
 @import 'overrides';
