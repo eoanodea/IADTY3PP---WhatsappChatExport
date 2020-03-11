@@ -72,15 +72,24 @@
     
     created() {
       if(this.assignments.length < 1) {
-        this.$store.dispatch('assignment/loadAssignments')
+        this.$store.dispatch('assignment/loadAssignments').then(this.loadAssignmentClient)
       }
     },
     methods: {
       returnData() {
         this.$emit('selected-assignment', this.assignmentId)
+      },
+      loadAssignmentClient() {
+        const arr = this.assignments.filter(dat => dat.id === parseInt(this.assignmentId))
+          
+        this.$store.dispatch('user/loadUser', arr[0].client_id)
       }
     },
-
+    watch: {
+      assignmentId: function(newVal, oldVal) {
+        this.loadAssignmentClient()
+      }
+    },
     components: {
       User,
       Service,
@@ -96,7 +105,7 @@
     computed: {
       ...mapGetters({
         assignments: 'assignment/assignments',
-        user: 'auth/user'
+        user: 'user/user'
       })
     },
   }

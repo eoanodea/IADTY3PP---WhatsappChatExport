@@ -42,12 +42,13 @@
 
   </div> <!-- Close ROW 1-->
 
-</div> <!-- Close GRID -->
+  <div class="bx--row">
 
-  <!-- <loading-indicator v-if="loading"/>
-  <div class="bx--grid" v-else-if="user && user.id">
- 
-  <data-error v-else v-bind:error="error" v-bind:collection="'user'" /> -->
+    <!-- Preparing for Project Page Implementation -->
+
+  </div> <!-- Close ROW 2 -->
+
+</div> <!-- Close GRID -->
 </template>
 
 <script>
