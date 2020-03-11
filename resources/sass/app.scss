@@ -1,29 +1,29 @@
-// Fonts
-// @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 //Apply the theme
-// @import 'carbon/themes';
 @import '@carbon/themes/scss/themes';
 $carbon--theme: $carbon--theme--g90;
 @include carbon--theme();
+
+// import Carbon styles
 // @import 'carbon-components/scss/globals/scss/styles.scss';
+
 // Variables
-@import 'variables';
+// @import 'variables';
 
 // Theme Grid:
 // @import '@carbon/grid/scss/grid';
 
 // Theme Colors
-@import 'colors';
+// @import 'colors';
 
 // Theme Spacings:
-@import 'spacing';
+// @import 'spacing';
 
 // Theme Fonts:
-@import 'fonts';
+// @import 'fonts';
 
 // Theme Overrides
-@import 'overrides';
+// @import 'overrides';
 
 // Theme Cards
 // @import 'cards'; 

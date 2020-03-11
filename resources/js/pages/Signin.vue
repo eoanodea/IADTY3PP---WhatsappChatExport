@@ -69,7 +69,6 @@
 <script>
 import Vue from 'vue'
 import { mapActions } from 'vuex'
-import 'carbon-components/css/carbon-components.css';
 
   export default {
     data() {

@@ -11,7 +11,6 @@ import VueRouter from 'vue-router';
 import router from './router';
 import store from './store/index'
 
-import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue/src/index';
 
 require('./bootstrap')

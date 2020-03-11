@@ -138,35 +138,11 @@
 <script>
   import { mapGetters } from 'vuex'
   import Vue from 'vue';
-  // import 'carbon-components/css/carbon-components.css';
-  // import CarbonComponentsVue from '@carbon/vue/src/index';
-  // Vue.use(CarbonComponentsVue);
-  import NavBar from './components/NavBar.vue'
   import { mapActions } from 'vuex'
 
-  import {
-  CvHeader,
-  CvHeaderGlobalAction,
-  CvHeaderMenu,
-  CvHeaderMenuButton,
-  CvHeaderMenuItem,
-  CvHeaderName,
-  CvHeaderNav,
-  CvHeaderPanel,
-  CvSideNav,
-  CvSideNavItems,
-  CvSideNavLink,
-  CvSideNavMenu,
-  CvSideNavMenuItem,
-  CvSkipToContent,
-  CvSwitcher,
-  CvSwitcherItem,
-  CvSwitcherItemLink,
-  CvHeaderSideNavItems,
-} from '@carbon/vue/src';
-import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
+  import AppSwitcher20 from '@carbon/icons-vue/es/app-switcher/20';
 
-const DEFAULT_TRANSITION = 'fade';
+  const DEFAULT_TRANSITION = 'fade';
 
   export default {
     data() {
@@ -176,24 +152,6 @@ const DEFAULT_TRANSITION = 'fade';
       }
     },
     components: {
-      CvHeader,
-      CvHeaderPanel,
-      CvHeaderName,
-      CvHeaderNav,
-      CvHeaderSideNavItems,
-      CvHeaderGlobalAction,
-      CvHeaderMenu,
-      CvHeaderMenuItem,
-      CvHeaderMenuButton,
-      CvSideNav,
-      CvSideNavLink,
-      CvSideNavMenu,
-      CvSideNavItems,
-      CvSideNavMenuItem,
-      CvSkipToContent,
-      CvSwitcher,
-      CvSwitcherItem,
-      CvSwitcherItemLink,
       AppSwitcher20
     },
     computed: {
