@@ -1,39 +1,63 @@
 <template>
-<loading-indicator v-if="loading"/>
-<div class="bx--grid" style="padding: 40px 0px;" v-else-if="transaction && transaction.id">
+<div class="bx--grid">
+    <!-- Label -->
     <div class="bx--row">
-        <!-- Trans Details (Notfication Card) -->
-        <div class="bx--col-lg-12">
-            <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
-                <div class="bx--inline-notification__details">
-                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
+        <div class="bx--col-lg-6">
+            <h1>Transaction</h1>
+        </div>
 
-                    <!-- Trans Detail Contents -->
-                    <div class="bx--row">
-                        <div class="bx--inline-notification__text-wrapper">
-                            <div class="bx--col-lg-12">
-                                <p class="bx--inline-notification__title">I.D: {{ transaction.id }}</p>
-                                <p class="bx--inline-notification__title">Project {{ assignment.title }}</p>
-                                <p class="bx--inline-notification__title">Transaction created at {{ transaction.created_at }}</p>
-                                <p class="bx--inline-notification__title">Transaction updated at {{ transaction.updated_at }}</p>
-                                <p class="bx--inline-notification__title">Amount €{{ transaction.amount }}</p>
-                                <p class="bx--inline-notification__title">Stripe I.D: {{ transaction.stripe_id }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- View Assignment Button -->
-                <cv-link :to="'/admin/assignments/show/' + transaction.assignment_id" style="text-decoration: none;">
-                    <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-                        View Project
-                    </button>
-                </cv-link>
-            </div>
+        <div class="bx--col-lg-6" style="text-align:right;">
+            <cv-link :to="'/admin/assignments/show/' + transaction.assignment_id" style="text-decoration: none;">
+                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+                    View Project
+                </button>
+            </cv-link>
+        </div>
+    </div>
+
+    <br/><br/>
+    <hr/>
+
+    <div class="bx--row">
+        <!-- Project -->
+        <div class="bx--col-lg-6">
+            <p class="bx--inline-notification__title" style="font-size:34px;">Project {{ assignment.title }}</p>
+        </div>
+        
+        <!-- ID -->
+        <div class="bx--col-lg-6">
+            <p class="bx--inline-notification__title tertiaryText" style="font-size:24px;text-align:right;">I.D: {{ transaction.id }}</p>
+        </div>
+    </div>
+
+    <br/><br/>
+
+    <div class="bx--row">
+        <!-- Created At -->
+        <div class="bx--col-lg-6">
+            <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Transaction created at {{ transaction.created_at }}</p>
+        </div>
+
+        <!-- Updated At -->
+        <div class="bx--col-lg-6">
+            <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;text-align:right;">Transaction updated at {{ transaction.updated_at }}</p>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="bx--row">
+        <!-- Amount -->
+        <div class="bx--col-lg-6">
+            <p class="bx--inline-notification__title" style="font-size:24px;">Amount €{{ transaction.amount }}</p>
+        </div>
+
+        <!-- Stripe ID -->
+        <div class="bx--col-lg-6">
+            <p class="bx--inline-notification__title" style="font-size:24px;text-align:right;">Stripe I.D: {{ transaction.stripe_id }}</p>
         </div>
     </div>
 </div>
-<data-error v-else v-bind:error="error" v-bind:collection="'user'" />
 </template>
 
 <script>
