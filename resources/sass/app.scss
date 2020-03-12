@@ -9,5 +9,6 @@ $carbon--theme: $carbon--theme--g90;
 // import Carbon styles with new theme variable
 @import 'carbon-components/scss/globals/scss/styles.scss';
 
+@import 'overrides';
 
 

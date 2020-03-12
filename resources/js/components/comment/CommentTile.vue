@@ -57,11 +57,9 @@ Vue.use(CarbonComponentsVue);
     }
     .chat-container-expanded {
         background-color: #ffffff00;
-    //     height: 80%;
-    //     width: 60%;
     }
     .msg-page {
-        background-color: #fff;
+        background-color: #262626;
     }
     @media (max-width: 550px) {
         .chat-container-expanded {

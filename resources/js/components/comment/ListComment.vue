@@ -190,7 +190,6 @@
     .chat {
         flex: 1;
         width: 350px;
-        background-color: #f8f9fb;
     }
     .empty-chat-holder {
         width: 100%;
@@ -220,12 +219,12 @@
         width: 100%;
         height: 588px;
         letter-spacing: 0.5px;
-        background: #f8f9fb;
+        // background: #f8f9fb;
         padding: 0 !important;
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
         border-radius: 7px;
         box-sizing: border-box;
-        border: 1px solid #BFCDD8;
+        border: 1px solid #262626;
     }
 
     .msg-header {
@@ -233,7 +232,7 @@
         height: 70px;
         border-bottom: none;
         display: inline-block;
-        background-color: #fff;
+        background-color: #161616;
         border-radius: 7px 7px 0 0;
         padding: 0 20px;
         display: flex;
@@ -248,7 +247,7 @@
 
     .active h5 {
         padding: 10px;
-        color: #444;
+        color: #f2f2f2;
         font-size: 18px;
         font-weight: 500;
         margin: 0;
@@ -348,7 +347,6 @@
 
     .outgoing-chats-msg p {
         background: #1546dc none repeat scroll 0 0;
-        color: #fff;
         font-size: 16px;
         margin: 0;
         color: #fff;
@@ -483,7 +481,7 @@
     .loading-text {
         color: #1546dc;
         font-size: 25px;
-        margin-top: 20px;
+        margin: 20px;
     }
 
     .loading-messages-container .spinner svg {
