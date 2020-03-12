@@ -2,6 +2,26 @@
 <loading-indicator v-if="loading"/>
 <div class="bx--grid" style="padding: 40px 0px;" v-else-if="assignment && assignment.id">
     <div class="bx--row">
+        <div class="bx--col-lg-2">
+            <!-- View Checkout Button -->
+            <cv-link :to="'/checkout/' + assignment.id" style="text-decoration: none;">
+                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
+                    Checkout
+                </button>
+            </cv-link>
+        </div>
+
+        <div class="bx--col-lg-2">
+        <!-- View Transaction Button -->
+        <cv-link :to="'/transaction/' + assignment.id" style="text-decoration: none;">
+            <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
+                View Transaction
+            </button>
+        </cv-link>
+        </div>
+    </div>
+    
+    <div class="bx--row">
         <div class="bx--col-lg-6">
             <!-- Project Detailes (Notification) -->
             <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
@@ -24,25 +44,7 @@
                     </div>
                 </div>
                 
-                <div class="bx--row">
-                    <div class="bx--col-lg-6">
-                        <!-- View Checkout Button -->
-                        <cv-link :to="'/checkout/' + assignment.id" style="text-decoration: none;">
-                            <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
-                                Checkout
-                            </button>
-                        </cv-link>
-                    </div>
-
-                    <div class="bx--col-lg-6">
-                    <!-- View Transaction Button -->
-                    <cv-link :to="'/transaction/' + assignment.id" style="text-decoration: none;">
-                        <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
-                            View Transaction
-                        </button>
-                    </cv-link>
-                    </div>
-                </div>
+                
 
                 <!-- Edit Button -->
                 <cv-link :to="'/admin/assignments/edit/' + assignment.id" style="text-decoration: none;">

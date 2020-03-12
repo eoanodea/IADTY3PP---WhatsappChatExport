@@ -1,46 +1,60 @@
 <template>
-<div class="bx--grid" style="padding: 40px 0px;">
+<div class="bx--grid">
   <div class="bx--row">
-    <div class="bx--col">
-      <!-- Checkout Details (Notification)-->
-      <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
-        <div class="bx--inline-notification__details">
-          <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
-
-          <!-- Checkout Details Contents -->
-          <div class="bx--row">
-            <div class="bx--inline-notification__text-wrapper">
-              <div class="bx--col-lg-12">
-                <p v-if="user" class="bx--inline-notification__title">{{ user.first_name }}</p>
-
-                <div v-if="assignment">
-                  <p class="bx--inline-notification__title">Total: €{{ assignment.total_price }}</p>
-                  <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
-                  <p class="bx--inline-notification__title">Amount Due €{{ checkoutPayload.amount }}</p>
-                  <p class="bx--inline-notification__title">Amount Paid: €{{ assignment.amount_paid }}</p>
-                </div>
-                <p v-else>There is no assignment</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <template v-if="checkoutPayload.amount > 0">
-          <!-- Checkout Button -->
-          <button @click="checkout = !checkout" data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-            Checkout
-          </button>
-        </template>
-        <p v-else>No payment due.</p>
-
-        <place-order 
-          v-if="checkout" 
-          v-bind:payload="checkoutPayload" 
-          v-bind:user="user"
-          >
-        </place-order>
-      </div>
+    <div class="bx--col-lg-12">
+      <h1>Checkout</h1>
     </div>
   </div>
+
+  <br/><br/>
+  <hr/>
+
+  <div class="bx--row">
+    <div class="bx--col-lg-12">
+      <p class="bx--inline-notification__title" style="font-size:34px;">Total: €{{ assignment.total_price }}</p>
+    </div>
+  </div>
+
+  <br/><br/>
+
+  <div class="bx--row">
+    <div class="bx--col-lg-12">
+      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Discount: {{ assignment.discount }}%</p>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="bx--row">
+    <div class="bx--col-lg-12">
+      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Amount Due €{{ checkoutPayload.amount }}</p>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="bx--row">
+    <div class="bx--col-lg-12">
+      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Amount Paid: €{{ assignment.amount_paid }}</p>
+    </div>
+  </div>
+
+  <hr/>
+
+  <template v-if="checkoutPayload.amount > 0">
+    <!-- Checkout Button -->
+    <button @click="checkout = !checkout" data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+      Checkout
+    </button>
+  </template>
+  <p v-else>No payment due.</p>
+
+  <place-order 
+    v-if="checkout" 
+    v-bind:payload="checkoutPayload" 
+    v-bind:user="user"
+    >
+  </place-order>
 </div>
 </template>
 
