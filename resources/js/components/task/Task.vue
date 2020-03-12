@@ -43,7 +43,7 @@
   import axios from "axios";
   import DeleteTask from "./DeleteTask";
   
-  import CarbonComponentsVue from '@carbon/vue/src/index';
+  
   import { Notification } from 'carbon-components';
   import { Modal } from 'carbon-components';
   import { mapGetters } from 'vuex'

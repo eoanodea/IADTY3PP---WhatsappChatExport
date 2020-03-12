@@ -70,7 +70,7 @@
                 <label for="recurring_payment" class="bx--label">Recurring Payment</label>
                 <cv-checkbox
                     name="recurring_payment" 
-                    v-model="service.recurring_payment"
+                    v-model="newService.recurring_payment"
                     >
                 </cv-checkbox>
             </div>
@@ -83,7 +83,7 @@
                 <label for="is_public" class="bx--label">Public Service</label>
                 <cv-checkbox
                     name="is_public" 
-                    v-model="service.is_public"
+                    v-model="newService.is_public"
                     >
                 </cv-checkbox>
             </div>
@@ -127,12 +127,8 @@
     import router from './../../router'
     import DataError from './../table/DataError'
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
-    import { CvCheckbox } from '@carbon/vue/src'
     import { mapGetters } from 'vuex';
     import LoadingIndicator from './../progress/LoadingIndicator'
-
-    Vue.use(CarbonComponentsVue);
 
 
     export default {
@@ -209,8 +205,7 @@
         },
         components: {
             DataError,
-            LoadingIndicator,
-            CvCheckbox
+            LoadingIndicator
         },
         computed: {
             ...mapGetters({

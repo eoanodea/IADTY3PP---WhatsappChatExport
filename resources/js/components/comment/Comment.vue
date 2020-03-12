@@ -47,7 +47,7 @@ import Vue from "vue";
 import axios from "axios";
 import DeleteComment from "./DeleteComment";
 
-import CarbonComponentsVue from '@carbon/vue/src/index';
+
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 

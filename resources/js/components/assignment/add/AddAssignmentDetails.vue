@@ -114,11 +114,6 @@
 <script>
     import Vue from 'vue';
     import format from 'date-fns/format'
-    
-    import CarbonComponentsVue from '@carbon/vue/src/index';
-    import { CvCheckbox, CvDatePicker } from '@carbon/vue/src'
-
-    Vue.use(CarbonComponentsVue);
 
     export default {
         data() {
@@ -177,8 +172,7 @@
             },
         },
         components: {
-            CvCheckbox,
-            CvDatePicker
+            //
         }
     }
 </script>

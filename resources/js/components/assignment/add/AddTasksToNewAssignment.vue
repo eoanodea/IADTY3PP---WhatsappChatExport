@@ -71,12 +71,12 @@
     import axios from 'axios';
     import CreateNewTaskForAssignment from './CreateNewTaskForNewAssignment'
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
+    
     import Checkmark from '@carbon/icons-vue/lib';
     import ListTask from './../../task/ListTask'
     import { DataTable, Loading } from 'carbon-components';
 
-    Vue.use(CarbonComponentsVue);
+    
 
     export default {
         //This component will only work 

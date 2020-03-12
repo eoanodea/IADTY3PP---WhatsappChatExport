@@ -31,16 +31,6 @@
     import axios from 'axios';
     import Vue from 'vue';
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
-    import { 
-        CvContentSwitcher, 
-        CvContentSwitcherButton, 
-        CvContentSwitcherContent,
-        CvDropdown, 
-        CvDropdownItem, 
-        CvDropdownSkeleton } from '@carbon/vue/src'
-
-    Vue.use(CarbonComponentsVue);
 
     export default {
         data() {
@@ -94,12 +84,7 @@
             }
         },
         components: {
-            CvContentSwitcher, 
-            CvContentSwitcherButton, 
-            CvContentSwitcherContent,
-            CvDropdown, 
-            CvDropdownItem, 
-            CvDropdownSkeleton
+            //
         }   
     }
 </script>

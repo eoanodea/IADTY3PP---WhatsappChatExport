@@ -84,9 +84,9 @@
     import Vue from 'vue';
     import router from './../../router'
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
     
-    Vue.use(CarbonComponentsVue);
+    
+    
 
     export default {
         props: ['id', 'isActive'],

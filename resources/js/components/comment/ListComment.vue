@@ -78,12 +78,12 @@
     import Vue from "vue";
     import axios from 'axios';
     import LoadingIndicator from './../progress/LoadingIndicator'
-    import CarbonComponentsVue from '@carbon/vue/src/index';
+    
     
     import { mapGetters } from 'vuex'
     import AddComment from './AddComment'
 
-    Vue.use(CarbonComponentsVue);
+    
 
     export default {
         props: ['parentId', 'isAssignment'],

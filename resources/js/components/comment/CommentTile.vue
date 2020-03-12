@@ -9,11 +9,11 @@
 <script>
 import Vue from "vue";
 
-import CarbonComponentsVue from '@carbon/vue/src/index';
+
 import ListComment from './ListComment'
 
 
-Vue.use(CarbonComponentsVue);
+
 
     export default {
         props: ['id', 'isAssignment'],

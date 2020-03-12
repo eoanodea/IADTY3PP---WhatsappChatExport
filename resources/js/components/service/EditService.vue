@@ -126,13 +126,13 @@
     import Vue from 'vue';
     import router from './../../router'
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
+    
     import { CvCheckbox } from '@carbon/vue/src'
     import { mapGetters } from 'vuex';
     import LoadingIndicator from './../progress/LoadingIndicator'
     import DataError from './../table/DataError'
 
-    Vue.use(CarbonComponentsVue);
+    
     
 
     export default {

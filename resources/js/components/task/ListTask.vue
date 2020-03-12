@@ -19,10 +19,10 @@ import axios from 'axios';
 import DynamicTable from './../table/DynamicTable'
 import { mapGetters } from 'vuex';
 // 
-// import CarbonComponentsVue from '@carbon/vue/src/index';
+// 
 // import { DataTable, Loading } from 'carbon-components';
 
-// Vue.use(CarbonComponentsVue);
+// 
 
     export default {
         props: ['parentId', 'isActive'],

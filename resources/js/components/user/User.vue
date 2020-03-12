@@ -59,14 +59,14 @@ import Assignment from '../assignment/Assignment'
 import Chart from './components/Chart'
 import CommentTile from '../comment/CommentTile'
 
-import CarbonComponentsVue from '@carbon/vue/src/index';
+
 import LoadingIndicator from './../progress/LoadingIndicator'
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
 import DataError from './../table/DataError'
 
-Vue.use(CarbonComponentsVue);
+
 
 export default {
   data() {

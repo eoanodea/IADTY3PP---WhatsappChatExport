@@ -167,13 +167,12 @@
     import router from './../../router'
     import format from 'date-fns/format'
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
-    import { CvCheckbox, CvDatePicker } from '@carbon/vue/src'
+
     import { mapGetters } from 'vuex';
     import LoadingIndicator from './../progress/LoadingIndicator'
     import DataError from './../table/DataError'
 
-    Vue.use(CarbonComponentsVue);
+    
 
     export default {
         data() {
@@ -245,8 +244,6 @@
             })
         },
         components: {
-            CvCheckbox,
-            CvDatePicker,
             LoadingIndicator,
             DataError
         }

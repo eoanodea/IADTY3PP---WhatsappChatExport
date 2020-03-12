@@ -62,10 +62,10 @@
   import CommentTile from './../components/comment/CommentTile'
   
   
-  import CarbonComponentsVue from '@carbon/vue/src/index';
-  import { CvDropdown, CvDropdownItem, CvDropdownSkeleton } from '@carbon/vue/src'
+  
+  // import { CvDropdown, CvDropdownItem, CvDropdownSkeleton } from '@carbon/vue/src'
 
-  Vue.use(CarbonComponentsVue);
+  // 
 
   export default {
     data() {
@@ -103,9 +103,9 @@
       Chart,
       CommentTile,
       Notification,
-      CvDropdown, 
-      CvDropdownItem, 
-      CvDropdownSkeleton
+      // CvDropdown, 
+      // CvDropdownItem, 
+      // CvDropdownSkeleton
     },
     computed: {
       ...mapGetters({

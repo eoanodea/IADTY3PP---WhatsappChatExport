@@ -85,9 +85,9 @@
 import Vue from "vue";
 import axios from "axios";
 
-import CarbonComponentsVue from '@carbon/vue/src/index';
 
-Vue.use(CarbonComponentsVue);
+
+
 
 export default {
     

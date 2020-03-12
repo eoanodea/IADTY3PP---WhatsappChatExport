@@ -34,7 +34,7 @@
     import axios from 'axios'
     import router from './../../router'
     
-    import CarbonComponentsVue from '@carbon/vue/src/index';
+    
     import { Modal } from 'carbon-components';
     import { CvModal } from '@carbon/vue/src';
 

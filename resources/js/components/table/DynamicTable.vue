@@ -82,10 +82,10 @@
     import Pagination from './Pagination'
 
     //Carbon Imports
-    import CarbonComponentsVue from '@carbon/vue/src/index';
+    
     import { DataTable } from 'carbon-components';
 
-    Vue.use(CarbonComponentsVue);
+    
 
     export default {
         props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'error', 'collection', 'loading', 'isActive'],

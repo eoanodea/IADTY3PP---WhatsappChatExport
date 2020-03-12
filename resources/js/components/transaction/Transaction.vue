@@ -40,14 +40,14 @@
 import Vue from "vue";
 import axios from 'axios'
 
-import CarbonComponentsVue from '@carbon/vue/src/index';
+
 import { Notification } from 'carbon-components';
 import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
 import LoadingIndicator from './../progress/LoadingIndicator'
 import DataError from './../table/DataError'
 
-Vue.use(CarbonComponentsVue);
+
 
     export default {
         data() {

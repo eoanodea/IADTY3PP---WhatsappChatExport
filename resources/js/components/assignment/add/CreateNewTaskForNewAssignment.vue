@@ -213,11 +213,6 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-import CarbonComponentsVue from '@carbon/vue/src/index'
-import { Modal } from 'carbon-components';
-import { CvModal } from '@carbon/vue/src';
-
-Vue.use(CarbonComponentsVue);
 
 export default {
     data() {
@@ -266,8 +261,7 @@ export default {
         },
     },
     components: {
-        Modal,
-        CvModal
+        //
     }
     
 }
