@@ -81,14 +81,10 @@
     import ListTransaction from './../transaction/ListTransaction'
     import ListTask from './../task/ListTask'
     
-    
-    import { Notification } from 'carbon-components';
     import CommentTile from './../comment/CommentTile'
     import { mapGetters } from 'vuex'
     import LoadingIndicator from './../progress/LoadingIndicator'
     import DataError from './../table/DataError'
-
-    
 
     export default {
         data() {

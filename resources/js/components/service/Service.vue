@@ -48,14 +48,10 @@
     import DeleteService from './DeleteService';
     import ListTask from './../task/ListTask';
     
-    
-    import { Notification } from 'carbon-components';
-    // import { Modal } from 'carbon-components';
     import { mapGetters } from 'vuex'
     import LoadingIndicator from './../progress/LoadingIndicator'
     import DataError from './../table/DataError'
 
-    
 
     export default {
         data() {
@@ -73,21 +69,11 @@
                 error: 'service/error'
             })
         },
-        // mounted () {
-        //     axios.get(`/api/service/${this.$route.params.id}`)
-        //     .then(response => {
-        //         if(response.data.status !== "success") {
-        //             console.log("error ", response)
-        //         } else this.service = response.data.service
-        //     })
-        // },
         components: {
             DeleteService,
             ListTask,
-            Notification,
             LoadingIndicator,
             DataError,
-            // Modal,
         }
     }
 </script>

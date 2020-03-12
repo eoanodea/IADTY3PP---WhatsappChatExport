@@ -61,15 +61,12 @@
 </template>
 
 <script>
-import Vue from "vue";
-import axios from 'axios'
+    import Vue from "vue";
+    import axios from 'axios'
 
-
-import { Notification } from 'carbon-components';
-import { Modal } from 'carbon-components';
-import { mapGetters } from 'vuex';
-import LoadingIndicator from './../progress/LoadingIndicator'
-import DataError from './../table/DataError'
+    import { mapGetters } from 'vuex';
+    import LoadingIndicator from './../progress/LoadingIndicator'
+    import DataError from './../table/DataError'
 
 
 
@@ -105,8 +102,6 @@ import DataError from './../table/DataError'
             },
         },
         components: {
-            Notification,
-            Modal,
             LoadingIndicator,
             DataError,
         },   

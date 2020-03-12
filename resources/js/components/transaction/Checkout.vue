@@ -64,11 +64,6 @@
   import { mapGetters } from 'vuex'
   import PlaceOrder from './PlaceOrder'
   
-  
-  import { Notification } from 'carbon-components';
-  import { Modal, DataTable, Loading } from 'carbon-components';
-
-  
 
   export default {
     data() {

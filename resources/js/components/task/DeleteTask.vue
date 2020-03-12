@@ -65,8 +65,7 @@
             }
         },
         components: {
-            Modal,
-            CvModal
+            //
         }
     }
 </script>

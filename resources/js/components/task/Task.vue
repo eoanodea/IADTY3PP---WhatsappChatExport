@@ -73,8 +73,6 @@
     },
     components: {
       DeleteTask,
-      Notification,
-      // Modal,
       LoadingIndicator,
       DataError
     }

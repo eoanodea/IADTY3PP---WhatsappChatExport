@@ -61,8 +61,6 @@ import CommentTile from '../comment/CommentTile'
 
 
 import LoadingIndicator from './../progress/LoadingIndicator'
-import { Notification } from 'carbon-components';
-import { Modal } from 'carbon-components';
 import { mapGetters } from 'vuex';
 import DataError from './../table/DataError'
 
@@ -89,8 +87,6 @@ export default {
   },
   components: {
     DeleteUser,
-    Notification,
-    Modal,
     Assignment,
     Chart,
     CommentTile,
