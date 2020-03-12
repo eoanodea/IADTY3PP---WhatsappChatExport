@@ -128,7 +128,7 @@
     </cv-header>
     
     <div class="router-container">
-      <transition :name="transitionName">
+      <transition :name="transitionName" mode="out-in">
         <router-view></router-view>
       </transition>
     </div>

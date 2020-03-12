@@ -178,7 +178,6 @@
             //fetch new data
             parentId: function(newVal, oldVal) {
                 this.commentId = parseInt(newVal)
-                console.log('running!', oldVal, newVal)
                 this.fetchComments()
             }
         },
@@ -301,7 +300,7 @@
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .received-msg-inbox p span {
+    .received-msg-inbox p a {
         color: #6889fd;
         text-transform: capitalize;
         font-weight: bold;
