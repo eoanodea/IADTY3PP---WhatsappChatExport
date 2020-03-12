@@ -126,14 +126,9 @@
     import Vue from 'vue';
     import router from './../../router'
     
-    
-    import { CvCheckbox } from '@carbon/vue/src'
     import { mapGetters } from 'vuex';
     import LoadingIndicator from './../progress/LoadingIndicator'
     import DataError from './../table/DataError'
-
-    
-    
 
     export default {
         data() {
@@ -185,7 +180,6 @@
             })
         },
         components: {
-            CvCheckbox,
             LoadingIndicator,
             DataError
         },
