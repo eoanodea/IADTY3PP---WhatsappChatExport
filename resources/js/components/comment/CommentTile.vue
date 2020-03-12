@@ -24,7 +24,6 @@ Vue.use(CarbonComponentsVue);
         },
         methods: {
             expand(ev) {
-                console.log('yes new change!!')
                 this.expanded = !this.expanded
             }
         },

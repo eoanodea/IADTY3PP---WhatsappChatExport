@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid" style="padding: 230px;">
+<div class="bx--grid responsive-form">
 
     <!-- Email -->
     <div class="bx--row">

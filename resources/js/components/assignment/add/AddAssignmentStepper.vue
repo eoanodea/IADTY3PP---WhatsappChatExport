@@ -1,5 +1,5 @@
 <template>
-<div class="bx--grid" style="padding: 60px 250px;">
+<div class="bx--gridresponsive-form">
     <!-- Switcher Buttons -->
     <cv-content-switcher>
         <!-- Client and Services Button -->

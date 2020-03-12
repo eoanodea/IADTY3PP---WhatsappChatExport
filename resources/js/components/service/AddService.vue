@@ -1,6 +1,6 @@
 <template>
     <loading-indicator v-if="submitting"/>
-    <div class="bx--grid" style="padding: 60px 250px;" v-else>
+    <div class="bx--gridresponsive-form" v-else>
         <!-- Title -->
         <div class="bx--row">
             <div class="bx--col-lg-12">

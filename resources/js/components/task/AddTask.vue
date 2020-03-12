@@ -1,5 +1,5 @@
 <template>
-    <div class="bx--grid" style="padding: 60px 250px;">
+    <div class="bx--gridresponsive-form">
         <!-- Title -->
         <div class="bx--row">
             <div class="bx--col-lg-12">

@@ -1,6 +1,6 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--grid" style="padding: 60px 250px;" v-else-if="updatedService">
+<div class="bx--gridresponsive-form" v-else-if="updatedService">
     <!-- Title -->
     <div class="bx--row">
         <div class="bx--col-lg-12">
@@ -153,7 +153,6 @@
             this.$store.dispatch('service/loadService', parseInt(this.$route.params.id))
 
             this.updatedService = this.service
-            console.log('running', this.service, this.updatedService)
         },
         methods: {
             submitService: function() {

@@ -54,7 +54,6 @@ import { mapGetters } from 'vuex';
             //fetch new data
             parentId: function(newVal, oldVal) {
                 this.taskId = newVal
-                console.log('running!', oldVal, newVal)
                 this.$store.dispatch('task/loadTasks', [this.taskId, this.isActive])
             }
         },

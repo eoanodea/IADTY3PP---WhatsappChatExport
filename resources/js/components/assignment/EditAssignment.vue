@@ -1,6 +1,6 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--grid" style="padding: 60px 250px;" v-else-if="updatedAssignment">
+<div class="bx--gridresponsive-form" v-else-if="updatedAssignment">
     <!-- Project -->
     <div class="bx--row">
         <div class="bx--col-lg-12">
@@ -201,7 +201,6 @@
             this.$store.dispatch('assignment/loadAssignment', parseInt(this.$route.params.id))
 
             this.updatedAssignment = this.assignment
-            console.log('running', this.assignment, this.updatedAssignment)
         },
         methods: {
             // submitAssignment: function() {

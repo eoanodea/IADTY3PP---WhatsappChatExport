@@ -25,7 +25,7 @@ export default {
             serviceId: this.parentId,
             data: {
                 labels :[
-                    // ''
+                    // 
                 ],
                 datasets: [
                     {
@@ -49,11 +49,6 @@ export default {
             }
         };
     },
-    // mounted() {
-    //      if(this.serviceId) {
-    //             this.fetchTasks()
-    //         }
-    // },
     created() {
            if(this.serviceId && this.tasks.length < 1) {
                this.$store.dispatch('task/loadTasks', [this.serviceId, true])
@@ -61,31 +56,16 @@ export default {
            }
     },
     methods: {
-
         structureTasks() {
                 const {tasks} = this
                 if(tasks.length > 0) {
-                        tasks.map(task => {
-                            this.data.datasets[0].data.push(task.percent_done)
-                            this.data.labels.push(task.title)
-                            this.fetched = true
-                        })
-                    } else console.log('no tasks')
+                    tasks.map(task => {
+                        this.data.datasets[0].data.push(task.percent_done)
+                        this.data.labels.push(task.title)
+                        this.fetched = true
+                    })
+                }
             }
-            
-        // fetchTasks() {
-        //     this.fetched = false
-        //     const url ="task/active"
-
-        //     axios.get(`/api/${url}/by/${this.serviceId}`).then(response => {
-        //         if (response.data.status !== "success") {
-        //             console.log("error ", response);
-        //         } else {
-        //             const tasks = response.data.task;
-                    
-        //         }
-        //     });
-        // }
     },
     computed: {
             ...mapGetters({
@@ -101,7 +81,6 @@ export default {
                 this.data.labels = []
 
                 this.serviceId = newVal
-                console.log('running!', oldVal, newVal)
                 this.$store.dispatch('task/loadTasks', [this.serviceId, true])
                 .then(() => this.structureTasks())
             }

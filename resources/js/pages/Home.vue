@@ -34,7 +34,7 @@
 
       <div class="assignment-container" v-if="assignmentId">
         <!-- Progression Donut -->
-        <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
+        <Chart v-bind:parentId="assignmentId"/>
       </div>
     </div>
 

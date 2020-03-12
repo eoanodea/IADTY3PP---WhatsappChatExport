@@ -1,6 +1,6 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--grid" style="padding: 60px 250px;" v-else-if="updatedUser">
+<div class="bx--gridresponsive-form" v-else-if="updatedUser">
     <!-- Name -->
     <div class="bx--row">
         <!-- First Name -->
