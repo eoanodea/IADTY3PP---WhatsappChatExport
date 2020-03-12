@@ -42,7 +42,7 @@
   import Vue from "vue";
   import axios from "axios";
   import DeleteTask from "./DeleteTask";
-  import 'carbon-components/css/carbon-components.css';
+  
   import CarbonComponentsVue from '@carbon/vue/src/index';
   import { Notification } from 'carbon-components';
   import { Modal } from 'carbon-components';

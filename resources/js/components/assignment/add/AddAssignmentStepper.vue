@@ -48,7 +48,7 @@
     import AddClientAndService from './AddClientAndService.vue';
     import AddAssignmentDetails from './AddAssignmentDetails'
     import AddTasksToNewAssignment from './AddTasksToNewAssignment';
-    import 'carbon-components/css/carbon-components.css';
+    
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { CvContentSwitcher, CvContentSwitcherButton, CvContentSwitcherContent } from '@carbon/vue/src'
     import AddFilled16 from '@carbon/icons-vue/es/add--filled/16';

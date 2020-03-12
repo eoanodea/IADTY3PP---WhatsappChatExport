@@ -61,7 +61,7 @@
   import Chart from './../components/user/components/Chart'
   import CommentTile from './../components/comment/CommentTile'
   
-  import 'carbon-components/css/carbon-components.css';
+  
   import CarbonComponentsVue from '@carbon/vue/src/index';
   import { CvDropdown, CvDropdownItem, CvDropdownSkeleton } from '@carbon/vue/src'
 

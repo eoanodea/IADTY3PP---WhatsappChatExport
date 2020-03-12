@@ -114,7 +114,7 @@
 <script>
     import Vue from 'vue';
     import format from 'date-fns/format'
-    import 'carbon-components/css/carbon-components.css';
+    
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { CvCheckbox, CvDatePicker } from '@carbon/vue/src'
 

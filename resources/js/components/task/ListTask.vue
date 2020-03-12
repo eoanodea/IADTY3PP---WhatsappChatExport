@@ -18,7 +18,7 @@ import Vue from "vue";
 import axios from 'axios';
 import DynamicTable from './../table/DynamicTable'
 import { mapGetters } from 'vuex';
-// import 'carbon-components/css/carbon-components.css';
+// 
 // import CarbonComponentsVue from '@carbon/vue/src/index';
 // import { DataTable, Loading } from 'carbon-components';
 

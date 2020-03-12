@@ -14,9 +14,7 @@
     </div>
 </template>
 <script>
-  // import { MdButton } from 'vue-material/dist/components'
-
-  // Vue.use(MdButton)
+  
   export default {
     data() {
       return {

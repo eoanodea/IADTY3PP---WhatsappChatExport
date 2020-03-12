@@ -58,7 +58,7 @@ import DeleteUser from "./DeleteUser";
 import Assignment from '../assignment/Assignment'
 import Chart from './components/Chart'
 import CommentTile from '../comment/CommentTile'
-import 'carbon-components/css/carbon-components.css';
+
 import CarbonComponentsVue from '@carbon/vue/src/index';
 import LoadingIndicator from './../progress/LoadingIndicator'
 import { Notification } from 'carbon-components';

@@ -49,7 +49,7 @@
   import axios from 'axios'
   import { mapGetters } from 'vuex'
   import PlaceOrder from './PlaceOrder'
-  import 'carbon-components/css/carbon-components.css';
+  
   import CarbonComponentsVue from '@carbon/vue/src/index';
   import { Notification } from 'carbon-components';
   import { Modal, DataTable, Loading } from 'carbon-components';

@@ -1,32 +1,13 @@
 
-//Apply the theme
+//Importing carbons themes
 @import '@carbon/themes/scss/themes';
+
+//Applying the carbon dark theme
 $carbon--theme: $carbon--theme--g90;
 @include carbon--theme();
 
-// import Carbon styles
-// @import 'carbon-components/scss/globals/scss/styles.scss';
-
-// Variables
-// @import 'variables';
-
-// Theme Grid:
-// @import '@carbon/grid/scss/grid';
-
-// Theme Colors
-// @import 'colors';
-
-// Theme Spacings:
-// @import 'spacing';
-
-// Theme Fonts:
-// @import 'fonts';
-
-// Theme Overrides
-// @import 'overrides';
-
-// Theme Cards
-// @import 'cards'; 
+// import Carbon styles with new theme variable
+@import 'carbon-components/scss/globals/scss/styles.scss';
 
 
 

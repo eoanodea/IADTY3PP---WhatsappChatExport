@@ -70,7 +70,7 @@
     import Vue from 'vue'
     import axios from 'axios';
     import CreateNewTaskForAssignment from './CreateNewTaskForNewAssignment'
-    import 'carbon-components/css/carbon-components.css';
+    
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import Checkmark from '@carbon/icons-vue/lib';
     import ListTask from './../../task/ListTask'

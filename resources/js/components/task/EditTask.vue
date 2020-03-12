@@ -86,7 +86,7 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    import 'carbon-components/css/carbon-components.css';
+    
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { mapGetters } from 'vuex';
     import LoadingIndicator from './../progress/LoadingIndicator'

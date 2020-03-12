@@ -78,7 +78,7 @@
     import DeleteAssignment from './DeleteAssignment'
     import ListTransaction from './../transaction/ListTransaction'
     import ListTask from './../task/ListTask'
-    import 'carbon-components/css/carbon-components.css';
+    
     import CarbonComponentsVue from '@carbon/vue/src/index';
     import { Notification } from 'carbon-components';
     import CommentTile from './../comment/CommentTile'

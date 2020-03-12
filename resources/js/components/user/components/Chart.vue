@@ -108,3 +108,11 @@ export default {
         },
 };
 </script>
+<style lang="scss">
+    svg.bx--cc--chart-svg text, text.title {
+        fill: #fff!important;
+    }
+    .bx--chart-holder {
+        background: none;
+    }
+</style>
