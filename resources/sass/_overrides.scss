@@ -1,32 +1,14 @@
 //Theme overrides
 .bx--inline-notification {
     max-width: 100%;
-    background: #181E31;
-    color: #D1D2D8;
-}
-
-.bx--data-table-header,
-.bx--table-toolbar,
-.bx--data-table td, 
-.bx--data-table tbody th,
-.bx--dropdown,
-.bx--dropdown-list {
-    background: #181E31;
-}
-
-.bx--data-table th, 
-.bx--table-sort,
-.bx--pagination,
-.bx--data-table tbody tr:hover,
-.bx--data-table tbody tr:hover td,
-.bx--dropdown:hover,
-.bx--dropdown--show-selected .bx--dropdown--selected,
-.bx--dropdown-item:hover {
-    background: #101422;
 }
 
 .responsive-form {
     padding: 60px 250px;
+}
+
+.bx--loading__stroke {
+    stroke: $accent;
 }
 
 @media(max-width: 860px) {

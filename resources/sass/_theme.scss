@@ -1,0 +1,36 @@
+$carbon--custom--theme: (
+    ui-background: $background, // Default page background
+    interactive-01: $accent, // Primary interactive color; Primary buttons
+    interactive-02: $accent-2, // Secondary interactive color; Secondary button
+    interactive-03: $accent-3, // 4.5:1 AA contrast; Tertiary button
+    interactive-04: #4589ff, // 3:1 AA contrast; Selected elements; Active elements; Accent icons
+    danger: #da1e28, // Danger button background; 3:1 AA contrast
+    ui-01: $foreground, // Container background on $ui-background; Secondary page background
+    ui-02: $background, // Container background on $ui-01; `Light` variant background
+    ui-03: $background, // Subtle border; Tertiary background
+    ui-04: $background, // 3:1 aa element contrast; Medium contrast border
+    ui-05: $foreground, // 4.5:1 aa element contrast; High contrast border; Emphasis elements
+    text-01: #f4f4f4, // Primary text; Body copy; Headers; Hover text color for $text-02
+    text-02: #c6c6c6, // Secondary text; Input labels
+    text-03: #6f6f6f, // Placeholder text
+    text-04: #ffffff, // Text on interactive colors
+    text-05: #8d8d8d, // Tertiary text; Help text
+    link-01: $accent, // Primary links; Ghost button
+    inverse-link: $accent-2, // Links on $inverse-02 backgrounds
+    icon-01: #f4f4f4, // Primary icons 
+    icon-02:#c6c6c6, // Secondary icons 
+    icon-03:#ffffff, // Icons on interactive colors; Icons on non-ui colors 
+    field-01: $foreground, // Default input fields; Fields on $ui-backgrounds 
+    field-02: $foreground, // `Light` variant input fields; Fields on $ui-02 backgrounds 
+    inverse-01: #ffffff, // Inverse text color; Inverse icon color 
+    inverse-02: $foreground, // High contrast backgrounds; High contrast elements
+    support-01: #fa4d56, // Error 
+    support-02: #42be65, // Success
+    support-03: #f1c21b, // Warning
+    support-04: #4589ff, // Information
+    inverse-support-01: #da1e28, // Danger in high contrast moments
+    inverse-support-02: #24a148, // Success in high contrast moments
+    inverse-support-03: #f1c21b, // Warning in high contrast moments
+    inverse-support-04: #0043ce, // Information in high contrast moments
+    overlay-01: $foreground, // Background overlay
+) !default;

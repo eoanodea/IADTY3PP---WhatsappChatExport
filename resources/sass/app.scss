@@ -2,8 +2,11 @@
 //Importing carbons themes
 @import '@carbon/themes/scss/themes';
 
+@import 'colors';
+@import 'theme';
+
 //Applying the carbon dark theme
-$carbon--theme: $carbon--theme--g90;
+$carbon--theme: $carbon--custom--theme;
 @include carbon--theme();
 
 // import Carbon styles with new theme variable
