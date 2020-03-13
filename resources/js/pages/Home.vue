@@ -96,8 +96,7 @@
       Assignment,
       ListTask,
       Chart,
-      CommentTile,
-      Notification,
+      CommentTile
     },
     computed: {
       ...mapGetters({

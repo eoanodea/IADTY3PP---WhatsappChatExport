@@ -47,10 +47,6 @@ import Vue from "vue";
 import axios from "axios";
 import DeleteComment from "./DeleteComment";
 
-
-import { Notification } from 'carbon-components';
-import { Modal } from 'carbon-components';
-
 export default {
   data() {
     return {
@@ -78,9 +74,7 @@ export default {
     });
   },
   components: {
-    DeleteComment,
-    Notification,
-    Modal
+    DeleteComment
   }
 };
 </script>
