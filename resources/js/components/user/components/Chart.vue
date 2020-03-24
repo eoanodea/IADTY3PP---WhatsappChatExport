@@ -49,11 +49,11 @@ export default {
             }
         };
     },
-    created() {
+    mounted() {
            if(this.serviceId && this.tasks.length < 1) {
                this.$store.dispatch('task/loadTasks', [this.serviceId, true])
                .then(() => this.structureTasks())
-           }
+           } else this.structureTasks()
     },
     methods: {
         structureTasks() {

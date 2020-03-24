@@ -18,7 +18,7 @@ class CreateActiveTasksTable extends Migration
             $table->bigInteger('assignment_id')->unsigned();
             $table->string('title');
             $table->string('description');
-            $table->float('percent_done');
+            $table->integer('percent_done');
             $table->string('image')->nullable();
             $table->timestamps();
 
