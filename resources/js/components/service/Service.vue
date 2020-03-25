@@ -6,23 +6,23 @@
             <!-- Service Details (Notification Card)-->
             <div class="bx--col-lg-6" style="padding-top: 140px;">
                 
-                <p class="bx--inline-notification__title">
+                <p class="title">
                     {{ service.title }}
                 </p><br/><br/><br/>
                 
-                <p class="bx--inline-notification__subtitle lineHeight">
+                <p class="subtitle lineHeight">
                     {{ service.description }}
                 </p><br/><br/>
                 
-                <p class="bx--inline-notification__subtitle">
+                <p class="subtitle">
                     <span class="subCon">Standard Price:</span> €{{service.standard_price}}
                 </p><br/><br/>
                 
-                <p class="bx--inline-notification__subtitle">
+                <p class="subtitle">
                     <span class="subCon">Recurring Payment?</span> {{service.recurring_payment}}
                 </p><br/><br/>
                 
-                <p class="bx--inline-notification__subtitle">
+                <p class="subtitle">
                     <span class="subCon">Public Service?</span> {{service.is_public}}
                 </p><br/><br/>
 

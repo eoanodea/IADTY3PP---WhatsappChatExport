@@ -6,19 +6,19 @@
     <!-- Client Details (Notification Card)-->
     <div class="bx--col-lg-6" style="padding-top: 140px;">
 
-      <p class="bx--inline-notification__title lineHeight">
+      <p class="title lineHeight">
         {{ user.first_name }} {{ user.last_name }}
       </p><br/><br/><br/>
       
-      <p class="bx--inline-notification__subtitle">
+      <p class="subtitle">
         {{ user.mobile_number }}
       </p><br/><br/>
       
-      <p class="bx--inline-notification__subtitle">
+      <p class="subtitle">
         {{ user.address }}
       </p><br/><br/>
       
-      <p class="bx--inline-notification__subtitle">
+      <p class="subtitle">
         {{ user.email }}
       </p><br/><br/>
       
