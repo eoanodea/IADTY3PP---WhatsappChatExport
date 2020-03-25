@@ -1,8 +1,11 @@
 
 //Color variables for the theme
 $text: #D1D2D8;
+$text-Secondary: #6f6f6f;
 $foreground: #181E31;
 $background: #101422;
 $accent: #30F887;
 $accent-2: #5553FA;
 $accent-3: #F18F5C;
+
+.subCon { color: $text-Secondary; };
