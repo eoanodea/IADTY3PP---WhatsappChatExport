@@ -6,10 +6,21 @@
     <!-- Client Details (Notification Card)-->
     <div class="bx--col-lg-6" style="padding-top: 140px;">
 
-      <p class="bx--inline-notification__title" style="font-size: 58px;">{{ user.first_name }} {{ user.last_name }}</p><br/><br/><br/>
-      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size: 38px;">{{ user.email }}</p><br/><br/>
-      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size: 38px;">{{ user.mobile_number }}</p><br/><br/>
-      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size: 38px;">{{ user.address }}</p><br/><br/>
+      <p class="bx--inline-notification__title lineHeight">
+        {{ user.first_name }} {{ user.last_name }}
+      </p><br/><br/><br/>
+      
+      <p class="bx--inline-notification__subtitle">
+        {{ user.mobile_number }}
+      </p><br/><br/>
+      
+      <p class="bx--inline-notification__subtitle">
+        {{ user.address }}
+      </p><br/><br/>
+      
+      <p class="bx--inline-notification__subtitle">
+        {{ user.email }}
+      </p><br/><br/>
       
       <div class="bx--row">
         <!-- Edit Button -->
@@ -103,3 +114,9 @@ export default {
   }
 };
 </script>
+
+<style scope>
+  .lineHeight {
+    line-height: 1.1;
+  }
+</style>
