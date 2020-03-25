@@ -1,74 +1,80 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--grid" style="padding: 40px 0px;" v-else-if="assignment && assignment.id">
+<div class="bx--grid" v-else-if="assignment && assignment.id">
     <div class="bx--row">
-        <div class="bx--col-lg-2">
+
+        <!-- Porject Details (Notification Card)-->
+        <div class="bx--col-lg-6">
             <!-- View Checkout Button -->
             <cv-link :to="'/checkout/' + assignment.id" style="text-decoration: none;">
                 <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
                     Checkout
                 </button>
             </cv-link>
-        </div>
 
-        <div class="bx--col-lg-2">
-        <!-- View Transaction Button -->
-        <cv-link :to="'/transaction/' + assignment.id" style="text-decoration: none;">
-            <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
-                View Transaction
-            </button>
-        </cv-link>
-        </div>
-    </div>
-    
-    <div class="bx--row">
-        <div class="bx--col-lg-6">
-            <!-- Project Detailes (Notification) -->
-            <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
-                <div class="bx--inline-notification__details">
-                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
+            <!-- View Transaction Button -->
+            <cv-link :to="'/transaction/' + assignment.id" style="text-decoration: none;">
+                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
+                    View Transaction
+                </button>
+            </cv-link>
+            
+            <p class="title lineHeight">
+                <span class="subCon">Project</span> {{ assignment.title }}
+            </p><br/><br/><br/>
 
-                    <!-- Project Details Contents -->
-                    <div class="bx--row">
-                        <div class="bx--inline-notification__text-wrapper">
-                            <div class="bx--col-lg-12">
-                                <p class="bx--inline-notification__title">Project: {{ assignment.title }}</p>
-                                <p class="bx--inline-notification__title">Deposit: {{ assignment.deposit }}%</p>
-                                <p class="bx--inline-notification__title">Discount: {{ assignment.discount }}%</p>
-                                <p class="bx--inline-notification__title">Total Price: €{{ assignment.total_price }}</p>
-                                <p class="bx--inline-notification__title">Deadline: {{ assignment.deadline }}</p>
-                                <p class="bx--inline-notification__title">Completed? {{ assignment.completed }}</p>
-                                <p class="bx--inline-notification__title">Date of Completion: {{ assignment.date_of_completion }}</p>
-                            </div>
-                        </div>
-                    </div>
+            <p class="subtitle">
+                <span class="subCon">Deposit:</span> {{ assignment.deposit }}%
+            </p><br/><br/>
+
+            <p class="subtitle">
+                <span class="subCon">Discount:</span> {{ assignment.discount }}%
+            </p><br/><br/>
+
+            <p class="subtitle">
+                <span class="subCon">Total Price:</span> €{{ assignment.total_price }}
+            </p><br/><br/>
+
+            <p class="subtitle">
+                <span class="subCon">Deadline:</span> {{ assignment.deadline }}
+            </p><br/><br/>
+
+            <p class="subtitle">
+                <span class="subCon">Completed?</span> {{ assignment.completed }}
+            </p><br/><br/>
+
+            <p class="subtitle">
+                <span class="subCon">Date of Completion:</span> {{ assignment.date_of_completion }}
+            </p><br/><br/>
+
+            <!-- Buttons -->
+            <div class="bx--row">
+                <div class="bx--col">
+                    <!-- Edit Button -->
+                    <cv-link :to="'/admin/assignments/edit/' + assignment.id" style="text-decoration: none;">
+                        <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+                            Edit Project
+                        </button>
+                    </cv-link>
                 </div>
-                
-                
-
-                <!-- Edit Button -->
-                <cv-link :to="'/admin/assignments/edit/' + assignment.id" style="text-decoration: none;">
-                    <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-                        Edit Project
-                    </button>
-                </cv-link>
 
                 <!-- Delete Modal -->
-                <DeleteAssignment v-bind:id="assignment.id"/>
-            </div>
+                <div class="bx--col">
+                    <DeleteAssignment style="text-decoration; none;" v-bind:id="assignment.id"/>
+                </div>
+            </div>  
+
+        </div> <!-- Close Project Details -->
+
+        <!-- Active Tasks Table -->
+        <div class="bx--col">
+            <ListTask style="text-decoration; none;" v-bind:parentId="assignment.id" v-bind:isActive="true" />
         </div>
 
-        <!-- Default Tasks Table -->
-        <br/>
-        <div class="bx--col-lg-6">
-            <ListTask v-bind:parentId="assignment.id" v-bind:isActive="true" />
-        </div>
+    </div> <!-- Close ROW -->
 
-        <!-- Comments Section -->
-        <br/>
-        <div class="bx--col-lg-6">
-            <CommentTile v-bind:id="assignment.id" v-bind:isAssignment="true" />
-        </div>
+    <div class="bx--col-lg-6">
+        <CommentTile v-bind:id="assignment.id" v-bind:isAssignment="true" />
     </div>
 </div>
 <data-error v-else v-bind:error="error" v-bind:collection="'user'" />
