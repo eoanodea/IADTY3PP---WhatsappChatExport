@@ -4,7 +4,7 @@
     <!-- Dropdown to choose Project -->
     <div class="bx--col-lg-12">
       <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
-          <cv-dropdown-item class="warningBtn" v-for="(assignment, index) in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()" :selected="index === 0">
+          <cv-dropdown-item v-for="(assignment, index) in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()" :selected="index === 0">
               Project {{assignment.title}} (ID: {{index}})
           </cv-dropdown-item>
       </cv-dropdown>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="assignment-container" v-if="assignmentId">
+      <div class="assignment-container" style="width: 70%;" v-if="assignmentId">
         <!-- Progression Donut -->
         <Chart v-bind:parentId="assignmentId"/>
       </div>
