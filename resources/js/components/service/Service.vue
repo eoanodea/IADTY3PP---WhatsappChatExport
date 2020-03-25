@@ -10,7 +10,7 @@
                     {{ service.title }}
                 </p><br/><br/><br/>
                 
-                <p class="bx--inline-notification__subtitle desc">
+                <p class="bx--inline-notification__subtitle lineHeight">
                     {{ service.description }}
                 </p><br/><br/>
                 
@@ -90,9 +90,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .desc {
-        line-height: 1.1;
-    }
-</style>
