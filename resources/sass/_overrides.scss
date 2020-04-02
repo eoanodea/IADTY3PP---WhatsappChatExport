@@ -19,6 +19,9 @@
     padding: 15px;
 }
 
+.home-dropdown .bx--dropdown {
+    background-color: $accent-2;
+}
 
 @media(max-width: 860px) {
     .responsive-form {

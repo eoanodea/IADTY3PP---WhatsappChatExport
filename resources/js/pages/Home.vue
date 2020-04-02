@@ -111,7 +111,5 @@
   .assignment-container {
     margin: 20px auto;
   }
-  .home-dropdown {
-    background-color: $accent-2;
-  }
+
 </style>

@@ -43,16 +43,18 @@
                     <tr v-for="dat in data" v-bind:key="dat.id">
                         <!-- Names -->
                         <td v-for="field in fields" v-bind:key="field">
-                            {{dat[field]}}
-                        </td>
+                            <cv-link :to="(showUrl + dat.id)" > 
+                                {{dat[field]}}
+                            </cv-link>
 
+                        </td>
                         <!-- Show URL button -->
                         <td>
-                            <cv-link :to="(showUrl + dat.id)" style="text-decoration: none;"> 
-                                <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
+                            
+                                <!-- <button class="bx--btn bx--btn--lg bx--btn--tertiary" data-event="sort" title="Name">
                                     View {{collection}}
                                 </button>
-                            </cv-link>
+                            </cv-link> -->
                         </td>
                     
                     </tr>

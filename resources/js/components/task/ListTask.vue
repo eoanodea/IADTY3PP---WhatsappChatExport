@@ -14,21 +14,16 @@
 </template>
 
 <script>
-import Vue from "vue";
-import axios from 'axios';
-import DynamicTable from './../table/DynamicTable'
-import { mapGetters } from 'vuex';
-// 
-// 
-// import { DataTable, Loading } from 'carbon-components';
+    import Vue from "vue";
+    import axios from 'axios';
+    import DynamicTable from './../table/DynamicTable'
+    import { mapGetters } from 'vuex';
 
-// 
 
     export default {
         props: ['parentId', 'isActive'],
         data() {
             return {
-                // tasks: null,
                 taskId: this.parentId
                     ? this.parentId 
                     : this.$route.params.id,
@@ -36,7 +31,7 @@ import { mapGetters } from 'vuex';
                     ? this.isActive
                     : (this.$route.params.active === 'true' ? true : false),
                 running: true,
-                fields: ['title', 'description'],
+                fields: ['title', 'description', 'percent_done'],
                 showUrl: `/admin/tasks${this.isActive ? '/true' : '/false'}/show/`,
                 addUrl: `/admin/tasks${this.isActive ? '/true' : '/false'}/${this.parentId}/new`,
             }
