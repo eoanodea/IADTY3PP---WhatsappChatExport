@@ -16,7 +16,7 @@
   <div class="bx--row">
     <!-- Client Details (Notification Card) -->
     <div class="bx--col-lg-6">
-      <div data-notification class="bx--inline-notification bx--inline-notification--info" role="alert">
+      <div data-notification class="bx--inline-notification bx--inline-notification--info home-notification" role="alert">
         <div class="bx--inline-notification__details">
           <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 5a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 7zm4 17.12h-8v-2.24h2.88v-6.76H13v-2.24h4.13v9H20z"></path></svg>
           
@@ -110,6 +110,9 @@
 <style lang="scss" scoped>
   .assignment-container {
     margin: 20px auto;
+  }
+  .home-notification {
+    margin-top: 0;
   }
 
 </style>

@@ -17,7 +17,7 @@ class CreateDefaultTasksTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('service_id')->unsigned();
             $table->string('title');
-            $table->string('description');
+            $table->string('description', 255);
             $table->decimal('percent_done');
             $table->timestamps();
 
