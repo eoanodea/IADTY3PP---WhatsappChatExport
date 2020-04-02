@@ -12,7 +12,6 @@
           <div class="bx--row">
             <div class="bx--inline-notification__text-wrapper">
               <div class="bx--col-lg-12">
-                <p class="bx--inline-notification__title">I.D: {{ this.$route.params.id }}</p>
                 <p class="bx--inline-notification__title">{{ task.title }}</p>
                 <p class="bx--inline-notification__title">{{ task.description }}</p>
                 <p class="bx--inline-notification__title">Completeion: %{{ task.percent_done }}</p>

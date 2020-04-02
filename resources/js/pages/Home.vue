@@ -3,7 +3,7 @@
   <div class="bx--row">
     <!-- Dropdown to choose Project -->
     <div class="bx--col-lg-12">
-      <cv-dropdown name="assignment" id="assignment" class="cv-dropdown" v-model="assignmentId" placeholder="Select a Project" >
+      <cv-dropdown name="assignment" id="assignment" class="cv-dropdown home-dropdown" v-model="assignmentId" placeholder="Select a Project" >
           <cv-dropdown-item v-for="(assignment, index) in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()" :selected="index === 0">
               Project {{assignment.title}} (ID: {{index}})
           </cv-dropdown-item>
@@ -107,8 +107,11 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .assignment-container {
     margin: 20px auto;
+  }
+  .home-dropdown {
+    background-color: $accent-2;
   }
 </style>

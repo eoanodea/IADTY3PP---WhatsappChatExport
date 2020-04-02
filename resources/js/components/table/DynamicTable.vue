@@ -4,21 +4,20 @@
         <!-- Title -->
         <div class="bx--data-table-header">
             <h2 class="bx--data-table-header__title">{{title ? title : 'Table'}}</h2>
+            <!-- Toolbar -->
+            <section class="bx--table-toolbar">
+                <!-- Persistent Search -->
+                <div class="bx--toolbar-content">
+                    <!-- Add Client Button -->
+                    <cv-link :to="addUrl" style="text-decoration: none;"> 
+                    <button class="bx--btn bx--btn--lg bx--btn--primary">
+                        Add {{title}} 
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
+                    </button>
+                    </cv-link>
+                </div>
+            </section>
         </div>
-
-        <!-- Toolbar -->
-        <section class="bx--table-toolbar">
-            <!-- Persistent Search -->
-            <div class="bx--toolbar-content">
-                <!-- Add Client Button -->
-                <cv-link :to="addUrl" style="text-decoration: none;"> 
-                <button class="bx--btn bx--btn--lg bx--btn--primary">
-                    Add {{title}} 
-                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
-                </button>
-                </cv-link>
-            </div>
-        </section>
 
         <!-- Table Wrapper -->
         <div v-if="data !== null && data.length > 0">
