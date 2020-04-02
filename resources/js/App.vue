@@ -14,43 +14,56 @@
       
 
       <!-- Top Navigation bar -->
-      <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" v-if="authenticated">
+      <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" >
         
-        <!-- Dashboard -->
-        <cv-header-menu-item to="/admin/home">
-          Dashboard
-        </cv-header-menu-item>
+        <template v-if="authenticated">
+          <!-- Dashboard -->
+          <cv-header-menu-item to="/admin/home">
+            Dashboard
+          </cv-header-menu-item>
 
-        <!-- Clients -->
-        <cv-header-menu-item to="/admin/users" @click="click">
-          Clients
-        </cv-header-menu-item>
+          <!-- Clients -->
+          <cv-header-menu-item to="/admin/users" @click="click">
+            Clients
+          </cv-header-menu-item>
 
-        <!-- Services -->
-        <cv-header-menu-item to="/admin/services" @click="click">
-          Services
-        </cv-header-menu-item>
+          <!-- Services -->
+          <cv-header-menu-item to="/admin/services" @click="click">
+            Services
+          </cv-header-menu-item>
 
-        <!-- Projects -->
-        <cv-header-menu-item to="/admin/assignments" @click="click">
-          Projects
-        </cv-header-menu-item>
+          <!-- Projects -->
+          <cv-header-menu-item to="/admin/assignments" @click="click">
+            Projects
+          </cv-header-menu-item>
 
-        <!-- Transactions -->
-        <cv-header-menu-item to="/admin/transactions/" @click="click">
-          Transactions
-        </cv-header-menu-item>
+          <!-- Transactions -->
+          <cv-header-menu-item to="/admin/transactions/" @click="click">
+            Transactions
+          </cv-header-menu-item>
+        </template>
+        <template v-else>
+          <!-- Home -->
+          <cv-header-menu-item to="/admin/home/" @click="click">
+            Home
+          </cv-header-menu-item>
+          <!-- About -->
+          <cv-header-menu-item to="/admin/about" @click="click">
+            About
+          </cv-header-menu-item>
+          <!-- Home -->
+          <cv-header-menu-item to="/" @click="click">
+            Signin
+          </cv-header-menu-item>
+                        
+        </template>
 
-        <!-- About -->
-        <cv-header-menu-item to="/admin/about" @click="click">
-          About
-        </cv-header-menu-item>      
       </cv-header-nav>
 
       <!-- Right Panel Config -->
-      <template slot="header-global" @click="menuVisible = !menuVisible" v-if="authenticated">
+      <template slot="header-global" @click="menuVisible = !menuVisible">
         <!-- Sign Out -->
-        <cv-header-nav>
+        <cv-header-nav v-if="authenticated">
           <cv-header-menu-item @click="signOut">
             Sign Out
           </cv-header-menu-item>
@@ -66,9 +79,10 @@
       </template>
 
       <!-- Right Panel Contents -->
-      <template slot="right-panels" @click="menuVisible = !menuVisible" v-if="authenticated">
+      <template slot="right-panels" @click="menuVisible = !menuVisible">
         <cv-header-panel class="" id="switcher-panel">
           <cv-switcher>
+            <template v-if="authenticated">
             <!-- Message for User -->
             <cv-header-name>
               Good day, {{user.first_name}}
@@ -108,7 +122,29 @@
                 Transactions
               </cv-switcher-item-link>
             </cv-switcher-item>
+            
+            <!-- Sign Out -->
+            <cv-switcher-item>
+              <cv-switcher-item-link href="javascript:void(0)" @click="signOut">
+                Sign Out
+              </cv-switcher-item-link>
+            </cv-switcher-item>
 
+            </template>
+            <template v-else>
+              <!-- Home -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/" @click="click">
+                  Home
+                </cv-switcher-item-link>
+              </cv-switcher-item>
+              <!-- Sign in -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/" @click="click">
+                  Signin
+                </cv-switcher-item-link>
+              </cv-switcher-item>
+            </template>
             <!-- About -->
             <cv-switcher-item>
               <cv-switcher-item-link to="/admin/about" @click="click">
@@ -116,12 +152,6 @@
               </cv-switcher-item-link>
             </cv-switcher-item>
 
-            <!-- Sign Out -->
-            <cv-switcher-item>
-              <cv-switcher-item-link href="javascript:void(0)" @click="signOut">
-                Sign Out
-              </cv-switcher-item-link>
-            </cv-switcher-item>
           </cv-switcher>
         </cv-header-panel>
       </template>
