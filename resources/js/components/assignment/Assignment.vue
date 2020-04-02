@@ -8,7 +8,7 @@
             <!-- View Checkout Button -->
             <cv-link :to="'/checkout/' + assignment.id" style="text-decoration: none;">
                 <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
-                    Checkout
+                    Pay
                 </button>
             </cv-link>
 
