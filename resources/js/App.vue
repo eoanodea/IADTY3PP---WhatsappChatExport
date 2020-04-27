@@ -43,19 +43,15 @@
           </cv-header-menu-item>
         </template>
         <template v-else>
-          <!-- Home -->
-          <cv-header-menu-item to="/admin/home/" @click="click">
-            Home
+          <!-- Sign In -->
+          <cv-header-menu-item to="/" @click="click">
+            Sign In
           </cv-header-menu-item>
+
           <!-- About -->
           <cv-header-menu-item to="/admin/about" @click="click">
             About
           </cv-header-menu-item>
-          <!-- Home -->
-          <cv-header-menu-item to="/" @click="click">
-            Signin
-          </cv-header-menu-item>
-                        
         </template>
 
       </cv-header-nav>
@@ -132,16 +128,10 @@
 
             </template>
             <template v-else>
-              <!-- Home -->
+              <!-- Sign In -->
               <cv-switcher-item>
                 <cv-switcher-item-link to="/" @click="click">
-                  Home
-                </cv-switcher-item-link>
-              </cv-switcher-item>
-              <!-- Sign in -->
-              <cv-switcher-item>
-                <cv-switcher-item-link to="/" @click="click">
-                  Signin
+                  Sign In
                 </cv-switcher-item-link>
               </cv-switcher-item>
             </template>
