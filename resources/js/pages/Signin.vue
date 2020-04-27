@@ -1,69 +1,84 @@
 <template>
-<div class="bx--grid responsive-form">
+<!-- <div class="bx--grid responsive-form"> -->
 
-    <!-- Email -->
     <div class="bx--row">
-        <div class="bx--form-item bx--text-input-wrapper">
-            <label for="text-input-3" class="bx--label">Email</label>
-            <div class="bx--text-input__field-wrapper">
-                <input 
-                id="text-input-3" 
-                name="email" 
-                type="email" 
-                v-model="user.email" 
-                class="bx--text-input" 
-                placeholder="Email">
-            </div>
-                <p v-if="errors.length">
-                    <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
-                            {{ error.emailError }}
-                        </li>
-                        <br/>
-                    </ul>
-                </p>
-        </div>
-    </div>
-    
-    <!-- Password -->
-    <br/>
-    <div class="bx--row">
-        <div class="bx--form-item bx--text-input-wrapper">
-            <label for="text-input-2" class="bx--label">Password</label>
-            <div class="bx--text-input__field-wrapper">
-                <input 
-                id="text-input-2" 
-                name="password" 
-                type="password" 
-                v-model="user.password" 
-                class="bx--text-input" 
-                placeholder="Password">
-            </div>
-                <p v-if="errors.length">
-                    <ul>
-                        <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
-                            {{ error.passwordError }}
-                        </li>
-                        <br/>
-                    </ul>
-                </p>
-        </div>
-    </div>
+        <div class="bx--col-lg-6" style="background:black;">
 
-    <!-- Button -->
-    <br/>
-    <div class="bx--row">
-        <div class="bx--form-item">
-            <button 
-                class="bx--btn bx--btn--primary" 
-                type="submit"
-                :disabled="submitting" 
-                @click="validateSignin">
-                    Submit
-            </button>
         </div>
+
+        <div class="bx--col-lg-6">
+            <!-- Message -->
+            <div class="bx--row">
+                <p class="subCon" style="padding-bottom:50px; font-size:24px; margin:auto;">Please use your provided credentials.</p>
+            </div>
+
+            <!-- Email -->
+            <div class="bx--row">
+                <div class="bx--form-item bx--text-input-wrapper">
+                    <div class="bx--text-input__field-wrapper">
+                        <input 
+                        id="text-input-3" 
+                        name="email" 
+                        type="email" 
+                        v-model="user.email" 
+                        class="bx--text-input" 
+                        style="width:60%; height:60px; margin: auto;"
+                        placeholder="Email">
+                    </div>
+                        <p v-if="errors.length">
+                            <ul>
+                                <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                                    {{ error.emailError }}
+                                </li>
+                                <br/>
+                            </ul>
+                        </p>
+                </div>
+            </div>
+            
+            <!-- Password -->
+            <br/>
+            <div class="bx--row">
+                <div class="bx--form-item bx--text-input-wrapper">
+                    <div class="bx--text-input__field-wrapper">
+                        <input 
+                        id="text-input-2" 
+                        name="password" 
+                        type="password" 
+                        v-model="user.password" 
+                        class="bx--text-input"
+                        style="width:60%; height:60px; margin: auto;" 
+                        placeholder="Password">
+                    </div>
+                        <p v-if="errors.length">
+                            <ul>
+                                <li v-for="error in errors" v-bind:key="error.id" class="bx--form-requirement">
+                                    {{ error.passwordError }}
+                                </li>
+                                <br/>
+                            </ul>
+                        </p>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <br/>
+            <div class="bx--row">
+                <div class="bx--form-item">
+                    <button 
+                        class="bx--btn bx--btn--primary"
+                        style="margin:auto;"
+                        type="submit"
+                        :disabled="submitting" 
+                        @click="validateSignin">
+                            SUBMIT
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
+<!-- </div> -->
 </template>
 
 <script>
