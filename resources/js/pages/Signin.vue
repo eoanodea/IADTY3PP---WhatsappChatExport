@@ -125,10 +125,6 @@ import { mapActions } from 'vuex'
 </script>
 
 <style scoped>
-    .logoCol {
-        color: #0bb5ff;
-    }
-
     .logo {
         width: 75%;
         margin-left:12%;
