@@ -23,7 +23,7 @@
           <!-- Client Details Contents -->
           <div class="bx--inline-notification__text-wrapper">
             <div class="bx--col">
-              <p class="bx--inline-notification__title" style="font-size: 30px;">{{ user.first_name }} {{ user.last_name }}</p><br/>
+              <p class="bx--inline-notification__title" style="font-size: 30px;">{{ user.first_name }} <span class="logoCol">{{ user.last_name }}</span></p><br/>
               <p class="bx--inline-notification__subtitle tertiaryText">{{ user.email }}</p>
               <p class="bx--inline-notification__subtitle tertiaryText">{{ user.mobile_number }}</p>
               <p class="bx--inline-notification__subtitle tertiaryText">{{ user.address }}</p>
