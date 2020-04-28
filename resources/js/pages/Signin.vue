@@ -1,13 +1,15 @@
 <template>
 <div class="bx--row">
-    <div class="bx--col-lg-6" style="background:black;">
-
+    <div class="bx--col-lg-6">
+        <img src="./assets/Logo.png" class="logo">
+        <br/>
+        <p class="introMessage">Your very own <span class="logoCol">All-in-One</span> Client Management System</p>
     </div>
 
-    <div class="bx--col-lg-6" style="background:#181E31; padding-top:10%; padding-bottom:10%;">
+    <div class="bx--col-lg-6 customCard">
         <!-- Message -->
         <div class="bx--row">
-            <p class="subCon message">Please use your provided credentials.</p>
+            <p class="message">Please use your <span class="logoCol">provided credentials</span>.</p>
         </div>
 
         <!-- Email -->
@@ -123,7 +125,30 @@ import { mapActions } from 'vuex'
 </script>
 
 <style scoped>
+    .logoCol {
+        color: #0bb5ff;
+    }
+
+    .logo {
+        width: 75%;
+        margin-left:12%;
+        padding-top: 3%; 
+        padding-bottom: 3%;
+    }
+
+    .introMessage {
+        color: #c5c5c5;
+        text-align: center;
+    }
+
+    .customCard {
+        background: #181E31; 
+        padding-top: 10%; 
+        padding-bottom: 10%;
+    }
+
     .message {
+        color: #c5c5c5;
         padding-bottom: 10px; 
         font-size: 20px; 
         margin-left: 20%;
