@@ -78,6 +78,11 @@
     background-color: $foreground;
 }
 
+.bx--checkbox-label[data-contained-checkbox-state=true]::before {
+    background: $accent;
+    color: $accent;
+}
+
 //Form Input Prefix
 .price-prefix {
     position: absolute;
