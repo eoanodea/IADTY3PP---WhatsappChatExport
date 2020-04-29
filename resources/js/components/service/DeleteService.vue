@@ -20,8 +20,8 @@
             @primary-click="actionPrimary"
         >
         <!-- <template slot="label">Label of modal</template> -->
-        <template slot="title">WARNING</template>
-        <template slot="content"><p>Are you sure you want to delete this service?</p></template>
+        <template slot="title"><span class="warning">WARNING</span></template>
+        <template slot="content"><p>Are you sure you want to delete this <span class="logoCol">Service</span>?</p></template>
 
         <!-- Buttons -->
         <template slot="secondary-button">No</template>
