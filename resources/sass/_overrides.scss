@@ -46,9 +46,17 @@
 }
 
 .bx--table-sort {
-    color: #7851a9;
+    color: $accent;
 }
 
 .bx--data-table-header__title {
-    color: #0bb5ff;
+    color: $logo;
+}
+
+.bx--btn--secondary {
+    background-color: $accent;
+}
+
+.bx--modal.is-visible {
+    background-color: #000000dc;
 }
