@@ -1,12 +1,16 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--gridresponsive-form" v-else-if="updatedUser">
+<div class="bx--gridresponsive-form formAlignment" v-else-if="updatedUser">
+    <!-- Message -->
+    <div class="bx--row">
+        <h3>Edit <span class="logoCol">Client</span></h3>
+    </div><br/>
+
     <!-- Name -->
     <div class="bx--row">
         <!-- First Name -->
         <div class="bx--col-lg-6 bx--col-md-4 bx--col-sm-2">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="first_name" class="bx--label">First Name</label>
                 <div class="bx--text-input__field-wrapper">
                     <input 
                         id="text-input-3" 
@@ -14,7 +18,7 @@
                         type="text" 
                         autocomplete="given-name" 
                         v-model="updatedUser.first_name"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms" 
                         placeholder="First Name">
                 </div>
             </div>
@@ -23,7 +27,6 @@
         <!-- Surname -->
         <div class="bx--col-lg-6 bx--col-md-4 bx--col-sm-2">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="last_name" class="bx--label">Surname</label>
                 <div class="bx--text-input__field-wrapper">
                     <input 
                         id="text-input-3" 
@@ -31,7 +34,7 @@
                         type="text" 
                         autocomplete="given-name" 
                         v-model="updatedUser.last_name"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms" 
                         placeholder="Surname">
                 </div>
             </div>
@@ -43,7 +46,6 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="email" class="bx--label">Email</label>
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
@@ -51,7 +53,7 @@
                     type="email" 
                     autocomplete="email"
                     v-model="updatedUser.email" 
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms" 
                     placeholder="Email">
                 </div>
             </div>
@@ -63,7 +65,6 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="mobile" class="bx--label">Phone Number</label>
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
@@ -71,7 +72,7 @@
                     type="mobile" 
                     autocomplete="mobile" 
                     v-model="updatedUser.mobile_number"
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms" 
                     placeholder="Phone Number">
                 </div>
             </div>
@@ -83,7 +84,6 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="address" class="bx--label">Address</label>
                 <div class="bx--text-input__field-wrapper">
                 <textarea 
                     id="text-area-2" 
