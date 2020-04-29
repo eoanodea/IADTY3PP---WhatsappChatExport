@@ -1,12 +1,16 @@
 <template>
 <loading-indicator v-if="submitting"/>
-<div class="bx--gridresponsive-form" v-else>
+<div class="bx--gridresponsive-form formAlignment" v-else>
+    <!-- Message -->
+    <div class="bx--row">
+        <h3>Add <span class="logoCol">Client</span></h3>
+    </div><br/>
+
     <!-- Name -->
     <div class="bx--row">
         <!-- First Name -->
-        <div class="bx--col-lg-6 bx--col-md-4 bx--col-sm-2">
+        <div class="bx--col-lg-6">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="first_name" class="bx--label">First Name</label>
                 <div class="bx--text-input__field-wrapper">
                     <input 
                         id="text-input-3" 
@@ -14,16 +18,15 @@
                         type="text" 
                         autocomplete="given-name" 
                         v-model="newUser.first_name"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms" 
                         placeholder="First Name">
                 </div>
             </div>
         </div>
 
         <!-- Surname -->
-        <div class="bx--col-lg-6 bx--col-md-4 bx--col-sm-2">
+        <div class="bx--col-lg-6">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="last_name" class="bx--label">Surname</label>
                 <div class="bx--text-input__field-wrapper">
                     <input 
                         id="text-input-3" 
@@ -31,7 +34,7 @@
                         type="text" 
                         autocomplete="given-name" 
                         v-model="newUser.last_name"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms" 
                         placeholder="Surname">
                 </div>
             </div>
@@ -43,7 +46,6 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="email" class="bx--label">Email</label>
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
@@ -51,7 +53,7 @@
                     type="email" 
                     autocomplete="email"
                     v-model="newUser.email" 
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms" 
                     placeholder="Email">
                 </div>
             </div>
@@ -63,7 +65,6 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="mobile" class="bx--label">Phone Number</label>
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
@@ -71,7 +72,7 @@
                     type="mobile" 
                     autocomplete="mobile" 
                     v-model="newUser.mobile_number"
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms" 
                     placeholder="Phone Number">
                 </div>
             </div>
@@ -83,7 +84,6 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="address" class="bx--label">Address</label>
                 <div class="bx--text-input__field-wrapper">
                 <textarea 
                     id="text-area-2" 
@@ -105,14 +105,13 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="password" class="bx--label">Password</label>
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
                     name="password" 
                     type="password" 
                     v-model="newUser.password"
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms" 
                     placeholder="Password">
                 </div>
             </div>
@@ -124,14 +123,13 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
-                <label for="confirm_password" class="bx--label">Confirm Password</label>
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
                     name="confirm_password" 
                     type="password" 
                     v-model="newUser.confirm_password"
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms" 
                     placeholder="Confirm Password">
                 </div>
             </div>
@@ -292,9 +290,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    .bx--form-requirement {
-        margin: 1.2rem 0;
+<style scoped>
+    .formAlignment {
+        margin-left: 15%; 
+        margin-right: 15%;
     }
-
+    
+    .placeholderForms {
+        height: 65px;
+    }
 </style>
