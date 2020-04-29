@@ -289,14 +289,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    .formAlignment {
-        margin-left: 15%; 
-        margin-right: 15%;
-    }
-    
-    .placeholderForms {
-        height: 65px;
-    }
-</style>

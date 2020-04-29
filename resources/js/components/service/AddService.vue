@@ -1,11 +1,17 @@
 <template>
     <loading-indicator v-if="submitting"/>
-    <div class="bx--gridresponsive-form" v-else>
+    <div class="bx--gridresponsive-form formAlignment" v-else>
+        <!-- Message -->
+        <div class="bx--row">
+            <h3>Add <span class="logoCol">Service</span></h3>
+        </div><br/>
+
         <!-- Title -->
         <div class="bx--row">
             <div class="bx--col-lg-12">
                 <div class="bx--form-item bx--text-input-wrapper">
                     <label for="title" class="bx--label">Title</label>
+
                     <div class="bx--text-input__field-wrapper">
                         <input 
                         id="text-input-3" 
@@ -13,8 +19,8 @@
                         type="text" 
                         autocomplete="given-title" 
                         v-model="newService.title"
-                        class="bx--text-input" 
-                        placeholder="Title">
+                        class="bx--text-input placeholderForms" 
+                        placeholder="My Photography Service">
                     </div>
                 </div>
             </div>
@@ -25,7 +31,7 @@
         <div class="bx--row">
             <div class="bx--col-lg-12">
                 <div class="bx--form-item bx--text-input-wrapper">
-                    <label for="description" class="bx--label">Description</label>
+                        <label for="description" class="bx--label">Description</label>
                     <div class="bx--text-input__field-wrapper">
                         <textarea 
                             id="text-area-2" 
@@ -36,7 +42,7 @@
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
-                            placeholder="Description"></textarea>
+                            placeholder="Offer a client a flat price for a full day of photography"></textarea>
                     </div>
                 </div>
             </div>
@@ -49,14 +55,14 @@
                 <div class="bx--form-item bx--text-input-wrapper">
                     <label for="standard_price" class="bx--label">Standard Price</label>
                     <div class="bx--text-input__field-wrapper">
-                        <span>€</span>
+                        <span class="price-prefix">€</span>
                         <input 
                         id="text-input-3" 
                         name="standard_price" 
                         type="number" 
                         autocomplete="given-standard_price" 
                         v-model="newService.standard_price"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms price-input" 
                         placeholder="€Standard Price">
                     </div>
                 </div>
@@ -66,10 +72,11 @@
         <!-- Recurring Payment Checkbox -->
         <br/>
         <div class="bx--row">
-            <div class="bx--col-lg-12">
-                <label for="recurring_payment" class="bx--label">Recurring Payment</label>
+            <div class="bx--col-lg-12 checkbox-container">
                 <cv-checkbox
                     name="recurring_payment" 
+                    label="Recurring Payment"
+                    value="recurring_payment"
                     v-model="newService.recurring_payment"
                     >
                 </cv-checkbox>
@@ -79,10 +86,11 @@
         <!-- Recurring Payment Checkbox -->
         <br/>
         <div class="bx--row">
-            <div class="bx--col-lg-12">
-                <label for="is_public" class="bx--label">Public Service</label>
+            <div class="bx--col-lg-12 checkbox-container">
                 <cv-checkbox
                     name="is_public" 
+                    label="Public Service"
+                    value="is_public"
                     v-model="newService.is_public"
                     >
                 </cv-checkbox>
@@ -214,3 +222,13 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .price-prefix {
+        position: absolute;
+        left: 5px;   
+    }
+    .price-input {
+        padding: 0 1rem 0 1.5rem;
+    }
+</style>
