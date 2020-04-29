@@ -3,14 +3,17 @@
     <div class="cardContainer" v-if="payload">
       <div ref="card" class="cardElement">
       </div>
+
       <div v-if="intent">
         <br />
         <p v-if='error'>{{error}}</p>
         <button v-on:click="purchase" id="submit">Purchase</button>
         <br />
       </div>
-      <p v-else>Loading transaction stuff</p>
+      
+      <Loading v-else />
     </div>
+
     <p v-else>There was a problem loading the checkout details</p>
   </span>
 </template>
@@ -18,6 +21,7 @@
 <script>
   import Vue from 'vue'
   import axios from 'axios'
+  import Loading from './../progress/LoadingIndicator'
 
   let style = {
     base: {
@@ -49,7 +53,7 @@
       }
     },
     components: {
-      //
+      Loading
     },
     methods: {
       purchase() {        
@@ -106,18 +110,20 @@
     }
   }
 </script>
+
 <style lang="scss" scoped>
-  .cardContainer {
-    padding: 50px; 
-  }
-  .cardElement {
-    display: block;
-    margin: 24px auto 10px auto;
-    max-width: 408px;
-    padding: 10px 14px;
-    box-shadow:
-      rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
-    border-radius: 4px;
-    background: white
-  }
+  // .cardContainer {
+  //   padding: 50px; 
+  // }
+
+  // .cardElement {
+  //   display: block;
+  //   margin: 24px auto 10px auto;
+  //   max-width: 408px;
+  //   padding: 10px 14px;
+  //   box-shadow:
+  //     rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  //   border-radius: 4px;
+  //   background: white
+  // }
 </style>

@@ -47,7 +47,7 @@
   <template v-if="checkoutPayload.amount > 0">
     <!-- Checkout Button -->
     <button @click="checkout = !checkout" data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-      Checkout
+      Pay
     </button>
   </template>
   <p v-else>No payment due.</p>
