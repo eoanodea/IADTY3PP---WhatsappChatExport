@@ -11,6 +11,8 @@
         <!-- First Name -->
         <div class="bx--col-lg-6 bx--col-md-4 bx--col-sm-2">
             <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">First Name</label>
+
                 <div class="bx--text-input__field-wrapper">
                     <input 
                         id="text-input-3" 
@@ -27,6 +29,8 @@
         <!-- Surname -->
         <div class="bx--col-lg-6 bx--col-md-4 bx--col-sm-2">
             <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">Surname</label>
+
                 <div class="bx--text-input__field-wrapper">
                     <input 
                         id="text-input-3" 
@@ -46,6 +50,8 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">Email</label>
+
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
@@ -65,6 +71,8 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">Phone Number</label>
+
                 <div class="bx--text-input__field-wrapper">
                 <input 
                     id="text-input-3" 
@@ -84,6 +92,8 @@
     <div class="bx--row">
         <div class="bx--col-lg-12">
             <div class="bx--form-item bx--text-input-wrapper">
+                <label for="title" class="bx--label">Address</label>
+
                 <div class="bx--text-input__field-wrapper">
                 <textarea 
                     id="text-area-2" 

@@ -30,7 +30,7 @@
 
         <!-- Project Details Form -->
         <cv-content-switcher-content owner-id="csb-2" id="second">
-            <!-- <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/> -->
+            <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
         </cv-content-switcher-content>
 
         <!-- Add Tasks Form -->
@@ -71,29 +71,31 @@
             handleServiceAndClientId(serviceId, clientId) {
                 this.serviceId = serviceId
                 this.clientId = clientId
-                this.setDone('first', 'second')
+                // this.setDone('first', 'second')
+                this.isSelected(1)
             },
             handleAssignmentDetails(assignment, error) {
                 if(assignment == null) this.setError(error)
                 else {
                     this.assignment = assignment
-                    this.setDone('second', 'third')
+                    // this.setDone('second', 'third')
                 }
             },
             addTasksToAssignment(tasks) {
                 this.assignment.tasks = tasks
-                this.setDone('third')
+                // this.setDone('third')
                 this.submitAssignment()
             },
-            setDone (id, index) {
-                this[id] = true
+            // setDone (id, index) {
 
-                this.secondStepError = null
 
-                if (index) {
-                    this.active = index
-                }
-            },
+            //     this[id] = true
+
+
+            //     if (index) {
+            //         this.active = index
+            //     }
+            // },
             setError (msg) {
                 this.secondStepError = `Error: ${msg}`
             },
