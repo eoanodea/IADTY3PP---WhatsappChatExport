@@ -1,6 +1,11 @@
 <template>
     <loading-indicator v-if="loading"/>
-    <div class="bx--gridresponsive-form" v-else-if="updatedTask">
+    <div class="bx--gridresponsive-form formAlignment" v-else-if="updatedTask">
+        <!-- Message -->
+        <div class="bx--row">
+            <h3>Edit <span class="logoCol">Task</span></h3>
+        </div><br/>
+
         <!-- Title -->
         <div class="bx--row">
             <div class="bx--col-lg-12">
@@ -13,7 +18,7 @@
                         type="text" 
                         autocomplete="given-title" 
                         v-model="updatedTask.title"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms" 
                         placeholder="Title">
                     </div>
                 </div>
@@ -55,9 +60,9 @@
                         type="number" 
                         autocomplete="given-percent_done" 
                         v-model="updatedTask.percent_done"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms price-input" 
                         placeholder="Percentage Done">
-                        <span>%</span>
+                        <span class="price-prefix">%</span>
                     </div>
                 </div>
             </div>
@@ -151,3 +156,13 @@
         },
     }
 </script>
+
+<style lang="scss" scoped>
+    .price-prefix {
+        position: absolute;
+        left: 69px;   
+    }
+    .price-input {
+        padding: 0 1rem 0 1.5rem;
+    }
+</style>

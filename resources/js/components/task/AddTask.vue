@@ -1,5 +1,10 @@
 <template>
-    <div class="bx--gridresponsive-form">
+    <div class="bx--gridresponsive-form formAlignment">
+        <!-- Message -->
+        <div class="bx--row">
+            <h3>Add <span class="logoCol">Task</span></h3>
+        </div><br/>
+
         <!-- Title -->
         <div class="bx--row">
             <div class="bx--col-lg-12">
@@ -12,8 +17,8 @@
                         type="text" 
                         autocomplete="given-title" 
                         v-model="task.title"
-                        class="bx--text-input" 
-                        placeholder="Title">
+                        class="bx--text-input placeholderForms" 
+                        placeholder="Name your Task">
                     </div>
                 </div>
             </div>
@@ -35,7 +40,7 @@
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
-                            placeholder="Description"></textarea>
+                            placeholder="Give your Task a description"></textarea>
                     </div>
                 </div>
             </div>
@@ -54,9 +59,8 @@
                         type="number" 
                         autocomplete="given-percent_done" 
                         v-model="task.percent_done"
-                        class="bx--text-input" 
-                        placeholder="Percentage Done">
-                        <span>%</span>
+                        class="bx--text-input placeholderForms price-input">
+                        <span class="price-prefix">%</span>
                     </div>
                 </div>
             </div>
@@ -148,3 +152,13 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .price-prefix {
+        position: absolute;
+        left: 69px;   
+    }
+    .price-input {
+        padding: 0 1rem 0 1.5rem;
+    }
+</style>

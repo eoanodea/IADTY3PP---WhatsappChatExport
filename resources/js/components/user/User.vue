@@ -54,10 +54,10 @@
   </div> <!-- Close ROW 1-->
   <br />
   <div class="bx--row">
-
-    <!-- Preparing for Project Page Implementation -->
-    <list-assignment :id="this.$route.params.id" />
-
+    <div class="bx--col-lg-12">
+      <!-- Preparing for Project Page Implementation -->
+      <ListAssignment :id="this.$route.params.id" />
+    </div>
   </div> <!-- Close ROW 2 -->
 
 </div> <!-- Close GRID -->

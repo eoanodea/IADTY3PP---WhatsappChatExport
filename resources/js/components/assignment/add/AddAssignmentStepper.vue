@@ -71,8 +71,8 @@
             handleServiceAndClientId(serviceId, clientId) {
                 this.serviceId = serviceId
                 this.clientId = clientId
-                // this.setDone('first', 'second')
-                this.isSelected(1)
+                console.log('running!')
+                this.initialSelected = 1
             },
             handleAssignmentDetails(assignment, error) {
                 if(assignment == null) this.setError(error)
