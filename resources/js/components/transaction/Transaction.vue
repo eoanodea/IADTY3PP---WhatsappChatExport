@@ -31,7 +31,7 @@
     <div class="bx--row">
         <!-- Created At -->
         <div class="bx--col-lg-12">
-            <p class="bx--inline-notification__subtitle easyWhite">Transaction created at {{ transaction.created_at }}</p>
+            <p class="bx--inline-notification__subtitle easyWhite lineHeight">Transaction created at {{ transaction.created_at }}</p>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
     <div class="bx--row">
         <!-- Updated At -->
         <div class="bx--col-lg-12">
-            <p class="bx--inline-notification__subtitle easyWhite">Transaction updated at {{ transaction.updated_at }}</p>
+            <p class="bx--inline-notification__subtitle easyWhite lineHeight">Transaction updated at {{ transaction.updated_at }}</p>
         </div>
     </div>
 
