@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="formAlignment">
         <form novalidate method="POST" @submit.stop.prevent="validateAssignment">
             <!-- Project -->
             <div class="bx--row">
@@ -14,8 +14,8 @@
                             type="text" 
                             autocomplete="given-title" 
                             v-model="assignment.title"
-                            class="bx--text-input" 
-                            placeholder="Project">
+                            class="bx--text-input placeholderForms" 
+                            placeholder="Name your Project">
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             type="number" 
                             autocomplete="given-deposit" 
                             v-model="assignment.deposit"
-                            class="bx--text-input" 
+                            class="bx--text-input placeholderForms" 
                             placeholder="Deposit %">
                             <span class="percent-prefix">%</span>
                         </div>
@@ -53,7 +53,7 @@
                             type="number" 
                             autocomplete="given-discount" 
                             v-model="assignment.discount"
-                            class="bx--text-input" 
+                            class="bx--text-input placeholderForms" 
                             placeholder="Discount">
                             <span class="percent-prefix">%</span>
                         </div>
@@ -75,8 +75,8 @@
                             type="number" 
                             autocomplete="given-total_price" 
                             v-model="assignment.total_price"
-                            class="bx--text-input price-input" 
-                            placeholder="Total Price">
+                            class="bx--text-input placeholderForms price-input" 
+                            placeholder="e.g. 300.00">
                         </div>
                     </div>
                 </div>
@@ -93,6 +93,7 @@
                             :cal-options="calOptions"
                             autocomplete="given-deadline"
                             v-model="assignment.deadline"
+                            class="placeholderForms"
                             placeholder="Day/Month/Year">
                         </cv-date-picker>
                     </div>
