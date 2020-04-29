@@ -10,9 +10,10 @@ $background: #101422;
 $accent: #7851a9;
 $accent-2: #402661;
 // $accent-3: #F18F5C;
-// $accent-3: #FFBF42;
 $accent-3: #c5c5c5;
 $logo: #0bb5ff;
+$warning: #FFBF42;
 
 .subCon { color: $text-Secondary; };
 .logoCol { color: $logo; };
+.warning { color: $warning; };

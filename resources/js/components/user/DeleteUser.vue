@@ -19,8 +19,8 @@
                 @secondary-click="actionSecondary"
                 @primary-click="actionPrimary"
             >
-            <template slot="title">WARNING</template>
-            <template slot="content"><p>Are you sure you want to delete this client?</p></template>
+            <template slot="title"><span class="warning">WARNING</span></template>
+            <template slot="content"><p>Are you sure you want to delete this <span class="logoCol">client</span>?</p></template>
 
             <!-- Buttons -->
             <template slot="secondary-button">No</template>
