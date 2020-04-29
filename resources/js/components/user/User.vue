@@ -34,7 +34,7 @@
 
         <!-- Delete Modal Button -->        
         <div class="bx--col">
-          <DeleteUser style="text-decoration; none;" class="md-alignment-top-right" v-bind:id="user.id" />
+          <DeleteUser :disabled="assignments.length > 0" style="text-decoration; none;" class="md-alignment-top-right" v-bind:id="user.id" />
         </div>
       </div>    
       
@@ -88,10 +88,8 @@ export default {
   },
     created() {
     this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
+    this.$store.dispatch('assignment/loadAssignmentsByClient')
 
-    // if(this.assignments.length < 1) {
-    //   this.$store.dispatch('assignment/loadAssignmentsByClient')
-    // }
   },
   methods: {
     returnData() {

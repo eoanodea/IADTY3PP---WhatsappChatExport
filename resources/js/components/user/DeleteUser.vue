@@ -19,12 +19,15 @@
                 @secondary-click="actionSecondary"
                 @primary-click="actionPrimary"
             >
-            <template slot="title"><span class="warning">WARNING</span></template>
-            <template slot="content"><p>Are you sure you want to delete this <span class="logoCol">Client</span>?</p></template>
+            <template slot="title"><span class="warning">{{!disabled ? 'WARNING' : 'Error'}}</span></template>
+            <template slot="content">
+                <p v-if="!disabled">Are you sure you want to delete this <span class="logoCol">Client</span>?</p>
+                <p v-else>You cannot delete this <span class="logoCol">Client</span> because he has active projects</p>
+            </template>
 
             <!-- Buttons -->
-            <template slot="secondary-button">No</template>
-            <template slot="primary-button">Yes</template>
+            <template slot="secondary-button">{{!disabled ? "No" : "Back"}}</template>
+            <template slot="primary-button" v-if="!disabled">Yes</template>
         </cv-modal>
     </div>
 </template>
@@ -35,7 +38,7 @@
     
 
     export default {
-        props: ['id'],
+        props: ['id', 'disabled'],
         data() {
             return {
                 showDialog: false,
