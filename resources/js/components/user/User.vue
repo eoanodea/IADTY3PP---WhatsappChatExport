@@ -8,15 +8,15 @@
 
       <p class="title lineHeight">
         {{ user.first_name }} <span class="logoCol">{{ user.last_name }}</span>
-      </p><br/><br/><br/>
+      </p><br/><br/>
       
       <p class="subtitle lineHeight subCon">
         {{ user.email }}
-      </p><br/><br/>
+      </p><br/>
 
       <p class="subtitle lineHeight subCon">
         {{ user.mobile_number }}
-      </p><br/><br/>
+      </p><br/>
       
       <p class="subtitle lineHeight subCon">
         {{ user.address }}
