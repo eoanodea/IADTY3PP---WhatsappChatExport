@@ -60,3 +60,7 @@
 .bx--modal.is-visible {
     background-color: #000000dc;
 }
+
+.bx--select--inline .bx--select-input {
+    background-color: $foreground;
+}
