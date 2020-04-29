@@ -83,6 +83,16 @@
                 this.$emit('selected-service-client', this.serviceId, this.clientId)
             }
         },
+        computed: {
+            ...mapGetters({
+                services: 'service/services',
+                loadingService: 'service/loading',
+                errorService: 'service/error',
+                users: 'user/users',
+                loadingService: 'service/loading',
+                errorService: 'service/error',
+            })
+        },
         components: {
             //
         }   

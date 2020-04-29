@@ -1,6 +1,11 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--gridresponsive-form" v-else-if="updatedService">
+<div class="bx--gridresponsive-form formAlignment" v-else-if="updatedService">
+    <!-- Message -->
+    <div class="bx--row">
+        <h3>Edit <span class="logoCol">Service</span></h3>
+    </div><br/>
+
     <!-- Title -->
     <div class="bx--row">
         <div class="bx--col-lg-12">
@@ -13,7 +18,7 @@
                         type="text" 
                         autocomplete="given-title" 
                         v-model="updatedService.title"
-                        class="bx--text-input" 
+                        class="bx--text-input placeholderForms" 
                         placeholder="Title">
                     </div>
             </div>
@@ -49,14 +54,14 @@
             <div class="bx--form-item bx--text-input-wrapper">
                 <label for="standard_price" class="bx--label">Standard Price</label>
                 <div class="bx--text-input__field-wrapper">
-                    <span>€</span>
+                    <span class="price-prefix">€</span>
                     <input 
                     id="text-input-3" 
                     name="standard_price" 
                     type="number" 
                     autocomplete="given-standard_price" 
                     v-model="updatedService.standard_price"
-                    class="bx--text-input" 
+                    class="bx--text-input placeholderForms price-input" 
                     placeholder="€Standard Price">
                 </div>
             </div>
@@ -67,9 +72,10 @@
     <br/>
     <div class="bx--row">
         <div class="bx--col-lg-12">
-            <label for="recurring_payment" class="bx--label">Recurring Payment</label>
             <cv-checkbox
                 name="recurring_payment" 
+                label="Recurring Payment"
+                value="recurring_payment"
                 v-model="updatedService.recurring_payment"
                 >
             </cv-checkbox>
@@ -80,9 +86,10 @@
     <br/>
     <div class="bx--row">
         <div class="bx--col-lg-12">
-            <label for="is_public" class="bx--label">Public Service</label>
             <cv-checkbox
                 name="is_public" 
+                label="Public Service"
+                value="is_public"
                 v-model="updatedService.is_public"
                 >
             </cv-checkbox>
@@ -185,3 +192,13 @@
         },
     }
 </script>
+
+<style lang="scss" scoped>
+    .price-prefix {
+        position: absolute;
+        left: 5px;   
+    }
+    .price-input {
+        padding: 0 1rem 0 1.5rem;
+    }
+</style>

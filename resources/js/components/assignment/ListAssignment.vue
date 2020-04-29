@@ -1,6 +1,6 @@
 <template>
   <dynamic-table 
-    v-bind:title="'Assignments'" 
+    v-bind:title="'Projects'" 
     v-bind:data="assignments" 
     v-bind:fields="fields" 
     v-bind:showUrl="showUrl" 
