@@ -18,6 +18,7 @@ import DynamicTable from './../table/DynamicTable'
 import { mapGetters } from 'vuex';
 
 export default {
+  props: ['id'],
   data() {
     return {
       fields: ['title', 'deadline'],
@@ -26,9 +27,9 @@ export default {
     };
   },
   created() {
-    if(this.assignments.length < 1) {
-      this.$store.dispatch('assignment/loadAssignments')
-    }
+      if(this.id) {
+        this.$store.dispatch(`assignment/loadAssignmentsByClient`, this.id)
+      } else this.$store.dispatch(`assignment/loadAssignments`)
   },
   methods: {
     //

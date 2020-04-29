@@ -52,10 +52,11 @@
     <CommentTile v-bind:id="assignmentId" v-bind:isAssignment="true" />
 
   </div> <!-- Close ROW 1-->
-
+  <br />
   <div class="bx--row">
 
     <!-- Preparing for Project Page Implementation -->
+    <list-assignment :id="this.$route.params.id" />
 
   </div> <!-- Close ROW 2 -->
 
@@ -69,6 +70,7 @@ import DeleteUser from "./DeleteUser";
 import Assignment from '../assignment/Assignment'
 import Chart from './components/Chart'
 import CommentTile from '../comment/CommentTile'
+import ListAssignment from '../assignment/ListAssignment'
 
 
 import LoadingIndicator from './../progress/LoadingIndicator'
@@ -87,9 +89,9 @@ export default {
     created() {
     this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
 
-    if(this.assignments.length < 1) {
-      this.$store.dispatch('assignment/loadAssignments')
-    }
+    // if(this.assignments.length < 1) {
+    //   this.$store.dispatch('assignment/loadAssignmentsByClient')
+    // }
   },
   methods: {
     returnData() {
@@ -102,7 +104,8 @@ export default {
     Chart,
     CommentTile,
     LoadingIndicator,
-    DataError
+    DataError,
+    ListAssignment
   },
   computed: {
     ...mapGetters({

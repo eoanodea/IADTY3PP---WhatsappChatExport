@@ -101,6 +101,43 @@ export default {
         },
         /**
          * Makes an API request to the 
+         * server for a list of assignments
+         * by a client
+         * 
+         * @param {commit} param0 
+         * @param {page} page 
+         */
+        async loadAssignmentsByClient({commit}, param) {
+            commit('SET_LOADING', true)
+            let dataLimit = 5, currPage = 1, clientId = 0
+            if(param) {
+                typeof param === "object" && param.length >= 0
+                ? (
+                    param.map((dat, i) => {
+                        switch(i) {
+                            case 0: clientId = dat; break;
+                            case 1: currPage = dat; break; 
+                            case 2: dataLimit = dat; break;
+                        }
+                    })
+                )
+                : clientId = param
+            }
+            
+            try {
+                let response = await axios.get('/api/assignment/by/' + clientId + '/' + dataLimit + '?page=' + currPage) 
+
+                commit('SET_ASSIGNMENTS', response.data.data)
+                commit('SET_PAGINATE', response.data) 
+                commit('SET_LOADING', false)
+            } catch (error) {
+                console.log('Error loadAssignments!', error)
+                commit('SET_ERROR', error) 
+                commit('SET_LOADING', false)
+            }
+        },
+        /**
+         * Makes an API request to the 
          * server for a single assignment
          * 
          * @param {commit} param0 

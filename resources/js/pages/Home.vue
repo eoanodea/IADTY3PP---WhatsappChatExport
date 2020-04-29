@@ -71,9 +71,7 @@
     },
     
     created() {
-      if(this.assignments.length < 1) {
-        this.$store.dispatch('assignment/loadAssignments').then(this.loadAssignmentClient)
-      }
+      this.$store.dispatch('assignment/loadAssignments').then(this.loadAssignmentClient)
     },
     methods: {
       returnData() {

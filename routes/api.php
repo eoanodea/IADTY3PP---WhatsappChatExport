@@ -34,7 +34,7 @@ Route::put('/task/{id}', 'Task\DefaultTaskController@update');
 Route::delete('/task/{id}', 'Task\DefaultTaskController@destroy');
 
 Route::get('/assignment/all/{limit?}', 'Assignment\AssignmentController@index');
-Route::get('/assignment/by/{client}', 'Assignment\AssignmentController@indexByClient');
+Route::get('/assignment/by/{client}/{limit?}', 'Assignment\AssignmentController@indexByClient');
 Route::post('/assignment/{serviceId}/{clientId}', 'Assignment\AssignmentController@store');
 Route::get('/assignment/{id}', 'Assignment\AssignmentController@show');
 Route::put('/assignment/{id}', 'Assignment\AssignmentController@update');

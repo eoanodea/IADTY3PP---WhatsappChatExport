@@ -18,7 +18,7 @@ class AssignmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(int $limit = 5) {
-        return Assignment::paginate($limit);;
+        return Assignment::paginate($limit);
     }
 
     /**
@@ -26,8 +26,8 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function indexByClient($id) {
-        return Assignment::where('client_id', $id)->get();
+    public function indexByClient($id, int $limit = 5) {
+        return Assignment::where('client_id', $id)->paginate($limit);
     }
 
     /**
