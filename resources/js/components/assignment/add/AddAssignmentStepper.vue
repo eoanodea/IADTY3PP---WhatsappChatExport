@@ -30,12 +30,12 @@
 
         <!-- Project Details Form -->
         <cv-content-switcher-content owner-id="csb-2" id="second">
-            <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
+            <!-- <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/> -->
         </cv-content-switcher-content>
 
         <!-- Add Tasks Form -->
         <cv-content-switcher-content owner-id="csb-2" id="second">
-            <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
+            <!-- <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/> -->
         </cv-content-switcher-content>
     </section>
 </div>

@@ -20,7 +20,7 @@
                         autocomplete="given-title" 
                         v-model="newService.title"
                         class="bx--text-input placeholderForms" 
-                        placeholder="My Photography Service">
+                        placeholder="Name your Service">
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                             class="bx--text-area"
                             rows="4" 
                             cols="50" 
-                            placeholder="Offer a client a flat price for a full day of photography"></textarea>
+                            placeholder="Give your Service a description"></textarea>
                     </div>
                 </div>
             </div>
