@@ -34,8 +34,8 @@
         </cv-content-switcher-content>
 
         <!-- Add Tasks Form -->
-        <cv-content-switcher-content owner-id="csb-2" id="second">
-            <!-- <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/> -->
+        <cv-content-switcher-content owner-id="csb-3" id="third">
+            <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
         </cv-content-switcher-content>
     </section>
 </div>
@@ -71,14 +71,14 @@
             handleServiceAndClientId(serviceId, clientId) {
                 this.serviceId = serviceId
                 this.clientId = clientId
-                console.log('running!')
                 this.initialSelected = 1
             },
             handleAssignmentDetails(assignment, error) {
                 if(assignment == null) this.setError(error)
                 else {
                     this.assignment = assignment
-                    // this.setDone('second', 'third')
+                    this.initialSelected = 2
+                    
                 }
             },
             addTasksToAssignment(tasks) {

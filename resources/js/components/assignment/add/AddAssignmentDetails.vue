@@ -37,7 +37,7 @@
                             v-model="assignment.deposit"
                             class="bx--text-input" 
                             placeholder="Deposit %">
-                            <span>%</span>
+                            <span class="percent-prefix">%</span>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             v-model="assignment.discount"
                             class="bx--text-input" 
                             placeholder="Discount">
-                            <span>%</span>
+                            <span class="percent-prefix">%</span>
                         </div>
                     </div>
                 </div>
@@ -68,14 +68,14 @@
                     <div class="bx--form-item bx--text-input-wrapper">
                         <label for="total_price" class="bx--label">Total Price</label>
                         <div class="bx--text-input__field-wrapper">
-                            <span>€</span>
+                            <span class="price-prefix">€</span>
                             <input 
                             id="text-input-3" 
                             name="total_price" 
                             type="number" 
                             autocomplete="given-total_price" 
                             v-model="assignment.total_price"
-                            class="bx--text-input" 
+                            class="bx--text-input price-input" 
                             placeholder="Total Price">
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                 if(assignment.discount < 0 || assignment.discount > 100) {
                     this.errors.push({id: 4, message: 'Discount required, must be between 0 and 100'});
                 }
-                if(this.errors.length > 0) this.$emit('selected-assignment', null, 'Error adding assignment details')
+                // if(this.errors.length > 0) this.$emit('selected-assignment', null, 'Error adding assignment details')
             },
             addTasksToAssignment(tasks) {
                 this.assignment.tasks = tasks

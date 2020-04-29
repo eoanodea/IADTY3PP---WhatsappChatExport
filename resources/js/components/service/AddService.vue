@@ -222,13 +222,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .price-prefix {
-        position: absolute;
-        left: 5px;   
-    }
-    .price-input {
-        padding: 0 1rem 0 1.5rem;
-    }
-</style>

@@ -4,9 +4,9 @@
         <div class="bx--row">
 
             <!-- Service Details (Notification Card)-->
-            <div class="bx--col-lg-6" style="padding-top: 140px;">
+            <div class="bx--col-lg-6" style="padding-top: 100px;">
                 
-                <p class="title">
+                <p class="title logoCol">
                     {{ service.title }}
                 </p><br/><br/><br/>
                 
@@ -14,16 +14,16 @@
                     {{ service.description }}
                 </p><br/><br/>
                 
-                <p class="subtitle">
-                    <span class="subCon">Standard Price:</span> €{{service.standard_price}}
+                <p class="subtitle subCon">
+                    Standard Price: €{{service.standard_price}}
                 </p><br/><br/>
                 
-                <p class="subtitle">
-                    <span class="subCon">Recurring Payment?</span> {{service.recurring_payment}}
+                <p class="subtitle subCon">
+                    Recurring Payment: {{ handleBoolean(service.recurring_payment) }}
                 </p><br/><br/>
                 
-                <p class="subtitle">
-                    <span class="subCon">Public Service?</span> {{service.is_public}}
+                <p class="subtitle subCon">
+                    Public Service: {{ handleBoolean(service.is_public) }}
                 </p><br/><br/>
 
                 <div class="bx--row">
@@ -70,6 +70,11 @@
         data() {
             return {
                 //
+            }
+        },
+        methods: {
+            handleBoolean(bool) {
+                return bool === 0 ? 'No' : 'Yes'
             }
         },
         created() {

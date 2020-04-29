@@ -49,6 +49,9 @@
                     if(!response.data) console.log("Error: ", response)
                     else router.push({name: 'assignments' })
                 })
+            },
+            actionSecondary() {
+                this.showDialog = false
             }
         },
         components: {

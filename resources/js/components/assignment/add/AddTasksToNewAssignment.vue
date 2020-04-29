@@ -30,7 +30,12 @@
                     Add Task<CreateNewTaskForAssignment v-on:new-task="newTask"/>
                 </div>
             </section>
+            <cv-data-table
+                title="Tasks"
 
+            >
+            
+            </cv-data-table>
             <table v-if="tasks !== null" class="bx--data-table bx--data-table--sort">
                 <!-- Headings -->
                 <thead>
@@ -60,6 +65,7 @@
                     <Checkmark />
                 </tbody>
             </table>
+
             <p v-else>Select a Service</p>
         </div>
     </div>

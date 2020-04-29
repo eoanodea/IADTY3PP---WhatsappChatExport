@@ -3,48 +3,48 @@
 <div class="bx--grid" v-else-if="assignment && assignment.id">
     <div class="bx--row">
 
-        <!-- Porject Details (Notification Card)-->
+        <!-- Project Details (Notification Card)-->
         <div class="bx--col-lg-6">
             <!-- View Checkout Button -->
             <cv-link :to="'/checkout/' + assignment.id" style="text-decoration: none;">
-                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
+                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary payBtn">
                     Pay
                 </button>
             </cv-link>
 
             <!-- View Transaction Button -->
             <cv-link :to="'/transaction/' + assignment.id" style="text-decoration: none;">
-                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary">
+                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--tertiary logoCol">
                     View Transaction
                 </button>
-            </cv-link>
+            </cv-link><br/><br/>
             
             <p class="title lineHeight">
-                <span class="subCon">Project</span> {{ assignment.title }}
+                Project <span class="logoCol">{{ assignment.title }}</span>
             </p><br/><br/><br/>
 
-            <p class="subtitle">
-                <span class="subCon">Deposit:</span> {{ assignment.deposit }}%
+            <p class="subtitle subCon">
+                Deposit: {{ assignment.deposit }}%
             </p><br/><br/>
 
-            <p class="subtitle">
-                <span class="subCon">Discount:</span> {{ assignment.discount }}%
+            <p class="subtitle subCon">
+                Discount: {{ assignment.discount }}%
             </p><br/><br/>
 
-            <p class="subtitle">
-                <span class="subCon">Total Price:</span> €{{ assignment.total_price }}
+            <p class="subtitle subCon">
+                Total Price: €{{ assignment.total_price }}
             </p><br/><br/>
 
-            <p class="subtitle">
-                <span class="subCon">Deadline:</span> {{ assignment.deadline }}
+            <p class="subtitle subCon">
+                Deadline: {{ assignment.deadline }}
             </p><br/><br/>
 
-            <p class="subtitle">
-                <span class="subCon">Completed?</span> {{ assignment.completed }}
+            <p class="subtitle subCon">
+                Completed: {{ handleBoolean(assignment.completed) }}
             </p><br/><br/>
 
-            <p class="subtitle">
-                <span class="subCon">Date of Completion:</span> {{ assignment.date_of_completion }}
+            <p class="subtitle subCon">
+                Date of Completion: {{ assignment.date_of_completion }}
             </p><br/><br/>
 
             <!-- Buttons -->
@@ -93,7 +93,7 @@
     import DataError from './../table/DataError'
 
     export default {
-        data() {
+        data: () => {
             return {
                 //
             }
@@ -117,6 +117,9 @@
             DataError,
         },
         methods: {
+            handleBoolean(bool) {
+                return bool === 0 ? 'No' : 'Yes'
+            },
             paymentDue() {
                 const { assignment } = this
                 const amount = Math.round(((100 - assignment.discount)/100 * assignment.total_price) - assignment.amount_paid)
@@ -126,3 +129,11 @@
         }
     }
 </script>
+
+<style scoped>
+    .payBtn {
+        color: black;
+        font-weight: 600;
+        background-color: #0bb5ff;
+    }
+</style>

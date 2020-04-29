@@ -1,9 +1,9 @@
 <template>
-<div class="bx--grid">
+<div class="bx--grid invoiceSpace customCard">
     <!-- Label -->
     <div class="bx--row">
         <div class="bx--col-lg-6">
-            <h1>Transaction</h1>
+            <h1 class="logoCol">Transaction</h1>
         </div>
 
         <div class="bx--col-lg-6" style="text-align:right;">
@@ -17,16 +17,12 @@
 
     <br/><br/>
     <hr/>
+    <br/>
 
     <div class="bx--row">
         <!-- Project -->
-        <div class="bx--col-lg-6">
-            <p class="bx--inline-notification__title" style="font-size:34px;">Project {{ assignment.title }}</p>
-        </div>
-        
-        <!-- ID -->
-        <div class="bx--col-lg-6">
-            <p class="bx--inline-notification__title tertiaryText" style="font-size:24px;text-align:right;">I.D: {{ transaction.id }}</p>
+        <div class="bx--col-lg-12">
+            <p class="bx--inline-notification__title subtitle lineHeight">Project <span class="logoCol">{{ assignment.title }}</span></p>
         </div>
     </div>
 
@@ -34,27 +30,32 @@
 
     <div class="bx--row">
         <!-- Created At -->
-        <div class="bx--col-lg-6">
-            <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Transaction created at {{ transaction.created_at }}</p>
-        </div>
-
-        <!-- Updated At -->
-        <div class="bx--col-lg-6">
-            <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;text-align:right;">Transaction updated at {{ transaction.updated_at }}</p>
+        <div class="bx--col-lg-12">
+            <p class="bx--inline-notification__subtitle easyWhite">Transaction created at {{ transaction.created_at }}</p>
         </div>
     </div>
 
+    <br/>
+
+    <div class="bx--row">
+        <!-- Updated At -->
+        <div class="bx--col-lg-12">
+            <p class="bx--inline-notification__subtitle easyWhite">Transaction updated at {{ transaction.updated_at }}</p>
+        </div>
+    </div>
+
+    <br/>
     <hr/>
 
     <div class="bx--row">
         <!-- Amount -->
         <div class="bx--col-lg-6">
-            <p class="bx--inline-notification__title" style="font-size:24px;">Amount €{{ transaction.amount }}</p>
+            <p class="bx--inline-notification__title" style="font-size:24px;">Amount: <span class="logoCol">€{{ transaction.amount }}</span></p>
         </div>
 
         <!-- Stripe ID -->
         <div class="bx--col-lg-6">
-            <p class="bx--inline-notification__title" style="font-size:24px;text-align:right;">Stripe I.D: {{ transaction.stripe_id }}</p>
+            <p class="bx--inline-notification__title" style="font-size:24px;text-align:right;">Stripe I.D: <span class="accentLogo">{{ transaction.stripe_id }}</span></p>
         </div>
     </div>
 </div>
@@ -107,3 +108,21 @@
         },   
     }
 </script>
+
+<style scoped>
+    .invoiceSpace {
+        margin-left: 23%;
+        margin-right: 23%;
+    }
+
+    .customCard {
+        background: #181E31; 
+        padding-top: 3%; 
+        padding-bottom: 3%;
+    }
+    
+    .easyWhite {
+        font-size: 24px;
+        color: #b3b4b8;
+    }
+</style>

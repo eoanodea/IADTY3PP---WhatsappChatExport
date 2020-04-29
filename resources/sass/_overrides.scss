@@ -77,3 +77,18 @@
 .bx--select--inline .bx--select-input {
     background-color: $foreground;
 }
+
+//Form Input Prefix
+.price-prefix {
+    position: absolute;
+    left: 5px;   
+}
+.price-input {
+    padding: 0 1rem 0 1.5rem;
+}
+
+.percent-prefix {
+    position: absolute;
+    right: 5px;   
+}
+

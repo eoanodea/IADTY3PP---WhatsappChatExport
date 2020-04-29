@@ -54,7 +54,7 @@
   </div> <!-- Close ROW 1-->
   <br />
   <div class="bx--row">
-    <div class="bx--col-lg-12">
+    <div class="bx--col-lg-10 alignTable">
       <!-- Preparing for Project Page Implementation -->
       <ListAssignment :id="this.$route.params.id" />
     </div>
@@ -115,3 +115,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .alignTable {
+    margin:auto;
+  }
+</style>

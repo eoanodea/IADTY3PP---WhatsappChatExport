@@ -1,22 +1,28 @@
 <template>
-  <dynamic-table 
-    v-bind:title="'Tasks'" 
-    v-bind:data="tasks" 
-    v-bind:fields="fields" 
-    v-bind:showUrl="showUrl" 
-    v-bind:addUrl="addUrl" 
-    v-bind:loading="loading"
-    v-bind:error="error"
-    v-bind:active="isActive"
-    v-bind:collection="'task'"
-  />
-
+    <!-- Loading -->
+    <loading-indicator v-if="loading"/>
+    <!-- Table -->
+    <task-table 
+        v-bind:title="'Tasks'" 
+        v-else-if="tasks !== null && tasks.length > 0"
+        v-bind:data="tasks" 
+        v-bind:fields="fields" 
+        v-bind:showUrl="showUrl" 
+        v-bind:addUrl="addUrl" 
+        v-bind:loading="loading"
+        v-bind:error="error"
+        v-bind:active="isActive"
+        v-bind:collection="'task'"
+    />
+    <!-- Error -->
+    <data-error v-else v-bind:error="error" v-bind:collection="collection"/>
 </template>
 
 <script>
     import Vue from "vue";
     import axios from 'axios';
-    import DynamicTable from './../table/DynamicTable'
+    // import DynamicTable from './../table/DynamicTable'
+    import TaskTable from './TaskTable'
     import { mapGetters } from 'vuex';
 
 
@@ -61,7 +67,7 @@
             })
         },
         components: {
-            DynamicTable
+            TaskTable
         }
     }
 </script>

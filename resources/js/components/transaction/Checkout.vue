@@ -1,18 +1,19 @@
 <template>
 <loading-indicator v-if="loading"/>
-<div class="bx--grid" v-else-if="assignment && assignment.id">
+<div class="bx--grid invoiceSpace customCard" v-else-if="assignment && assignment.id">
   <div class="bx--row">
     <div class="bx--col-lg-12">
-      <h1>Pay for a project</h1>
+      <h1>Pay for PROJECT <span class="logoCol">{{ assignment.title }}</span></h1>
     </div>
   </div>
 
   <br/><br/>
   <hr/>
+  <br/>
 
   <div class="bx--row">
     <div class="bx--col-lg-12">
-      <p class="bx--inline-notification__title" style="font-size:34px;">Total: €{{ assignment.total_price }}</p>
+      <p class="bx--inline-notification__title subtitle">Total: <span class="logoCol">€{{ assignment.total_price }}</span></p>
     </div>
   </div>
 
@@ -20,7 +21,7 @@
 
   <div class="bx--row">
     <div class="bx--col-lg-12">
-      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Discount: {{ assignment.discount }}%</p>
+      <p class="bx--inline-notification__subtitle easyWhite">Discount: {{ assignment.discount }}%</p>
     </div>
   </div>
 
@@ -28,7 +29,7 @@
 
   <div class="bx--row">
     <div class="bx--col-lg-12">
-      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Amount Due €{{ checkoutPayload.amount }}</p>
+      <p class="bx--inline-notification__subtitle easyWhite">Amount Due €{{ checkoutPayload.amount }}</p>
     </div>
   </div>
 
@@ -36,10 +37,11 @@
 
   <div class="bx--row">
     <div class="bx--col-lg-12">
-      <p class="bx--inline-notification__subtitle tertiaryText" style="font-size:24px;">Amount Paid: €{{ assignment.amount_paid }}</p>
+      <p class="bx--inline-notification__subtitle easyWhite">Amount Paid: €{{ assignment.amount_paid }}</p>
     </div>
   </div>
 
+  <br/>
   <hr/>
 
   <template v-if="checkoutPayload.amount > 0">
@@ -112,3 +114,21 @@
     }
   }
 </script>
+
+<style scoped>
+    .invoiceSpace {
+        margin-left: 23%;
+        margin-right: 23%;
+    }
+
+    .customCard {
+        background: #181E31; 
+        padding-top: 3%; 
+        padding-bottom: 3%;
+    }
+    
+    .easyWhite {
+        font-size: 24px;
+        color: #b3b4b8;
+    }
+</style>
