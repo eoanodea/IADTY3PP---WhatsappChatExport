@@ -4,22 +4,22 @@
   <div class="bx--row">
     
     <!-- Client Details (Notification Card)-->
-    <div class="bx--col-lg-6" style="padding-top: 140px;">
+    <div class="bx--col-lg-6" style="padding-top: 5%;">
 
       <p class="title lineHeight">
-        {{ user.first_name }} {{ user.last_name }}
+        {{ user.first_name }} <span class="logoCol">{{ user.last_name }}</span>
       </p><br/><br/><br/>
       
-      <p class="subtitle">
+      <p class="subtitle lineHeight subCon">
+        {{ user.email }}
+      </p><br/><br/>
+
+      <p class="subtitle lineHeight subCon">
         {{ user.mobile_number }}
       </p><br/><br/>
       
-      <p class="subtitle">
+      <p class="subtitle lineHeight subCon">
         {{ user.address }}
-      </p><br/><br/>
-      
-      <p class="subtitle">
-        {{ user.email }}
       </p><br/><br/>
       
       <div class="bx--row">
@@ -114,9 +114,3 @@ export default {
   }
 };
 </script>
-
-<style scope>
-  .lineHeight {
-    line-height: 1.1;
-  }
-</style>
