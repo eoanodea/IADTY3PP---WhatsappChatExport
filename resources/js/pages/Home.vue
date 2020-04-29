@@ -5,7 +5,7 @@
     <div class="bx--col-lg-12">
       <cv-dropdown name="assignment" id="assignment" class="cv-dropdown home-dropdown" v-model="assignmentId" placeholder="Select a Project" >
           <cv-dropdown-item v-for="(assignment, index) in assignments" v-bind:key="assignment.id" :value="assignment.id.toString()" :selected="index === 0">
-              Project <span class="dropDownSpan logoCol">{{assignment.title}}</span>
+              <span style="color:#D1D2D8;">Project</span> <span class="dropDownSpan logoCol">{{assignment.title}}</span>
           </cv-dropdown-item>
       </cv-dropdown>
     </div>
