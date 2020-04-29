@@ -19,10 +19,10 @@
                 @secondary-click="actionSecondary"
                 @primary-click="actionPrimary"
             >
-            <template slot="title"><span class="warning">{{!disabled ? 'WARNING' : 'Error'}}</span></template>
+            <template slot="title"><span class="warning">{{!disabled ? 'WARNING' : 'ERROR'}}</span></template>
             <template slot="content">
                 <p v-if="!disabled">Are you sure you want to delete this <span class="logoCol">Client</span>?</p>
-                <p v-else>You cannot delete this <span class="logoCol">Client</span> because he has active projects</p>
+                <p v-else>You cannot delete this <span class="logoCol">Client</span> due to their Active <span class="logoCol">Project/s</span>.</p>
             </template>
 
             <!-- Buttons -->
