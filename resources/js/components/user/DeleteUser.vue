@@ -20,7 +20,7 @@
                 @primary-click="actionPrimary"
             >
             <template slot="title"><span class="warning">WARNING</span></template>
-            <template slot="content"><p>Are you sure you want to delete this <span class="logoCol">client</span>?</p></template>
+            <template slot="content"><p>Are you sure you want to delete this <span class="logoCol">Client</span>?</p></template>
 
             <!-- Buttons -->
             <template slot="secondary-button">No</template>
