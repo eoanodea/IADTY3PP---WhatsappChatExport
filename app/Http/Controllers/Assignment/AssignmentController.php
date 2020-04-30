@@ -44,7 +44,7 @@ class AssignmentController extends Controller
             'total_price' => 'required|numeric|min:0',
             'deposit' => 'required|min:0|max:100',
             'discount' => 'required|min:0|max:100',
-            'deadline' => 'date|required',
+            'deadline' => 'required',
         ]);
 
         $assignment = new Assignment;
