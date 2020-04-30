@@ -4,7 +4,7 @@
     <div class="bx--row">
 
         <!-- Project Details (Notification Card)-->
-        <div class="bx--col-lg-6">
+        <div class="bx--col-lg-6 project-info-wrapper">
             <!-- View Checkout Button -->
             <cv-link :to="'/checkout/' + assignment.id" style="text-decoration: none;">
                 <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary payBtn">
@@ -135,5 +135,8 @@
         color: black;
         font-weight: 600;
         background-color: #0bb5ff;
+    }
+    .project-info-wrapper{
+        margin-bottom: 20px;
     }
 </style>

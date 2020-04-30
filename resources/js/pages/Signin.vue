@@ -1,6 +1,6 @@
 <template>
 <div class="bx--row">
-    <div class="bx--col-lg-6">
+    <div class="bx--col-lg-6 logo-container">
         <img src="./assets/Logo.png" class="logo">
         <br/>
         <p class="introMessage">Your very own <span class="logoCol">All-in-One</span> Client Management System</p>
@@ -125,9 +125,14 @@ import { mapActions } from 'vuex'
 </script>
 
 <style scoped>
+    .logo-container {
+        display: flex;
+        flex-direction: column;
+    }
     .logo {
-        width: 75%;
-        margin-left:12%;
+        width: 80%;
+        max-width: 500px;
+        margin: auto;
         padding-top: 3%; 
         padding-bottom: 3%;
     }
@@ -141,6 +146,12 @@ import { mapActions } from 'vuex'
         background: #181E31; 
         padding-top: 10%; 
         padding-bottom: 10%;
+    }
+
+    @media(max-width: 1054px) {
+        .customCard {
+            margin-top: 20px;
+        }   
     }
 
     .message {

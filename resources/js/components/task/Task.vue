@@ -42,7 +42,7 @@
   <hr/>
 
   <div class="bx--row">
-    <div class="bx--col-lg-9">
+    <div class="bx--col-sm-2 bx--col-lg-8">
       <cv-link :to="`/admin/tasks/${active}/edit/` + task.id" style="text-decoration: none;">
         <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
             Edit Task
@@ -50,7 +50,7 @@
       </cv-link>
     </div>
     
-    <div class="bx--col-lg-3">
+    <div class="bx--col-sm-2 bx--col-lg-4">
       <DeleteTask v-bind:id="task.id" v-bind:isActive="active" />
     </div>
   </div>
@@ -98,11 +98,6 @@
 </script>
 
 <style scoped>
-    .invoiceSpace {
-        margin-left: 23%;
-        margin-right: 23%;
-    }
-
     .customCard {
         background: #181E31; 
         padding-top: 3%; 

@@ -43,7 +43,7 @@
     <!-- Chart -->
     <div class="bx--col-lg-6">
       <div class="assignment-container" v-if="assignmentId">
-        <Chart v-bind:parentId="assignmentId" style="padding-left:100px;"/>
+        <Chart v-bind:parentId="assignmentId" class="user-chart-styles"/>
       </div>
     </div> <!-- Close Chart COLUMN -->
     
@@ -119,5 +119,10 @@ export default {
 <style scoped>
   .alignTable {
     margin:auto;
+  }
+  @media(min-width: 700px) {
+    .user-chart-styles {
+      padding-left: 100px;
+    }
   }
 </style>

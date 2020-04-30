@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="loading-container">
         <p>Please wait while we load up your {{data ? data : 'data'}}.</p>
         <div data-loading class="bx--loading loading">
             <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
@@ -17,6 +17,9 @@
     }
 </script>
 <style lang="scss" scoped>
+    .loading-container {
+        text-align: center;
+    }
     .loading {
         margin: 10px auto;
     }

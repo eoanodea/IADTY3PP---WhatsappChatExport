@@ -20,7 +20,7 @@
         </div>
 
         <!-- Table Wrapper -->
-        <div v-if="data !== null && data.length > 0">
+        <div v-if="data !== null">
             <!-- Table -->
             <table class="bx--data-table bx--data-table--sort">
                 <!-- Table Head -->
@@ -39,7 +39,7 @@
                 </thead>
 
                 <!-- Table Body -->
-                <tbody>
+                <tbody v-if="data.length > 0">
                     <tr v-for="dat in data" v-bind:key="dat.id">
                         <!-- Names -->
                         <td v-for="field in fields" v-bind:key="field">
@@ -59,11 +59,21 @@
                     
                     </tr>
                 </tbody>
+                <div v-else class="no-data-container">
+                    <h2>No {{collection}}s found</h2>
+                    <br /> <!-- dont tell mo -->
+                    <cv-link v-if="addUrl" :to="addUrl" style="text-decoration: none;"> 
+                        <button class="bx--btn bx--btn--lg bx--btn--primary">
+                            Add {{title}} 
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 15V7h-2v8H7v2h8v8h2v-8h8v-2h-8z"></path></svg>
+                        </button>
+                    </cv-link>
+                </div>
             </table>
             <!-- Close Table -->
 
             <!-- Pagination -->
-            <pagination v-if="collection" v-bind:collection="collection" v-bind:active="isActive" />
+            <pagination v-if="collection && data.length > 0" v-bind:collection="collection" v-bind:active="isActive" />
             <!-- Close Pagination -->
 
         </div>
@@ -102,6 +112,11 @@
 <style lang="scss" scoped>
     table th span, h2 {
         text-transform: capitalize;
+    }
+    .no-data-container {
+        width: 100%;
+        margin: 50px auto;
+        text-align: center;
     }
 </style>
 

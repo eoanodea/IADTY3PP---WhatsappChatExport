@@ -110,10 +110,6 @@
 </script>
 
 <style scoped>
-    .invoiceSpace {
-        margin-left: 23%;
-        margin-right: 23%;
-    }
 
     .customCard {
         background: #181E31; 

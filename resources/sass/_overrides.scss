@@ -104,3 +104,28 @@
 .bx--content-switcher-btn.bx--content-switcher--selected {
     background-color: $logo;
 }
+
+//Form Requirement
+.bx--form-requirement {
+    margin: 0.4rem 0;
+}
+
+//Button Padding
+@media(max-width: 480px) {
+    .bx--btn {
+        padding: calc(0.875rem - 3px) 30px calc(0.875rem - 3px) 12px;
+    }
+}
+
+//Task table checkbox
+.bx--table-column-checkbox {
+    padding: 15px 0 0 15px!important;
+}
+
+//Invoice Card
+@media(min-width: 750px) {
+    .invoiceSpace {
+        margin-left: 23%;
+        margin-right: 23%;
+    }
+  }
