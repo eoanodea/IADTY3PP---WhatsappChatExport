@@ -33,16 +33,43 @@
       <hr style="border: 1px solid #0bb5ff; width:40%;"/>
       <br/><br/><br/>
       
-      <p class="theBoys">Eoan O <span class="logoCol">Dea</span></p>
+      <p class="theBoys lineHeight">Eoan O <span class="logoCol">Dea</span></p>
+      <br/><br/>
+      <p class="introMessage">(Freelance Web. Developer)</p>
     </div>
 
     <div class="bx--col-lg-6 align">
       <h1 class="introMessage">DESIGNER</h1>
       
-      <hr style="border: 1px solid #7851a9; width:40%;"/>
+      <hr style="border: 1px solid #0bb5ff; width:40%;"/>
       <br/><br/><br/>
       
-      <p class="theBoys">John Carlo M. <span class="accentCol">Ramos</span></p>
+      <p class="theBoys lineHeight">John Carlo M. <span class="logoCol">Ramos</span></p>
+      <br/><br/>
+      <p class="introMessage">(Freelance Photographer)</p>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="bx--row">
+    <div class="bx--col-lg-12 align">
+      <h1 class="introMessage">About <span class="accentCol">Us</span></h1>
+      
+      <hr style="border: 1px solid #7851a9; width:40%;"/>
+      <br/><br/><br/>
+
+      <p class="introMessage introSection">As freelancers ourselves, 
+        we understand the issues that other freelancers and clients face. 
+        Due to our current profession, developing and designing the 
+        Clientel<span class="logoCol">igence</span> application has a personal belonging for us. 
+        However, this application is not just developed for our own personal 
+        gains, this is also developed for all kinds of 
+        freelancers and clients within the creative industry. 
+        By designing and developing an application that allows 
+        freelancers to manage their clients, services, 
+        projects, payment preferences and invoices as well as allowing
+        clients to monitor and create a transaction for their projects, 
+        we hope to provide the optimum workflow that we all desire.</p>
     </div>
   </div>
   
@@ -80,7 +107,7 @@
   .introSection {
     color: #c5c5c5;
     font-size: 24px;
-    text-align: 0.7;
+    line-height: 1.1;
   }
 
   .theBoys {
