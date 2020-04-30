@@ -106,4 +106,29 @@ class ActiveTaskController extends Controller
             'parentId' => $task->assignment_id
         ], 200);
     }
+
+    /**
+     * Remove multiple resources from storage 
+     * from an array of IDs.
+     *
+     * @param  Array  $ids
+     * @return \Illuminate\Http\Response
+     */
+    public function batchDestroy($ids)
+    {
+        $deletes = 0; 
+        $errors = $ids.count();
+        foreach($ids as $id) {
+            $task = ActiveTask::findOrFail($id);
+            $task->delete();
+            $deletes++;
+            $errors--;
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'deletes' => $deletes,
+            'errors' => $errors
+        ], 200);
+    }
 }

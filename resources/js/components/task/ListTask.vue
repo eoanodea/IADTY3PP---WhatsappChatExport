@@ -11,7 +11,7 @@
         v-bind:addUrl="addUrl" 
         v-bind:loading="loading"
         v-bind:error="error"
-        v-bind:active="isActive"
+        v-bind:active="active"
         v-bind:collection="'task'"
     />
     <!-- Error -->
@@ -21,7 +21,8 @@
 <script>
     import Vue from "vue";
     import axios from 'axios';
-    // import DynamicTable from './../table/DynamicTable'
+    import LoadingIndicator from './../progress/LoadingIndicator'
+    import DataError from './../table/DataError'
     import TaskTable from './TaskTable'
     import { mapGetters } from 'vuex';
 
@@ -67,7 +68,9 @@
             })
         },
         components: {
-            TaskTable
+            DataError,
+            TaskTable,
+            LoadingIndicator
         }
     }
 </script>

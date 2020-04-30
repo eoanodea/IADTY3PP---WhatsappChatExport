@@ -26,7 +26,7 @@
         <!-- Edit Button -->
         <cv-link :to="`/admin/tasks/${active}/edit/` + task.id" style="text-decoration: none;">
           <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
-              Edit Default Task
+              Edit Task
           </button>
         </cv-link>
         <DeleteTask v-bind:id="task.id" v-bind:isActive="active" />
@@ -58,7 +58,7 @@
       };
     },
     created() {
-        this.$store.dispatch('task/loadTask', parseInt(this.$route.params.id))
+        this.$store.dispatch('task/loadTask', [this.active, this.$route.params.id])
     },
     computed: {
         ...mapGetters({

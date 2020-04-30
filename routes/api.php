@@ -32,6 +32,8 @@ Route::post('/task/{service}/new', 'Task\DefaultTaskController@store');
 Route::get('/task/{id}', 'Task\DefaultTaskController@show');
 Route::put('/task/{id}', 'Task\DefaultTaskController@update');
 Route::delete('/task/{id}', 'Task\DefaultTaskController@destroy');
+Route::post('/task/batchRemove', 'Task\DefaultTaskController@batchDestroy');
+
 
 Route::get('/assignment/all/{limit?}', 'Assignment\AssignmentController@index');
 Route::get('/assignment/by/{client}/{limit?}', 'Assignment\AssignmentController@indexByClient');
@@ -45,6 +47,7 @@ Route::post('/task/active/{assignment}/new', 'Task\ActiveTaskController@store');
 Route::get('/task/active/{id}', 'Task\ActiveTaskController@show');
 Route::put('/task/active/{id}', 'Task\ActiveTaskController@update');
 Route::delete('/task/active/{id}', 'Task\ActiveTaskController@destroy');
+Route::post('/task/active/batchRemove', 'Task\ActiveTaskController@batchDestroy');
 
 Route::get('/comments/assignment/{assignment}', 'Comment\CommentController@indexByAssignment');
 Route::get('/comments/{id}', 'Comment\CommentController@show');

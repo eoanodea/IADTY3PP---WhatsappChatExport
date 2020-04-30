@@ -89,7 +89,7 @@ class DefaultTaskController extends Controller
         ], 200);
     }
 
-        /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -103,6 +103,31 @@ class DefaultTaskController extends Controller
         return response()->json([
             'status' => 'success',
             'parentId' => $task->service_id
+        ], 200);
+    }
+
+    /**
+     * Remove multiple resources from storage 
+     * from an array of IDs.
+     *
+     * @param  Array  $ids
+     * @return \Illuminate\Http\Response
+     */
+    public function batchDestroy($ids)
+    {
+        $deletes = 0; 
+        $errors = $ids.count();
+        foreach($ids as $id) {
+            $task = DefaultTask::findOrFail($id);
+            $task->delete();
+            $deletes++;
+            $errors--;
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'deletes' => $deletes,
+            'errors' => $errors
         ], 200);
     }
 }

@@ -60,7 +60,7 @@
                         autocomplete="given-percent_done" 
                         v-model="task.percent_done"
                         class="bx--text-input placeholderForms price-input">
-                        <span class="price-prefix">%</span>
+                        <span class="percent-prefix">%</span>
                     </div>
                 </div>
             </div>

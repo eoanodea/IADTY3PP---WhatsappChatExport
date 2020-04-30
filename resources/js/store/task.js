@@ -108,11 +108,18 @@ export default {
          * @param {commit} param0 
          * @param {page} page 
          */
-        async loadTask({commit}, id) {
+        async loadTask({commit}, param) {
             commit('SET_LOADING', true)
-            if(id) {
+            if(param) {
+                let paramsArr = []
+                param.length >= 0
+                ? (
+                    param.map(dat => paramsArr.push(dat))
+                )
+                : paramsArr[0] = param
+
                 try {
-                    let response = await axios.get('/api/task/' + id) 
+                    let response = await axios.get(`/api/task/${paramsArr[0] ? 'active' : ''}/${paramsArr[1]}`) 
                     
                     commit('SET_TASK', response.data.task)
                     commit('SET_LOADING', false)
@@ -122,9 +129,6 @@ export default {
                     commit('SET_LOADING', false)
                     throw error
                 }
-            } else {
-                commit('SET_TASK', null)
-                commit('SET_LOADING', false)
             }
         },
         /**
@@ -186,7 +190,32 @@ export default {
                 commit('SET_TASK', null)
                 commit('SET_LOADING', false)
             } catch(error) {
-                console.log('Error getTask', null);
+                console.log('Error getTask', error);
+                commit('SET_ERROR', error) 
+                commit('SET_LOADING', false)
+            }
+        },
+        /**
+         * Delete multiple tasks
+         * from the database
+         * 
+         * @param {commit} param
+         * @param {page} page 
+         */
+        async batchDeleteTasks({commit}, params) {
+            commit('SET_LOADING', true)
+            const isActive = params[0] ? 'active' : ''
+            const ids = params.splice(0, 1)
+            try {
+                let response = await axios.post(`/api/task/batchRemove/${isActive}`, ids) 
+                if(response.status === 'success') {
+                    console.log('response good!')
+                    this.loadTasks({commit})
+                }
+
+                commit('SET_LOADING', false)
+            } catch(error) {
+                console.log('Error getTask', error);
                 commit('SET_ERROR', error) 
                 commit('SET_LOADING', false)
             }
