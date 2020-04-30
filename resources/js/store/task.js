@@ -54,7 +54,8 @@ export default {
         },
 
         REMOVE_TASK(state, id) {
-            state.tasks = state.tasks.filter(dat => dat.id !== id)
+            console.log('REMOVING',id, state.tasks, state.tasks.filter(dat => dat.id != id))
+            state.tasks = state.tasks.filter(dat => dat.id != id)
         },
 
         SET_LOADING(state, loading) {
@@ -183,7 +184,7 @@ export default {
             commit('SET_LOADING', true)
             try {
                 let response = await axios.delete(`/api/task/${params[0]}`) 
-                if(response.status === 'success') {
+                if(response.data.status === 'success') {
                     console.log('response good!')
                     this.loadTasks({commit})
                 }
@@ -217,6 +218,7 @@ export default {
                         console.log('removing ', dat)
                         commit('REMOVE_TASK', dat)
                     })
+                    // this.loadTasks({commit})
                 }
 
                 commit('SET_LOADING', false)

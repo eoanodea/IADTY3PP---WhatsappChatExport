@@ -25,16 +25,19 @@
             </template>
             
             <!-- Data slot -->
-            <template v-if="use_htmlData" slot="data">
-                <span v-if="filteredData.length > 0">
+            <template v-if="use_htmlData && filteredData.length > 0" slot="data">
                 <cv-data-table-row v-for="(row, rowIndex) in filteredData" :key="rowIndex" :value="`${rowIndex}`">
                     <cv-data-table-cell v-for="(field, fieldIndex) in customFields" :key="fieldIndex" :value="`${fieldIndex}`">
                         <cv-link :to="(showUrl + data[rowIndex].id)">{{row[fieldIndex]}}</cv-link>
                     </cv-data-table-cell>
                 </cv-data-table-row>
-                </span>
-                 <cv-data-table-row v-else >No Tasks available</cv-data-table-row>
-                <!-- <h3 v-else></h3> -->
+            </template>
+            <template v-else slot="data">
+                <cv-data-table-row>
+                    <cv-data-table-cell>No Tasks found</cv-data-table-cell>
+                    <cv-data-table-cell></cv-data-table-cell>
+                    <cv-data-table-cell></cv-data-table-cell>
+                </cv-data-table-row>
             </template>
             
             <!-- Batch Actions slot -->
@@ -140,6 +143,7 @@
             BatchDeleteTask
         },
         mounted() {
+            if(this.data.length < 1) this.use_batchActions = false
             this.formatData()
             this.formatFields()
         }
