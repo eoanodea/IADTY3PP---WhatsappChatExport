@@ -78,7 +78,7 @@ const routes = [
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)
     },
     {
-        path: '/admin/about',
+        path: '/about',
         name: 'about',
         component: About
     },

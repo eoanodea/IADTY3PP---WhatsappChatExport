@@ -17,7 +17,7 @@
         All in <span class="logoCol">one application</span>.</p>
     </div>
 
-    <div class="bx--col-lg-6">
+    <div class="bx--col-lg-6 logo-container">
       <img src="./assets/Logo.png" class="logo">
     </div>
   </div>

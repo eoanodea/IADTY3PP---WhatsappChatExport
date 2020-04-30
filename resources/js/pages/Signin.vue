@@ -4,6 +4,11 @@
         <img src="./assets/Logo.png" class="logo">
         <br/>
         <p class="introMessage">Your very own <span class="logoCol">All-in-One</span> Client Management System</p>
+            <cv-link :to="'/about'" style="text-decoration: none;" class="aboutBtn">
+                <button data-notification-btn class="bx--btn bx--btn--lg bx--btn--primary">
+                    About <ArrowRight32 class="bx--btn__icon" />
+                </button>
+            </cv-link>
     </div>
 
     <div class="bx--col-lg-6 customCard">
@@ -79,6 +84,7 @@
 <script>
 import Vue from 'vue'
 import { mapActions } from 'vuex'
+import ArrowRight32 from '@carbon/icons-vue/es/arrow--right/32'
 
   export default {
     data() {
@@ -119,24 +125,12 @@ import { mapActions } from 'vuex'
         })
     },
     components: {
-        //
+        ArrowRight32
     }
   }
 </script>
 
 <style scoped>
-    .logo-container {
-        display: flex;
-        flex-direction: column;
-    }
-    .logo {
-        width: 80%;
-        max-width: 500px;
-        margin: auto;
-        padding-top: 3%; 
-        padding-bottom: 3%;
-    }
-
     .introMessage {
         color: #c5c5c5;
         text-align: center;
@@ -169,5 +163,10 @@ import { mapActions } from 'vuex'
 
     .alignment {
         margin-left: 20%;
+    }
+
+    .aboutBtn {
+        text-align: center;
+        margin-top: 20px;
     }
 </style>

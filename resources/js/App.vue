@@ -49,7 +49,7 @@
           </cv-header-menu-item>
 
           <!-- About -->
-          <cv-header-menu-item to="/admin/about" @click="click">
+          <cv-header-menu-item to="/about" @click="click">
             About
           </cv-header-menu-item>
         </template>
@@ -137,7 +137,7 @@
               
               <!-- About -->
               <cv-switcher-item>
-                <cv-switcher-item-link to="/admin/about" @click="click">
+                <cv-switcher-item-link to="/about" @click="click">
                   About
                 </cv-switcher-item-link>
               </cv-switcher-item>
