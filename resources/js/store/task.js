@@ -119,7 +119,7 @@ export default {
                 : paramsArr[0] = param
 
                 try {
-                    let response = await axios.get(`/api/task/${paramsArr[0] ? 'active' : ''}/${paramsArr[1]}`) 
+                    let response = await axios.get(`/api/task/${paramsArr[0] ? 'active/' : ''}${paramsArr[1]}`) 
                     
                     commit('SET_TASK', response.data.task)
                     commit('SET_LOADING', false)
@@ -204,13 +204,19 @@ export default {
          */
         async batchDeleteTasks({commit}, params) {
             commit('SET_LOADING', true)
-            const isActive = params[0] ? 'active' : ''
-            const ids = params.splice(0, 1)
+            const isActive = params[0] === 'true' ? 'active' : ''
+            let ids = params
+            ids.shift()
+
             try {
-                let response = await axios.post(`/api/task/batchRemove/${isActive}`, ids) 
-                if(response.status === 'success') {
+                let response = await axios.post(`/api/task/${isActive}/batchRemove`, ids) 
+                console.log('done!', response.status, response.data.status === 'success')
+                if(response.data.status === 'success') {
                     console.log('response good!')
-                    this.loadTasks({commit})
+                    ids.map(dat => {
+                        console.log('removing ', dat)
+                        commit('REMOVE_TASK', dat)
+                    })
                 }
 
                 commit('SET_LOADING', false)

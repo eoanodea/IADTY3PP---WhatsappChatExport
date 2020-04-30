@@ -114,11 +114,13 @@ class ActiveTaskController extends Controller
      * @param  Array  $ids
      * @return \Illuminate\Http\Response
      */
-    public function batchDestroy($ids)
+    public function batchDestroy(Request $request)
     {
+        $content = $request->all();
         $deletes = 0; 
-        $errors = $ids.count();
-        foreach($ids as $id) {
+        $errors = count($content);   
+
+        foreach($content as $id) {
             $task = ActiveTask::findOrFail($id);
             $task->delete();
             $deletes++;

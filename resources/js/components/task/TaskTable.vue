@@ -26,11 +26,15 @@
             
             <!-- Data slot -->
             <template v-if="use_htmlData" slot="data">
+                <span v-if="filteredData.length > 0">
                 <cv-data-table-row v-for="(row, rowIndex) in filteredData" :key="rowIndex" :value="`${rowIndex}`">
                     <cv-data-table-cell v-for="(field, fieldIndex) in customFields" :key="fieldIndex" :value="`${fieldIndex}`">
                         <cv-link :to="(showUrl + data[rowIndex].id)">{{row[fieldIndex]}}</cv-link>
                     </cv-data-table-cell>
                 </cv-data-table-row>
+                </span>
+                 <cv-data-table-row v-else >No Tasks available</cv-data-table-row>
+                <!-- <h3 v-else></h3> -->
             </template>
             
             <!-- Batch Actions slot -->
@@ -42,10 +46,11 @@
             </template>
         </cv-data-table>
         <BatchDeleteTask 
-            v-bind:ids="selectedData" 
+            v-bind:ids="selectedIds" 
             v-bind:showDialog="showDialog" 
             v-bind:isActive="active" 
             v-on:handle-dialog="handleDialog"
+            v-on:handle-success="handleBatchSuccess"
         />
     </div>
 </template>
@@ -67,6 +72,7 @@
             return {
                 showDialog: false,
                 selectedData: [],
+                selectedIds: [],
                 filteredData: [],
                 use_actions: true,
                 use_batchActions: true,
@@ -95,19 +101,33 @@
                 this.filteredData = result
             },
             actionRowSelectChange(row) {
-                row.selected
-                ? this.selectedData.push(row.value)
-                : this.selectedData.splice(row.value, 1)
+                const selected = this.data[parseInt(row.value)]
+                
+                row.selected == true
+                ? this.selectedIds.push(selected.id.toString())
+                : this.selectedIds = this.selectedIds.filter(dat => dat != selected.id)
             },
             onOverflowMenuClick() {
                 console.log('overflow menu !')
             },
             onBatchDelete() {
                 this.handleDialog()
-
             },
             actionNew() {
                 console.log('new!')
+            },
+            handleBatchSuccess() {
+                console.log('YEEEHHH GOING')
+                console.log('starting', this.selectedData)
+                this.selectedData.map((dat, i) => {
+                    console.log('filting', this.filteredData, dat, i)
+                    this.filteredData.splice(parseInt(dat), 1)
+                    console.log('done', this.filteredData)
+                })
+                this.selectedData = []
+                this.selectedIds = []
+                // this.formatData()
+                this.handleDialog()
             },
             handleDialog() {
                 this.showDialog = !this.showDialog

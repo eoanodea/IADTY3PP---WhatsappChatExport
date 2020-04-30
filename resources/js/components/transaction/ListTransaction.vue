@@ -4,7 +4,6 @@
     v-bind:data="transactions" 
     v-bind:fields="fields" 
     v-bind:showUrl="showUrl" 
-    v-bind:addUrl="addUrl" 
     v-bind:loading="loading"
     v-bind:error="error"
     v-bind:collection="'transaction'"

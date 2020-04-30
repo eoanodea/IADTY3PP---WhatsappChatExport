@@ -13,7 +13,7 @@
     >
 
         <template slot="title"><span class="warning">WARNING</span></template>
-        <template slot="content"><p>Are you sure you want to delete {{ids.length}} <span class="logoCol">Tasks</span>?</p></template>
+        <template slot="content"><p>Are you sure you want to delete {{ids.length}} <span class="logoCol">Task{{ids.length > 1 ? 's' : ''}}</span>?</p></template>
     
         <!-- Buttons -->
         <template slot="secondary-button">No</template>
@@ -42,12 +42,12 @@
                 let {submitting, showDialog, isActive, ids} = this
                 submitting = true
                 let idsArr = ids, app = this
-                idsArr.unshift(isActive)
-                console.log(idsArr, 'yeehaw')
+                idsArr.unshift(isActive.toString())
                 this.$store.dispatch('task/batchDeleteTasks', idsArr)
                 .then(function(response) {
                     submitting = false
-                    app.$emit('handle-dialog')
+                    console.log('done!', this)
+                    app.$emit('handle-success')
                 }).catch(function(error) {
                     console.log('error', error)
                     submitting = false

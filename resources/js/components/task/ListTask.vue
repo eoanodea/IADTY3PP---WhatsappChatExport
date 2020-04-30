@@ -4,7 +4,7 @@
     <!-- Table -->
     <task-table 
         v-bind:title="'Tasks'" 
-        v-else-if="tasks !== null && tasks.length > 0"
+        v-else-if="tasks !== null"
         v-bind:data="tasks" 
         v-bind:fields="fields" 
         v-bind:showUrl="showUrl" 
@@ -15,7 +15,7 @@
         v-bind:collection="'task'"
     />
     <!-- Error -->
-    <data-error v-else v-bind:error="error" v-bind:collection="collection"/>
+    <data-error v-else v-bind:error="error" v-bind:collection="'task'"/>
 </template>
 
 <script>
@@ -44,9 +44,7 @@
             }
         },
         created() {
-            if(this.tasks.length < 1) {
-                this.$store.dispatch('task/loadTasks', [this.taskId, this.isActive])
-            }
+            this.$store.dispatch('task/loadTasks', [this.taskId, this.isActive])
         },
         methods: {
             //

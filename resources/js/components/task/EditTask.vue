@@ -62,7 +62,7 @@
                         v-model="updatedTask.percent_done"
                         class="bx--text-input placeholderForms price-input" 
                         placeholder="Percentage Done">
-                        <span class="price-prefix">%</span>
+                        <span class="percent-prefix">%</span>
                     </div>
                 </div>
             </div>
