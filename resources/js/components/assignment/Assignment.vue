@@ -43,7 +43,7 @@
                 Completed: {{ handleBoolean(assignment.completed) }}
             </p><br/><br/>
 
-            <p class="subtitle subCon">
+            <p class="subtitle subCon lineHeight">
                 Date of Completion: {{ assignment.date_of_completion }}
             </p><br/><br/>
 
