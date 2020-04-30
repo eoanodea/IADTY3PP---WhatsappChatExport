@@ -134,13 +134,14 @@
                   Sign In
                 </cv-switcher-item-link>
               </cv-switcher-item>
+              
+              <!-- About -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/admin/about" @click="click">
+                  About
+                </cv-switcher-item-link>
+              </cv-switcher-item>
             </template>
-            <!-- About -->
-            <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/about" @click="click">
-                About
-              </cv-switcher-item-link>
-            </cv-switcher-item>
 
           </cv-switcher>
         </cv-header-panel>
