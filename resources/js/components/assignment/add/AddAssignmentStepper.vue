@@ -1,44 +1,48 @@
 <template>
-<div class="bx--gridresponsive-form">
-    <!-- Switcher Buttons -->
-    <cv-content-switcher>
-        <!-- Client and Services Button -->
-        <cv-content-switcher-button :active="first" owner-id="csb-1" id="first" :selected="isSelected(0)">
-            <AddFilled16 />
-            Client & Service
-        </cv-content-switcher-button>
+    <div class="bx--gridresponsive-form">
+        <!-- Switcher Buttons -->
+        <cv-content-switcher>
+            <!-- Client and Services Button -->
+            <cv-content-switcher-button :active="first" owner-id="csb-1" id="first" :selected="isSelected(0)">
+                <AddFilled16 />
+                Client & Service
+            </cv-content-switcher-button>
 
-        <!-- Project Details Button -->
-        <cv-content-switcher-button owner-id="csb-2" id="second" :selected="isSelected(1)">
-            <AddFilled16 />
-            Project Details
-        </cv-content-switcher-button>
+            <!-- Project Details Button -->
+            <cv-content-switcher-button owner-id="csb-2" id="second" :selected="isSelected(1)">
+                <AddFilled16 />
+                Project Details
+            </cv-content-switcher-button>
 
-        <!-- Add Tasks Button -->
-        <cv-content-switcher-button owner-id="csb-3" id="third" :selected="isSelected(2)">
-            <AddFilled16 />
-            Add Tasks
-        </cv-content-switcher-button>
-    </cv-content-switcher>
+            <!-- Add Tasks Button -->
+            <cv-content-switcher-button owner-id="csb-3" id="third" :selected="isSelected(2)">
+                <AddFilled16 />
+                Add Tasks
+            </cv-content-switcher-button>
+        </cv-content-switcher>
 
-    <!-- Switcher Contents -->
-    <section style="margin: 10px 0;">
-        <!-- Client and Service Form -->
-        <cv-content-switcher-content owner-id="csb-1" id="first">
-            <AddClientAndService v-on:selected-service-client="handleServiceAndClientId"/>
-        </cv-content-switcher-content>
+        <!-- Switcher Contents -->
+        <section style="margin: 10px 0;">
+            <!-- Client and Service Form -->
+            <cv-content-switcher-content owner-id="csb-1" id="first">
+                <AddClientAndService v-on:selected-service-client="handleServiceAndClientId"/>
+            </cv-content-switcher-content>
 
-        <!-- Project Details Form -->
-        <cv-content-switcher-content owner-id="csb-2" id="second">
-            <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
-        </cv-content-switcher-content>
+            <!-- Project Details Form -->
+            <cv-content-switcher-content owner-id="csb-2" id="second">
+                <AddAssignmentDetails v-on:selected-assignment="handleAssignmentDetails"/>
+            </cv-content-switcher-content>
 
-        <!-- Add Tasks Form -->
-        <cv-content-switcher-content owner-id="csb-3" id="third">
-            <AddTasksToNewAssignment v-if="serviceId" v-bind:serviceId="serviceId" v-on:selected-tasks="addTasksToAssignment"/>
-        </cv-content-switcher-content>
-    </section>
-</div>
+            <!-- Add Tasks Form -->
+            <cv-content-switcher-content owner-id="csb-3" id="third">
+                <AddTasksToNewAssignment 
+                    v-if="serviceId" 
+                    v-bind:serviceId="serviceId" 
+                    v-on:selected-tasks="addTasksToAssignment"
+                />
+            </cv-content-switcher-content>
+        </section>
+    </div>
 </template>
 
 <script>
@@ -48,10 +52,7 @@
     import AddClientAndService from './AddClientAndService.vue';
     import AddAssignmentDetails from './AddAssignmentDetails'
     import AddTasksToNewAssignment from './AddTasksToNewAssignment';
-    
     import AddFilled16 from '@carbon/icons-vue/es/add--filled/16';
-
-    
 
     export default {
         data() {
@@ -82,20 +83,11 @@
                 }
             },
             addTasksToAssignment(tasks) {
+                console.log('tasks added!', tasks)
                 this.assignment.tasks = tasks
                 // this.setDone('third')
                 this.submitAssignment()
             },
-            // setDone (id, index) {
-
-
-            //     this[id] = true
-
-
-            //     if (index) {
-            //         this.active = index
-            //     }
-            // },
             setError (msg) {
                 this.secondStepError = `Error: ${msg}`
             },

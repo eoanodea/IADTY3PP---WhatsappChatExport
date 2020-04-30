@@ -54,7 +54,6 @@ export default {
         },
 
         REMOVE_TASK(state, id) {
-            console.log('REMOVING',id, state.tasks, state.tasks.filter(dat => dat.id != id))
             state.tasks = state.tasks.filter(dat => dat.id != id)
         },
 
@@ -211,14 +210,12 @@ export default {
 
             try {
                 let response = await axios.post(`/api/task/${isActive}/batchRemove`, ids) 
-                console.log('done!', response.status, response.data.status === 'success')
+
                 if(response.data.status === 'success') {
-                    console.log('response good!')
+
                     ids.map(dat => {
-                        console.log('removing ', dat)
                         commit('REMOVE_TASK', dat)
                     })
-                    // this.loadTasks({commit})
                 }
 
                 commit('SET_LOADING', false)

@@ -1,6 +1,7 @@
 <template>
 <div>
-    <div v-if="saved">
+    <div v-if="saved" class="saved-container">
+        <h2>Project tasks selected!</h2>
         <button 
             @click="saved = false" 
             class="bx--btn bx--btn--lg bx--btn--primary"
@@ -17,7 +18,13 @@
     </div>
 
     <div v-else>
-        <ListTask style="text-decoration; none;" v-bind:parentId="assignment.id" v-bind:isActive="true" />
+        <ListTask
+            style="text-decoration; none;" 
+            v-bind:parentId="serviceId" 
+            v-bind:isActive="false" 
+            v-bind:actionType="'add'" 
+            v-on:selected-tasks="onSelect"
+        />
     </div>
 </div>
 </template>
@@ -27,12 +34,10 @@
     import axios from 'axios';
     import CreateNewTaskForAssignment from './CreateNewTaskForNewAssignment'
     
-    
     import Checkmark from '@carbon/icons-vue/lib';
     import ListTask from './../../task/ListTask'
     import { DataTable, Loading } from 'carbon-components';
 
-    
 
     export default {
         //This component will only work 
@@ -46,38 +51,12 @@
                 saved: false
             }
         },
-        created() {
-            this.fetchData()
-        },
-        watch: { 
-            //Watch the serviceId Prop for changes, on change 
-            //fetch new data
-            serviceId: function(newVal, oldVal) {
-                this.fetchData()
-            }
-        },
         methods: {
-            fetchData() {
-                axios.get(`/api/task/by/${this.serviceId}`)
-                .then(response => {
-                    if(response.data.status !== 'success') console.log('error', response.data)
-                    else {
-                        this.tasks = response.data.task
-                    }
-                })
-            },
             onSelect (items) {
-                this.selected = items
+                this.saved = true
+                this.tasks = items
             },
-            getAlternateLabel (count) {
-                let plural = ''
 
-                if (count > 1) {
-                    plural = 's'
-                }
-
-                return `${count} task${plural} selected`
-            },
             newTask(task) {
                 const lastTaskId = this.tasks[this.tasks.length - 1].id
                 let newTask = task
@@ -87,8 +66,7 @@
             },
             submitTasks() {
                 this.submitted = true
-                const {selected} = this
-                this.$emit('selected-tasks', selected)
+                this.$emit('selected-tasks', this.tasks)
             }
         },
         components: {
@@ -100,3 +78,15 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .saved-container {
+        text-align: center;
+        & h2 {
+            margin-bottom: 20px;
+        }
+        & button {
+            margin: 20px;
+        }
+    }
+</style>

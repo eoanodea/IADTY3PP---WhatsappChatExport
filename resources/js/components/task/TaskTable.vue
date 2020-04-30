@@ -40,15 +40,23 @@
                 </cv-data-table-row>
             </template>
             
-            <!-- Batch Actions slot -->
-            <template v-if="use_batchActions" slot="batch-actions" class="batch-actions">
+            <!-- Batch Delete slot -->
+            <template v-if="use_batchActions && actionType !== 'add'" slot="batch-actions" class="batch-actions">
                 <cv-button @click="onBatchDelete">
                     Delete
                     <TrashCan16 class="bx--btn__icon"/>
                 </cv-button>
             </template>
+            <!-- Batch Add slot -->
+            <template v-else slot="batch-actions" class="batch-actions">
+                <cv-button @click="onBatchAdd">
+                    Select these tasks
+                    <Checkmark32 class="bx--btn__icon" />
+                </cv-button>
+            </template>
         </cv-data-table>
         <BatchDeleteTask 
+            v-if="actionType !== 'add'"
             v-bind:ids="selectedIds" 
             v-bind:showDialog="showDialog" 
             v-bind:isActive="active" 
@@ -65,12 +73,11 @@
     import BatchDeleteTask from './../task/BatchDeleteTask'
     //Carbon Imports
     import TrashCan16 from '@carbon/icons-vue/es/trash-can/16';
+    import Checkmark32 from '@carbon/icons-vue/es/checkmark/32';
     import { DataTable } from 'carbon-components';
 
-    
-
     export default {
-        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'collection', 'active'],
+        props: ['title', 'data', 'fields', 'showUrl', 'addUrl', 'collection', 'active', 'actionType'],
         data: () => {
             return {
                 showDialog: false,
@@ -116,20 +123,22 @@
             onBatchDelete() {
                 this.handleDialog()
             },
-            actionNew() {
-                console.log('new!')
+            onBatchAdd() {
+                console.log('onBatchAdd!')
+                let tasks = []
+                this.selectedIds.map(dat => {
+                    tasks.push(this.data.filter(subdat => subdat.id == dat)[0])
+                })
+
+                console.log('tasks!', tasks)
+                this.$emit('selected-tasks', tasks)
             },
             handleBatchSuccess() {
-                console.log('YEEEHHH GOING')
-                console.log('starting', this.selectedData)
                 this.selectedData.map((dat, i) => {
-                    console.log('filting', this.filteredData, dat, i)
                     this.filteredData.splice(parseInt(dat), 1)
-                    console.log('done', this.filteredData)
                 })
                 this.selectedData = []
                 this.selectedIds = []
-                // this.formatData()
                 this.handleDialog()
             },
             handleDialog() {
@@ -140,6 +149,7 @@
             Pagination,
             DataTable,
             TrashCan16,
+            Checkmark32,
             BatchDeleteTask
         },
         mounted() {

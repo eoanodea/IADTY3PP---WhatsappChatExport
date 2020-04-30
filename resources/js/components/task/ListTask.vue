@@ -13,6 +13,8 @@
         v-bind:error="error"
         v-bind:active="active"
         v-bind:collection="'task'"
+        v-bind:actionType="actionType"
+        v-on:selected-tasks="onSelect"
     />
     <!-- Error -->
     <data-error v-else v-bind:error="error" v-bind:collection="'task'"/>
@@ -28,7 +30,7 @@
 
 
     export default {
-        props: ['parentId', 'isActive'],
+        props: ['parentId', 'isActive', 'actionType'],
         data() {
             return {
                 taskId: this.parentId
@@ -47,7 +49,9 @@
             this.$store.dispatch('task/loadTasks', [this.taskId, this.isActive])
         },
         methods: {
-            //
+            onSelect(tasks) {
+                this.$emit('selected-tasks', tasks)
+            }
         },
         watch: {
             //Watch the taskId Prop for changes, on change 
