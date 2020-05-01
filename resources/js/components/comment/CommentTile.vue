@@ -82,7 +82,6 @@
                 let newComment = data.comment
                 newComment.first_name = data.user.first_name
                 this.messages++;
-                this.audio.play()
                 this.comments.push(newComment);
             },
             /**
@@ -93,6 +92,7 @@
                 Echo.channel((this.isAssignment ? 'assignment.' : 'task.') + this.id)
                 .listen("MessagePushed", (e) => {
                     this.addComment(e)
+                    this.audio.play()
                 });
             },
         },
