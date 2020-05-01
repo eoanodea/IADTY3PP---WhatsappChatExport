@@ -13,12 +13,6 @@
 
 <script>
 import Vue from "vue";
-import {
-    MdProgress
-} from "vue-material/dist/components";
-
-
-Vue.use(MdProgress);
 
 export default {
     data() {
