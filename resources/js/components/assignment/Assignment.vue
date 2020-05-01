@@ -23,23 +23,23 @@
                 Project <span class="logoCol">{{ assignment.title }}</span>
             </p><br/><br/><br/>
 
-            <p class="subtitle subCon">
+            <p class="subtitle subCon lineHeight">
                 Deposit: {{ assignment.deposit }}%
             </p><br/><br/>
 
-            <p class="subtitle subCon">
+            <p class="subtitle subCon lineHeight">
                 Discount: {{ assignment.discount }}%
             </p><br/><br/>
 
-            <p class="subtitle subCon">
+            <p class="subtitle subCon lineHeight">
                 Total Price: €{{ assignment.total_price }}
             </p><br/><br/>
 
-            <p class="subtitle subCon">
+            <p class="subtitle subCon lineHeight">
                 Deadline: {{ assignment.deadline }}
             </p><br/><br/>
 
-            <p class="subtitle subCon">
+            <p class="subtitle subCon lineHeight">
                 Completed: {{ handleBoolean(assignment.completed) }}
             </p><br/><br/>
 
