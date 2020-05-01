@@ -42,7 +42,12 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json($this->guard()->user());
+        $user = $this->guard()->user();
+        if ($user->hasRole('admin')) {
+            $user->is_admin = true;
+        }
+
+        return response()->json($user);
     }
 
     /**

@@ -15,7 +15,8 @@
 
 import VueRouter from 'vue-router';
 import Signin from './pages/Signin';
-import Home from './pages/Home';
+import AdminHome from './pages/admin/Home';
+import Home from './pages/user/Home';
 import About from './pages/About';
 import Checkout from './components/transaction/Checkout';
 import ListUsers from './components/user/ListUsers'
@@ -68,11 +69,18 @@ const routes = [
 
     /**
      * Main Pages
-     *  @Page Home
+     *  @Page Admin Home
+     *  @Page User Home
      *  @Page About
      */
     {
         path: '/admin/home',
+        name: 'Adminhome',
+        component: AdminHome,
+        beforeEnter: (to, from, next) => beforeEnter(to, from, next)
+    },
+    {
+        path: '/home',
         name: 'home',
         component: Home,
         beforeEnter: (to, from, next) => beforeEnter(to, from, next)

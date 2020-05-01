@@ -88,7 +88,7 @@ export default {
   },
     created() {
     this.$store.dispatch('user/loadUser', parseInt(this.$route.params.id))
-    this.$store.dispatch('assignment/loadAssignmentsByClient')
+    this.$store.dispatch('assignment/loadAssignmentsByClient', parseInt(this.$route.params.id))
 
   },
   methods: {

@@ -121,7 +121,7 @@ export default {
                         }
                     })
                 )
-                : clientId = param
+                : clientId = typeof param != "object" ? param : param[0]
             }
             
             try {

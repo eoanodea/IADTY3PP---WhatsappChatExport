@@ -54,12 +54,12 @@
   import axios from 'axios'
   import { mapGetters } from 'vuex'
 
-  import User from './../components/user/User'
-  import Service from './../components/service/Service'
-  import Assignment from './../components/assignment/Assignment'
-  import ListTask from './../components/task/ListTask'
-  import Chart from './../components/user/components/Chart'
-  import CommentTile from './../components/comment/CommentTile'
+  import User from './../../components/user/User'
+  import Service from './../../components/service/Service'
+  import Assignment from './../../components/assignment/Assignment'
+  import ListTask from './../../components/task/ListTask'
+  import Chart from './../../components/user/components/Chart'
+  import CommentTile from './../../components/comment/CommentTile'
   
 
   export default {

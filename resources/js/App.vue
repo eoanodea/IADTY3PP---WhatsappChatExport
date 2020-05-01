@@ -7,9 +7,8 @@
       </cv-skip-to-content>
 
       <!-- Logo -->
-      <cv-header-name to="/admin/home" prefix="CLIENTELIGENCE">
-        <router-link to="/admin/home">
-        </router-link>
+      <cv-header-name to="/admin/home">
+        <h4>CLIENTEL<span class="logoCol">IGENCE</span></h4>
       </cv-header-name>
       
 
@@ -17,30 +16,44 @@
       <cv-header-nav aria-label="Carbon Nav" @click="menuVisible = !menuVisible" >
         
         <template v-if="authenticated">
-          <!-- Dashboard -->
-          <cv-header-menu-item to="/admin/home">
-            Dashboard
-          </cv-header-menu-item>
+          <!-- Admin Links -->
+          <template v-if="user.is_admin">
+            <!-- Dashboard -->
+            <cv-header-menu-item to="/admin/home">
+              Dashboard
+            </cv-header-menu-item>
 
-          <!-- Clients -->
-          <cv-header-menu-item to="/admin/users" @click="click">
-            Clients
-          </cv-header-menu-item>
+            <!-- Clients -->
+            <cv-header-menu-item to="/admin/users" @click="click">
+              Clients
+            </cv-header-menu-item>
 
-          <!-- Services -->
-          <cv-header-menu-item to="/admin/services" @click="click">
-            Services
-          </cv-header-menu-item>
+            <!-- Services -->
+            <cv-header-menu-item to="/admin/services" @click="click">
+              Services
+            </cv-header-menu-item>
 
-          <!-- Projects -->
-          <cv-header-menu-item to="/admin/assignments" @click="click">
-            Projects
-          </cv-header-menu-item>
+            <!-- Projects -->
+            <cv-header-menu-item to="/admin/assignments" @click="click">
+              Projects
+            </cv-header-menu-item>
 
-          <!-- Transactions -->
-          <cv-header-menu-item to="/admin/transactions/" @click="click">
-            Transactions
-          </cv-header-menu-item>
+            <!-- Transactions -->
+            <cv-header-menu-item to="/admin/transactions/" @click="click">
+              Transactions
+            </cv-header-menu-item>
+          </template>
+          <template v-else>
+            <!-- Dashboard -->
+            <cv-header-menu-item to="/home">
+              Dashboard
+            </cv-header-menu-item>
+            <!-- Profile -->
+            <cv-header-menu-item :to="'/admin/users/show/' + user.id">
+              Profile
+            </cv-header-menu-item>
+          </template>
+
         </template>
         <template v-else>
           <!-- Sign In -->
@@ -84,41 +97,57 @@
               Good day, {{user.first_name}}
             </cv-header-name>
 
-            <!-- Dashboard -->
-            <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/home" @click="click">
-                Dashboard
-              </cv-switcher-item-link>
-            </cv-switcher-item>
+            <!-- Admin Links -->
+            <template v-if="user.is_admin">
+              <!-- Dashboard -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/admin/home" @click="click">
+                  Dashboard
+                </cv-switcher-item-link>
+              </cv-switcher-item>
 
-            <!-- Clients -->
-            <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/users" @click="click">
-                Clients
-              </cv-switcher-item-link>
-            </cv-switcher-item>
+              <!-- Clients -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/admin/users" @click="click">
+                  Clients
+                </cv-switcher-item-link>
+              </cv-switcher-item>
 
-            <!-- Services -->
-            <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/services" @click="click">
-                Services
-              </cv-switcher-item-link>
-            </cv-switcher-item>
+              <!-- Services -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/admin/services" @click="click">
+                  Services
+                </cv-switcher-item-link>
+              </cv-switcher-item>
 
-            <!-- Projects -->
-            <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/assignments" v-on:click="click">
-                Projects
-              </cv-switcher-item-link>
-            </cv-switcher-item>
+              <!-- Projects -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/admin/assignments" v-on:click="click">
+                  Projects
+                </cv-switcher-item-link>
+              </cv-switcher-item>
 
-            <!-- Transactions -->
-            <cv-switcher-item>
-              <cv-switcher-item-link to="/admin/transactions" v-on:click="click">
-                Transactions
-              </cv-switcher-item-link>
-            </cv-switcher-item>
-            
+              <!-- Transactions -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/admin/transactions" v-on:click="click">
+                  Transactions
+                </cv-switcher-item-link>
+              </cv-switcher-item>
+            </template>
+            <!-- Client Pages -->
+            <template v-else>
+              <!-- Dashboard -->
+              <cv-switcher-item>
+                <cv-switcher-item-link to="/home" @click="click">
+                  Dashboard
+                </cv-switcher-item-link>
+              </cv-switcher-item>
+              <cv-switcher-item>
+                <cv-switcher-item-link :to="'/admin/users/show/' + user.id" @click="click">
+                  Profile
+                </cv-switcher-item-link>
+              </cv-switcher-item>
+            </template>
             <!-- Sign Out -->
             <cv-switcher-item>
               <cv-switcher-item-link href="javascript:void(0)" @click="signOut">
