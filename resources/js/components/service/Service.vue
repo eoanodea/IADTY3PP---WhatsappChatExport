@@ -4,9 +4,9 @@
         <div class="bx--row">
 
             <!-- Service Details (Notification Card)-->
-            <div class="bx--col-lg-6" style="padding-top: 100px;">
+            <div class="bx--col-lg-6" style="padding-top: 50px;">
                 
-                <p class="title logoCol">
+                <p class="title logoCol lineHeight">
                     {{ service.title }}
                 </p><br/><br/><br/>
                 
@@ -14,19 +14,19 @@
                     {{ service.description }}
                 </p><br/><br/>
                 
-                <p class="subtitle subCon">
+                <p class="subtitle subCon lineHeight">
                     Standard Price: €{{service.standard_price}}
                 </p><br/><br/>
                 
-                <p class="subtitle subCon">
+                <p class="subtitle subCon lineHeight">
                     Recurring Payment: {{ handleBoolean(service.recurring_payment) }}
                 </p><br/><br/>
                 
-                <p class="subtitle subCon">
+                <p class="subtitle subCon lineHeight">
                     Public Service: {{ handleBoolean(service.is_public) }}
                 </p><br/><br/>
 
-                <div class="bx--row">
+                <div class="bx--row" style="padding-bottom: 20px;">
                     <div class="bx--col">
                     <!-- Edit Button -->
                         <cv-link :to="'/admin/services/edit/' + service.id" style="text-decoration: none;">
