@@ -71,7 +71,12 @@
     },
     
     created() {
-      this.$store.dispatch('assignment/loadAssignmentsByClient', this.user.id)
+      
+      if(this.user.is_admin) {
+        this.$router.replace({
+            path: '/admin/home'
+        })
+      } else this.$store.dispatch('assignment/loadAssignmentsByClient', this.user.id)
     },
     methods: {
       returnData() {
