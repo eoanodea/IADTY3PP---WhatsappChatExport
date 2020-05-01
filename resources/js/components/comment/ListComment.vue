@@ -5,10 +5,13 @@
             <div class="container">
                 <div class="msg-header">
                     <div class="active">
-                        <h5>Comments</h5>
+                        <h5>Discussing the {{isAssignment ? 'Project' : 'Task'}}</h5>
                     </div>
                     <div>
-                        <button class="bx--btn bx--btn--lg bx--btn--secondary" @click="closePanel">Close</button>
+                        <button class="bx--btn bx--btn--lg bx--btn--secondary" @click="closePanel">
+                            Close
+                            <Close32 class="bx--btn__icon" />
+                        </button>
                     </div>
                 </div>
 
@@ -18,7 +21,7 @@
                             <div class="msg-page" id="msg-page">
 
                                 <div
-                                    v-if="loadingMessages"
+                                    v-if="loading"
                                     class="loading-messages-container"
                                 >
                                     <span class="loading-text">
@@ -45,9 +48,9 @@
                                         <div class="received-chats" v-if="message.user_id !== user.id">
                                             <div class="received-msg">
                                                 <div class="received-msg-inbox">
-                                                    <cv-link :to="`/admin/comments/${assignment}/` + commentId + '/new'" style="text-decoration: none;">
+                                                    <!-- <cv-link :to="`/admin/comments/${parentId}/` + id + '/new'" style="text-decoration: none;">
                                                     
-                                                    </cv-link>
+                                                    </cv-link> -->
                                                     <p><cv-link :to="`/admin/users/show/${message.user_id}/`">{{ message.first_name ? message.first_name : message.user.first_name }}</cv-link><br>{{ message.comment }}</p>
                                                 </div>
                                             </div>
@@ -66,7 +69,7 @@
                     </div>
 
                     <div class="msg-bottom">
-                        <add-comment v-bind:id="commentId" v-on:comment-added="addComment" v-bind:isAssignment="assignment"></add-comment>
+                        <add-comment v-bind:id="parentId" v-on:comment-added="addComment" v-bind:isAssignment="isAssignment"></add-comment>
                     </div>
                 </div>
             </div>
@@ -76,109 +79,72 @@
 </template>
 <script>
     import Vue from "vue";
-    import axios from 'axios';
+    // import axios from 'axios';
     import LoadingIndicator from './../progress/LoadingIndicator'
+    import Close32 from '@carbon/icons-vue/es/close/32'
     
-    
-    import { mapGetters } from 'vuex'
+    // import { mapGetters } from 'vuex'
     import AddComment from './AddComment'
 
     
 
     export default {
-        props: ['parentId', 'isAssignment'],
+        props: ['parentId', 'isAssignment', 'loading', 'comments', 'user'],
         data() {
             return {
-                comments: null,
-                loadingMessages: true,
-                commentId: this.$route.params.id
-                    ? this.$route.params.id
-                    : this.parentId,
-                assignment: this.$route.params.isAssignment
-                    ? (this.$route.params.isAssignment === 'true' ? true : false)
-                    : this.isAssignment,
+                // commentId: this.$route.params.id
+                //     ? this.$route.params.id
+                //     : this.parentId,
+                // assignment: this.$route.params.isAssignment
+                //     ? (this.$route.params.isAssignment === 'true' ? true : false)
+                //     : this.isAssignment,
                 error: null,
                 msgContainer: null,
                 scroll: 0,
                 expanded: false
             }
         },
-        /**
-         * When the component mounts, check if the comment is assignment or not 
-         * Modify the fetch URL with result and fetch comments
-         */
-        mounted () {
-            this.fetchComments()
+        mounted() {
+            this.commentsUpdated()
         },
         methods: {
-            fetchComments() {
-                this.loadingMessages = true
-                const url = this.assignment
-                ? 'comments/assignment'
-                : 'comments/task'
-                
-                axios.get(`/api/${url}/${this.commentId}`)
-                .then(response => {
-                if(response.data.status !== "success") {
-                    console.log('error!')
-                    this.error = response.data.error
-                } else {
-                    this.comments = response.data.comment
-                }
-                this.loadingMessages = false
-                }).catch(function(e) {
-                    console.log('error!', e)
-                    this.error = e
-                }).finally(() => {
-                    this.msgContainer = this.$el.querySelector("#msg-page");
-                    this.scrollToBottom()
-
-                    this.listenForBroadcast()
-                })
+            commentsUpdated() {
+                this.msgContainer = this.$el.querySelector("#msg-page");
+                this.scrollToBottom()
             },
             addComment(data) {
-                let newComment = data.comment
-                newComment.first_name = data.user.first_name
-
-                this.comments.push(newComment);
-                this.scrollToBottom()
+                this.$emit('comment-added', data)
             },
             scrollToBottom: function() {    
                 this.$nextTick(() => {
-                
                     this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
                 })
             },
             closePanel() {
                 this.$emit('close')
             },
-            /**
-             * Connect to Laravel Echo 
-             * for live updates
-             */
-            listenForBroadcast() {
-                Echo.channel((this.assignment ? 'assignment.' : 'task.') + this.commentId)
-                .listen("MessagePushed", (e) => {
-                    this.addComment(e)
-                });
-            },
+
         },
         components: {
             AddComment,
-            LoadingIndicator
+            LoadingIndicator,
+            Close32
         },
-        computed: {
-            ...mapGetters({
-                user: 'auth/user',
-                token: 'auth/token',
-            })
-        },
+        // computed: {
+        //     ...mapGetters({
+        //         user: 'auth/user',
+        //         token: 'auth/token',
+        //     })
+        // },
         watch: {
             //Watch the serviceId Prop for changes, on change 
             //fetch new data
-            parentId: function(newVal, oldVal) {
-                this.commentId = parseInt(newVal)
-                this.fetchComments()
+            // parentId: function(newVal, oldVal) {
+            //     this.commentId = parseInt(newVal)
+            //     this.fetchComments()
+            // },
+            comments: function(newVal, oldVal) {
+                this.commentsUpdated()
             }
         },
     }
@@ -261,6 +227,7 @@
     .msg-page {
         height: 516px;
         overflow-y: auto;
+        scroll-behavior: smooth;
         padding-bottom: 100px;
     }
 

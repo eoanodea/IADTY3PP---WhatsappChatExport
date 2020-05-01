@@ -7,7 +7,7 @@
       </cv-skip-to-content>
 
       <!-- Logo -->
-      <cv-header-name to="/admin/home">
+      <cv-header-name :to="user.is_admin ? '/admin/home' : '/home'">
         <h4>CLIENTEL<span class="logoCol">IGENCE</span></h4>
       </cv-header-name>
       

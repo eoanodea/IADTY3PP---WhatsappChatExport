@@ -54,6 +54,7 @@
       <DeleteTask v-bind:id="task.id" v-bind:isActive="active" />
     </div>
   </div>
+  <CommentTile v-bind:id="task.id" v-bind:isAssignment="false" />
 
 </div>
 <data-error v-else v-bind:error="error" v-bind:collection="'user'" />
@@ -67,6 +68,9 @@
   import { mapGetters } from 'vuex'
   import LoadingIndicator from './../progress/LoadingIndicator'
   import DataError from './../table/DataError'
+
+  import CommentTile from './../comment/CommentTile'
+
 
   export default {
     data() {
@@ -92,7 +96,8 @@
     components: {
       DeleteTask,
       LoadingIndicator,
-      DataError
+      DataError,
+      CommentTile
     }
   };
 </script>

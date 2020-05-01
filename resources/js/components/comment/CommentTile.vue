@@ -1,38 +1,132 @@
 <template>
     <div class="chat-container">
+
         <template v-if="expanded">
-            <list-comment v-bind:parentId="id" v-bind:isAssignment="isAssignment" v-on:close="expand"/>
+            <list-comment 
+                v-bind:parentId="id" 
+                v-bind:isAssignment="isAssignment" 
+                v-bind:loading="loadingMessages"
+                v-bind:comments="comments"
+                v-bind:user="user"
+                v-on:close="expand"
+                v-on:comment-added="addComment"
+            />
         </template>
-        <button @click="expand" v-else class="bx--btn bx--btn--lg bx--btn--primary">Chat</button>
+        <button 
+            @click="expand" 
+            v-else 
+            class="bx--btn bx--btn--lg bx--btn--primary"
+        >
+            Chat 
+            <Chat32 class="bx--btn__icon" />
+            <div class="notification-container" v-if="messages > 0">
+                <p class="notification-text">{{messages}}</p>
+            </div>
+        </button>
     </div>
 </template>
 <script>
-import Vue from "vue";
-
-
-import ListComment from './ListComment'
-
-
-
+    import Vue from "vue";
+    import ListComment from './ListComment'
+    import Chat32 from '@carbon/icons-vue/es/chat/32'
+    import { mapGetters } from 'vuex'
+    import axios from 'axios';
 
     export default {
         props: ['id', 'isAssignment'],
         data() {
             return {
-                expanded: false
+                expanded: false,
+                comments: null,
+                loadingMessages: true,
+                messages: 0
             }
+        },
+        mounted () {
+            this.fetchComments()
         },
         methods: {
             expand(ev) {
+                this.messages = 0
                 this.expanded = !this.expanded
-            }
+            },
+                /**
+                * When the component mounts, check if the comment is assignment or not 
+                * Modify the fetch URL with result and fetch comments
+                */
+            fetchComments() {
+                this.loadingMessages = true
+                const url = this.isAssignment
+                ? 'comments/assignment'
+                : 'comments/task'
+                
+                axios.get(`/api/${url}/${this.id}`)
+                .then(response => {
+                if(response.data.status !== "success") {
+                    console.log('error!')
+                    this.error = response.data.error
+                } else {
+                    this.comments = response.data.comment
+                }
+                this.loadingMessages = false
+                }).catch(function(e) {
+                    console.log('error!', e)
+                    this.error = e
+                }).finally(() => {
+                    this.listenForBroadcast()
+                })
+            },
+            addComment(data) {
+                let newComment = data.comment
+                newComment.first_name = data.user.first_name
+                this.messages++;
+                this.comments.push(newComment);
+            },
+            /**
+             * Connect to Laravel Echo 
+             * for live updates
+             */
+            listenForBroadcast() {
+                Echo.channel((this.isAssignment ? 'assignment.' : 'task.') + this.id)
+                .listen("MessagePushed", (e) => {
+                    this.addComment(e)
+                });
+            },
+        },
+        watch: {
+            //Watch the serviceId Prop for changes, on change 
+            //fetch new data
+            id: function(newVal, oldVal) {
+                this.fetchComments()
+            },
+        },
+        computed: {
+            ...mapGetters({
+                user: 'auth/user',
+                token: 'auth/token',
+            })
         },
         components: {
-            ListComment
-        },
+            ListComment,
+            Chat32
+        }
     }
 </script>
 <style lang="scss">
+    .notification-container {
+        position: absolute;
+        right: -10px;
+        top: -15px;
+        background-color: red;
+        border-radius: 100%;
+        width: 2em;
+        height: 2em;
+        text-align: center;
+    }
+    .notification-text {
+        font-weight: 800;
+        font-size: 1em;
+    }
     .chat-container {
         position: fixed;
         bottom: 10px;

@@ -2,21 +2,22 @@
     <div class="add-comment-container">
         <!-- Comment -->
         <div class="bx--text-input__field-wrapper">
-            <textarea 
+            <input 
                 id="text-area-2" 
                 name="comment" 
                 type="text" 
                 autocomplete="comment" 
                 v-model="comment.comment"
                 class="bx--text-area comment-textarea"
-                placeholder="Comment"
+                placeholder="Message"
+                :disabled="submitting"
+                :invalid-message="errors.length ? errors[0].message : null"
                 v-on:keydown.enter="validateComment"
-                ></textarea>
+                />
                 <p v-if="errors.length" class="form-error bx--form-requirement">
-                    <b class="error">Please correct the following error(s):</b>
                     <ul>
-                    <li v-for="error in errors" v-bind:key="error.id" class="error">
-                        {{ error.message }}
+                        <li v-for="error in errors" v-bind:key="error.id" class="error">
+                            {{ error.message }}
                         </li>
                     </ul>
                 </p>
@@ -50,7 +51,7 @@
             type="submit"
             v-on:click="validateComment"
             :disabled="submitting ? true : false">
-                Save
+                Send <Send32 class="bx--btn__icon" />
         </button>
     </div>
 </template>
@@ -58,11 +59,10 @@
     import axios from 'axios';
     import Vue from 'vue';
     import router from './../../router'
-    
+    import Send32 from '@carbon/icons-vue/es/send/32'
     
     import { mapGetters } from 'vuex'
 
-    
 
     export default {
         props: ['id', 'isAssignment'],
@@ -91,7 +91,7 @@
 
                 this.errors = [];
                 if(!comment.comment) {
-                     this.errors.push({id: 0, message: 'Message is required.'});
+                     this.errors.push({id: 0, message: 'Message cannot be blank'});
                 }
                 if(!comment.progress) {
                      this.errors.push({id: 1, message: 'Percentage done is required.'});
@@ -130,6 +130,9 @@
             ...mapGetters({
                 user: 'auth/user'
             })
+        },
+        components: {
+            Send32
         }
     }
 </script>
