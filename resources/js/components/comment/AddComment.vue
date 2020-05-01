@@ -6,7 +6,7 @@
                 id="text-area-2" 
                 name="comment" 
                 type="text" 
-                autocomplete="comment" 
+                autocomplete="off" 
                 v-model="comment.comment"
                 class="bx--text-area comment-textarea"
                 placeholder="Message"

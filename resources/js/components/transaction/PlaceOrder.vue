@@ -3,11 +3,10 @@
     <div class="cardContainer" v-if="payload">
       <div ref="card" class="cardElement">
       </div>
-
       <div v-if="intent">
         <br />
         <p v-if='error'>{{error}}</p>
-        <button v-on:click="purchase" id="submit">Purchase</button>
+        <button v-on:click="purchase" id="submit" class="bx--btn bx--btn--lg bx--btn--primary">Purchase</button>
         <br />
       </div>
       
@@ -49,7 +48,8 @@
     data() {
       return {
         error: null,
-        intent: null
+        intent: null,
+        loading: true
       }
     },
     components: {
@@ -99,7 +99,7 @@
             return
           }
           this.intent = response.data.intent
-            
+          this.loading = false
           card = elements.create('card', style);
           card.mount(this.$refs.card);
         })
@@ -115,15 +115,17 @@
   // .cardContainer {
   //   padding: 50px; 
   // }
-
-  // .cardElement {
-  //   display: block;
-  //   margin: 24px auto 10px auto;
-  //   max-width: 408px;
-  //   padding: 10px 14px;
-  //   box-shadow:
-  //     rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
-  //   border-radius: 4px;
-  //   background: white
+  // .hide {
+  //   display:none;
   // }
+  .cardElement {
+    display: block;
+    margin: 24px auto 10px auto;
+    max-width: 408px;
+    padding: 10px 14px;
+    box-shadow:
+      rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+    border-radius: 4px;
+    background: white
+  }
 </style>
