@@ -1,8 +1,3 @@
-<template>
-    <ccv-donut-chart v-if="!loading" :data="data" :options="options"></ccv-donut-chart>   
-    <loading-indicator v-else />
-</template>
-
 <script>
 import Vue from "vue";
 import axios from "axios";
@@ -49,11 +44,15 @@ export default {
             }
         };
     },
+    template: "<ccv-donut-chart v-if='!loading && fetched' :data='data' :options='options'></ccv-donut-chart><loading-indicator v-else-if='loading' /><span v-else></span>",
     mounted() {
            if(this.serviceId && this.tasks.length < 1) {
                this.$store.dispatch('task/loadTasks', [this.serviceId, true])
                .then(() => this.structureTasks())
            } else this.structureTasks()
+    },
+    beforeDestroy() {
+        this.fetched = false
     },
     methods: {
         structureTasks() {

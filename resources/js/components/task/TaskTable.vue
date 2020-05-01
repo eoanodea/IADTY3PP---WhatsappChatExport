@@ -124,13 +124,11 @@
                 this.handleDialog()
             },
             onBatchAdd() {
-                console.log('onBatchAdd!')
                 let tasks = []
                 this.selectedIds.map(dat => {
                     tasks.push(this.data.filter(subdat => subdat.id == dat)[0])
                 })
 
-                console.log('tasks!', tasks)
                 this.$emit('selected-tasks', tasks)
             },
             handleBatchSuccess() {

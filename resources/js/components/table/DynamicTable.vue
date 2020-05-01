@@ -116,7 +116,6 @@
     .no-data-container {
         width: 100%;
         margin: 50px auto;
-        text-align: center;
     }
 </style>
 
