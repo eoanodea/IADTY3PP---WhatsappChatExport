@@ -89,11 +89,16 @@
              * for live updates
              */
             listenForBroadcast() {
-                Echo.channel((this.isAssignment ? 'assignment.' : 'task.') + this.id)
-                .listen("MessagePushed", (e) => {
-                    this.addComment(e)
-                    this.audio.play()
-                });
+                console.log(typeof Echo)
+                if(typeof Echo !== "undefined") {
+                    Echo.channel((this.isAssignment ? 'assignment.' : 'task.') + this.id)
+                    .listen("MessagePushed", (e) => {
+                        this.addComment(e)
+                        this.audio.play()
+                    });
+                } else {
+                    console.log('no echo!')
+                }
             },
         },
         watch: {

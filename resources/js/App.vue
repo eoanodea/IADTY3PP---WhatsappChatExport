@@ -7,7 +7,11 @@
       </cv-skip-to-content>
 
       <!-- Logo -->
-      <cv-header-name :to="user.is_admin ? '/admin/home' : '/home'">
+
+      <cv-header-name v-if="!user" to="/">
+        <h4>CLIENTEL<span class="logoCol">IGENCE</span></h4>
+      </cv-header-name>
+      <cv-header-name v-else :to="user.is_admin ? '/admin/home' : '/home'">
         <h4>CLIENTEL<span class="logoCol">IGENCE</span></h4>
       </cv-header-name>
       
@@ -199,6 +203,7 @@
       return {
         menuVisible: true,
         transitionName: DEFAULT_TRANSITION,
+        isAdmin: false
       }
     },
     components: {
@@ -233,6 +238,11 @@
      * if so, slide left, else slide right
      */
     watch: {
+      user: function(newVal, oldVal) {
+        console.log('new val!', newVal)
+        if(newVal && newVal.is_admin) this.isAdmin = true
+        else this.isAdmin = false
+      },
       '$route' (to, from, options) {
         const routes = this.$router.options.routes
         let toIndex
