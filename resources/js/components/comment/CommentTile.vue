@@ -137,6 +137,7 @@
         font-size: 1em;
     }
     .chat-container {
+        z-index: 10;
         position: fixed;
         bottom: 10px;
         right: 10px;
