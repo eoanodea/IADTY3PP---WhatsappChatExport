@@ -74,7 +74,7 @@
     </div> <!-- Close ROW -->
 
     <div class="bx--col-lg-6">
-        <CommentTile v-bind:id="assignment.id" v-bind:isAssignment="true" />
+        <CommentTile v-if="assignment && assignment.id" v-bind:id="assignment.id" v-bind:isAssignment="true" />
     </div>
 </div>
 <data-error v-else v-bind:error="error" v-bind:collection="'user'" />

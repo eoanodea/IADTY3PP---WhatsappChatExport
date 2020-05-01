@@ -54,7 +54,7 @@
       <DeleteTask v-bind:id="task.id" v-bind:isActive="active" />
     </div>
   </div>
-  <CommentTile v-bind:id="task.id" v-bind:isAssignment="false" />
+  <CommentTile v-if="task && task.id" v-bind:id="task.id" v-bind:isAssignment="false" />
 
 </div>
 <data-error v-else v-bind:error="error" v-bind:collection="'user'" />
