@@ -85,23 +85,18 @@
     
     // import { mapGetters } from 'vuex'
     import AddComment from './AddComment'
-
+    import woosh from './../../../assets/sound/woosh.mp3'
     
 
     export default {
         props: ['parentId', 'isAssignment', 'loading', 'comments', 'user'],
         data() {
             return {
-                // commentId: this.$route.params.id
-                //     ? this.$route.params.id
-                //     : this.parentId,
-                // assignment: this.$route.params.isAssignment
-                //     ? (this.$route.params.isAssignment === 'true' ? true : false)
-                //     : this.isAssignment,
                 error: null,
                 msgContainer: null,
                 scroll: 0,
-                expanded: false
+                expanded: false,
+                audio: new Audio(woosh)
             }
         },
         mounted() {
@@ -113,6 +108,7 @@
                 this.scrollToBottom()
             },
             addComment(data) {
+                this.audio.play()
                 this.$emit('comment-added', data)
             },
             scrollToBottom: function() {    

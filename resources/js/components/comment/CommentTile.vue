@@ -31,6 +31,7 @@
     import Chat32 from '@carbon/icons-vue/es/chat/32'
     import { mapGetters } from 'vuex'
     import axios from 'axios';
+    import juntos from './../../../assets/sound/juntos.mp3'
 
     export default {
         props: ['id', 'isAssignment'],
@@ -39,7 +40,8 @@
                 expanded: false,
                 comments: null,
                 loadingMessages: true,
-                messages: 0
+                messages: 0,
+                audio: new Audio(juntos)
             }
         },
         mounted () {
@@ -80,6 +82,7 @@
                 let newComment = data.comment
                 newComment.first_name = data.user.first_name
                 this.messages++;
+                this.audio.play()
                 this.comments.push(newComment);
             },
             /**
